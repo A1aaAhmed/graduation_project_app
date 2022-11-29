@@ -5,10 +5,14 @@ Widget ListTable(
     {
 
       required List<Map> list,
-
+      required IconData icon,
+      required String firstData,
+      required String secondData ,
+      required String thirdData,
 
     }
     )=>ListView.builder(
+
   scrollDirection: Axis.vertical,
   shrinkWrap: true,
   physics: const NeverScrollableScrollPhysics(),
@@ -17,21 +21,16 @@ Widget ListTable(
     return ListTile(
       contentPadding: const EdgeInsets.only(left: 5,right: 5,top:5),
       onTap: (){
-        //to navigate and send data
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => OneCustomer(
-        //
-        //     name:list[index]['name'],
-        //     Email:list[index]['email'],
-        //     Bal:list[index]['balance'])));
-
+////
       },
       hoverColor: colortheme.blueGray,
-      leading:const Icon(
-        Icons.train_rounded
+      leading: Icon(
+        icon,
       ),
-      title:Text(list[index]['tripName']),
-      subtitle:Text( list[index]['tripDate']),
-      trailing: Text(list[index]['extraData']),
+      title:Text(list[index][firstData]),
+      subtitle:Text( list[index][secondData]),
+      trailing: Text(list[index][thirdData]),
+
 
 
     );

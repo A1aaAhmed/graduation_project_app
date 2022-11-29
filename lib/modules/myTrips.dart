@@ -50,8 +50,9 @@ class _MyTripsState extends State<MyTrips> {
     return Scaffold(
       appBar: Bar(text: 'My Trips',),
       body: SingleChildScrollView(
-        child: ListTable(list: db),
+        child: ListTable(list: db,icon:Icons.train_rounded,firstData: 'tripName',secondData: 'tripDate',thirdData: 'extraData'),
       ),
+
     );
   }
 }
