@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/screens/home_screen.dart';
 import 'package:graduation_project_app/screens/livelocation_screen.dart';
 import 'package:graduation_project_app/screens/profile_screen.dart';
+import 'package:graduation_project_app/screens/ticket.dart';
 import 'package:graduation_project_app/style/colors.dart';
 import 'package:graduation_project_app/screens/myTrips_screen.dart';
 
@@ -30,7 +31,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: IndexedStack(index: currentindex, children: screens),
+        body: Ticket(),
+        //IndexedStack(index: currentindex, children: screens),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentindex,
           onTap: (index) => setState(() {
