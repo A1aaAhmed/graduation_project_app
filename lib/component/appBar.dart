@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/main.dart';
 import 'package:graduation_project_app/style/colors.dart';
-
 class Bar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
   Bar({Key? key, required this.text})
@@ -22,7 +22,18 @@ class _BarState extends State<Bar> {
         backgroundColor: colortheme.lightPurple,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+
+            if (Navigator.canPop(context)) {
+              // We have no active routes, so we can't pop.
+              Navigator.pop(context);
+            }
+            else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp()),
+              );
+
+            }
           },
           icon: Icon(Icons.arrow_back_ios),
         ), //replace with our own icon data. ) )
