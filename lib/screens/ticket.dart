@@ -14,7 +14,7 @@ class _TicketState extends State<Ticket> {
     final Size size  =MediaQuery.of(context).size;
     return Center(
       child: Container(
-        padding: EdgeInsetsDirectional.all(50),
+        padding: const EdgeInsetsDirectional.all(50),
         width: size.width,
         height: size.height/1.5,
         child: Stack(
