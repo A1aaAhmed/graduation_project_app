@@ -20,6 +20,7 @@ class _BarState extends State<Bar> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colortheme.lightPurple,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

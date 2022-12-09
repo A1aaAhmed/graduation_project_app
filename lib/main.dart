@@ -33,9 +33,11 @@ class _MyAppState extends State<MyApp> {
         body: IndexedStack(index: currentindex, children: screens),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentindex,
-          onTap: (index) => setState(() {
-            currentindex = index;
-          }),
+          onTap: (index) {
+            setState(() {
+              currentindex = index;
+            });
+          },
           type: BottomNavigationBarType.fixed,
           selectedItemColor: colortheme.lightPurple,
           unselectedItemColor: colortheme.lightPurple.withOpacity(0.3),
