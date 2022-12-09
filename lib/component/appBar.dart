@@ -3,7 +3,8 @@ import 'package:graduation_project_app/main.dart';
 import 'package:graduation_project_app/style/colors.dart';
 class Bar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
-  Bar({Key? key, required this.text})
+  final bool moreList;
+  const Bar({Key? key, required this.text,required this.moreList})
       : super(
           key: key,
         );
@@ -35,11 +36,19 @@ class _BarState extends State<Bar> {
 
             }
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
         ), //replace with our own icon data. ) )
         title: Text(
           widget.text,
         ),
+        actions: [
+          widget.moreList?IconButton(
+              onPressed: (){},
+              icon:const Icon(
+                Icons.more_vert_rounded,
+              )
+          ):const Text('')
+        ],
         // ignore: prefer_const_literals_to_create_immutables
       ),
       //floatingActionButton:FloatingActionButton(
