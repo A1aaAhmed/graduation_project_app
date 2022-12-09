@@ -37,7 +37,7 @@ class _TicketState extends State<Ticket> {
       body: Column(
         children: [
           Container(
-            height: 500,
+            height: 450,
             child: TicketComp(
                 date: widget.date,
                 from: widget.from,
@@ -48,9 +48,7 @@ class _TicketState extends State<Ticket> {
               size: size
             ),
           ),
-         const SizedBox(
-            height: 5,
-          ),
+          SizedBox(height: 30),
           button(text: "Navigate Route", onpress: (){}, width: 250, height: 50)
         ],
       ),
