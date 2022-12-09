@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:graduation_project_app/component/appBar.dart';
-import 'package:graduation_project_app/style/colors.dart';
+import 'package:graduation_project_app/shared/components/appBar.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
 
 class TrainsScreen extends StatelessWidget {
   final String from;

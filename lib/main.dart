@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/screens/home_screen.dart';
-import 'package:graduation_project_app/screens/livelocation_screen.dart';
-import 'package:graduation_project_app/screens/profile_screen.dart';
-import 'package:graduation_project_app/style/colors.dart';
-import 'package:graduation_project_app/screens/myTrips_screen.dart';
+import 'package:graduation_project_app/layout/home_screen.dart';
+import 'package:graduation_project_app/modules/livelocation_screen.dart';
+import 'package:graduation_project_app/modules/profile_screen.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/modules/mytrips_screen.dart';
 
 void main() {
   runApp(const MyApp());

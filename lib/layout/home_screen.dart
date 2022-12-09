@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/screens/trains_screen.dart';
-import 'package:graduation_project_app/style/colors.dart';
-import 'package:graduation_project_app/component/button.dart';
+import 'package:graduation_project_app/modules/trains_screen.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/shared/components/button.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});

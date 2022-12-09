@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/component/appBar.dart';
-import 'package:graduation_project_app/component/button.dart';
-import 'package:graduation_project_app/component/ticketComponent.dart';
+import 'package:graduation_project_app/shared/components/appBar.dart';
+import 'package:graduation_project_app/shared/components/button.dart';
+import 'package:graduation_project_app/shared/components/ticketComponent.dart';
 
 class Ticket extends StatefulWidget {
   final DateTime date;

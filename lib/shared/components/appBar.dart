@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/main.dart';
-import 'package:graduation_project_app/style/colors.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
 class Bar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
   final bool moreList;

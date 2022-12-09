@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/component/appBar.dart';
+import 'package:graduation_project_app/shared/components/appBar.dart';
 
-import '../component/ListTable.dart';
+import '../shared/components/ListTable.dart';
 
 
 class MyTripsScreen extends StatefulWidget {
