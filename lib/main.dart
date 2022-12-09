@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/home_screen.dart';
 import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
+import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/mytrips_screen.dart';
 
@@ -21,6 +22,14 @@ class _MyAppState extends State<MyApp> {
   final screens = [
     HomeScreen(),
     LiveLocationScreen(),
+    Ticket(
+      from: 'Alexandria',
+      to: 'Aswan',
+      duration: '1hr-20mins',
+      seat: 'A1,A2',
+      gate: 'C',
+      date: DateTime.now(),
+    ),
     MyTripsScreen(),
     ProfileScreen(),
   ];
@@ -41,6 +50,7 @@ class _MyAppState extends State<MyApp> {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: colortheme.lightPurple,
           unselectedItemColor: colortheme.lightPurple.withOpacity(0.3),
+          unselectedLabelStyle: TextStyle(overflow: TextOverflow.ellipsis),
           items: [
             BottomNavigationBarItem(
               label: 'Home',
@@ -51,7 +61,11 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.gps_fixed),
             ),
             BottomNavigationBarItem(
-              label: 'Tickets',
+              label: 'Current Tickets',
+              icon: Icon(Icons.confirmation_num_outlined),
+            ),
+            BottomNavigationBarItem(
+              label: 'History',
               icon: Icon(Icons.history),
             ),
             BottomNavigationBarItem(

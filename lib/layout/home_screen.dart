@@ -14,35 +14,34 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController from = TextEditingController();
   TextEditingController to = TextEditingController();
   TextEditingController depart = TextEditingController();
-  TextEditingController traveller = TextEditingController();
   int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: colortheme.lightGray,
-        body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+        body: SizedBox(
+          width: width,
+          height: height,
           child: Stack(children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.3,
+              width: width,
+              height: height * 0.3,
               decoration: BoxDecoration(
                   color: colortheme.lightPurple,
                   borderRadius: BorderRadius.only(
-                    bottomLeft:
-                        Radius.circular(MediaQuery.of(context).size.width * .1),
-                    bottomRight:
-                        Radius.circular(MediaQuery.of(context).size.width * .1),
+                    bottomLeft: Radius.circular(width * .1),
+                    bottomRight: Radius.circular(width * .1),
                   )),
               child: Stack(children: [
                 Padding(
                   padding: const EdgeInsets.all(25),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text('Let\'s',
                             style: TextStyle(
                                 color: colortheme.white,
@@ -58,15 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.22,
-              left: MediaQuery.of(context).size.width * 0.05,
+              top: height * 0.22,
+              left: width * 0.05,
               child: Container(
-                width: MediaQuery.of(context).size.width * .9,
-                height: MediaQuery.of(context).size.height * 0.65,
+                width: width * .9,
+                height: height * 0.65,
                 decoration: BoxDecoration(
                     color: colortheme.white,
                     borderRadius: BorderRadius.all(
-                      Radius.circular(MediaQuery.of(context).size.width * .05),
+                      Radius.circular(width * .05),
                     )),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -104,28 +103,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Travellers',
                               style: TextStyle(
                                 color: colortheme.lightPurple,
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
+                              height: height * 0.01,
                             ),
                             Row(
                               children: [
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.09,
+                                  width: width * 0.09,
+                                  height: width * 0.09,
                                   decoration: BoxDecoration(
                                       color: colortheme.lightGray,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            MediaQuery.of(context).size.width *
-                                                .03),
+                                        Radius.circular(width * .03),
                                       )),
                                   child: IconButton(
                                     onPressed: () {
@@ -137,38 +132,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                         }
                                       });
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.remove,
                                       size: 20,
                                     ),
                                   ),
                                 ),
                                 SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.02,
+                                  width: width * 0.02,
                                 ),
                                 Text(
                                   '$travellers',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: colortheme.black,
                                     fontSize: 25,
                                   ),
                                 ),
                                 SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.02,
+                                  width: width * 0.02,
                                 ),
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.09,
+                                  width: width * 0.09,
+                                  height: width * 0.09,
                                   decoration: BoxDecoration(
                                       color: colortheme.lightGray,
                                       borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            MediaQuery.of(context).size.width *
-                                                .03),
+                                        Radius.circular(width * .03),
                                       )),
                                   child: IconButton(
                                     onPressed: () {
@@ -176,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         travellers++;
                                       });
                                     },
-                                    icon: Icon(
+                                    icon:const Icon(
                                       Icons.add,
                                       size: 20,
                                     ),
@@ -197,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         date: depart.text)),
                                   ),
                                 ),
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            width: width * 0.5,
                             height: 60),
                       ]),
                 ),
