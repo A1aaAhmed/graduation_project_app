@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/home_screen.dart';
+import 'package:graduation_project_app/layout/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/mytrips_screen.dart';
 
-class transition extends StatefulWidget {
-  const transition({super.key});
+class Transition extends StatefulWidget {
+  const Transition({super.key});
 
   @override
-  State<transition> createState() => _TransitionState();
+  State<Transition> createState() => _TransitionState();
 }
 
-class _TransitionState extends State<transition> {
+class _TransitionState extends State<Transition> {
   int currentindex = 0;
   final screens = [
-    HomeScreen(),
-    LiveLocationScreen(),
+    const HomeScreen(),
+    const LiveLocationScreen(),
     Ticket(
       from: 'Alexandria',
       to: 'Aswan',
@@ -27,7 +27,7 @@ class _TransitionState extends State<transition> {
       date: DateTime.now(),
     ),
     MyTripsScreen(),
-    ProfileScreen(),
+   const ProfileScreen(),
   ];
 
   @override
@@ -44,8 +44,8 @@ class _TransitionState extends State<transition> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: colortheme.lightPurple,
         unselectedItemColor: colortheme.lightPurple.withOpacity(0.3),
-        unselectedLabelStyle: TextStyle(overflow: TextOverflow.ellipsis),
-        items: [
+        unselectedLabelStyle: const TextStyle(overflow: TextOverflow.ellipsis),
+        items: const [
           BottomNavigationBarItem(
             label: 'Home',
             icon: Icon(Icons.home),

@@ -31,7 +31,7 @@ class _TicketState extends State<Ticket> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: const Bar(text: "", moreList: true),
+      appBar: const Bar(text: "", morelist: true),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

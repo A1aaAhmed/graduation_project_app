@@ -48,7 +48,7 @@ class _MyTripsState extends State<MyTripsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Bar(text: 'My Trips',moreList: true),
+      appBar: const Bar(text: 'My Trips',morelist: true),
       body: SingleChildScrollView(
         child: ListTable(list: db,icon:Icons.train_rounded,firstData: 'tripName',secondData: 'tripDate',thirdData: 'extraData'),
       ),

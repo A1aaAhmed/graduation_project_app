@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/main.dart';
+import 'package:graduation_project_app/layout/trans.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+
 class Bar extends StatefulWidget implements PreferredSizeWidget {
   final String text;
-  final bool moreList;
-  const Bar({Key? key, required this.text,required this.moreList})
+  final bool moreList = false;
+  const Bar({Key? key, required this.text, required bool morelist})
       : super(
           key: key,
         );
@@ -24,17 +25,14 @@ class _BarState extends State<Bar> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-
             if (Navigator.canPop(context)) {
               // We have no active routes, so we can't pop.
               Navigator.pop(context);
-            }
-            else {
+            } else {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyApp()),
+                MaterialPageRoute(builder: (context) => const Transition()),
               );
-
             }
           },
           icon: const Icon(Icons.arrow_back_ios),
@@ -43,23 +41,53 @@ class _BarState extends State<Bar> {
           widget.text,
         ),
         actions: [
-          widget.moreList?IconButton(
-              onPressed: (){},
-              icon:const Icon(
-                Icons.more_vert_rounded,
-              )
-          ):const Text('')
+          widget.moreList
+              ? IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.more_vert_rounded,
+                  ))
+              : const Text('')
         ],
         // ignore: prefer_const_literals_to_create_immutables
       ),
-      //floatingActionButton:FloatingActionButton(
-      //onPressed: (){
-
-      //},
-      //child: const Icon(
-      //Icons.add,
-      //),
-      //) ,
     );
   }
 }
+
+PreferredSizeWidget bar({
+  required BuildContext context,
+  required String text,
+  required bool morelist,
+}) =>
+    AppBar(
+      backgroundColor: colortheme.lightPurple,
+      elevation: 0,
+      leading: IconButton(
+        onPressed: () {
+          if (Navigator.canPop(context)) {
+            // We have no active routes, so we can't pop.
+            Navigator.pop(context);
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Transition()),
+            );
+          }
+        },
+        icon: const Icon(Icons.arrow_back_ios),
+      ), //replace with our own icon data. ) )
+      title: Text(
+        text,
+      ),
+      actions: [
+        morelist
+            ? IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.more_vert_rounded,
+                ))
+            : const Text('')
+      ],
+      // ignore: prefer_const_literals_to_create_immutables
+    );

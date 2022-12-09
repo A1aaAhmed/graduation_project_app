@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/register_screen.dart';
-import 'package:graduation_project_app/modules/trans.dart';
+import 'package:graduation_project_app/layout/trans.dart';
 
 class loginSreen extends StatelessWidget {
   @override
@@ -64,7 +64,7 @@ class loginSreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => transition())));
+                              builder: ((context) => Transition())));
                     },
                     child: Text(
                       'SIGN IN',
