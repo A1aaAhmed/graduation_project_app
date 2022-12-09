@@ -15,11 +15,12 @@ class ApisScreen extends StatelessWidget {
 
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('https://www.rcrwireless.com/wp-content/uploads/2016/09/52457987_l.jpg'),
+                  image: AssetImage('images/train.jpg'),
                 fit: BoxFit.cover,),
               ),
               //color: Colors.teal[300],
               width: double.infinity,
+               height: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
