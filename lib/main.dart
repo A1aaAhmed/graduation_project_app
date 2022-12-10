@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/home_screen.dart';
 import 'package:graduation_project_app/modules/Seats_screen.dart';
 import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/modules/welcome_screen.dart';
-import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/modules/mytrips_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
