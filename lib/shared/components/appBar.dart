@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/trans.dart';
+import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
 class Bar extends StatefulWidget implements PreferredSizeWidget {
@@ -59,23 +59,29 @@ PreferredSizeWidget bar({
   required BuildContext context,
   required String text,
   required bool morelist,
+  Color backgroundcolor = colortheme.lightPurple,
+  Color iconcolor = colortheme.white,
 }) =>
     AppBar(
-      backgroundColor: colortheme.lightPurple,
+      backgroundColor: backgroundcolor,
       elevation: 0,
       leading: IconButton(
         onPressed: () {
-          if (Navigator.canPop(context)) {
-            // We have no active routes, so we can't pop.
-            Navigator.pop(context);
-          } else {
-            Navigator.push(
+          if (text=='Previous tickets' || text=='Current ticket'||text=='Live location' ||
+              text == 'Profile') {
+                       Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const Transition()),
             );
+          } else {
+            Navigator.pop(context);
           }
+      
         },
-        icon: const Icon(Icons.arrow_back_ios),
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: iconcolor,
+        ),
       ), //replace with our own icon data. ) )
       title: Text(
         text,

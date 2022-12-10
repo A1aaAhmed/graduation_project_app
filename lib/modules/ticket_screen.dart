@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/components/ticketComponent.dart';
@@ -31,11 +32,15 @@ class _TicketState extends State<Ticket> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: const Bar(text: "", morelist: true),
+      appBar: bar(
+        context: context,
+        text: 'Current ticket',
+        morelist: false,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
             child: TicketComp(
                 date: widget.date,
@@ -46,7 +51,7 @@ class _TicketState extends State<Ticket> {
                 seat: widget.seat,
                 size: size),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           button(
               text: "Navigate Route",
               onpress: () {},

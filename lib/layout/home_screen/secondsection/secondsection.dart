@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/home_screen/secondsection/plus-minus.dart';
 import 'package:graduation_project_app/layout/home_screen/secondsection/text_form.dart';
 import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 
 class SecondSection extends StatefulWidget {
   const SecondSection({super.key});
@@ -13,11 +13,11 @@ class SecondSection extends StatefulWidget {
 }
 
 class _SecondSectionState extends State<SecondSection> {
-  TextEditingController from = TextEditingController();
-  TextEditingController to = TextEditingController();
-  TextEditingController depart = TextEditingController();
+  // TextEditingController from = TextEditingController();
+  // TextEditingController to = TextEditingController();
+  // TextEditingController depart = TextEditingController();
   var formkey = GlobalKey<FormState>();
-  int travellers = 1;
+  // int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -117,16 +117,15 @@ class _SecondSectionState extends State<SecondSection> {
                                           Radius.circular(width * .03),
                                         )),
                                     child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          travellers++;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.add,
-                                        size: 20,
-                                      ),
-                                    ),
+                                        onPressed: () {
+                                          setState(() {
+                                            travellers++;
+                                          });
+                                        },
+                                        icon: const Icon(
+                                          Icons.add,
+                                          size: 20,
+                                        )),
                                   ),
                                 ],
                               ),

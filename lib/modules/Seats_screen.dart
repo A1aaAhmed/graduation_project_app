@@ -1,6 +1,9 @@
 // ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/modules/ticket_screen.dart';
+import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/selectItem.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/widgets/smalltrain.dart';
@@ -27,20 +30,27 @@ class _SeatsState extends State<Seats> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colortheme.blueGray,
-        elevation: 0.0,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: colortheme.black,
-        ),
-        actions: const [
-          Icon(
-            Icons.more_vert,
-            color: colortheme.black,
-          ),
-        ],
+      appBar: bar(
+        context: context,
+        text: '',
+        morelist: true,
+        backgroundcolor: colortheme.blueGray,
+        iconcolor: colortheme.black,
       ),
+      // appBar: AppBar(
+      //   backgroundColor: colortheme.blueGray,
+      //   elevation: 0.0,
+      //   leading: const Icon(
+      //     Icons.arrow_back_ios,
+      //     color: colortheme.black,
+      //   ),
+      //   actions: const [
+      //     Icon(
+      //       Icons.more_vert,
+      //       color: colortheme.black,
+      //     ),
+      //   ],
+      // ),
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
@@ -51,102 +61,104 @@ class _SeatsState extends State<Seats> {
               children: [
                 Container(
                   width: 120,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Choose Seats',
-                        style: TextStyle(
-                            fontSize: 30.0, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Choose Seats',
+                          style: TextStyle(
+                              fontSize: 30.0, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 300,
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: ListView.separated(
+                                        itemBuilder: (context, index) => Text(
+                                              type[index],
+                                              style: const TextStyle(
+                                                  fontSize: 20,
+                                                  color: Color.fromARGB(
+                                                      255, 95, 94, 94)),
+                                            ),
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                              height: 80,
+                                            ),
+                                        itemCount: type.length),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: smallTrain(),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'Seats',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        ValueListenableBuilder(
+                          valueListenable: globals.numberOfSeats,
+                          builder: (context, value, widget) {
+                            return Row(
                               children: [
-                                Container(
-                                  height: 300,
-                                  padding: const EdgeInsets.only(top: 30),
-                                  child: ListView.separated(
-                                      itemBuilder: (context, index) => Text(
-                                            type[index],
-                                            style: const TextStyle(
-                                                fontSize: 20,
-                                                color: Color.fromARGB(
-                                                    255, 95, 94, 94)),
-                                          ),
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(
-                                            height: 80,
-                                          ),
-                                      itemCount: type.length),
+                                Text(
+                                  value <= 9 ? ' 0$value' : ' $value',
+                                  style: const TextStyle(
+                                      fontSize: 40,
+                                      color: colortheme.lightPurple),
+                                ),
+                                Text(
+                                  value <= 9
+                                      ? '/0${globals.seats}'
+                                      : '/${globals.seats}',
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        const Text(
+                          'Amount',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        ValueListenableBuilder(
+                          valueListenable: globals.amountToBePayed,
+                          builder: (context, value, widget) {
+                            return Row(
+                              children: [
+                                Text(
+                                  value <= 9 ? ' 0$value' : ' $value',
+                                  style: const TextStyle(
+                                      fontSize: 40, color: colortheme.black),
+                                ),
+                                const Text(
+                                  'EG',
+                                  style: TextStyle(fontSize: 20),
                                 )
                               ],
-                            ),
-                          ),
-                          Expanded(
-                            child: smallTrain(),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        'Seats',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: globals.numberOfSeats,
-                        builder: (context, value, widget) {
-                          return Row(
-                            children: [
-                              Text(
-                                value <= 9 ? ' 0$value' : ' $value',
-                                style: const TextStyle(
-                                    fontSize: 40,
-                                    color: colortheme.lightPurple),
-                              ),
-                              Text(
-                                value <= 9
-                                    ? '/0${globals.seats}'
-                                    : '/${globals.seats}',
-                                style: const TextStyle(fontSize: 15),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      const Text(
-                        'Amount',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: globals.amountToBePayed,
-                        builder: (context, value, widget) {
-                          return Row(
-                            children: [
-                              Text(
-                                value <= 9 ? ' 0$value' : ' $value',
-                                style: const TextStyle(
-                                    fontSize: 40, color: colortheme.black),
-                              ),
-                              const Text(
-                                'EG',
-                                style: TextStyle(fontSize: 20),
-                              )
-                            ],
-                          );
-                        },
-                      ),
-                    ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -252,7 +264,17 @@ class _SeatsState extends State<Seats> {
             padding: const EdgeInsets.all(10.0),
             child: button(
               height: 50,
-              onpress: () {},
+              onpress: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => Ticket(
+                            from: from.text,
+                            to: to.text,
+                            duration: '1hr-20mins',
+                            seat: 'A1,A2',
+                            gate: 'C',
+                            date: DateTime.now(),
+                          )))),
               text: 'Confirm Seats',
               width: 200,
             ),

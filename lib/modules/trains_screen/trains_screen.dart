@@ -25,8 +25,9 @@ class TrainsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: bar(context: context, text: 'Search for Trains', morelist: false),
+      appBar: bar(context: context, text: '', morelist: false,),
       body: Container(
         color: colortheme.lightPurple,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -54,14 +55,12 @@ class TrainsScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: colortheme.white,
                 borderRadius: BorderRadiusDirectional.only(
-                  topStart:
-                      Radius.circular(MediaQuery.of(context).size.width * .1),
-                  topEnd:
-                      Radius.circular(MediaQuery.of(context).size.width * .1),
+                  topStart: Radius.circular(width * .1),
+                  topEnd: Radius.circular(width * .1),
                 ),
               ),
               padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.08,
+                horizontal: width * 0.08,
               ),
               child: SingleChildScrollView(
                 child: Column(

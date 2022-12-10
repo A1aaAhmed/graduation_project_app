@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/modules/Seats_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
 Widget TrainCard({
@@ -11,66 +12,71 @@ Widget TrainCard({
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipPath(
         clipper: CardClipper(),
-        child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Card(
-              child: Row(children: [
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          const Icon(
-                            Icons.circle,
-                            color: colortheme.saimon,
-                            size: 15,
-                          ),
-                          Text(
-                            ' $from',
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ]),
-                        const Text(
-                          '  |\n  |\n  |',
-                          style: TextStyle(
+        child: GestureDetector(
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: ((context) => const Seats()))),
+          child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Card(
+                child: Row(children: [
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(children: [
+                            const Icon(
+                              Icons.circle,
                               color: colortheme.saimon,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Row(children: [
-                          const Icon(
-                            Icons.circle,
-                            color: colortheme.green,
-                            size: 15,
-                          ),
-                          Text(
-                            ' $to',
-                            style: const TextStyle(
-                              fontSize: 20,
+                              size: 15,
                             ),
+                            Text(
+                              ' $from',
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ]),
+                          const Text(
+                            '  |\n  |\n  |',
+                            style: TextStyle(
+                                color: colortheme.saimon,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold),
                           ),
+                          Row(children: [
+                            const Icon(
+                              Icons.circle,
+                              color: colortheme.green,
+                              size: 15,
+                            ),
+                            Text(
+                              ' $to',
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ]),
                         ]),
-                      ]),
-                )),
-                Container(
-                  color: colortheme.blueGray,
-                  width: 1,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  padding: EdgeInsets.symmetric(horizontal:  MediaQuery.of(context).size.width *0.05),
-                ),
-                Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      '$data',
-                      style: const TextStyle(fontSize: 15),
-                    ))
-              ]),
-            )),
+                  )),
+                  Container(
+                    color: colortheme.blueGray,
+                    width: 1,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(
+                        '$data',
+                        style: const TextStyle(fontSize: 15),
+                      ))
+                ]),
+              )),
+        ),
       ),
     );
 
@@ -96,6 +102,7 @@ class CardClipper extends CustomClipper<Path> {
 
     return path0;
   }
+
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
 }
