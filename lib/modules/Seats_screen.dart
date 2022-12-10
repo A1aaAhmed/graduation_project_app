@@ -1,5 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/widgets/selectItem.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -249,7 +250,7 @@ class _SeatsState extends State<Seats> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(20.0),
             child: button(
               height: 50,
               onpress: () {},

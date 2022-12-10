@@ -5,7 +5,6 @@ import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/modules/welcome_screen.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -22,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Seats() ,
+      home: Seats(),
     );
   }
 }

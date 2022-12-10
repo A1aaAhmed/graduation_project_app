@@ -3,6 +3,8 @@ import 'package:graduation_project_app/modules/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen.dart';
 
 class ApisScreen extends StatelessWidget {
+  const ApisScreen({super.key});
+
 
 
   @override
@@ -13,14 +15,14 @@ class ApisScreen extends StatelessWidget {
           child:
             Container(
 
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('images/train.jpg'),
                 fit: BoxFit.cover,),
               ),
               //color: Colors.teal[300],
               width: double.infinity,
-               height: double.infinity,
+              height: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -31,42 +33,42 @@ class ApisScreen extends StatelessWidget {
                           color: Colors.white.withOpacity(0.6),
                       ) ,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                      padding: EdgeInsetsDirectional.all(20),
+                      padding: const EdgeInsetsDirectional.all(20),
 
                       child: Column(
                         children:[
-                          Text('Find Your best',
+                          const Text('Find Your best',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 23,
                               color: Colors.black,
                             ),),
-                          Text('Timing and tickets',
+                          const Text('Timing and tickets',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 23,
                               color: Colors.black,
                             ),),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Text('Booking your tickets online with your',
+                          const Text('Booking your tickets online with your',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 10,
                               color: Colors.black,
                             ),),
-                          Text('best searching preferences all over EGYPT',
+                          const Text('best searching preferences all over EGYPT',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 10,
                               color: Colors.black,
                             ),),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -81,11 +83,11 @@ class ApisScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.facebook,
+                            const Icon(Icons.facebook,
                               color: Colors.white,),
                             MaterialButton(
                               onPressed:(){},
-                              child: Text('Continue with Facebook',
+                              child: const Text('Continue with Facebook',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w300
@@ -94,7 +96,7 @@ class ApisScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                          SizedBox(
+                          const SizedBox(
                         height: 10,
                       ),
                           Container(
@@ -108,13 +110,13 @@ class ApisScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.g_mobiledata,
+                            const Icon(Icons.g_mobiledata,
 
                               color: Colors.white,
                             ),
                             MaterialButton(
                               onPressed:(){},
-                              child: Text('Continue with Google',
+                              child: const Text('Continue with Google',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w300
@@ -123,7 +125,7 @@ class ApisScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                          SizedBox(
+                          const SizedBox(
                         height: 10,
                       ),
                           Container(
@@ -137,7 +139,7 @@ class ApisScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.email,
+                            const Icon(Icons.email,
 
                               color: Colors.white,
                             ),
@@ -148,7 +150,7 @@ class ApisScreen extends StatelessWidget {
                                   MaterialPageRoute(builder: (context) =>  loginSreen()),
                                 );
                               },
-                              child: Text('log in with email',
+                              child: const Text('log in with email',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w300
@@ -157,7 +159,7 @@ class ApisScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                          SizedBox(
+                          const SizedBox(
                         height: 10,
                       ),
                          Container(
@@ -178,7 +180,7 @@ class ApisScreen extends StatelessWidget {
                                       MaterialPageRoute(builder: (context) => registerScreen()),
                                     );
                                   },
-                                  child: Text('Sign up with email',
+                                  child: const Text('Sign up with email',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
@@ -188,17 +190,17 @@ class ApisScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(overflow: TextOverflow.ellipsis,'___________________________________________'),
-                          SizedBox(
+                          const Text(overflow: TextOverflow.ellipsis,'___________________________________________'),
+                          const SizedBox(
                             height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(  'By continuing you agree to our'
+                              const Text(  'By continuing you agree to our'
                               ),
                               TextButton(
                                   onPressed: (){},
@@ -207,11 +209,11 @@ class ApisScreen extends StatelessWidget {
                                   ),))
                             ],
                           ),
-                          Text('we use your data to offer you a personalized'),
+                          const Text('we use your data to offer you a personalized'),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('experience.'),
+                              const Text('experience.'),
                               TextButton(
                                   onPressed: (){},
                                   child: Text('Find out more',style: TextStyle(
