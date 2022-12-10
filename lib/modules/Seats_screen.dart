@@ -1,4 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
@@ -9,6 +8,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/widgets/smalltrain.dart';
 import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:graduation_project_app/widgets/widget.dart';
+
 //colortheme
 
 class Seats extends StatefulWidget {
@@ -18,6 +18,13 @@ class Seats extends StatefulWidget {
 
   @override
   State<Seats> createState() => _SeatsState();
+}
+
+setstate() {
+  globals.numberOfSeats = ValueNotifier<int>(0);
+
+  globals.amountToBePayed = ValueNotifier<int>(0);
+
 }
 
 class _SeatsState extends State<Seats> {

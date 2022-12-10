@@ -13,16 +13,17 @@ class SecondSection extends StatefulWidget {
 }
 
 class _SecondSectionState extends State<SecondSection> {
-  // TextEditingController from = TextEditingController();
-  // TextEditingController to = TextEditingController();
-  // TextEditingController depart = TextEditingController();
+  //TextEditingController from = TextEditingController();
+  //TextEditingController to = TextEditingController();
+ // TextEditingController depart = TextEditingController();
   var formkey = GlobalKey<FormState>();
-  // int travellers = 1;
+ // int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Positioned(
         top: height * 0.22,
         left: width * 0.05,
