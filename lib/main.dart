@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/home_screen.dart';
+import 'package:graduation_project_app/modules/Seats_screen.dart';
 import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
@@ -21,9 +22,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ApisScreen(),
+      home:Seats() ,
     );
   }
 }
+//ApisScreen()
