@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
-import 'package:graduation_project_app/modules/ticket_screen.dart';
+import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/mytrips_screen.dart';
 import 'package:graduation_project_app/shared/variables.dart';

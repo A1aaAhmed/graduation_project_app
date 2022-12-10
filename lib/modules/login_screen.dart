@@ -13,10 +13,10 @@ class loginSreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                Text(
+                const Text(
                   'Welcome Back!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -25,31 +25,31 @@ class loginSreen extends StatelessWidget {
                     fontSize: 40,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email Address',
                     prefixIcon: Icon(Icons.email),
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: Icon(Icons.remove_red_eye),
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -64,9 +64,9 @@ class loginSreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => Transition())));
+                              builder: ((context) => const Transition())));
                     },
-                    child: Text(
+                    child: const Text(
                       'SIGN IN',
                       style: TextStyle(
                         color: Colors.white,
@@ -75,7 +75,7 @@ class loginSreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -87,7 +87,7 @@ class loginSreen extends StatelessWidget {
                         color: Colors.grey[800],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 0,
                     ),
                     TextButton(
@@ -98,7 +98,7 @@ class loginSreen extends StatelessWidget {
                               builder: (context) => registerScreen()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'SIGNUP',
                         style: TextStyle(
                           //color: Colors.indigo[700],

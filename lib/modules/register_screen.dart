@@ -12,74 +12,74 @@ class registerScreen extends StatelessWidget {
             child:
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Text('Register',
+                  const Text('Register',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 40,
                   )
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'First name',
                       border: OutlineInputBorder()
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Last name',
                         border: OutlineInputBorder()
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Email Adress',
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: Icon(Icons.remove_red_eye),
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Confirm Password',
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: Icon(Icons.remove_red_eye),
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -87,18 +87,18 @@ class registerScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(child: TextButton(onPressed: (){},
-                        child: Icon(Icons.check_circle_rounded,color: Colors.indigo,),
+                        child: const Icon(Icons.check_circle_rounded,color: Colors.indigo,),
                       ),),
                       Expanded(child: Text('I agree with',style: TextStyle(
                         color: Colors.grey[800],
                       ),),),
                       Expanded(child: TextButton(onPressed: (){},
-                          child: Text('Terms and Conditions & Privacy',style: TextStyle(
+                          child: const Text('Terms and Conditions & Privacy',style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),)),),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Container(
@@ -110,13 +110,13 @@ class registerScreen extends StatelessWidget {
                     ),
                     child: MaterialButton(
                       onPressed: (){},
-                      child: Text('SUMBIT',style: TextStyle(
+                      child: const Text('SUMBIT',style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                       ),),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -132,7 +132,7 @@ class registerScreen extends StatelessWidget {
                               MaterialPageRoute(builder: (context) =>  loginSreen()),
                             );
                           },
-                          child: Text('LOGIN',
+                          child: const Text('LOGIN',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),),)

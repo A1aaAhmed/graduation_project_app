@@ -3,13 +3,11 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 
 Widget ListTable(
     {
-
       required List<Map> list,
       required IconData icon,
       required String firstData,
       required String secondData ,
       required String thirdData,
-
     }
     )=>ListView.builder(
 
