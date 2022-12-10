@@ -17,7 +17,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
       home: ApisScreen(),
+=======
+      home: Seats(),
+>>>>>>> 2968b2efe822528ef823ee1314930033a1f2641e
     );
   }
 }

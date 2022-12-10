@@ -1,7 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/ticket_screen.dart';
+<<<<<<< HEAD
 import 'package:graduation_project_app/shared/components/appBar.dart';
+=======
+>>>>>>> 2968b2efe822528ef823ee1314930033a1f2641e
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/selectItem.dart';
@@ -261,7 +264,7 @@ class _SeatsState extends State<Seats> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(20.0),
             child: button(
               height: 50,
               onpress: () => Navigator.push(
