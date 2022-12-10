@@ -7,4 +7,4 @@ final numberOfSeats = ValueNotifier<int>(0);
 
 final amountToBePayed = ValueNotifier<int>(0);
 
- int seats=travellers;
+int seats = 1;

@@ -21,13 +21,21 @@ class Seats extends StatefulWidget {
 }
 
 class _SeatsState extends State<Seats> {
-
   List<SelectModel> selection = [
     SelectModel(text: 'Available', color: colortheme.lightGray),
     SelectModel(text: 'Booked', color: colortheme.saimon),
     SelectModel(text: 'Selected', color: colortheme.lightPurple),
   ];
   List<String> type = ['1A', '2A', '3B'];
+  @override
+  void initState() {
+    globals.numberOfSeats.value = 0;
+    globals.amountToBePayed.value = 0;
+    globals.seats;
+    print(globals.seats);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,20 +46,6 @@ class _SeatsState extends State<Seats> {
         backgroundcolor: colortheme.blueGray,
         iconcolor: colortheme.black,
       ),
-      // appBar: AppBar(
-      //   backgroundColor: colortheme.blueGray,
-      //   elevation: 0.0,
-      //   leading: const Icon(
-      //     Icons.arrow_back_ios,
-      //     color: colortheme.black,
-      //   ),
-      //   actions: const [
-      //     Icon(
-      //       Icons.more_vert,
-      //       color: colortheme.black,
-      //     ),
-      //   ],
-      // ),
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
@@ -265,17 +259,18 @@ class _SeatsState extends State<Seats> {
             padding: const EdgeInsets.all(20.0),
             child: button(
               height: 50,
-              onpress: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Ticket(
-                            from: from.text,
-                            to: to.text,
-                            duration: '1hr-20mins',
-                            seat: 'A1,A2',
-                            gate: 'C',
-                            date: DateTime.now(),
-                          )))),
+              onpress: () {},
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: ((context) => Ticket(
+              //               from: from.text,
+              //               to: to.text,
+              //               duration: '1hr-20mins',
+              //               seat: 'A1,A2',
+              //               gate: 'C',
+              //               date: DateTime.now(), size: null,
+              //             )))),
               text: 'Confirm Seats',
               width: 200,
             ),

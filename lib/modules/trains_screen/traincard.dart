@@ -13,8 +13,8 @@ Widget TrainCard({
       child: ClipPath(
         clipper: CardClipper(),
         child: GestureDetector(
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: ((context) => const Seats()))),
+          onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: ((context) => const Seats()))),
           child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.2,
               child: Card(

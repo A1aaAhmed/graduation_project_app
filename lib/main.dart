@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ApisScreen(),
         //icket(date: DateTime.now(), from: 'alexandria', to: 'aswan', seat: 'ssss,ssss', gate: 'ss', duration: 'sss'),
