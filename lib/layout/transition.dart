@@ -19,14 +19,14 @@ class _TransitionState extends State<Transition> {
   final screens = [
     const HomeScreen(),
     const LiveLocationScreen(),
-    Ticket(
-      from: from.text,
-      to: to.text,
-      duration: '1hr-20mins',
-      seat: 'A1,A2',
-      gate: 'C',
-      date: DateTime.now(),
-    ),
+    // Ticket(
+    //   from: from.text,
+    //   to: to.text,
+    //   duration: '1hr-20mins',
+    //   seat: 'A1,A2',
+    //   gate: 'C',
+    //   date: DateTime.now(),
+    // ),
     MyTripsScreen(),
    const ProfileScreen(),
   ];

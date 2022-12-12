@@ -13,69 +13,70 @@ Widget TrainCard({
       child: ClipPath(
         clipper: CardClipper(),
         child: GestureDetector(
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: ((context) => const Seats()))),
-          child: SizedBox(
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: ((context) => const Seats()))),
+          child: Container(
               height: MediaQuery.of(context).size.height * 0.2,
-              child: Card(
-                child: Row(children: [
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            const Icon(
-                              Icons.circle,
-                              color: colortheme.saimon,
-                              size: 15,
-                            ),
-                            Text(
-                              ' $from',
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ]),
-                          const Text(
-                            '  |\n  |\n  |',
-                            style: TextStyle(
-                                color: colortheme.saimon,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold),
+              color: Colors.white70,
+              child: Row(children: [
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          const Icon(
+                            Icons.circle,
+                            color: colortheme.saimon,
+                            size: 15,
                           ),
-                          Row(children: [
-                            const Icon(
-                              Icons.circle,
-                              color: colortheme.green,
-                              size: 15,
+                          Text(
+                            ' $from',
+                            style: const TextStyle(
+                              fontSize: 20,
                             ),
-                            Text(
-                              ' $to',
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ]),
+                          ),
                         ]),
-                  )),
-                  Container(
-                    color: colortheme.blueGray,
-                    width: 1,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.05),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Text(
-                        '$data',
-                        style: const TextStyle(fontSize: 15),
-                      ))
-                ]),
-              )),
+                        const Text(
+                          '  |\n  |\n  |',
+                          style: TextStyle(
+                              color: colortheme.saimon,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Row(children: [
+                          const Icon(
+                            Icons.circle,
+                            color: colortheme.green,
+                            size: 15,
+                          ),
+                          Text(
+                            ' $to',
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ]),
+                      ]),
+                )),
+                Container(
+                  color: colortheme.blueGray,
+                  width: 1,
+                  height: MediaQuery.of(context).size.height * 0.2 * 0.5,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05),
+                ),
+                Container(
+                    width: MediaQuery.of(context).size.width * .23,
+                    padding: const EdgeInsets.all(12),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '$data',
+                      style: const TextStyle(fontSize: 15),
+                    ))
+              ])),
         ),
       ),
     );
