@@ -74,12 +74,12 @@ class _SecondSectionState extends State<SecondSection> {
                               Row(
                                 children: [
                                   Container(
-                                    width: width * 0.09,
-                                    height: width * 0.09,
-                                    decoration: BoxDecoration(
+                                    width: 50,
+                                    height: 50,
+                                    decoration:const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(width * .03),
+                                          Radius.circular(20),
                                         )),
                                     child: IconButton(
                                       onPressed: () {
@@ -114,12 +114,12 @@ class _SecondSectionState extends State<SecondSection> {
                                     width: width * 0.02,
                                   ),
                                   Container(
-                                    width: width * 0.09,
-                                    height: width * 0.09,
-                                    decoration: BoxDecoration(
+                                    width: 50,
+                                    height: 50,
+                                    decoration:const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(width * .03),
+                                          Radius.circular(20),
                                         )),
                                     child: IconButton(
                                         onPressed: () {
