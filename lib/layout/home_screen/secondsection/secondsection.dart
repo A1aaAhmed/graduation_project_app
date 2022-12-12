@@ -4,6 +4,7 @@ import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart'
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
+import 'package:graduation_project_app/widgets/global.dart' as globals;
 
 class SecondSection extends StatefulWidget {
   const SecondSection({super.key});
@@ -83,11 +84,13 @@ class _SecondSectionState extends State<SecondSection> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (travellers == 0) {
-                                            travellers = 0;
+                                          if (globals.seats==0) {
+                                            globals.seats=0;
                                           } else {
-                                            travellers--;
+                                            // travellers--;
+                                            globals.seats--;
                                           }
+                                          
                                         });
                                       },
                                       icon: const Icon(
@@ -100,7 +103,8 @@ class _SecondSectionState extends State<SecondSection> {
                                     width: width * 0.02,
                                   ),
                                   Text(
-                                    '$travellers',
+                                    // '$travellers',
+                                    '${globals.seats}',
                                     style: const TextStyle(
                                       color: colortheme.black,
                                       fontSize: 25,
@@ -120,7 +124,8 @@ class _SecondSectionState extends State<SecondSection> {
                                     child: IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            travellers++;
+                                            // travellers++;
+                                            globals.seats++;
                                           });
                                         },
                                         icon: const Icon(

@@ -28,7 +28,7 @@ class _TransitionState extends State<Transition> {
     //   date: DateTime.now(),
     // ),
     MyTripsScreen(),
-   const ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   @override

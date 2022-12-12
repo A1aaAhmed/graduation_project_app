@@ -7,4 +7,4 @@ var numberOfSeats = ValueNotifier<int>(0);
 
 var amountToBePayed = ValueNotifier<int>(0);
 
-int seats = travellers;
+int seats = 1;
