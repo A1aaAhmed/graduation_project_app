@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/modules/ticket_screen.dart';
+import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
@@ -9,7 +9,6 @@ import 'package:graduation_project_app/widgets/smalltrain.dart';
 import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:graduation_project_app/widgets/widget.dart';
 
-//colortheme
 
 class Seats extends StatefulWidget {
   const Seats({
@@ -28,6 +27,7 @@ setstate() {
 }
 
 class _SeatsState extends State<Seats> {
+
   List<SelectModel> selection = [
     SelectModel(text: 'Available', color: colortheme.lightGray),
     SelectModel(text: 'Booked', color: colortheme.saimon),
@@ -280,7 +280,7 @@ class _SeatsState extends State<Seats> {
                             duration: '1hr-20mins',
                             seat: 'A1,A2',
                             gate: 'C',
-                            date: DateTime.now(),
+                            date: DateTime.now(), 
                           )))),
               text: 'Confirm Seats',
               width: 200,

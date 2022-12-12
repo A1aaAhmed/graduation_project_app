@@ -11,14 +11,18 @@ class MyTripsScreen extends StatefulWidget {
 
 class _MyTripsState extends State<MyTripsScreen> {
   List<Map> db = [
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
-    {'tripName': 'alaa', 'tripDate': '25/5/2025', 'extraData': 'hhhhhhhehee'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+    {'tripName': 'Alexanddria', 'tripDate': '25/5/2025', 'extraData': 'price=250'},
+
   ];
   @override
   Widget build(BuildContext context) {
