@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/login_screen.dart';
-import 'package:graduation_project_app/modules/register_screen.dart';
 
 class ApisScreen extends StatelessWidget {
   const ApisScreen({super.key});
