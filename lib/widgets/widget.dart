@@ -1,7 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/widgets/global.dart'as globals;
+import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MyWidget extends StatefulWidget {
@@ -10,6 +10,7 @@ class MyWidget extends StatefulWidget {
     super.key,
     required this.start,
   });
+
   @override
   State<MyWidget> createState() => _MyWidgetState();
 }
@@ -45,7 +46,12 @@ class _MyWidgetState extends State<MyWidget> {
     false,
     false
   ];
-  // int seats = 0;
+  @override
+  void initState() {
+    globals.selectedSeats = [];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -101,6 +107,7 @@ class _MyWidgetState extends State<MyWidget> {
             child: ListView.separated(
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () async {
+                  int seatNumber = 2 * index + start;
                   if (bookedSeats[index]) {
                     await Fluttertoast.showToast(
                         msg: "This Seat is already booked!",
@@ -112,16 +119,20 @@ class _MyWidgetState extends State<MyWidget> {
                   } else if (oddBoxes[index] && isOdd) {
                     setState(() {
                       oddBoxes[index] = false;
-
                       globals.numberOfSeats.value--;
                       globals.amountToBePayed.value -= 50;
+                      globals.selectedSeats.remove(
+                          seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                      print(globals.selectedSeats);
                     });
                   } else if (evenBoxes[index] && !isOdd) {
                     setState(() {
                       evenBoxes[index] = false;
-
                       globals.numberOfSeats.value--;
                       globals.amountToBePayed.value -= 50;
+                      globals.selectedSeats.remove(
+                          seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                      print(globals.selectedSeats);
                     });
                   } else {
                     if (globals.numberOfSeats.value == globals.seats) {
@@ -136,7 +147,9 @@ class _MyWidgetState extends State<MyWidget> {
                       setState(() {
                         globals.numberOfSeats.value++;
                         globals.amountToBePayed.value += 50;
-
+                        globals.selectedSeats.add(
+                            seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                        print(globals.selectedSeats);
                         if (isOdd) {
                           oddBoxes[index] = true;
                         } else {
@@ -147,7 +160,7 @@ class _MyWidgetState extends State<MyWidget> {
                   }
                 },
                 child: seatComponent(
-                    isOdd ? 2 * index + start : 2 * index + start,
+                    2 * index + start,
                     bookedSeats[index]
                         ? colortheme.saimon
                         : oddBoxes[index] && isOdd

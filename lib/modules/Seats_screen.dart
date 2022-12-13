@@ -32,7 +32,7 @@ class _SeatsState extends State<Seats> {
     globals.numberOfSeats.value = 0;
     globals.amountToBePayed.value = 0;
     globals.seats;
-    print(globals.seats);
+    //print(globals.seats);
     super.initState();
   }
 

@@ -8,3 +8,4 @@ final numberOfSeats = ValueNotifier<int>(0);
 final amountToBePayed = ValueNotifier<int>(0);
 
 int seats = 1;
+List<String> selectedSeats = [];
