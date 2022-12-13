@@ -9,3 +9,4 @@ var amountToBePayed = ValueNotifier<int>(0);
 
 int seats = 1;
 List<String> selectedSeats = [];
+String alert = '';

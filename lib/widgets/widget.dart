@@ -123,7 +123,7 @@ class _MyWidgetState extends State<MyWidget> {
                       globals.amountToBePayed.value -= 50;
                       globals.selectedSeats.remove(
                           seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                      print(globals.selectedSeats);
+                      //print(globals.selectedSeats);
                     });
                   } else if (evenBoxes[index] && !isOdd) {
                     setState(() {
@@ -132,7 +132,7 @@ class _MyWidgetState extends State<MyWidget> {
                       globals.amountToBePayed.value -= 50;
                       globals.selectedSeats.remove(
                           seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                      print(globals.selectedSeats);
+                      //print(globals.selectedSeats);
                     });
                   } else {
                     if (globals.numberOfSeats.value == globals.seats) {
@@ -149,7 +149,7 @@ class _MyWidgetState extends State<MyWidget> {
                         globals.amountToBePayed.value += 50;
                         globals.selectedSeats.add(
                             seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                        print(globals.selectedSeats);
+                        //print(globals.selectedSeats);
                         if (isOdd) {
                           oddBoxes[index] = true;
                         } else {
