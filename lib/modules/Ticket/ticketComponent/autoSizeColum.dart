@@ -11,9 +11,11 @@ Widget AutoSizedColumn ({
   Widget item3=const SizedBox(),
   Widget item4=const SizedBox(),
   bool alignCenter=false,
+  bool alignCenterMain=false,
 })=> Sizer(
     builder: (context, orientation, deviceType) {
       return Column(
+        mainAxisAlignment:  alignCenterMain?MainAxisAlignment.center:MainAxisAlignment.start,
         crossAxisAlignment: alignCenter?CrossAxisAlignment.center:CrossAxisAlignment.start,
         children: [
           SizedBox(height:hInti,),

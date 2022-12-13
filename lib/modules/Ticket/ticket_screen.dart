@@ -11,6 +11,7 @@ class Ticket extends StatefulWidget {
   final String seat;
   final String gate;
   final String duration;
+  final String price;
 
 
 
@@ -22,6 +23,7 @@ class Ticket extends StatefulWidget {
     required this.seat,
     required this.gate,
     required this.duration,
+    required this.price,
 
   }) : super(key: key);
 
@@ -52,6 +54,8 @@ class _TicketState extends State<Ticket> {
                     width:100.w,
                     height: 60.h,
                     child:TicketComponent(
+                      view: true,
+                    price:widget.price,
                     date: widget.date,
                     from: widget.from,
                     to: widget.to,

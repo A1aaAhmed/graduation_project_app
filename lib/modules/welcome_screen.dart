@@ -7,98 +7,98 @@ class ApisScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height:MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              repeat: ImageRepeat.noRepeat,
-              image: AssetImage('images/train.jpg'),
-              fit: BoxFit.cover),
-
-          ),
+        body: SafeArea(
             child: Container(
-              margin: EdgeInsetsDirectional.only(top: 60,),
+              width: MediaQuery.of(context).size.width,
+              height:MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/train.jpg'),
-              fit: BoxFit.cover,),
+                image: DecorationImage(
+                    repeat: ImageRepeat.noRepeat,
+                    image: AssetImage('images/train.jpg'),
+                    fit: BoxFit.cover),
 
-            ),
-            //color: Colors.teal[300],
+              ),
+              child: Container(
+                margin: EdgeInsetsDirectional.only(top: 60,),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/train.jpg'),
+                    fit: BoxFit.cover,),
 
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      decoration:BoxDecoration(
-                          borderRadius: BorderRadius.circular(35,),
-                          color: Colors.white.withOpacity(0.6),
-                      ) ,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      padding: const EdgeInsetsDirectional.all(20),
-                      child: Column(
+                ),
+                //color: Colors.teal[300],
+
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SingleChildScrollView(
+                    child: Column(
                         children: [
-                          const Text(
-                            'Find Your best',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 23,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const Text(
-                            'Timing and tickets',
-                     ),
-                          const Text('Timing and tickets',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 23,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const Text(
-                            'Booking your tickets online with your',
-              
-                            ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const Text('Booking your tickets online with your',
-              
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10,
-                              color: Colors.black,
-              
-                            ),
-                          ),
-                          const Text(
-                            'best searching preferences all over EGYPT',
-              
-                            ),
-                          const Text('best searching preferences all over EGYPT',
-              
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10,
-                              color: Colors.black,
-              
-                            ),
-                          ),
-              
-                  ]),),
-              
+                          Container(
+                            decoration:BoxDecoration(
+                              borderRadius: BorderRadius.circular(35,),
+                              color: Colors.white.withOpacity(0.6),
+                            ) ,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            padding: const EdgeInsetsDirectional.all(20),
+                            child: Column(
+                                children: const [
+                                  Text(
+                                    'Find Your best',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 23,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Timing and tickets',
+                                  ),
+                                  Text('Timing and tickets',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 23,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    'Booking your tickets online with your',
+
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text('Booking your tickets online with your',
+
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10,
+                                      color: Colors.black,
+
+                                    ),
+                                  ),
+                                  Text(
+                                    'best searching preferences all over EGYPT',
+
+                                  ),
+                                  Text('best searching preferences all over EGYPT',
+
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10,
+                                      color: Colors.black,
+
+                                    ),
+                                  ),
+
+                                ]),),
+
                           const SizedBox(
                             height: 20,
                           ),
@@ -202,9 +202,9 @@ class ApisScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                       
-                    ]),
-              ),),),
-              ) ));
+
+                        ]),
+                  ),),),
+            ) ));
   }
 }

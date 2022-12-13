@@ -4,7 +4,7 @@ import 'package:graduation_project_app/modules/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/modules/mytrips_screen.dart';
+import 'package:graduation_project_app/modules/History/mytrips_screen.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 
 class Transition extends StatefulWidget {
@@ -19,14 +19,15 @@ class _TransitionState extends State<Transition> {
   final screens = [
     const HomeScreen(),
     const LiveLocationScreen(),
-    // Ticket(
-    //   from: from.text,
-    //   to: to.text,
-    //   duration: '1hr-20mins',
-    //   seat: 'A1,A2',
-    //   gate: 'C',
-    //   date: DateTime.now(),
-    // ),
+    Ticket(
+        date:DateTime.parse(db[0]['date']),
+        from: db[0]['from'],
+        to: db[0]['to'],
+        seat: db[0]['seat'],
+        gate: db[0]['gate'],
+        duration: db[0]['dur'],
+        price: db[0]['price']
+    ),
     MyTripsScreen(),
     const ProfileScreen(),
   ];

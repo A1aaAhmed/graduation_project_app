@@ -20,9 +20,9 @@ Widget AutoSizedRow ({
           item1,
           SizedBox(width:h,),
           item2,
-          SizedBox(width:(h2==0)?h:h2,),
+          SizedBox(width:h2,),
           item3,
-          SizedBox(width:(h3==0)?h:h3,),
+          SizedBox(width:h3,),
           item4,
         ],
       );
