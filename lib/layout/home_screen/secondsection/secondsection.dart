@@ -14,16 +14,17 @@ class SecondSection extends StatefulWidget {
 }
 
 class _SecondSectionState extends State<SecondSection> {
-  // TextEditingController from = TextEditingController();
-  // TextEditingController to = TextEditingController();
-  // TextEditingController depart = TextEditingController();
+  //TextEditingController from = TextEditingController();
+  //TextEditingController to = TextEditingController();
+ // TextEditingController depart = TextEditingController();
   var formkey = GlobalKey<FormState>();
-  // int travellers = 1;
+ // int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Positioned(
         top: height * 0.22,
         left: width * 0.05,
@@ -73,12 +74,12 @@ class _SecondSectionState extends State<SecondSection> {
                               Row(
                                 children: [
                                   Container(
-                                    width: width * 0.09,
-                                    height: width * 0.09,
-                                    decoration: BoxDecoration(
+                                    width: 50,
+                                    height: 50,
+                                    decoration:const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(width * .03),
+                                          Radius.circular(20),
                                         )),
                                     child: IconButton(
                                       onPressed: () {
@@ -113,12 +114,12 @@ class _SecondSectionState extends State<SecondSection> {
                                     width: width * 0.02,
                                   ),
                                   Container(
-                                    width: width * 0.09,
-                                    height: width * 0.09,
-                                    decoration: BoxDecoration(
+                                    width: 50,
+                                    height: 50,
+                                    decoration:const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(width * .03),
+                                          Radius.circular(20),
                                         )),
                                     child: IconButton(
                                         onPressed: () {

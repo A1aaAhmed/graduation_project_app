@@ -18,29 +18,32 @@ class _FirstSectionState extends State<FirstSection> {
       height: height * 0.3,
       decoration: BoxDecoration(
           color: colortheme.lightPurple,
+           image:const DecorationImage(
+              repeat: ImageRepeat.noRepeat,
+              image: AssetImage('images/train.png'),
+             fit: BoxFit.cover,
+             ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(width * .1),
             bottomRight: Radius.circular(width * .1),
           )),
-      child: Stack(children: [
-        Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('Let\'s',
-                    style: TextStyle(
-                        color: colortheme.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
-                Text('Book Your\nNext Trip ',
-                    style: TextStyle(
-                        color: colortheme.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold)),
-              ]),
-        ),
-      ]),
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text('Let\'s',
+                  style: TextStyle(
+                      color: colortheme.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+              Text('Book Your\nNext Trip ',
+                  style: TextStyle(
+                      color: colortheme.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold)),
+            ]),
+      ),
     );
   }
 }

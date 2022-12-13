@@ -54,7 +54,7 @@ class loginSreen extends StatelessWidget {
                 ),
                 Container(
                   height: 52,
-                  width: double.infinity,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.indigo[500],
@@ -62,9 +62,11 @@ class loginSreen extends StatelessWidget {
                   child: MaterialButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const Transition())));
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => const Transition()),
+                        ),
+                      );
                     },
                     child: const Text(
                       'SIGN IN',

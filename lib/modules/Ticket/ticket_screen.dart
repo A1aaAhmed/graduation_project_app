@@ -11,7 +11,7 @@ class Ticket extends StatefulWidget {
   final String seat;
   final String gate;
   final String duration;
-  final Size size;
+  //final Size size;
 
 
   const Ticket({
@@ -22,7 +22,7 @@ class Ticket extends StatefulWidget {
     required this.seat,
     required this.gate,
     required this.duration,
-    required this.size,
+    //required this.size,
   }) : super(key: key);
 
   @override
@@ -32,8 +32,8 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State<Ticket> {
   @override
   Widget build(BuildContext context) {
-    double h= widget.size.height;
-    double w= widget.size.width;
+    double h= MediaQuery.of(context).size.height;
+    double w= MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: bar(
@@ -50,7 +50,7 @@ class _TicketState extends State<Ticket> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TicketComp(
-                  h:8.h,
+                  h:8*h,
                   w:w,
                   date: widget.date,
                   from: widget.from,
