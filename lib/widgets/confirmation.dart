@@ -31,7 +31,7 @@ Future confirmSeats(BuildContext context) => showDialog(
                             seat: selectedSeats.join(" ,"),
                             gate: "",
                             duration: "dur",
-                            price: "price"
+                            price: amountToBePayed.value.toString()
                         )),
                   );
 
