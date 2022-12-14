@@ -1,7 +1,10 @@
 // import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/widgets/global.dart';
 
 Future confirmSeats(BuildContext context) => showDialog(
     context: context,
@@ -17,7 +20,22 @@ Future confirmSeats(BuildContext context) => showDialog(
           ),
           actions: [
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Ticket(
+                            date:DateTime.parse(depart.text),
+                            from: from.text,
+                            to: to.text,
+                            seat: selectedSeats.join(" ,"),
+                            gate: "",
+                            duration: "dur",
+                            price: "price"
+                        )),
+                  );
+
+                },
                 child: const Text(
                   'Confirm',
                   style: TextStyle(color: colortheme.lightPurple, fontSize: 17),
