@@ -21,20 +21,28 @@ Future confirmSeats(BuildContext context) => showDialog(
           actions: [
             TextButton(
                 onPressed: () {
+                  for (var ele in selectedSeats) {
+                    if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
+                      gates.add('1A');
+                    } else if (int.parse(ele) >= 17 && int.parse(ele) <= 32) {
+                      gates.add('2A');
+                    } else {
+                      gates.add('3B');
+                    }
+                  }
+                  gates = gates.toSet().toList();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Ticket(
-                            date:DateTime.parse(depart.text),
+                            date: DateTime.parse(depart.text),
                             from: from.text,
                             to: to.text,
                             seat: selectedSeats.join(" ,"),
-                            gate: "",
+                            gate: gates.join(','),
                             duration: "dur",
-                            price: amountToBePayed.value.toString()
-                        )),
+                            price: amountToBePayed.value.toString())),
                   );
-
                 },
                 child: const Text(
                   'Confirm',
