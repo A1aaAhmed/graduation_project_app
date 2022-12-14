@@ -79,6 +79,8 @@ class _TicketComponentState extends State<TicketComponent> {
                                 alignment: Alignment.center,
                                 width: 20.w,
                                 child: AutoSizedText(
+                                  h: true,
+                                  w: 20.w,
                                 text:(late)?'Expired':
                                 (date.day==now.day&&date.year==now.year&&date.month==now.month)?'Today':
                                 'Future',
@@ -96,6 +98,8 @@ class _TicketComponentState extends State<TicketComponent> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   AutoSizedText(
+                                    h: true,
+                                    w: 20.w,
                                   text:  date.day.toString(),
                                   fontSize: 40.sp,
                                   maxLines: 1,
@@ -103,6 +107,8 @@ class _TicketComponentState extends State<TicketComponent> {
                                   align: TextAlign.center,
                                   ),
                                   AutoSizedText(
+                                    h: true,
+                                    w: 20.w,
                                   align:TextAlign.center,
                                   text: DateFormat('EEEE').format(date),
                                   fontSize: 15.sp,
@@ -121,149 +127,169 @@ class _TicketComponentState extends State<TicketComponent> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.only(start: 35.w),
                           child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Container(
-                              child: AutoSizedColumn(
-                                alignCenterMain: true,
-                                h: (widget.view)?15.h:0,
-                                item1: AutoSizedColumn(
-                                    alignCenterMain: true,
-                                    h: .5.h,
-                                     h2: .5.h,
-                                    item1: AutoSizedRow(
+                            fit: BoxFit.scaleDown,
+                            child: AutoSizedColumn(
+                              h: (widget.view)?10.h:0,
+                              item1: AutoSizedColumn(
+                                  alignCenterMain: true,
+                                  alignCenter: true,
+                                  h: 0,
+                                   h2:0,
+                                  item1: SizedBox(
+                                    height: 12.h,
+                                    child: AutoSizedRow(
                                       centerAlign: true,
                                         h: 3.w,
                                         item1: AutoSizedWidget(
                                           item:  Icon(
                                             Icons.circle_outlined,
-                                            size: 5.w,
+                                            size: 4.w,
                                             color: Colors.green,
                                           ),
                                         ),
                                         item2: AutoSizedText(
+                                          w:50.w ,
                                           text:  from,
-                                          fontSize: 25.sp,
+                                          fontSize: widget.view?15.sp:20.sp,
                                           maxLines: 1,
                                           textColor: Colors.white,
                                           align:TextAlign.left,
                                         ),),
-                                    item2:Padding(
-                                      padding: EdgeInsetsDirectional.only(start:2.5.w),
-                                      child: AutoSizedRow(
-                                        centerAlignMain: true,
-                                         centerAlign: true,
-                                          h: 5.w,
-                                          item1: Dash(
-                                                  direction: Axis.vertical,
-                                                  length: 16.h,
-                                                  dashLength: 2.h,
-                                                  dashColor: Colors.grey,
-                                                  dashThickness: .2.w,
+                                  ),
+                                  item2:Padding(
+                                    padding: EdgeInsetsDirectional.only(start:2.w),
+                                    child: AutoSizedRow(
+                                       centerAlign: true,
+                                        h: 5.w,
+                                        item1: Dash(
+                                                direction: Axis.vertical,
+                                                length: widget.view?12.h:15.sp,
+                                                dashLength: 2.h,
+                                                dashColor: Colors.grey,
+                                                dashThickness: .2.w,
 
-                                                  ),
-                                          item2: AutoSizedText(
-                                                    text:  duration,
-                                                    fontSize: 12.sp,
-                                                    maxLines: 1,
-                                                    textColor: Colors.grey,
-                                                    align: TextAlign.left
-                                            ),),
-                                    ),
-                                    item3: AutoSizedRow(
+                                                ),
+                                        item2: AutoSizedText(
+                                          w: 50.w,
+                                                  text:  duration,
+                                                  fontSize:widget.view?6.sp:6.sp,
+                                                  maxLines: 1,
+                                                  textColor: Colors.grey,
+                                                  align: TextAlign.left
+                                          ),),
+                                  ),
+                                  item3: SizedBox(
+                                    height: 12.h,
+                                    child: AutoSizedRow(
                                       centerAlign: true,
                                       h: 3.w,
-                                        item1: AutoSizedWidget(
+                                      item1: AutoSizedWidget(
                                         item: Icon(
                                           Icons.circle_outlined,
-                                          size: 5.w,
+                                          size: 4.w,
                                           color: Colors.red,
                                         ),
                                       ),
                                       item2: AutoSizedText(
+                                        w: 50.w,
                                         text:  to,
-                                        fontSize: 25.sp,
+                                        fontSize: widget.view?15.sp:20.sp,
                                         maxLines: 1,
                                         textColor: Colors.white,
                                         align:TextAlign.left,
                                       ),
-                                    )
-                                ),
-                                item2: (widget.view)?AutoSizedColumn(
-                                  h: 4.h,
-                                  item1: AutoSizedRow(
-                                    h: 4.5.w,
-                                    h2: 4.5.w,
-                                    item1: AutoSizedColumn(
-                                      alignCenter: true,
-                                        h: 1.h,
-                                        item1:  AutoSizedText(
-                                            text: "Gate",
-                                            fontSize: 15.sp,
-                                            maxLines: 1,
-                                            textColor: Colors.grey,
-                                            align:TextAlign.center
-                                        ),
-                                        item2: AutoSizedText(
-                                          text:  gate,
-                                          fontSize: 15.sp,
-                                          maxLines: 1,
-                                          textColor: Colors.white,
-                                          align: TextAlign.center,
-                                        )
                                     ),
-                                    item3: AutoSizedColumn(
-                                      alignCenter: true,
-                                      h: 1.h,
-                                      item1:  AutoSizedText(
-                                        align:TextAlign.center,
-                                        text: "Boarding",
-                                        fontSize: 15.sp,
-                                        maxLines: 1,
-                                        textColor: Colors.grey,
-                                      ),
-                                      item2: AutoSizedText(
-                                          align: TextAlign.center,
-                                          text: DateFormat.jm().format(date),
-                                          fontSize: 15.sp,
-                                          maxLines: 1,
-                                          textColor: Colors.white),
-
-                                    ),
-                                    item2: AutoSizedColumn(
-                                        alignCenter: true,
-                                        h: 1.h,
-                                        item1:  AutoSizedText(
-                                            text: "Price",
-                                            fontSize: 15.sp,
-                                            maxLines: 1,
-                                            textColor: Colors.grey,
-                                            align:TextAlign.center
-                                        ),
-                                        item2: AutoSizedText(
-                                            text: price,
-                                            fontSize: 15.sp,
-                                            maxLines: 1,
-                                            align: TextAlign.center,
-                                            textColor: Colors.white)
-                                    ),
-                                  ),
-                                  item2: AutoSizedRow(
-                                    h: 5.w,
-                                    item1: AutoSizedText(
-                                        text: "Seat",
-                                        fontSize: 15.sp,
-                                        maxLines: 1,
-                                        textColor: Colors.grey,
-                                        align: TextAlign.center
+                                  )
+                              ),
+                              item2: (widget.view)?AutoSizedColumn(
+                                h: 3.h,
+                                h2: 3.h,
+                                item1: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: 4.5.w,
+                                  item2: AutoSizedColumn(
+                                    alignCenterMain: true,
+                                    alignCenter: true,
+                                    h: 2.h,
+                                    item1:  AutoSizedText(
+                                      w: 20.w,
+                                      align:TextAlign.center,
+                                      text: "Boarding",
+                                      fontSize: 10.sp,
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
                                     ),
                                     item2: AutoSizedText(
+                                      w: 20.w,
                                         align: TextAlign.center,
-                                        text: seat,
-                                        fontSize: 15.sp,
+                                        text: DateFormat.jm().format(date),
+                                        fontSize: 10.sp,
                                         maxLines: 1,
-                                        textColor: Colors.white),),
-                                ):const Text(''),
-                              ),
+                                        textColor: Colors.white),
+
+                                  ),
+                                  item1: AutoSizedColumn(
+                                      alignCenter: true,
+                                      alignCenterMain: true,
+                                      h: 2.h,
+                                      h2: 2.h,
+                                      item1:  AutoSizedText(
+                                        w: 20.w,
+                                          text: "Price",
+                                          fontSize: 10.sp,
+                                          maxLines: 1,
+                                          textColor: Colors.grey,
+                                          align:TextAlign.center
+                                      ),
+                                      item2: AutoSizedText(
+                                        w: 20.w,
+                                          text: price,
+                                          fontSize: 10.sp,
+                                          maxLines: 1,
+                                          align: TextAlign.center,
+                                          textColor: Colors.white)
+                                  ),
+                                ),
+                                  item3: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: .2.w,
+                                  item1: AutoSizedText(
+                                    w: 10.w,
+                                      text: "Seat",
+                                      fontSize: 10.sp,
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
+                                      align: TextAlign.center
+                                  ),
+                                  item2: AutoSizedText(
+                                    w: 45.w,
+                                      align: TextAlign.left,
+                                      text: seat,
+                                      fontSize: 10.sp,
+                                      maxLines: 1,
+                                      textColor: Colors.white),),
+                                  item2: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: .2.w,
+                                  item1: AutoSizedText(
+                                      w: 10.w,
+                                      text: "Gate",
+                                      fontSize: 10.sp,
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
+                                      align: TextAlign.center
+                                  ),
+                                  item2: AutoSizedText(
+                                      w: 45.w,
+                                      align: TextAlign.left,
+                                      text: gate,
+                                      fontSize: 10.sp,
+                                      maxLines: 1,
+                                      textColor: Colors.white),),
+
+
+
+                              ):const Text(''),
                             ),
                           ),
                         ),
