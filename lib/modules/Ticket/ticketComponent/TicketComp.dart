@@ -49,193 +49,230 @@ class _TicketComponentState extends State<TicketComponent> {
     body:Sizer(
           builder:(context, orientation, deviceType) {
             return Container(
-                padding:widget.view?EdgeInsetsDirectional.only(end:2.w, top:20.h):EdgeInsets.symmetric(horizontal: 5.w),
+                padding:EdgeInsetsDirectional.only(end:2.w, top:10.h),
                 width: double.infinity,
                 height:100.h,
                 child: Stack(
                     children: [
                       CustomPaint(
-                        size: Size(double.infinity,100.h), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                        size: Size(double.infinity,89.5.h), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
                         painter: RPSCustomPainter(),
                       ),
-                      CustomPaint( //black part
-                        size: Size(double.infinity,100.h), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                        painter: RPSCustomPainter2(),
-                      ),
-                      Padding(
-                        padding: widget.view?EdgeInsetsDirectional.only(top:5.h,start:7.5.w,):EdgeInsetsDirectional.only(start:15.w,),
-                        child:AutoSizedRow(
-                          centerAlign: true,
-                          h: widget.view?6.w:20.w,
-                          item1: Wrap(
-                            alignment: WrapAlignment.center,
-                            direction: Axis.vertical,
-                            children: [
-                              AutoSizedText(
-                                h: 10.h, w:14.w,
+                      Align(
+                        alignment: const Alignment(-.9,0),
+                        child: Container(
+                          padding: EdgeInsetsDirectional.only( top:widget.view?10.h:5.h,bottom: widget.view?10.h:5.h),
+                            width: 30.w,
+                            height: 100.h,
+                            decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius:BorderRadius.only(topLeft:Radius.circular(3.w),bottomLeft:Radius.circular(3.w))
+                            ),
+                            child:FittedBox(
+                              fit: BoxFit.contain,
+                              child: Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                direction: Axis.vertical,
+                                spacing: 30.h,
+                              children: [
+                              Container(
+                                alignment: Alignment.center,
+                                width: 20.w,
+                                child: AutoSizedText(
                                 text:(late)?'Expired':
                                 (date.day==now.day&&date.year==now.year&&date.month==now.month)?'Today':
-                                DateFormat('EEEE').format(date),
-                                fontSize: 10.sp,
+                                'Future',
+                                fontSize: 13.sp,
                                 maxLines: 1,
                                 textColor: (late)?Colors.red:Colors.white,
                                 borderRad: 1.h,
-                                paddingSymHoriz: .5.w,
-                                paddingSymVert: 1.h,
+                                paddingSymHoriz: 1.w,
+                                paddingSymVert: 2.h,
                                 shadowCap: .3,
+                                align: TextAlign.center,
+                                ),
                               ),
-                              SizedBox(height:widget.view? 30.h:10.h),
-                              AutoSizedText(
-                                h: 15.h, w:15.w,
-                                text:  date.day.toString(),
-                                fontSize: 50.sp,
-                                maxLines: 1,
-                                textColor: Colors.white,
-                              ),
-                              AutoSizedText(
-                                align: Alignment.topCenter,
-                                  h: 12.h, w:15.w,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  AutoSizedText(
+                                  text:  date.day.toString(),
+                                  fontSize: 40.sp,
+                                  maxLines: 1,
+                                  textColor: Colors.white,
+                                  align: TextAlign.center,
+                                  ),
+                                  AutoSizedText(
+                                  align:TextAlign.center,
                                   text: DateFormat('EEEE').format(date),
-                                  fontSize: 10.sp,
+                                  fontSize: 15.sp,
                                   maxLines: 1,
                                   textColor: Colors.white),
-                            ],
-                          ),
-                          item2: AutoSizedColumn(
-                            alignCenterMain: true,
-                            h: (widget.view)?2.5.h:0,
-                            item1: AutoSizedRow(
-                                h: 3.w,
-                                item1: AutoSizedColumn(
-                                  alignCenter: true,
-                                  h: 1.h,
-                                  item1: AutoSizedWidget(
-                                    h: 5.h,
-                                    w: 6.w ,
-                                    item: const Icon(
-                                      Icons.circle_outlined,
-                                      size: 50,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                  item2:  Dash(
-                                    direction: Axis.vertical,
-                                    length: 20.h,
-                                    dashLength: 2.h,
-                                    dashColor: Colors.grey,
+                                ],
+                              ),
 
-                                  ),
-                                  item3:  AutoSizedWidget(
-                                    h: 5.h,
-                                    w: 6.w ,
-                                    item: const Icon(
-                                      Icons.circle_outlined,
-                                      size: 50,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
-                                item2:  AutoSizedColumn(
-                                  h: 5.h,
-                                  h2: 5.h,
-                                  item1: AutoSizedText(
-                                      h: 8.h, w:40.w,
-                                      text:  from,
-                                      fontSize: 30.sp,
-                                      maxLines: 1,
-                                      textColor: Colors.white,
-                                      align:Alignment.topLeft,
-                                  ),
-                                  item2: AutoSizedText(
-                                      h: 8.h, w:30.w,
-                                      text:  duration,
-                                      fontSize: .2.sp,
-                                      maxLines: 1,
-                                      textColor: Colors.grey,
-                                      align: Alignment.centerLeft
-                                  ),
-                                  item3:  AutoSizedText(
-                                    h: 8.h, w:40.w,
-                                    text:  to,
-                                    fontSize: 30.sp,
-                                    maxLines: 1,
-                                    textColor: Colors.white,
-                                    align: Alignment.topLeft,
-                                  ),
-                                )
+                              ],
+                              ),
+                            ) ,
                             ),
-                            item2: (widget.view)?AutoSizedColumn(
-                              h: 0,
-                              item1: AutoSizedRow(
-                                  h: 4.5.w,
-                                  item1: AutoSizedColumn(
-                                      h: 1.h,
-                                      item1:  AutoSizedText(
-                                          h: 6.h, w:12.w,
-                                          text: "Gate",
-                                          fontSize: 20.sp,
+                      ),
+                      Align(
+                        alignment: const Alignment(-.9,0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.only(start: 35.w),
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Container(
+                              child: AutoSizedColumn(
+                                alignCenterMain: true,
+                                h: (widget.view)?15.h:0,
+                                item1: AutoSizedColumn(
+                                    alignCenterMain: true,
+                                    h: .5.h,
+                                     h2: .5.h,
+                                    item1: AutoSizedRow(
+                                      centerAlign: true,
+                                        h: 3.w,
+                                        item1: AutoSizedWidget(
+                                          item:  Icon(
+                                            Icons.circle_outlined,
+                                            size: 5.w,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        item2: AutoSizedText(
+                                          text:  from,
+                                          fontSize: 25.sp,
                                           maxLines: 1,
-                                          textColor: Colors.grey),
+                                          textColor: Colors.white,
+                                          align:TextAlign.left,
+                                        ),),
+                                    item2:Padding(
+                                      padding: EdgeInsetsDirectional.only(start:2.5.w),
+                                      child: AutoSizedRow(
+                                        centerAlignMain: true,
+                                         centerAlign: true,
+                                          h: 5.w,
+                                          item1: Dash(
+                                                  direction: Axis.vertical,
+                                                  length: 16.h,
+                                                  dashLength: 2.h,
+                                                  dashColor: Colors.grey,
+                                                  dashThickness: .2.w,
+
+                                                  ),
+                                          item2: AutoSizedText(
+                                                    text:  duration,
+                                                    fontSize: 12.sp,
+                                                    maxLines: 1,
+                                                    textColor: Colors.grey,
+                                                    align: TextAlign.left
+                                            ),),
+                                    ),
+                                    item3: AutoSizedRow(
+                                      centerAlign: true,
+                                      h: 3.w,
+                                        item1: AutoSizedWidget(
+                                        item: Icon(
+                                          Icons.circle_outlined,
+                                          size: 5.w,
+                                          color: Colors.red,
+                                        ),
+                                      ),
                                       item2: AutoSizedText(
-                                          h: 10.h, w:12.w,
+                                        text:  to,
+                                        fontSize: 25.sp,
+                                        maxLines: 1,
+                                        textColor: Colors.white,
+                                        align:TextAlign.left,
+                                      ),
+                                    )
+                                ),
+                                item2: (widget.view)?AutoSizedColumn(
+                                  h: 4.h,
+                                  item1: AutoSizedRow(
+                                    h: 4.5.w,
+                                    h2: 4.5.w,
+                                    item1: AutoSizedColumn(
+                                      alignCenter: true,
+                                        h: 1.h,
+                                        item1:  AutoSizedText(
+                                            text: "Gate",
+                                            fontSize: 15.sp,
+                                            maxLines: 1,
+                                            textColor: Colors.grey,
+                                            align:TextAlign.center
+                                        ),
+                                        item2: AutoSizedText(
                                           text:  gate,
-                                          fontSize: .3.sp,
+                                          fontSize: 15.sp,
                                           maxLines: 1,
-                                          textColor: Colors.white)
-                                  ),
-                                  item3: AutoSizedColumn(
+                                          textColor: Colors.white,
+                                          align: TextAlign.center,
+                                        )
+                                    ),
+                                    item3: AutoSizedColumn(
+                                      alignCenter: true,
                                       h: 1.h,
                                       item1:  AutoSizedText(
-                                          align:Alignment.centerLeft,
-                                          h: 6.h, w:20.w,
-                                          text: "Boarding",
-                                          fontSize: 30.sp,
-                                          maxLines: 1,
-                                          textColor: Colors.grey),
+                                        align:TextAlign.center,
+                                        text: "Boarding",
+                                        fontSize: 15.sp,
+                                        maxLines: 1,
+                                        textColor: Colors.grey,
+                                      ),
                                       item2: AutoSizedText(
-                                        align: Alignment.centerLeft,
-                                          h: 10.h, w:20.w,
+                                          align: TextAlign.center,
                                           text: DateFormat.jm().format(date),
-                                          fontSize: 30.sp,
+                                          fontSize: 15.sp,
                                           maxLines: 1,
                                           textColor: Colors.white),
 
+                                    ),
+                                    item2: AutoSizedColumn(
+                                        alignCenter: true,
+                                        h: 1.h,
+                                        item1:  AutoSizedText(
+                                            text: "Price",
+                                            fontSize: 15.sp,
+                                            maxLines: 1,
+                                            textColor: Colors.grey,
+                                            align:TextAlign.center
+                                        ),
+                                        item2: AutoSizedText(
+                                            text: price,
+                                            fontSize: 15.sp,
+                                            maxLines: 1,
+                                            align: TextAlign.center,
+                                            textColor: Colors.white)
+                                    ),
                                   ),
-                                  item2: AutoSizedColumn(
-                                    h: 1.h,
-                                    item1:  AutoSizedText(
-                                        h: 6.h, w:12.w,
-                                        text: "Price",
-                                        fontSize: 20.sp,
+                                  item2: AutoSizedRow(
+                                    h: 5.w,
+                                    item1: AutoSizedText(
+                                        text: "Seat",
+                                        fontSize: 15.sp,
                                         maxLines: 1,
-                                        textColor: Colors.grey),
+                                        textColor: Colors.grey,
+                                        align: TextAlign.center
+                                    ),
                                     item2: AutoSizedText(
-                                        h: 10.h, w:12.w,
-                                        text: price,
-                                        fontSize: .3.sp,
+                                        align: TextAlign.center,
+                                        text: seat,
+                                        fontSize: 15.sp,
                                         maxLines: 1,
-                                        textColor: Colors.white)
-                                ),
+                                        textColor: Colors.white),),
+                                ):const Text(''),
                               ),
-                              item2: AutoSizedRow(
-                                h: 5.w,
-                                item1: AutoSizedText(
-                                    h: 6.h, w:12.w,
-                                    text: "Seat",
-                                    fontSize: 20.sp,
-                                    maxLines: 1,
-                                    textColor: Colors.grey),
-                                item2: AutoSizedText(
-                                    align: Alignment.topLeft,
-                                    h: 9.h, w:20.w,
-                                    text:  seat,
-                                    fontSize: .3.sp,
-                                    maxLines: 1,
-                                    textColor: Colors.white),),
-                            ):const Text(''),
+                            ),
                           ),
                         ),
-                      )
+                      ),
+                      // AutoSizedRow(
+                      //   h: 2.w,
+                      //   item1:
+                      //   item2:
+                      // )
                     ]));
           },
 

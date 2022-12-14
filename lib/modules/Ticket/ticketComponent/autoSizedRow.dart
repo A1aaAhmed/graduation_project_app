@@ -11,10 +11,13 @@ Widget AutoSizedRow ({
   Widget item3=const SizedBox(),
   Widget item4=const SizedBox(),
   bool centerAlign=false,
+  bool centerAlignMain=false,
 })=> Sizer(
     builder: (context, orientation, deviceType) {
       return Row(
         crossAxisAlignment:centerAlign? CrossAxisAlignment.center:CrossAxisAlignment.start,
+        mainAxisAlignment:  centerAlignMain?MainAxisAlignment.center:MainAxisAlignment.start,
+
         children: [
           SizedBox(width:hInit,),
           item1,

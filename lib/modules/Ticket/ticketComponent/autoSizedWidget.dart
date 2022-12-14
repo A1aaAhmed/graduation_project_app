@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 Widget AutoSizedWidget({
-  required double h ,
-  required double w ,
+
   required Widget item,
   AlignmentGeometry align=Alignment.center,
   double paddingSymHoriz=0,
@@ -13,8 +12,7 @@ Widget AutoSizedWidget({
 })=> Sizer(
     builder: (context, orientation, deviceType) {
       return Container(
-        width: w,
-        height: h,
+
         alignment: align,
         padding:  EdgeInsets.symmetric(horizontal:paddingSymHoriz ,vertical: paddingSymVert ),
         decoration: const BoxDecoration(

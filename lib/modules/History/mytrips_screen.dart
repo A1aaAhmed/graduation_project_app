@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:sizer/sizer.dart';
@@ -28,7 +27,7 @@ class _MyTripsState extends State<MyTripsScreen> {
           ),
               body:ListTable(
                 list: db,
-                h:35.h,
+                h:40.h,
                 w:100.w,
                ));
   }),

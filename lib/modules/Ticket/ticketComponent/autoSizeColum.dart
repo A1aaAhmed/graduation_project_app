@@ -22,9 +22,9 @@ Widget AutoSizedColumn ({
           item1,
           SizedBox(height:h,),
           item2,
-          SizedBox(height:(h2==0)?h:h2,),
+          SizedBox(height: h2,),
           item3,
-          SizedBox(height:(h3==0)?h:h3,),
+          SizedBox( height: h3,),
           item4,
         ],
       );

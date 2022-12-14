@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/TicketComp.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
-import 'package:graduation_project_app/shared/style/colors.dart';
 
 Widget ListTable(
     {
@@ -32,19 +31,16 @@ Widget ListTable(
                       price: list[index]['price']
                   ))));},
 
-        child: Padding(
-          padding: EdgeInsets.symmetric( vertical: h*.03),
-          child: TicketComponent(
-              view: false,
-              price: list[index]['price'],
-              date: DateTime.parse(list[index]['date']),
-              from: list[index]['from'],
-              to: list[index]['to'],
-              duration: list[index]['dur'],
-              gate:'m',
-              seat: '',
-            ),
-        ),
+        child: TicketComponent(
+            view: false,
+            price: list[index]['price'],
+            date: DateTime.parse(list[index]['date']),
+            from: list[index]['from'],
+            to: list[index]['to'],
+            duration: list[index]['dur'],
+            gate:'m',
+            seat: '',
+          ),
       ),
     );
       },
