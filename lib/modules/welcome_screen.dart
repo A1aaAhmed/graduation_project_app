@@ -19,7 +19,7 @@ class ApisScreen extends StatelessWidget {
 
               ),
               child: Container(
-                margin: EdgeInsetsDirectional.only(top: 60,),
+                margin:const EdgeInsetsDirectional.only(top: 60,),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/train.jpg'),
@@ -51,9 +51,6 @@ class ApisScreen extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  Text(
-                                    'Timing and tickets',
-                                  ),
                                   Text('Timing and tickets',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -61,13 +58,6 @@ class ApisScreen extends StatelessWidget {
                                       fontSize: 23,
                                       color: Colors.black,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    'Booking your tickets online with your',
-
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -81,10 +71,6 @@ class ApisScreen extends StatelessWidget {
                                       color: Colors.black,
 
                                     ),
-                                  ),
-                                  Text(
-                                    'best searching preferences all over EGYPT',
-
                                   ),
                                   Text('best searching preferences all over EGYPT',
 

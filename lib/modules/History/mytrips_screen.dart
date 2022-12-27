@@ -22,7 +22,7 @@ class _MyTripsState extends State<MyTripsScreen> {
           return Scaffold(
               appBar: bar(
               context: context,
-              text: 'Previous Tickets',
+              text: 'Previous tickets',
               morelist: true,
           ),
               body:ListTable(
