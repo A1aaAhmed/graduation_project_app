@@ -19,7 +19,7 @@ PreferredSizeWidget bar({
               text == 'Profile') {
                        Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Transition()),
+              MaterialPageRoute(builder: (context) => const Trans()),
             );
           } else {
             Navigator.pop(context);
