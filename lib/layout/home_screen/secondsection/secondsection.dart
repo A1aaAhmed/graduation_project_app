@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/home_screen/secondsection/text_form.dart';
 import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
@@ -16,9 +18,9 @@ class SecondSection extends StatefulWidget {
 class _SecondSectionState extends State<SecondSection> {
   //TextEditingController from = TextEditingController();
   //TextEditingController to = TextEditingController();
- // TextEditingController depart = TextEditingController();
+  // TextEditingController depart = TextEditingController();
   var formkey = GlobalKey<FormState>();
- // int travellers = 1;
+  // int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class _SecondSectionState extends State<SecondSection> {
                                   Container(
                                     width: 50,
                                     height: 50,
-                                    decoration:const BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(20),
@@ -84,13 +86,12 @@ class _SecondSectionState extends State<SecondSection> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (globals.seats==0) {
-                                            globals.seats=0;
+                                          if (globals.seats == 0) {
+                                            globals.seats = 0;
                                           } else {
                                             // travellers--;
                                             globals.seats--;
                                           }
-                                          
                                         });
                                       },
                                       icon: const Icon(
@@ -116,7 +117,7 @@ class _SecondSectionState extends State<SecondSection> {
                                   Container(
                                     width: 50,
                                     height: 50,
-                                    decoration:const BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: colortheme.lightGray,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(20),
@@ -151,8 +152,58 @@ class _SecondSectionState extends State<SecondSection> {
                                           date: depart.text)),
                                     ));
                               }
+                             // addtrains(train);
+                            // addseats(seats);
                             }),
                       ]),
                 ))));
   }
 }
+
+// void getdata() {
+//   FirebaseFirestore.instance
+//       .collection('trains')
+//       .doc('ken3udItCx3vyVid8jim')
+//       .get()
+//       .then((value) {
+//     print(value.data());
+//   }).catchError((error) {
+//     print(error.toString());
+//   });
+// }
+
+// Map<String, dynamic> train = {
+//   'stations': ['Cairo', 'Giza', 'Asyut', 'Al Balyana', 'Qena', 'Luxor'],
+//   'Timetable': [
+//     '12:15 pm',
+//     '12:40 am',
+//     '07:05 pm',
+//     '09:45 pm',
+//     '11:40 pm',
+//     '12:40 am',
+//   ],
+//   'trainNum': '160',
+//   'trainID': '',
+// };
+// List<bool> seatts = List.filled(48, false);
+
+// Map<String, dynamic> seats = {
+//   'Saturday': seatts,
+//   'Sunday': seatts,
+//   'Monday': seatts,
+//   'Tuesday': seatts,
+//   'Wednesday': seatts,
+//   'Thursday': seatts,
+//   'Friday': seatts,
+// };
+// void addtrains(Map<String, dynamic> train) {
+//   FirebaseFirestore.instance.collection("trains").add(train);
+// }
+
+// void addseats(seats) {
+//   FirebaseFirestore.instance
+//       .collection("trains")
+//       .doc('sGqWFjS3syqizW4EZlVY')
+//       .collection('seats')
+//       .add(seats);
+// }

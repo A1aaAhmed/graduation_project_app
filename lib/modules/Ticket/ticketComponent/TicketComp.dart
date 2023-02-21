@@ -163,7 +163,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                         h: 5.w,
                                         item1: Dash(
                                                 direction: Axis.vertical,
-                                                length: widget.view?12.h:15.sp,
+                                                length: widget.view?12.h:15.h,
                                                 dashLength: 2.h,
                                                 dashColor: Colors.grey,
                                                 dashThickness: .2.w,
