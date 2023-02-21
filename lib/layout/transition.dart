@@ -7,14 +7,14 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/History/mytrips_screen.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 
-class Transition extends StatefulWidget {
-  const Transition({super.key});
+class Trans extends StatefulWidget {
+  const Trans({super.key});
 
   @override
-  State<Transition> createState() => _TransitionState();
+  State<Trans> createState() => _TransitionState();
 }
 
-class _TransitionState extends State<Transition> {
+class _TransitionState extends State<Trans> {
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
