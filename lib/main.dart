@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/welcome_screen.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
-
 import 'firebase_options.dart';
 
 
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: welcomeScreen(),
+      home: Trans(),
     );
   }
 }

@@ -35,9 +35,9 @@ Future confirmSeats(BuildContext context) => showDialog(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Ticket(
-                            date: DateTime.parse(depart.text),
-                            from: from.text,
-                            to: to.text,
+                            date: DateTime.parse(depart!),
+                            from: from!,
+                            to: to!,
                             seat: selectedSeats.join(" ,"),
                             gate: gates.join(','),
                             duration: "dur",
