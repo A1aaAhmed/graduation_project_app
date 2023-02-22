@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/home_screen/home_screen.dart';
-import 'package:graduation_project_app/modules/livelocation_screen.dart';
+import 'package:graduation_project_app/modules/live_location/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/profile_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -18,13 +18,13 @@ class _TransitionState extends State<Trans> {
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
-    const LiveLocationScreen(),
+    LiveLocationScreen(),
     Ticket(
         date:DateTime.parse(db[0]['date']),
         from: db[0]['from'],
         to: db[0]['to'],
         seat: db[0]['seat'],
-        gate: db[0]['gate'],
+        trin_number: db[0]['trin_number'],
         duration: db[0]['dur'],
         price: db[0]['price']
     ),
