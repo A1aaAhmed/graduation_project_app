@@ -45,7 +45,13 @@ dependencies:
   dio: ^4.0.6
   shared_preferences: ^2.0.17
   conditional_builder_null_safety: ^0.0.6
+<<<<<<< HEAD
   searchfield: ^0.7.5
+=======
+  google_maps_flutter: ^2.2.3
+  location: ^4.2.0
+  flutter_polyline_points: ^1.0.0
+>>>>>>> f12d29b33df53ff91463bec44b3c7ac30575255a
   #firebase
   firebase_core: ^2.6.1
   firebase_auth: ^4.2.8
