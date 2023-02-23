@@ -110,22 +110,22 @@ Widget defualtForm({
 void showToast({
           required String text,
           required toastStates status
-               }) =>  Fluttertoast.showToast(
-                     msg: text,
-                     toastLength: Toast.LENGTH_SHORT,
-                     gravity: ToastGravity.BOTTOM,
-                     timeInSecForIosWeb: 5,
-                     backgroundColor: choseToastColor(status),
-                     textColor: Colors.white,
-                     fontSize: 16.0
+              }) =>  Fluttertoast.showToast(
+                    msg: text,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 5,
+                    backgroundColor: choseToastColor(status),
+                    textColor: Colors.white,
+                    fontSize: 16.0
 );
 enum toastStates {SUCESS,ERROR,WARNING}
 Color choseToastColor(toastStates? state){
     Color color=Colors.white;
   switch(state){
     case toastStates.SUCESS:
-     color =Colors.green;
-     break;
+    color =Colors.green;
+    break;
     case toastStates.ERROR :
     color =Colors.red;
     break;

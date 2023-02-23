@@ -1,8 +1,11 @@
 // ignore_for_file: sized_box_for_whitespace
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/widgets/global.dart' as globals;
+import 'package:graduation_project_app/widgets/global.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 
 class MyWidget extends StatefulWidget {
   final int start;
@@ -46,36 +49,41 @@ class _MyWidgetState extends State<MyWidget> {
     false,
     false
   ];
-  @override
-  void initState() {
-    globals.selectedSeats = [];
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   globals.selectedSeats = [];
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        columnComponent(
-          true,
-          widget.start,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Container(
-            margin: widget.start == 1
-                ? const EdgeInsets.only(top: 100)
-                : widget.start == 33
-                    ? const EdgeInsets.only(bottom: 100)
-                    : const EdgeInsets.all(0),
-            width: 3,
-            height: double.infinity,
-            color: colortheme.blueGray,
-          ),
-        ),
-        columnComponent(false, widget.start + 1),
-      ],
+    return BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            columnComponent(
+              true,
+              widget.start,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                margin: widget.start == 1
+                    ? const EdgeInsets.only(top: 100)
+                    : widget.start == 33
+                        ? const EdgeInsets.only(bottom: 100)
+                        : const EdgeInsets.all(0),
+                width: 3,
+                height: double.infinity,
+                color: colortheme.blueGray,
+              ),
+            ),
+            columnComponent(false, widget.start + 1),
+          ],
+        );
+      },
     );
   }
 
@@ -117,25 +125,37 @@ class _MyWidgetState extends State<MyWidget> {
                         fontSize: 20,
                         gravity: ToastGravity.BOTTOM);
                   } else if (oddBoxes[index] && isOdd) {
-                    setState(() {
-                      oddBoxes[index] = false;
-                      globals.numberOfSeats.value--;
-                      globals.amountToBePayed.value -= 50;
-                      globals.selectedSeats.remove(
-                          seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                      //print(globals.selectedSeats);
-                    });
+                    SeatsScreenCubit.get(context).removeOddSeatFunction(
+                        seatNumber,
+                        isOdd,
+                        evenBoxes,
+                        oddBoxes,
+                        index,
+                        bookedSeats);
+                    // oddBoxes[index] = false;
+                    // globals.numberOfSeats.value--;
+                    // globals.amountToBePayed.value -= 50;
+                    // globals.selectedSeats.remove(
+                    //     seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                    // //print(globals.selectedSeats);
                   } else if (evenBoxes[index] && !isOdd) {
-                    setState(() {
-                      evenBoxes[index] = false;
-                      globals.numberOfSeats.value--;
-                      globals.amountToBePayed.value -= 50;
-                      globals.selectedSeats.remove(
-                          seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                      //print(globals.selectedSeats);
-                    });
+                    SeatsScreenCubit.get(context).removeEvenSeatFunction(
+                        seatNumber,
+                        isOdd,
+                        evenBoxes,
+                        oddBoxes,
+                        index,
+                        bookedSeats);
+                    // setState(() {
+                    //   evenBoxes[index] = false;
+                    //   globals.numberOfSeats.value--;
+                    //   globals.amountToBePayed.value -= 50;
+                    //   globals.selectedSeats.remove(
+                    //       seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                    //   //print(globals.selectedSeats);
+                    // });
                   } else {
-                    if (globals.numberOfSeats.value == globals.seats) {
+                    if (numberOfSeats == seats) {
                       await Fluttertoast.showToast(
                           msg: "You Reach The Limit!",
                           toastLength: Toast.LENGTH_LONG,
@@ -144,18 +164,26 @@ class _MyWidgetState extends State<MyWidget> {
                           fontSize: 20,
                           gravity: ToastGravity.BOTTOM);
                     } else {
-                      setState(() {
-                        globals.numberOfSeats.value++;
-                        globals.amountToBePayed.value += 50;
-                        globals.selectedSeats.add(
-                            seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                        //print(globals.selectedSeats);
-                        if (isOdd) {
-                          oddBoxes[index] = true;
-                        } else {
-                          evenBoxes[index] = true;
-                        }
-                      });
+                      SeatsScreenCubit.get(context).changeSeatsFunction(
+                          seatNumber,
+                          isOdd,
+                          evenBoxes,
+                          oddBoxes,
+                          index,
+                          bookedSeats);
+
+                      // setState(() {
+                      //   globals.numberOfSeats++;
+                      //   globals.amountToBePayed += 50;
+                      //   globals.selectedSeats.add(
+                      //       seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+                      //   //print(globals.selectedSeats);
+                      //   if (isOdd) {
+                      //     oddBoxes[index] = true;
+                      //   } else {
+                      //     evenBoxes[index] = true;
+                      //   }
+                      // });
                     }
                   }
                 },
