@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/modules/Seats_screen.dart';
+import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
 Widget TrainCard({
