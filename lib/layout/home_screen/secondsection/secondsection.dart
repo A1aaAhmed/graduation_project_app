@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/layout/home_screen/secondsection/dropdownform.dart';
 import 'package:graduation_project_app/layout/home_screen/secondsection/text_form.dart';
 import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +8,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart' as globals;
+import 'package:intl/intl.dart';
 
 class SecondSection extends StatefulWidget {
   const SecondSection({super.key});
@@ -45,22 +47,30 @@ class _SecondSectionState extends State<SecondSection> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        formfield(
-                          label: 'From where?',
-                          controller: from,
-                          msg: "Enter your location, Please",
-                        ),
-                        formfield(
-                          label: 'Where to?',
-                          controller: to,
-                          msg: "Enter your destination, Please",
-                        ),
-                        formfield(
-                          label: 'Departure date',
-                          hint: '26 Sept, 2022',
-                          controller: depart,
-                          msg: "Enter the Date, Please",
-                        ),
+                        dropdownform(
+                            countries,
+                            from,
+                            "Enter your location, Please",
+                            const Text(
+                              'From where?',
+                              style: TextStyle(color: colortheme.lightPurple),
+                            )),
+                        dropdownform(
+                            countries,
+                            to,
+                            "Enter your destination, Please",
+                            const Text(
+                              'Where to?',
+                              style: TextStyle(color: colortheme.lightPurple),
+                            )),
+                        dropdownform(
+                            dates,
+                            depart,
+                            "Enter the Date, Please",
+                            const Text(
+                              'Departure date',
+                              style: TextStyle(color: colortheme.lightPurple),
+                            )),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -147,18 +157,69 @@ class _SecondSectionState extends State<SecondSection> {
                                     context,
                                     MaterialPageRoute(
                                       builder: ((context) => TrainsScreen(
-                                          from: from.text,
-                                          to: to.text,
-                                          date: depart.text)),
+                                          from: from!, to: to!, date: depart!)),
                                     ));
                               }
-                             // addtrains(train);
-                            // addseats(seats);
+                              // addtrains(train);
+                              // addseats(seats);
                             }),
                       ]),
                 ))));
   }
 }
+
+const List<DropdownMenuItem<String>> countries = [
+  DropdownMenuItem(value: "Cairo", child: Text("Cairo")),
+  DropdownMenuItem(value: "Giza", child: Text("Giza")),
+  DropdownMenuItem(value: "Alexandria", child: Text("Alexandria")),
+  DropdownMenuItem(value: "Asyut", child: Text("Asyut")),
+  DropdownMenuItem(value: "Al Balyana", child: Text("Al Balyana")),
+  DropdownMenuItem(value: "Qena", child: Text("Qena")),
+  DropdownMenuItem(value: "Luxor", child: Text("Luxor")),
+  DropdownMenuItem(value: "Isna", child: Text("Isna")),
+  DropdownMenuItem(value: "Edfu", child: Text("Edfu")),
+  DropdownMenuItem(value: "Kom Ombo", child: Text("Kom Ombo")),
+  DropdownMenuItem(value: "Aswan", child: Text("Aswan")),
+  DropdownMenuItem(value: "El Alamein", child: Text("El Alamein")),
+  DropdownMenuItem(value: "Mersa Matruh", child: Text("Mersa Matruh")),
+  DropdownMenuItem(value: "Port Said", child: Text("Port Said")),
+  DropdownMenuItem(value: "Suez", child: Text("Suez")),
+];
+List<DropdownMenuItem<String>> dates = [
+  DropdownMenuItem(
+      value: DateTime.now().toString(),
+      child: Text(DateFormat.yMMMEd().format(DateTime.now()).toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 1)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 1)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 2)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 2)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 3)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 3)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 4)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 4)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 5)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 5)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 6)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 6)))
+          .toString())),
+];
 
 // void getdata() {
 //   FirebaseFirestore.instance

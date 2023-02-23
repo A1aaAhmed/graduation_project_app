@@ -9,7 +9,7 @@ class Ticket extends StatefulWidget {
   final String from;
   final String to;
   final String seat;
-  final String gate;
+  final String trin_number;
   final String duration;
   final String price;
 
@@ -21,7 +21,7 @@ class Ticket extends StatefulWidget {
     required this.from,
     required this.to,
     required this.seat,
-    required this.gate,
+    required this.trin_number,
     required this.duration,
     required this.price,
 
@@ -60,7 +60,7 @@ class _TicketState extends State<Ticket> {
                     from: widget.from,
                     to: widget.to,
                     duration: widget.duration,
-                    gate: widget.gate,
+                    trin_number: widget.trin_number,
                     seat: widget.seat,
                   )),
                   SizedBox(height: 10.h),

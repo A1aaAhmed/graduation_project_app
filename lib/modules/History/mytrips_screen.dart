@@ -6,6 +6,8 @@ import 'package:sizer/sizer.dart';
 import 'ListTable.dart';
 
 class MyTripsScreen extends StatefulWidget {
+  const MyTripsScreen({super.key});
+
   @override
   State<MyTripsScreen> createState() => _MyTripsState();
 }
@@ -22,7 +24,7 @@ class _MyTripsState extends State<MyTripsScreen> {
           return Scaffold(
               appBar: bar(
               context: context,
-              text: 'Previous tickets',
+              text: 'Previous Tickets',
               morelist: true,
           ),
               body:ListTable(
