@@ -20,6 +20,7 @@ Future confirmSeats(BuildContext context) => showDialog(
           actions: [
             TextButton(
                 onPressed: () {
+                  
                   for (var ele in selectedSeats) {
                     if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
                       gates.add('1A');

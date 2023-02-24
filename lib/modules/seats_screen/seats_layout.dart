@@ -1,6 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/seats_screen/widgets/confirmation.dart';
@@ -29,7 +30,7 @@ class _SeatsState extends State<Seats> {
     SelectModel(text: 'Booked', color: colortheme.saimon),
     SelectModel(text: 'Selected', color: colortheme.lightPurple),
   ];
-  List<String> gates = ['1A', '2A', '3B'];
+  List<String> gateType = ['1A', '2A', '3B'];
   // @override
   // void initState() {
   //   globals.numberOfSeats.value = 0;
@@ -93,7 +94,7 @@ class _SeatsState extends State<Seats> {
                                           child: ListView.separated(
                                               itemBuilder: (context, index) =>
                                                   Text(
-                                                    gates[index],
+                                                    gateType[index],
                                                     style: const TextStyle(
                                                         fontSize: 20,
                                                         color: Color.fromARGB(
@@ -104,7 +105,7 @@ class _SeatsState extends State<Seats> {
                                                       const SizedBox(
                                                         height: 80,
                                                       ),
-                                              itemCount: gates.length),
+                                              itemCount: gateType.length),
                                         )
                                       ],
                                     ),
@@ -125,16 +126,14 @@ class _SeatsState extends State<Seats> {
                                 children: [
                                   Text(
                                     numberOfSeats <= 9
-                                        ? ' 0${numberOfSeats}'
+                                        ? ' 0$numberOfSeats'
                                         : ' ',
                                     style: const TextStyle(
                                         fontSize: 40,
                                         color: colortheme.lightPurple),
                                   ),
                                   Text(
-                                    numberOfSeats <= 9
-                                        ? '/0${seats}'
-                                        : '/${seats}',
+                                    numberOfSeats <= 9 ? '/0$seats' : '/$seats',
                                     style: const TextStyle(fontSize: 15),
                                   ),
                                 ],
@@ -282,8 +281,21 @@ class _SeatsState extends State<Seats> {
                   child: button(
                     height: 50,
                     onpress: () async {
-                      print(selectedSeats);
-                      confirmSeats(context);
+                      if (selectedSeats.length == seats) {
+                        print(gateType);
+                        print(selectedSeats);
+                        print(gates);
+
+                        confirmSeats(context);
+                      } else {
+                        await Fluttertoast.showToast(
+                            msg: "Select all seats!",
+                            toastLength: Toast.LENGTH_LONG,
+                            backgroundColor: Colors.red[900],
+                            textColor: Colors.white,
+                            fontSize: 20,
+                            gravity: ToastGravity.BOTTOM);
+                      }
                     },
                     text: 'Confirm Seats',
                     width: 200,
