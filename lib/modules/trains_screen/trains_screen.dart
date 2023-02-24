@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/trains_screen/traincard.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:intl/intl.dart';
+
+import '../../shared/variables.dart';
 
 class TrainsScreen extends StatelessWidget {
   final String from;
@@ -27,25 +30,36 @@ class TrainsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: bar(context: context, text: '', morelist: false,),
+      appBar: bar(
+        context: context,
+        text: '',
+        morelist: false,
+      ),
       body: Container(
         color: colortheme.lightPurple,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            '   $from to $to',
+          Container(
+            padding: const EdgeInsets.only(left: 25),
+            child:Text(
+            '$from to $to',
             style: const TextStyle(
               color: colortheme.white,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
-            '      $date',
-            style: const TextStyle(
-              color: colortheme.white,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 25),
+            child: Text(
+              DateFormat.yMMMEd().format(DateTime.parse(depart)).toString(),
+              style: const TextStyle(
+                color: colortheme.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            
           ),
           const SizedBox(
             height: 20,

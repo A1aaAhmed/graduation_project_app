@@ -15,7 +15,7 @@ PreferredSizeWidget bar({
       elevation: 0,
       leading: IconButton(
         onPressed: () {
-          if (text=='Previous tickets' || text=='Current ticket'||text=='Live location' ||
+          if (text=='Previous Tickets' || text=='Current Tickets'||text=='Live location' ||
               text == 'Profile') {
                        Navigator.push(
               context,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 //TextEditingController from = TextEditingController();
 //TextEditingController to = TextEditingController();
 //TextEditingController depart = TextEditingController();
-String? from;
-String? to;
-String? depart;
+var from;
+var to;
+var depart;
 
 int travellers = 1;
 List<Map> db = [

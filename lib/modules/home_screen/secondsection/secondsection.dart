@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/layout/home_screen/secondsection/dropdownform.dart';
-import 'package:graduation_project_app/layout/home_screen/secondsection/text_form.dart';
+import 'package:graduation_project_app/modules/home_screen/secondsection/dropdownform.dart';
+import 'package:graduation_project_app/modules/home_screen/secondsection/text_form.dart';
 import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -49,7 +49,6 @@ class _SecondSectionState extends State<SecondSection> {
                       children: [
                         dropdownform(
                             countries,
-                            from,
                             "Enter your location, Please",
                             const Text(
                               'From where?',
@@ -57,7 +56,6 @@ class _SecondSectionState extends State<SecondSection> {
                             )),
                         dropdownform(
                             countries,
-                            to,
                             "Enter your destination, Please",
                             const Text(
                               'Where to?',
@@ -65,7 +63,6 @@ class _SecondSectionState extends State<SecondSection> {
                             )),
                         dropdownform(
                             dates,
-                            depart,
                             "Enter the Date, Please",
                             const Text(
                               'Departure date',

@@ -1,8 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_app/layout/home_screen/firstsection/firstsection.dart';
-import 'package:graduation_project_app/layout/home_screen/home_screen.dart';
+import 'package:graduation_project_app/modules/home_screen/firstsection/firstsection.dart';
+import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import '../../shared/components/components.dart';
 import 'cubit/cubit.dart';

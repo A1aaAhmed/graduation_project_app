@@ -11,11 +11,9 @@ import 'package:graduation_project_app/modules/welcome_screen.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
 
-
-void main()async
-{
-
-  WidgetsFlutterBinding.ensureInitialized(); //to make sure that all this fun ocured first before runApp
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); //to make sure that all this fun ocured first before runApp
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -42,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: welcomeScreen(),
+      home: Trans(),
     );
   }
 }

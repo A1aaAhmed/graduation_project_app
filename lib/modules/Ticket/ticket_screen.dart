@@ -41,7 +41,7 @@ class _TicketState extends State<Ticket> {
       return Scaffold(
           appBar: bar(
             context: context,
-            text: 'Current ticket',
+            text: 'Current Tickets',
             morelist: false,
           ),
           body: SizedBox(
