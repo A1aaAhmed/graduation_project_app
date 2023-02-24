@@ -2,48 +2,49 @@
 // ignore_for_file: file_names, duplicate_ignore, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/TicketComp.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 
 Widget ListTable({
-  required List<Map> list,
   required double h,
   required double w,
-}) =>
-    ListView.builder(
-      padding: EdgeInsets.zero,
-      scrollDirection: Axis.vertical,
-      itemBuilder: (context, index) {
-        return SizedBox(
-          height: h,
-          width: w,
-          child: MaterialButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Ticket(
-                          date: DateTime.parse(list[index]['date']),
-                          from: list[index]['from'],
-                          to: list[index]['to'],
-                          seat: list[index]['seat'],
-                          trin_number: list[index]['trin_number'],
-                          duration: list[index]['dur'],
-                          price: list[index]['price']))));
-            },
-            child: TicketComponent(
+}) {
+
+  return ListView.builder(
+    padding: EdgeInsets.zero,
+    scrollDirection: Axis.vertical,
+    itemBuilder: (context, index) {
+      TicketModel ticket = TicketModel(
+          date: DateTime.parse(db[index]['date']),
+          from: db[index]['from'],
+          to: db[index]['to'],
+          seats: db[index]['seat'],
+          train: db[index]['trin_number'],
+          duration: db[index]['dur'],
+          price: db[index]['price']
+      );
+      return SizedBox(
+        height: h,
+        width: w,
+        child: MaterialButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) =>
+                        Ticket(
+                         ticket :ticket,))));
+          },
+          child: TicketComponent(
               view: false,
-              price: list[index]['price'],
-              date: DateTime.parse(list[index]['date']),
-              from: list[index]['from'],
-              to: list[index]['to'],
-              duration: list[index]['dur'],
-              trin_number: 'm',
-              seat: '',
-            ),
+              ticket: ticket
           ),
-        );
-      },
-      itemCount: list.length,
-    );
+        ),
+      );
+    },
+    itemCount: db.length,
+  );
+}

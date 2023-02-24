@@ -1,5 +1,7 @@
 // import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/models/ticket.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
@@ -30,18 +32,21 @@ Future confirmSeats(BuildContext context) => showDialog(
                       gates.add('3B');
                     }
                   }
+                  TicketModel ticket=TicketModel(
+                      date: DateTime.parse(depart),
+                      from: from,
+                      to: to,
+                      seats: selectedSeats.join(" ,"),
+                      train: gates.join(','),
+                      duration: "dur",
+                      price: amountToBePayed.toString());
+                  ///need uid here
+                  UserModel.addTicket(ticket: ticket, uId: "rH56bEn5CaTfTjLo3fOJ7emfyfw1");
                   gates = gates.toSet().toList();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Ticket(
-                            date: DateTime.parse(depart!),
-                            from: from!,
-                            to: to!,
-                            seat: selectedSeats.join(" ,"),
-                            trin_number: gates.join(','),
-                            duration: "dur",
-                            price: amountToBePayed.toString())),
+                        builder: (context) => Ticket(ticket: ticket)),
                   );
                 },
                 child: const Text(

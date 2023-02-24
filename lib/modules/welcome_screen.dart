@@ -11,7 +11,7 @@ class welcomeScreen extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height:MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/train.jpg'),
               fit: BoxFit.cover,
@@ -31,47 +31,47 @@ class welcomeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Find Your best',
+                        const Text('Find Your best',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 23,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 5,),
-                        Text('Timing and tickets',
+                        const SizedBox(height: 5,),
+                        const Text('Timing and tickets',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 23,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 15,),
-                        Text('Booking your tickets online with your',
+                        const SizedBox(height: 15,),
+                        const Text('Booking your tickets online with your',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 10,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 5,),
-                        Text('best searching preferences all over EGYPT',
+                        const SizedBox(height: 5,),
+                        const Text('best searching preferences all over EGYPT',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 10,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         iconTextButton(
                             background: Colors.blue.shade800,
                             iconp: Icons.facebook,
                             text: "Continue with Facebook",
                             function: (){}),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         iconTextButton(
                             background: Colors.red,
                             iconp: Icons.g_mobiledata,
                             text: "Contine with Google",
                             function: (){}),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         iconTextButton(
                           background: Colors.indigo.shade400,
                           iconp: Icons.email,
@@ -81,7 +81,7 @@ class welcomeScreen extends StatelessWidget {
                               context,
                               MaterialPageRoute(builder: (context) =>  loginSreen()),);
                           },),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         defultButton(
                             background: Colors.grey,
                             function: (){
@@ -90,26 +90,26 @@ class welcomeScreen extends StatelessWidget {
                               );
                             },
                             text: "Sign up with Email"),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Container(
                           width: double.infinity,
                           height: 1,
                           color: Colors.grey,
                         ),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(  'By continuing you agree to our'
+                            const Text(  'By continuing you agree to our'
                             ),
                             textButon(text: 'T&Cs', function: (){})
                           ],
                         ),
-                        Text('we use your data to offer you a personalized'),
+                        const Text('we use your data to offer you a personalized'),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('experience.'),
+                            const Text('experience.'),
                             textButon(text: 'Find out more', function: (){})
                           ],
                         ),

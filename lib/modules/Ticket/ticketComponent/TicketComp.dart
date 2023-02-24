@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeColum.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeText.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizedRow.dart';
@@ -11,24 +12,11 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class TicketComponent extends StatefulWidget {
-  final DateTime date;
-  final String from;
-  final String to;
-  final String seat;
-  final String trin_number;
-  final String duration;
-  final String price;
   final bool view;
-
+  final TicketModel ticket;
   const TicketComponent({
     Key? key,
-    required this.date,
-    required this.from,
-    required this.to,
-    required this.seat,
-    required this.trin_number,
-    required this.duration,
-    required this.price,
+    required this.ticket,
     required this.view,
   }) : super(key: key);
   @override
@@ -38,15 +26,14 @@ class TicketComponent extends StatefulWidget {
 class _TicketComponentState extends State<TicketComponent> {
   @override
   Widget build(BuildContext context) {
-    print (100.w);
     DateTime now = DateTime.now();
-    DateTime date = widget.date;
-    String from = widget.from;
-    String to = widget.to;
-    String seat = widget.seat;
-    String trin_number = widget.trin_number;
-    String duration = widget.duration;
-    String price = widget.price;
+    DateTime date = widget.ticket.date;
+    String from = widget.ticket.from;
+    String to = widget.ticket.to;
+    String seat = widget.ticket.seats;
+    String train = widget.ticket.train;
+    String duration = widget.ticket.duration;
+    String price = widget.ticket.price;
     bool late = date.year < now.year ||
         date.year == now.year && date.month < now.month ||
         date.year == now.year &&
@@ -61,8 +48,7 @@ class _TicketComponentState extends State<TicketComponent> {
             date.day == now.day &&
             date.hour == now.hour &&
             date.minute < now.minute;
-    return Sizer(
-      builder:  (context, orientation, deviceType) => Scaffold(
+    return Scaffold(
           body: Container(
           padding: EdgeInsetsDirectional.only(end: 2.w, top: 5.h),
           child: Container(
@@ -85,11 +71,10 @@ class _TicketComponentState extends State<TicketComponent> {
                 padding: EdgeInsetsDirectional.only( end: 10.w) ,
                 child: Container(
                   padding: EdgeInsetsDirectional.only(
-                      top: widget.view ? 5.h : 10.h,
-                      bottom: widget.view ? 5.h : 10.h
+                      top:  5.h,
+                      bottom: 5.h
                   ),
                   width: 25.w,
-                  height: 100.h,
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.only(
@@ -128,7 +113,6 @@ class _TicketComponentState extends State<TicketComponent> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             AutoSizedText(
-
                               w: 20.w,
                               text: date.day.toString(),
                               fontSize: 40.sp,
@@ -152,7 +136,7 @@ class _TicketComponentState extends State<TicketComponent> {
               ),
               Center(
                 child: Container(
-                  padding: widget.view?EdgeInsetsDirectional.only(start: 25.w,top: 10.h) :EdgeInsetsDirectional.only(start: 30.w),
+                  padding: widget.view?EdgeInsetsDirectional.only(start: 25.w,top: 1.h) :EdgeInsetsDirectional.only(start: 25.w),
                   child: AutoSizedColumn(
                     alignCenterMain: widget.view ?false:true,
                     h:0,
@@ -170,9 +154,9 @@ class _TicketComponentState extends State<TicketComponent> {
                               color: Colors.green,
                             ),
                           ),
-                          item2: Expanded(
+                          item2:Expanded(
                             child: Container(
-                              height: widget.view ?20.h:10.h,
+                              height: 10.h,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsetsDirectional.only(end:5.w ),
                               child: Text(
@@ -194,8 +178,8 @@ class _TicketComponentState extends State<TicketComponent> {
                             padding: EdgeInsetsDirectional.only(start: 1.2.w),
                             child: Dash(
                               direction: Axis.vertical,
-                              length:widget.view ? 6.h:30.h ,
-                              dashLength: 2.h,
+                              length:widget.view ? 6.h:6.h ,
+                              dashLength: 1.5.h,
                               dashColor: Colors.grey,
                               dashThickness: .5.w,
                             ),
@@ -208,7 +192,7 @@ class _TicketComponentState extends State<TicketComponent> {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Colors.grey,
-                                fontSize: widget.view ?12:18 ,
+                                fontSize: widget.view ?16:18 ,
                               ),
                             ),
                           ) ,
@@ -225,7 +209,7 @@ class _TicketComponentState extends State<TicketComponent> {
                           ),
                           item2:Expanded(
                             child: Container(
-                              height: widget.view ?20.h:10.h,
+                              height: 10.h,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsetsDirectional.only(end:5.w ),
                               child: Text(
@@ -238,7 +222,8 @@ class _TicketComponentState extends State<TicketComponent> {
                                 )),
                             ),
                           ),
-                        )),
+                        )
+                    ),
                     item2: (widget.view)
                         ? AutoSizedColumn(
                            hInti: 5.h,
@@ -302,7 +287,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                       fontSize:20 ,
                                     )),
                                 item2: Text(
-                                    trin_number,
+                                    train,
                                     maxLines: 1,
                                     style: const TextStyle(
                                       color: Colors.white,
@@ -344,7 +329,6 @@ class _TicketComponentState extends State<TicketComponent> {
               ),
 
             ]),
-          ))),
-    );
+          )));
   }
 }
