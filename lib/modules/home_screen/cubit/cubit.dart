@@ -19,8 +19,9 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   int toIndex = 0;
   bool frstStation = false;
   bool scndStation = false;
- Future <void> getTrainsAndSearch(String from, String to) async{
-
+  Future<void> getTrainsAndSearch(String from, String to) async {
+    trains = [];
+    searchedTrains = [];
     emit(GetTrainsLoadingState());
     FirebaseFirestore.instance
         .collection('trains')
@@ -37,9 +38,9 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         toIndex = 0;
         frstStation = false;
         scndStation = false;
-      //  print(train);
+        //  print(train);
         int length = train['stations'].length;
-       // print(length);
+        // print(length);
         for (int i = 0; i < length; i++) {
           if (frstStation == false) {
             if (train['stations'][i] == from) {
