@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/dropdownform.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/text_form.dart';
 import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
@@ -9,6 +12,8 @@ import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:intl/intl.dart';
+
+import '../../../models/train_model.dart';
 
 class SecondSection extends StatefulWidget {
   const SecondSection({super.key});
@@ -29,139 +34,156 @@ class _SecondSectionState extends State<SecondSection> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Positioned(
-        top: height * 0.22,
-        left: width * 0.05,
-        child: Container(
-            width: width * .9,
-            height: height * 0.65,
-            decoration: BoxDecoration(
-                color: colortheme.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(width * .05),
-                )),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Form(
-                  key: formkey,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        dropdownform(
-                            countries,
-                            "Enter your location, Please",
-                            const Text(
-                              'From where?',
-                              style: TextStyle(color: colortheme.lightPurple),
-                            )),
-                        dropdownform(
-                            countries,
-                            "Enter your destination, Please",
-                            const Text(
-                              'Where to?',
-                              style: TextStyle(color: colortheme.lightPurple),
-                            )),
-                        dropdownform(
-                            dates,
-                            "Enter the Date, Please",
-                            const Text(
-                              'Departure date',
-                              style: TextStyle(color: colortheme.lightPurple),
-                            )),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Travellers',
-                                style: TextStyle(
-                                  color: colortheme.lightPurple,
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
+    return BlocProvider(
+        create: (context) => HomeScreenCubit()..getdata(),
+        child: BlocConsumer<HomeScreenCubit, HomeScreenStates>(
+            listener: (context, HomeScreenStates) {},
+            builder: (context, HomeScreenStates) {
+              HomeScreenCubit cubit = HomeScreenCubit.get(context);
+              return Positioned(
+                  top: height * 0.22,
+                  left: width * 0.05,
+                  child: Container(
+                      width: width * .9,
+                      height: height * 0.65,
+                      decoration: BoxDecoration(
+                          color: colortheme.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(width * .05),
+                          )),
+                      child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Form(
+                            key: formkey,
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: const BoxDecoration(
-                                        color: colortheme.lightGray,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
-                                        )),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          if (globals.seats == 0) {
-                                            globals.seats = 0;
-                                          } else {
-                                            // travellers--;
-                                            globals.seats--;
-                                          }
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.remove,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.02,
-                                  ),
-                                  Text(
-                                    // '$travellers',
-                                    '${globals.seats}',
-                                    style: const TextStyle(
-                                      color: colortheme.black,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.02,
-                                  ),
-                                  Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: const BoxDecoration(
-                                        color: colortheme.lightGray,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20),
-                                        )),
-                                    child: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            // travellers++;
-                                            globals.seats++;
-                                          });
-                                        },
-                                        icon: const Icon(
-                                          Icons.add,
-                                          size: 20,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ]),
-                        button(
-                            text: 'Search Trains',
-                            width: width * 0.5,
-                            height: 60,
-                            onpress: () {
-                              if (formkey.currentState!.validate()) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: ((context) => TrainsScreen(
-                                          from: from!, to: to!, date: depart!)),
-                                    ));
-                              }
-                              // addtrains(train);
-                              // addseats(seats);
-                            }),
-                      ]),
-                ))));
+                                  dropdownform(
+                                      countries,
+                                      "Enter your location, Please",
+                                      const Text(
+                                        'From where?',
+                                        style: TextStyle(
+                                            color: colortheme.lightPurple),
+                                      )),
+                                  dropdownform(
+                                      countries,
+                                      "Enter your destination, Please",
+                                      const Text(
+                                        'Where to?',
+                                        style: TextStyle(
+                                            color: colortheme.lightPurple),
+                                      )),
+                                  dropdownform(
+                                      dates,
+                                      "Enter the Date, Please",
+                                      const Text(
+                                        'Departure date',
+                                        style: TextStyle(
+                                            color: colortheme.lightPurple),
+                                      )),
+                                  Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Travellers',
+                                          style: TextStyle(
+                                            color: colortheme.lightPurple,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.01,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: const BoxDecoration(
+                                                  color: colortheme.lightGray,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(20),
+                                                  )),
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    if (globals.seats == 0) {
+                                                      globals.seats = 0;
+                                                    } else {
+                                                      // travellers--;
+                                                      globals.seats--;
+                                                    }
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.remove,
+                                                  size: 20,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: width * 0.02,
+                                            ),
+                                            Text(
+                                              // '$travellers',
+                                              '${globals.seats}',
+                                              style: const TextStyle(
+                                                color: colortheme.black,
+                                                fontSize: 25,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: width * 0.02,
+                                            ),
+                                            Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: const BoxDecoration(
+                                                  color: colortheme.lightGray,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(20),
+                                                  )),
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      // travellers++;
+                                                      globals.seats++;
+                                                    });
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.add,
+                                                    size: 20,
+                                                  )),
+                                            ),
+                                          ],
+                                        ),
+                                      ]),
+                                  button(
+                                      text: 'Search Trains',
+                                      width: width * 0.5,
+                                      height: 60,
+                                      onpress: () {
+                                        // if (formkey.currentState!.validate()) {
+                                        //   Navigator.push(
+                                        //       context,
+                                        //       MaterialPageRoute(
+                                        //         builder: ((context) => TrainsScreen(
+                                        //             from: from!, to: to!, date: depart!)),
+                                        //       ));
+                                        // }
+                                        // addtrains(train);
+                                        // addseats(seats);
+                                        print(
+                                            "..................................");
+                                        print(trains);
+                                      }),
+                                ]),
+                          ))));
+            }));
   }
 }
 
@@ -218,17 +240,7 @@ List<DropdownMenuItem<String>> dates = [
           .toString())),
 ];
 
-// void getdata() {
-//   FirebaseFirestore.instance
-//       .collection('trains')
-//       .doc('ken3udItCx3vyVid8jim')
-//       .get()
-//       .then((value) {
-//     print(value.data());
-//   }).catchError((error) {
-//     print(error.toString());
-//   });
-// }
+
 
 // Map<String, dynamic> train = {
 //   'stations': ['Cairo', 'Giza', 'Asyut', 'Al Balyana', 'Qena', 'Luxor'],
