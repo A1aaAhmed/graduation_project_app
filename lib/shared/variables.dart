@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 var from;
 var to;
 var depart;
+List<Map<String, dynamic>> trains = [];
 
 int travellers = 1;
 List<Map> db = [
