@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
+import 'package:graduation_project_app/shared/components/toast.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -49,11 +50,6 @@ class _MyWidgetState extends State<MyWidget> {
     false,
     false
   ];
-  // @override
-  // void initState() {
-  //   globals.selectedSeats = [];
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,13 +113,11 @@ class _MyWidgetState extends State<MyWidget> {
                 onTap: () async {
                   int seatNumber = 2 * index + start;
                   if (bookedSeats[index]) {
-                    await Fluttertoast.showToast(
-                        msg: "This Seat is already booked!",
-                        toastLength: Toast.LENGTH_LONG,
-                        backgroundColor: Colors.red[900],
-                        textColor: Colors.white,
-                        fontSize: 20,
-                        gravity: ToastGravity.BOTTOM);
+                    showToast(
+                      state: ToastStates.error,
+                      text: 'This Seat is already booked!',
+                    );
+                    
                   } else if (oddBoxes[index] && isOdd) {
                     SeatsScreenCubit.get(context).removeOddSeatFunction(
                         seatNumber,
@@ -132,12 +126,6 @@ class _MyWidgetState extends State<MyWidget> {
                         oddBoxes,
                         index,
                         bookedSeats);
-                    // oddBoxes[index] = false;
-                    // globals.numberOfSeats.value--;
-                    // globals.amountToBePayed.value -= 50;
-                    // globals.selectedSeats.remove(
-                    //     seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                    // //print(globals.selectedSeats);
                   } else if (evenBoxes[index] && !isOdd) {
                     SeatsScreenCubit.get(context).removeEvenSeatFunction(
                         seatNumber,
@@ -146,23 +134,13 @@ class _MyWidgetState extends State<MyWidget> {
                         oddBoxes,
                         index,
                         bookedSeats);
-                    // setState(() {
-                    //   evenBoxes[index] = false;
-                    //   globals.numberOfSeats.value--;
-                    //   globals.amountToBePayed.value -= 50;
-                    //   globals.selectedSeats.remove(
-                    //       seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                    //   //print(globals.selectedSeats);
-                    // });
                   } else {
                     if (numberOfSeats == seats) {
-                      await Fluttertoast.showToast(
-                          msg: "You Reach The Limit!",
-                          toastLength: Toast.LENGTH_LONG,
-                          backgroundColor: Colors.red[900],
-                          textColor: Colors.white,
-                          fontSize: 20,
-                          gravity: ToastGravity.BOTTOM);
+                      showToast(
+                      state: ToastStates.error,
+                      text: 'You Reach The Limit!',
+                    );
+                      
                     } else {
                       SeatsScreenCubit.get(context).changeSeatsFunction(
                           seatNumber,
@@ -171,19 +149,6 @@ class _MyWidgetState extends State<MyWidget> {
                           oddBoxes,
                           index,
                           bookedSeats);
-
-                      // setState(() {
-                      //   globals.numberOfSeats++;
-                      //   globals.amountToBePayed += 50;
-                      //   globals.selectedSeats.add(
-                      //       seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
-                      //   //print(globals.selectedSeats);
-                      //   if (isOdd) {
-                      //     oddBoxes[index] = true;
-                      //   } else {
-                      //     evenBoxes[index] = true;
-                      //   }
-                      // });
                     }
                   }
                 },
