@@ -10,6 +10,7 @@ import 'package:graduation_project_app/modules/seats_screen/widgets/smalltrain.d
 import 'package:graduation_project_app/modules/seats_screen/widgets/trainpart.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
+import 'package:graduation_project_app/shared/components/toast.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 
@@ -282,19 +283,13 @@ class _SeatsState extends State<Seats> {
                     height: 50,
                     onpress: () async {
                       if (selectedSeats.length == seats) {
-                        print(gateType);
-                        print(selectedSeats);
-                        print(gates);
-
+                        
                         confirmSeats(context);
                       } else {
-                        await Fluttertoast.showToast(
-                            msg: "Select all seats!",
-                            toastLength: Toast.LENGTH_LONG,
-                            backgroundColor: Colors.red[900],
-                            textColor: Colors.white,
-                            fontSize: 20,
-                            gravity: ToastGravity.BOTTOM);
+                        showToast(
+                      state: ToastStates.error,
+                      text: 'Select all seats!',
+                    );
                       }
                     },
                     text: 'Confirm Seats',
