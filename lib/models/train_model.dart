@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TrainModel {
-  late List stations;
-  late List Timetable;
-  late String trainNum;
-  late String trainID;
+   List stations=[];
+   List Timetable=[];
+   String trainNum='';
+   String trainID='';
 
   TrainModel(
     this.stations,
@@ -12,7 +12,7 @@ class TrainModel {
     this.trainNum,
     this.trainID,
   );
-  
+
   TrainModel.fromjson(Map<String, dynamic> json) {
     stations = json['stations'];
     Timetable = json['Timetable'];

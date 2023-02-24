@@ -14,11 +14,11 @@ Widget dropdownform(countries, String msg, Text label) {
         onChanged: (value) {
           selectedvalue = value;
           if (msg == "Enter your location, Please") {
-            from = value;
+            from = value.toString();
           } else if (msg == "Enter your destination, Please") {
-            to = value;
+            to = value.toString();
           } else {
-            depart = value;
+            depart = value.toString();
           }
         },
         focusColor: colortheme.lightPurple,
