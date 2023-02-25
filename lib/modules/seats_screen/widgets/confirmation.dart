@@ -35,6 +35,7 @@ Future confirmSeats(BuildContext context,String time,String trainNUM) => showDia
                     context,
                     MaterialPageRoute(
                         builder: (context) => Ticket(
+                          
                             date: DateTime.parse(depart!),
                             from: from!,
                             to: to!,
@@ -42,7 +43,7 @@ Future confirmSeats(BuildContext context,String time,String trainNUM) => showDia
                             trin_number: gates.join(','),
                             trainNUM: trainNUM,
                             startTime: time,
-                            price: amountToBePayed.toString())),
+                            price: amountToBePayed.toString(), ticket: ,)),
                   );
                 },
                 child: const Text(

@@ -2,7 +2,6 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/transition.dart';
-import 'package:graduation_project_app/modules/login_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
@@ -15,7 +14,6 @@ class registerScreen extends StatelessWidget {
   var passSignUp = TextEditingController();
   var confirmPass = TextEditingController();
   late var formKey=GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -46,17 +44,17 @@ class registerScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                        Text('Register',
+                        const Text('Register',
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
                             )
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defualtForm(
@@ -65,7 +63,7 @@ class registerScreen extends StatelessWidget {
                           validator: 'required',
                           lable: 'First Name',
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defualtForm(
@@ -73,7 +71,7 @@ class registerScreen extends StatelessWidget {
                             inputType: TextInputType.text,
                             validator: 'required',
                             lable: 'Last Name'),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defualtForm(
@@ -82,7 +80,7 @@ class registerScreen extends StatelessWidget {
                             validator: 'required',
                             lable: 'Email Address',
                             prefix: Icons.email),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defualtForm(
@@ -97,7 +95,7 @@ class registerScreen extends StatelessWidget {
                             registerCubit.get(context).passtrue();
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
@@ -116,7 +114,7 @@ class registerScreen extends StatelessWidget {
                           decoration: InputDecoration(
                             labelText: 'Confirm Password',
                             border: const OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.lock),
+                            prefixIcon: const Icon(Icons.lock),
                             suffixIcon: IconButton(
                               onPressed: (){
                                 registerCubit.get(context).passContrue();
@@ -125,10 +123,10 @@ class registerScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         ConditionalBuilder(condition: state is! registerLoadinglState,
@@ -144,8 +142,8 @@ class registerScreen extends StatelessWidget {
                                   }
                                 },
                                 text: "SUMBIT"),
-                            fallback: (context)=>CircularProgressIndicator()),
-                        SizedBox(
+                            fallback: (context)=>const CircularProgressIndicator()),
+                        const SizedBox(
                           height: 15,
                         ),
                         Row(

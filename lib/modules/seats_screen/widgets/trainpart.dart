@@ -20,16 +20,6 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
-  List<bool> bookedSeats = [
-    true,
-    false,
-    false,
-    true,
-    false,
-    false,
-    true,
-    false,
-  ];
   List<bool> oddBoxes = [
     false,
     false,
@@ -112,12 +102,11 @@ class _MyWidgetState extends State<MyWidget> {
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () async {
                   int seatNumber = 2 * index + start;
-                  if (bookedSeats[index]) {
+                  if (allSeats[2 * index + start - 1]) {
                     showToast(
                       state: ToastStates.error,
                       text: 'This Seat is already booked!',
                     );
-                    
                   } else if (oddBoxes[index] && isOdd) {
                     SeatsScreenCubit.get(context).removeOddSeatFunction(
                         seatNumber,
@@ -125,7 +114,7 @@ class _MyWidgetState extends State<MyWidget> {
                         evenBoxes,
                         oddBoxes,
                         index,
-                        bookedSeats);
+                        allSeats);
                   } else if (evenBoxes[index] && !isOdd) {
                     SeatsScreenCubit.get(context).removeEvenSeatFunction(
                         seatNumber,
@@ -133,14 +122,13 @@ class _MyWidgetState extends State<MyWidget> {
                         evenBoxes,
                         oddBoxes,
                         index,
-                        bookedSeats);
+                        allSeats);
                   } else {
                     if (numberOfSeats == seats) {
                       showToast(
-                      state: ToastStates.error,
-                      text: 'You Reach The Limit!',
-                    );
-                      
+                        state: ToastStates.error,
+                        text: 'You Reach The Limit!',
+                      );
                     } else {
                       SeatsScreenCubit.get(context).changeSeatsFunction(
                           seatNumber,
@@ -148,13 +136,13 @@ class _MyWidgetState extends State<MyWidget> {
                           evenBoxes,
                           oddBoxes,
                           index,
-                          bookedSeats);
+                          allSeats);
                     }
                   }
                 },
                 child: seatComponent(
                     2 * index + start,
-                    bookedSeats[index]
+                    allSeats[2 * index + start - 1]
                         ? colortheme.saimon
                         : oddBoxes[index] && isOdd
                             ? colortheme.lightPurple
