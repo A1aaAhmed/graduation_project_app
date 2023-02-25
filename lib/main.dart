@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/transition.dart';
+import 'package:graduation_project_app/modules/Profile/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
+import 'package:graduation_project_app/modules/login_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
@@ -42,6 +44,15 @@ class _MyAppState extends State<MyApp> {
       return MultiBlocProvider(
           providers: [
             BlocProvider(
+              create: (context) => loginCubit(),
+            ),
+            BlocProvider(
+              create: (context) => registerCubit(),
+            ),
+            BlocProvider(
+              create: (context) => profileCubit(),
+            ),
+            BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
             
@@ -49,6 +60,10 @@ class _MyAppState extends State<MyApp> {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              iconTheme: const IconThemeData(
+                color: colortheme.lightPurple,
+                size: 30
+              ),
               appBarTheme: const AppBarTheme(
                 color: colortheme.lightPurple,
                 elevation: 0,
@@ -73,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                 selectedItemColor: colortheme.lightPurple,
                 unselectedItemColor: colortheme.lightPurple.withOpacity(0.35),
                 unselectedLabelStyle:
-                    const TextStyle(overflow: TextOverflow.ellipsis),
+                const TextStyle(overflow: TextOverflow.ellipsis),
               ),
               scaffoldBackgroundColor: colortheme.lightGray,
               fontFamily: 'kalam',

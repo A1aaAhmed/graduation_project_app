@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
 
 Widget iconTextButton(
     {required Color background,
@@ -76,9 +77,11 @@ Widget defualtForm({
       validator: (String? value) {
         if (value == null || value.trim().isEmpty) {
           return validator;
-        }
 
-        return null;
+        }
+        else {
+          return null;
+        }
       },
       controller: controller,
       keyboardType: inputType,
@@ -95,6 +98,7 @@ Widget defualtForm({
         border: const OutlineInputBorder(),
         prefixIcon: Icon(
           prefix,
+          color: colortheme.lightPurple,
         ),
         suffixIcon: IconButton(
           onPressed: () {
@@ -103,6 +107,7 @@ Widget defualtForm({
           },
           icon: Icon(
             postfix,
+            color: colortheme.lightPurple,
           ),
         ),
       ),
@@ -135,3 +140,4 @@ Color choseToastColor(toastStates? state){
   }
   return  color;
 }
+

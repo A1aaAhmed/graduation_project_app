@@ -36,24 +36,7 @@ return
   "email":email,
   };
 }
-  static void createUser({
-    required String name,
-    required String email,
-    required String phone,
-    required String image,
-    required String uId,
-  })
-  {
-    UserModel user =UserModel(
-      email: email,
-      id: uId,
-      image: image,
-      name: name,
-      phone: phone,
-    );
-    CollectionReference usersCollection = FirebaseFirestore.instance.collection("users");
-    usersCollection.doc(uId).set(user.toMap());
-  }
+
   static void addTicket({
     required TicketModel ticket,
     required String uId,
