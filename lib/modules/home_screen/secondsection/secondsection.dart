@@ -28,7 +28,7 @@ class _SecondSectionState extends State<SecondSection> {
   //TextEditingController to = TextEditingController();
   // TextEditingController depart = TextEditingController();
   var formkey = GlobalKey<FormState>();
-  // int travellers = 1;
+  int travellers = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +99,10 @@ class _SecondSectionState extends State<SecondSection> {
                                           child: IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                if (globals.seats == 0) {
-                                                  globals.seats = 0;
+                                                if (travellers == 1) {
+                                                  travellers = 1;
                                                 } else {
-                                                  // travellers--;
-                                                  globals.seats--;
+                                                  travellers--;
                                                 }
                                               });
                                             },
@@ -118,7 +117,7 @@ class _SecondSectionState extends State<SecondSection> {
                                         ),
                                         Text(
                                             // '$travellers',
-                                            '${globals.seats}',
+                                            '${travellers}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium),
@@ -136,8 +135,7 @@ class _SecondSectionState extends State<SecondSection> {
                                           child: IconButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  // travellers++;
-                                                  globals.seats++;
+                                                  travellers++;
                                                 });
                                               },
                                               icon: const Icon(
@@ -155,6 +153,7 @@ class _SecondSectionState extends State<SecondSection> {
                                   context: context,
                                   onpress: () {
                                     if (formkey.currentState!.validate()) {
+                                      globals.seats = travellers;
                                       cubit
                                           .getTrainsAndSearch(from, to)
                                           .then((value) {
