@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
             BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
+            
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -97,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: const Trans(),
+            home:  Trans(),
           ));
     });
   }
