@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
             BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
+            
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -81,7 +83,7 @@ class _MyAppState extends State<MyApp> {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: const Trans(),
+            home:  Trans(),
           ));
     });
   }

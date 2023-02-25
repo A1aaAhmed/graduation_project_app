@@ -18,12 +18,14 @@ import 'package:graduation_project_app/widgets/global.dart';
 //colortheme
 
 class Seats extends StatefulWidget {
- final Map<String, dynamic> train;
+  final Map<String, dynamic> train;
   final String time;
   final String trainNUM;
-  const  Seats({
+  const Seats({
     super.key,
- required this.train, required this.time, required this.trainNUM,
+    required this.train,
+    required this.time,
+    required this.trainNUM,
   });
 
   @override
@@ -51,7 +53,7 @@ class _SeatsState extends State<Seats> {
     return BlocProvider(
       create: (context) => SeatsScreenCubit()
         ..initialFunction()
-        ..getSeats(),
+        ..getSeats(widget.train['trainID']),
       // ..getSeats(),
       child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
         listener: (context, state) {},
@@ -293,31 +295,33 @@ class _SeatsState extends State<Seats> {
                       ],
                     ),
                   ),
-                
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: button(
-                    height: 50,
-                    onpress: () async {
-                      if (selectedSeats.length == seats) {
-                        confirmSeats(
-                          context,
-                          widget.time,
-                          widget.trainNUM,
-                        );
-                      } else {
-                        showToast(
-                          state: ToastStates.error,
-                          text: 'Select all seats!',
-                        );
-                      }
-                    },
-                    text: 'Confirm Seats',
-                    width: 200,
-                    context: context,
-                  ),
-                )
-              ],),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: button(
+                      height: 50,
+                      onpress: () async {
+                        if (selectedSeats.length == seats) {
+                          print(widget.train['trainID']);
+                          confirmSeats(
+                            context,
+                            widget.time,
+                            widget.trainNUM,
+                            widget.train,
+                          );
+                        } else {
+                          showToast(
+                            state: ToastStates.error,
+                            text: 'Select all seats!',
+                          );
+                        }
+                      },
+                      text: 'Confirm Seats',
+                      width: 200,
+                      context: context,
+                    ),
+                  )
+                ],
+              ),
             ),
             fallback: (context) => Center(child: CircularProgressIndicator()),
           );

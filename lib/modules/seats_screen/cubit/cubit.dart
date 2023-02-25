@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   SeatsScreenCubit() : super(SeatsScreenInitialState());
@@ -48,33 +50,42 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   //2dRl1WJljsXJpNrn9KYB
-  void getSeats() {
+  void getSeats(String trainId) {
+    print(DateFormat('EEEE').format(DateTime.parse(depart)));
+    print(trainId);
     print(allSeats);
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
-        .doc(seatsId)
         .get()
         .then((value) {
-      print(value['Friday']);
-      print(value['Friday'].runtimeType);
-      allSeats = value['Friday'];
+      // print(value['Friday']);
+      // print(value['Friday'].runtimeType);
+      value.docs.forEach((element) {
+        allSeats = element[DateFormat('EEEE').format(DateTime.parse(depart))];
+        seatsId = element.reference.id;
+        print(element.reference.id);
+      });
       print(allSeats);
+
       emit(GetSeatsSuccessState());
     }).catchError((error) {
       emit(GetSeatsErrorState(error.toString()));
     });
   }
 
-  void updateSeats() {
+  void updateSeats(String trainId) {
+    print(DateTime.parse(depart).day);
+
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
         .doc(seatsId)
         .update({
-      'Friday': allSeats,
+      //DateFormat('EEEE').format(DateTime.parse(depart))
+      DateFormat('EEEE').format(DateTime.parse(depart)): allSeats,
     }).then((value) {
       emit(UpdateSeatsSuccessState());
     }).catchError((error) {
