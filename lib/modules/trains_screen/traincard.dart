@@ -2,21 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
-Widget TrainCard({
-  required context,
-  required data,
-  required from,
-  required to,
-}) =>
+import '../../shared/variables.dart';
+
+Widget TrainCard(
+        {required context,
+        required time,
+        required Map<String, dynamic> train,
+        required trainNUM}) =>
     Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipPath(
         clipper: CardClipper(),
         child: GestureDetector(
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: ((context) => const Seats()))),
+          onTap: () {
+            //print(train);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => Seats(
+                          train: train,
+                        ))));
+          },
           child: Container(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.25,
               color: Colors.white70,
               child: Row(children: [
                 Expanded(
@@ -40,7 +48,7 @@ Widget TrainCard({
                           ),
                         ]),
                         const Text(
-                          '  |\n  |\n  |',
+                          '  |\n  |',
                           style: TextStyle(
                               color: colortheme.saimon,
                               fontSize: 10,
@@ -59,6 +67,16 @@ Widget TrainCard({
                             ),
                           ),
                         ]),
+                       const SizedBox(
+                          height: 25,
+                        ),
+                        Text(
+                          ' Train Number : $trainNUM',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
                       ]),
                 )),
                 Container(
@@ -73,7 +91,7 @@ Widget TrainCard({
                     padding: const EdgeInsets.all(12),
                     alignment: Alignment.center,
                     child: Text(
-                      '$data',
+                      '$time',
                       style: const TextStyle(fontSize: 15),
                     ))
               ])),

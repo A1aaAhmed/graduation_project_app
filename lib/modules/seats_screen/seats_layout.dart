@@ -20,6 +20,7 @@ import 'package:graduation_project_app/widgets/global.dart';
 class Seats extends StatefulWidget {
   const Seats({
     super.key,
+     required Map<String,dynamic> train,
   });
 
   @override
