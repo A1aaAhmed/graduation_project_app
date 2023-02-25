@@ -38,7 +38,6 @@ Future confirmSeats(BuildContext context) => showDialog(
                       to: to,
                       seats: selectedSeats.join(" ,"),
                       train: gates.join(','),
-                      duration: "dur",
                       price: amountToBePayed.toString());
                   ///need uid here
                   UserModel.addTicket(ticket: ticket, uId: "rH56bEn5CaTfTjLo3fOJ7emfyfw1");

@@ -21,10 +21,12 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State<Ticket> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+      Scaffold(
       body: Sizer(
         builder: (context, orientation, deviceType)
     {
+
       return Scaffold(
           appBar: bar(
             context: context,

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:graduation_project_app/models/ticket.dart';
+import 'package:graduation_project_app/modules/Ticket/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeColum.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeText.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizedRow.dart';
@@ -32,22 +33,8 @@ class _TicketComponentState extends State<TicketComponent> {
     String to = widget.ticket.to;
     String seat = widget.ticket.seats;
     String train = widget.ticket.train;
-    String duration = widget.ticket.duration;
     String price = widget.ticket.price;
-    bool late = date.year < now.year ||
-        date.year == now.year && date.month < now.month ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day < now.day ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day == now.day &&
-            date.hour < now.hour ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day == now.day &&
-            date.hour == now.hour &&
-            date.minute < now.minute;
+    bool late = TicketCubit.expired(date);
     return Scaffold(
           body: Container(
           padding: EdgeInsetsDirectional.only(end: 2.w, top: 5.h),
@@ -187,7 +174,7 @@ class _TicketComponentState extends State<TicketComponent> {
                           item2: Padding(
                             padding: EdgeInsetsDirectional.only(start: 2.w),
                             child: Text(
-                              duration,
+                              DateFormat.jm().format(date),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -230,7 +217,7 @@ class _TicketComponentState extends State<TicketComponent> {
                             h: 5.h,
                             item1: AutoSizedRow(
                               centerAlign: true,
-                              h:3.w,h2:3.w ,
+                              h:3.w,
                               item1: AutoSizedColumn(
                                 alignCenterMain: true,
                                 h: 2.h,
@@ -251,30 +238,8 @@ class _TicketComponentState extends State<TicketComponent> {
                                       fontSize:18 ,
                                     )),
                               ),
-                              item2: AutoSizedColumn(
-                                  alignCenterMain: true,
-                                  h: 2.h,
-                                  item1: const Text(
-                                      "Boarding",
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        color: Colors.grey,
-                                        fontSize:20 ,
 
-                                      )),
-                                  item2: Text(
-                                      DateFormat.jm().format(date),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        color: Colors.white,
-                                        fontSize:18,
-                                      )),
-                                ),
-                              item3: AutoSizedColumn(
+                              item2: AutoSizedColumn(
                                 alignCenter: true,
                                 alignCenterMain: true,
                                 h: 2.h,

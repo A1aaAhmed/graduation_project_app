@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/TicketComp.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
-import 'package:graduation_project_app/shared/variables.dart';
 
 Widget ListTable({
   required double h,
   required double w,
+  required List db,
 }) {
 
   return ListView.builder(
@@ -17,13 +17,12 @@ Widget ListTable({
     scrollDirection: Axis.vertical,
     itemBuilder: (context, index) {
       TicketModel ticket = TicketModel(
-          date: DateTime.parse(db[index]['date']),
-          from: db[index]['from'],
-          to: db[index]['to'],
-          seats: db[index]['seat'],
-          train: db[index]['trin_number'],
-          duration: db[index]['dur'],
-          price: db[index]['price']
+          date: db[index].date,
+          from: db[index].from,
+          to: db[index].to,
+          seats: db[index].seats,
+          train: db[index].train,
+          price: db[index].price,
       );
       return SizedBox(
         height: h,
