@@ -20,11 +20,6 @@ class Trans extends StatelessWidget {
               onTap: (index) {
                 cubit.changeNavbarIndex(index);
               },
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: colortheme.lightPurple,
-              unselectedItemColor: colortheme.lightPurple.withOpacity(0.3),
-              unselectedLabelStyle:
-                  const TextStyle(overflow: TextOverflow.ellipsis),
               items: const [
                 BottomNavigationBarItem(
                   label: 'Home',

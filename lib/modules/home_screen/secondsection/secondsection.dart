@@ -58,37 +58,30 @@ class _SecondSectionState extends State<SecondSection> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               dropdownform(
-                                  countries,
-                                  "Enter your location, Please",
-                                  const Text(
-                                    'From where?',
-                                    style: TextStyle(
-                                        color: colortheme.lightPurple),
-                                  )),
+                                countries,
+                                "Enter your location, Please",
+                                'From where?',
+                                context,
+                              ),
                               dropdownform(
-                                  countries,
-                                  "Enter your destination, Please",
-                                  const Text(
-                                    'Where to?',
-                                    style: TextStyle(
-                                        color: colortheme.lightPurple),
-                                  )),
-                              dropdownform(
-                                  dates,
-                                  "Enter the Date, Please",
-                                  const Text(
-                                    'Departure date',
-                                    style: TextStyle(
-                                        color: colortheme.lightPurple),
-                                  )),
+                                countries,
+                                "Enter your destination, Please",
+                                'Where to?',
+                                context,
+                              ),
+                              dropdownform(dates, "Enter the Date, Please",
+                                  'Departure date', context),
                               Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
+                                    Text(
                                       'Travellers',
-                                      style: TextStyle(
-                                        color: colortheme.lightPurple,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: colortheme.lightPurple,
+                                          ),
                                     ),
                                     SizedBox(
                                       height: height * 0.01,
@@ -124,13 +117,11 @@ class _SecondSectionState extends State<SecondSection> {
                                           width: width * 0.02,
                                         ),
                                         Text(
-                                          // '$travellers',
-                                          '${globals.seats}',
-                                          style: const TextStyle(
-                                            color: colortheme.black,
-                                            fontSize: 25,
-                                          ),
-                                        ),
+                                            // '$travellers',
+                                            '${globals.seats}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium),
                                         SizedBox(
                                           width: width * 0.02,
                                         ),
@@ -161,6 +152,7 @@ class _SecondSectionState extends State<SecondSection> {
                                   text: 'Search Trains',
                                   width: width * 0.5,
                                   height: 60,
+                                  context: context,
                                   onpress: () {
                                     if (formkey.currentState!.validate()) {
                                       cubit

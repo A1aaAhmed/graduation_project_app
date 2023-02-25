@@ -6,12 +6,28 @@ import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:sizer/sizer.dart';
 
 class Ticket extends StatefulWidget {
+  final DateTime date;
+  final String from;
+  final String to;
+  final String seat;
+  final String trin_number;
+  final String trainNUM;
+  final String startTime;
+  final String price;
+
 
   final TicketModel ticket;
 
   const Ticket({
     Key? key,
-    required this.ticket,
+    required this.date,
+    required this.from,
+    required this.to,
+    required this.seat,
+    required this.trin_number,
+
+    required this.startTime,
+    required this.price, required this.trainNUM, required this.ticket,
 
   }) : super(key: key);
 
@@ -51,7 +67,7 @@ class _TicketState extends State<Ticket> {
                       text: "Navigate Route",
                       onpress: () {},
                       width: 60.w,
-                      height: 10.h)
+                      height: 10.h,context: context)
                 ],
               )));
     })

@@ -18,9 +18,12 @@ import 'package:graduation_project_app/widgets/global.dart';
 //colortheme
 
 class Seats extends StatefulWidget {
-  const Seats({
+ final Map<String, dynamic> train;
+  final String time;
+  final String trainNUM;
+  const  Seats({
     super.key,
-     required Map<String,dynamic> train,
+ required this.train, required this.time, required this.trainNUM,
   });
 
   @override
@@ -290,27 +293,31 @@ class _SeatsState extends State<Seats> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: button(
-                      height: 50,
-                      onpress: () async {
-                        if (selectedSeats.length == seats) {
-                          // SeatsScreenCubit.get(context).updateSeats();
-                          confirmSeats(context);
-                        } else {
-                          showToast(
-                            state: ToastStates.error,
-                            text: 'Select all seats!',
-                          );
-                        }
-                      },
-                      text: 'Confirm Seats',
-                      width: 200,
-                    ),
-                  )
-                ],
-              ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: button(
+                    height: 50,
+                    onpress: () async {
+                      if (selectedSeats.length == seats) {
+                        confirmSeats(
+                          context,
+                          widget.time,
+                          widget.trainNUM,
+                        );
+                      } else {
+                        showToast(
+                          state: ToastStates.error,
+                          text: 'Select all seats!',
+                        );
+                      }
+                    },
+                    text: 'Confirm Seats',
+                    width: 200,
+                    context: context,
+                  ),
+                )
+              ],),
             ),
             fallback: (context) => Center(child: CircularProgressIndicator()),
           );

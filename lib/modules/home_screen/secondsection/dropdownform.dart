@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 
-Widget dropdownform(countries, String msg, Text label) {
+Widget dropdownform(countries, String msg, String label, context) {
   var selectedvalue;
   return SingleChildScrollView(
     scrollDirection: Axis.vertical,
     child: DropdownButtonFormField(
         items: countries,
-        hint: label,
         value: selectedvalue,
         validator: (value) => value == null ? msg : null,
         onChanged: (value) {
@@ -22,12 +21,18 @@ Widget dropdownform(countries, String msg, Text label) {
           }
         },
         focusColor: colortheme.lightPurple,
-        style: const TextStyle(color: colortheme.lightPurple),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: colortheme.lightPurple,
+            ),
         isDense: false,
-        decoration: const InputDecoration(
-            focusedBorder: UnderlineInputBorder(
+        decoration: InputDecoration(
+          hintText: label,
+            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: colortheme.lightPurple,
+                ),
+            focusedBorder:const UnderlineInputBorder(
                 borderSide: BorderSide(
-          color: colortheme.lightPurple,
-        )))),
+              color: colortheme.lightPurple,
+            )))),
   );
 }

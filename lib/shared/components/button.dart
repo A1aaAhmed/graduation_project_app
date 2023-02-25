@@ -7,6 +7,7 @@ Widget button({
   required VoidCallback onpress,
   required double width,
   required double height,
+  required BuildContext context,
 }) =>
     Container(
       width: width,
@@ -35,9 +36,9 @@ Widget button({
         onPressed: onpress,
         // ignore: curly_braces_in_flow_control_structures
         child: Text(text,
-            style: const TextStyle(
-              fontSize: 20,
-              color: colortheme.white,
-            )),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: colortheme.white,
+                  fontWeight: FontWeight.bold,
+                )),
       ),
     );
