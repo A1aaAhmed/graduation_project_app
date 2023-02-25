@@ -110,7 +110,7 @@ class _TicketComponentState extends State<TicketComponent> {
                             AutoSizedText(
                                 w: 29.w,
                                 align: TextAlign.center,
-                                text: DateFormat('EEEE').format(date),
+                                text: late?DateFormat.MMMM().format(date):DateFormat('EEEE').format(date),
                                 fontSize: 15.sp,
                                 maxLines: 1,
                                 textColor: Colors.white),

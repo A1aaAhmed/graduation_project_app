@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
-
+import 'package:intl/intl.dart';
 class TicketCubit extends Cubit<TicketsStates>{
   TicketCubit():super (TicketsInitialState());
   static TicketCubit get(context)=>BlocProvider.of(context);
@@ -48,6 +48,13 @@ class TicketCubit extends Cubit<TicketsStates>{
             date.day == now.day &&
             date.hour == now.hour &&
             date.minute < now.minute;
+  }
+  static DateTime TimeAndDate (String date ,String time){
+    DateFormat format = new DateFormat("EEE, dd MMM yyyy hh:mm a");
+    date = date.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM');
+    print(date);
+    print(format.parse(date));
+    return DateTime.now();
   }
 
 
