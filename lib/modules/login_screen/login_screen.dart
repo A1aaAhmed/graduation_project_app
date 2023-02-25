@@ -1,8 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_app/layout/home_screen/firstsection/firstsection.dart';
-import 'package:graduation_project_app/layout/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import '../../shared/components/components.dart';
 import 'cubit/cubit.dart';
@@ -45,17 +43,17 @@ class loginSreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
-                            Text('Welcome Back!',
+                            const Text('Welcome Back!',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 40,
                               ),),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             defualtForm(
@@ -64,7 +62,7 @@ class loginSreen extends StatelessWidget {
                                 validator: 'Email Address is requird',
                                 lable: 'Email Address',
                                 prefix: Icons.email),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             defualtForm(
@@ -84,7 +82,7 @@ class loginSreen extends StatelessWidget {
                                 loginCubit.get(context).passtrue();
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             ConditionalBuilder(
@@ -99,9 +97,9 @@ class loginSreen extends StatelessWidget {
                                         },
                                         text: "SIGNIN"),
                                 fallback: (context) =>
-                                    CircularProgressIndicator()),
+                                    const CircularProgressIndicator()),
 
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
@@ -110,7 +108,7 @@ class loginSreen extends StatelessWidget {
                                 Text('Don\'t have an account?', style: TextStyle(
                                   color: Colors.grey[800],
                                 ),),
-                                SizedBox(
+                                const SizedBox(
                                   width: 0,
                                 ),
                                 textButon(

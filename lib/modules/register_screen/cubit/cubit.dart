@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
+
 
 class registerCubit extends Cubit<registerStates> {
   registerCubit() : super(registerInitialState());
@@ -18,6 +20,8 @@ class registerCubit extends Cubit<registerStates> {
       ((value) {
         print(value.user?.email);
         print(value.user?.uid);
+        ///need data here uid ,phone,image
+        UserModel.createUser(name: '$firstName $secondName', email: email, phone: "sss", image: "llll", uId:value.user!.uid.toString());
         emit(registerSucessState());}).catchError(
             (error){
               print(error);

@@ -1,13 +1,60 @@
-library globals;
+import 'package:flutter/material.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
 
-import 'package:flutter/widgets.dart';
-import 'package:graduation_project_app/shared/variables.dart';
-
-var numberOfSeats = ValueNotifier<int>(0);
-
-var amountToBePayed = ValueNotifier<int>(0);
-
-int seats = 1;
+var numberOfSeats = 0;
+var amountToBePayed = 0;
+int seats = 3;
 List<String> selectedSeats = [];
 List<String> gates = [];
-
+List<dynamic> allSeats = [
+  // true,
+  // false,
+  // false,
+  // true,
+  // false,
+  // true,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // true,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // true,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // true,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // false,
+  // true,
+  // false
+];
+String trainId = '2dRl1WJljsXJpNrn9KYB';
+String seatsId = 'QtxzEqVZKobUjAB3Byce';
