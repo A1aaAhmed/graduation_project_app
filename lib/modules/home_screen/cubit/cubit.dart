@@ -26,6 +26,6 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         emit(GetTrainsErrorState(error.toString()));
       });
     }
-    ;
+    
   }
 }
