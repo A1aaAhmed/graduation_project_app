@@ -21,6 +21,8 @@ Widget TrainCard(
                 MaterialPageRoute(
                     builder: ((context) => Seats(
                           train: train,
+                          time: time,
+                          trainNUM: trainNUM,
                         ))));
           },
           child: Container(

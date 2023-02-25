@@ -81,7 +81,7 @@ class TrainsScreen extends StatelessWidget {
                           horizontal: width * 0.08,
                         ),
                         child: ConditionalBuilder(
-                          condition: cubit.searchedTrains.isNotEmpty,
+                          condition: cubit.searchedTrains.isNotEmpty && state is GetTrainsLoadingState,
                           builder: (context) => SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: Column(

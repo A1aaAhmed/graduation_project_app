@@ -5,7 +5,7 @@ import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
-Future confirmSeats(BuildContext context) => showDialog(
+Future confirmSeats(BuildContext context,String time,String trainNUM) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
           title: const Text(
@@ -40,7 +40,8 @@ Future confirmSeats(BuildContext context) => showDialog(
                             to: to!,
                             seat: selectedSeats.join(" ,"),
                             trin_number: gates.join(','),
-                            duration: "dur",
+                            trainNUM: trainNUM,
+                            startTime: time,
                             price: amountToBePayed.toString())),
                   );
                 },

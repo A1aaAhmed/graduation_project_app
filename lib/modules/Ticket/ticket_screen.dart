@@ -10,7 +10,8 @@ class Ticket extends StatefulWidget {
   final String to;
   final String seat;
   final String trin_number;
-  final String duration;
+  final String trainNUM;
+  final String startTime;
   final String price;
 
 
@@ -22,8 +23,9 @@ class Ticket extends StatefulWidget {
     required this.to,
     required this.seat,
     required this.trin_number,
-    required this.duration,
-    required this.price,
+
+    required this.startTime,
+    required this.price, required this.trainNUM,
 
   }) : super(key: key);
 
@@ -59,7 +61,7 @@ class _TicketState extends State<Ticket> {
                     date: widget.date,
                     from: widget.from,
                     to: widget.to,
-                    duration: widget.duration,
+                    duration: widget.startTime,
                     trin_number: widget.trin_number,
                     seat: widget.seat,
                   )),

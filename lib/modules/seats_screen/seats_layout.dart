@@ -17,9 +17,12 @@ import 'package:graduation_project_app/widgets/global.dart';
 //colortheme
 
 class Seats extends StatefulWidget {
-  const Seats({
+ final Map<String, dynamic> train;
+  final String time;
+  final String trainNUM;
+  const  Seats({
     super.key,
-     required Map<String,dynamic> train,
+ required this.train, required this.time, required this.trainNUM,
   });
 
   @override
@@ -284,13 +287,16 @@ class _SeatsState extends State<Seats> {
                     height: 50,
                     onpress: () async {
                       if (selectedSeats.length == seats) {
-                        
-                        confirmSeats(context);
+                        confirmSeats(
+                          context,
+                          widget.time,
+                          widget.trainNUM,
+                        );
                       } else {
                         showToast(
-                      state: ToastStates.error,
-                      text: 'Select all seats!',
-                    );
+                          state: ToastStates.error,
+                          text: 'Select all seats!',
+                        );
                       }
                     },
                     text: 'Confirm Seats',
