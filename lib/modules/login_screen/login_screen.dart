@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
+import 'package:graduation_project_app/shared/style/colors.dart';
 import '../../shared/components/components.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
@@ -14,9 +15,7 @@ class loginSreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => loginCubit(),
-        child: BlocConsumer<loginCubit, loginStates>(
+    return BlocConsumer<loginCubit, loginStates>(
           listener: (context, state)  {
             if(state is loginErrorState){
                 showToast(text:state.error,status:toastStates.ERROR);
@@ -46,13 +45,14 @@ class loginSreen extends StatelessWidget {
                             const SizedBox(
                               height: 40,
                             ),
-                            const Text('Welcome Back!',
+                             Text('Welcome Back!',
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40,
-                              ),),
+                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                   color: colortheme.lightPurple,
+                                   fontWeight: FontWeight.bold,
+                                   fontSize: 28
+                                 ),
+                             ),
                             const SizedBox(
                               height: 30,
                             ),
@@ -89,7 +89,7 @@ class loginSreen extends StatelessWidget {
                                 condition: state is! loginLoadinglState,
                                 builder: (context) =>
                                     defultButton(
-                                        background: Colors.indigo.shade500,
+                                        background: colortheme.lightPurple,
                                         function: () {
                                           if (keyForm.currentState!.validate()) {
                                             loginCubit.get(context).userLogin(pass: passController.text, email: emailController.text);
@@ -131,7 +131,7 @@ class loginSreen extends StatelessWidget {
               ),
             );
           },
-        )
+
 
     );
   }

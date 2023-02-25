@@ -6,7 +6,7 @@ import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
 import '../../shared/components/components.dart';
-
+import 'package:graduation_project_app/shared/style/colors.dart';
 class registerScreen extends StatelessWidget {
   var firstName = TextEditingController();
   var lastName = TextEditingController();
@@ -16,21 +16,20 @@ class registerScreen extends StatelessWidget {
   late var formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => registerCubit(),
-      child: BlocConsumer<registerCubit,registerStates>(
+    return BlocConsumer<registerCubit,registerStates>(
         listener: (context,state){
-          if(state is registerErrorState){
+          if(state is createUserErrorState){
             showToast(text:state.error.toString(),status:toastStates.ERROR);
           }
-          if(state is registerSucessState){
+          if(state is createUserSucessState){
             showToast(text:'you have sucessfully signed up',status:toastStates.SUCESS);
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: ((context) => const Trans())
-                )
+                  builder: ((context) => const Trans())
+             )
             );
+
           }
         },
         builder: (context,state){
@@ -47,13 +46,14 @@ class registerScreen extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        const Text('Register',
-                            style: TextStyle(
-                              color: Colors.black,
+                         Text('Register',
+                            style:Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: colortheme.lightPurple,
                               fontWeight: FontWeight.bold,
-                              fontSize: 40,
-                            )
+                              fontSize: 29
+                            ),
                         ),
+
                         const SizedBox(
                           height: 20,
                         ),
@@ -79,7 +79,7 @@ class registerScreen extends StatelessWidget {
                             inputType: TextInputType.emailAddress,
                             validator: 'required',
                             lable: 'Email Address',
-                            prefix: Icons.email),
+                            prefix: Icons.email,),
                         const SizedBox(
                           height: 20,
                         ),
@@ -107,6 +107,9 @@ class registerScreen extends StatelessWidget {
                             if(confirmPass.text != passSignUp.text){
                               return 'not match';
                             }
+                            if(value.length < 6){
+                              return 'password must be strong and greater than 6';
+                            }
                             return null;
                           },
                           keyboardType: TextInputType.visiblePassword,
@@ -114,12 +117,15 @@ class registerScreen extends StatelessWidget {
                           decoration: InputDecoration(
                             labelText: 'Confirm Password',
                             border: const OutlineInputBorder(),
-                            prefixIcon: const Icon(Icons.lock),
+                            prefixIcon: const Icon(Icons.lock,color: colortheme.lightPurple,),
                             suffixIcon: IconButton(
                               onPressed: (){
                                 registerCubit.get(context).passContrue();
                               },
-                              icon: Icon(registerCubit.get(context).conPass?Icons.visibility_off:Icons.visibility),
+                              icon: Icon(
+                                  registerCubit.get(context).conPass?Icons.visibility_off:Icons.visibility,
+                                  color: colortheme.lightPurple,
+                              ),
                             ),
                           ),
                         ),
@@ -131,7 +137,7 @@ class registerScreen extends StatelessWidget {
                         ),
                         ConditionalBuilder(condition: state is! registerLoadinglState,
                             builder: (context)=>defultButton(
-                                background: Colors.indigo.shade500,
+                                background: colortheme.lightPurple,
                                 function: (){
                                   if(formKey.currentState!.validate()){
                                     registerCubit.get(context).userRegister(
@@ -141,7 +147,7 @@ class registerScreen extends StatelessWidget {
                                         pass: passSignUp.text);
                                   }
                                 },
-                                text: "SUMBIT"),
+                                text: "SUMBIT",),
                             fallback: (context)=>const CircularProgressIndicator()),
                         const SizedBox(
                           height: 15,
@@ -171,7 +177,7 @@ class registerScreen extends StatelessWidget {
             ),
           );
         },
-      ),
+
     );
   }
 }

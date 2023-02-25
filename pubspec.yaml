@@ -48,11 +48,12 @@ dependencies:
   google_maps_flutter: ^2.2.3
   location: ^4.2.0
   flutter_polyline_points: ^1.0.0
+  image_picker: ^0.8.6+3
   #firebase
   firebase_core: ^2.6.1
   firebase_auth: ^4.2.8
   cloud_firestore: ^4.4.2
-
+  google_sign_in: ^6.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
