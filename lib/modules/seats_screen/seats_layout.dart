@@ -314,6 +314,7 @@ class _SeatsState extends State<Seats> {
                     },
                     text: 'Confirm Seats',
                     width: 200,
+                    context: context,
                   ),
                 )
               ],),

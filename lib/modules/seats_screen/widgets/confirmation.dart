@@ -5,6 +5,18 @@ import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
+import '../../../models/ticket.dart';
+
+   TicketModel ticket = TicketModel(
+          date: DateTime.parse(depart),
+          from: from,
+          to: to,
+          seats: '',
+          train: '',
+          price:'200', startTime: '', trainNUM: '',
+
+      );
+
 Future confirmSeats(BuildContext context,String time,String trainNUM) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -43,7 +55,7 @@ Future confirmSeats(BuildContext context,String time,String trainNUM) => showDia
                             trin_number: gates.join(','),
                             trainNUM: trainNUM,
                             startTime: time,
-                            price: amountToBePayed.toString(), ticket: ,)),
+                            price: amountToBePayed.toString(), ticket: ticket,)),
                   );
                 },
                 child: const Text(

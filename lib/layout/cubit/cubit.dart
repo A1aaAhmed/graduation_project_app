@@ -11,7 +11,6 @@ class MainCubit extends Cubit<MainStates> {
   final screens = [
     const HomeScreen(),
     LiveLocationScreen(),
-   const TicketsView(),
     const TicketsView(),
     const ProfileScreen(),
   ];

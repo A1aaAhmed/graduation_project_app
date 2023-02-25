@@ -31,17 +31,17 @@ class _FirstSectionState extends State<FirstSection> {
         padding: const EdgeInsets.all(25),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:  [
               Text('Let\'s',
-                  style: TextStyle(
-                      color: colortheme.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: colortheme.white,
+                        fontWeight: FontWeight.bold,
+                      )),
               Text('Book Your\nNext Trip ',
-                  style: TextStyle(
-                      color: colortheme.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold)),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: colortheme.white,
+                    fontWeight: FontWeight.bold,
+                  )),
             ]),
       ),
     );

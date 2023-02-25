@@ -26,7 +26,7 @@ Widget TrainCard(
                         ))));
           },
           child: Container(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.27,
               color: Colors.white70,
               child: Row(children: [
                 Expanded(
@@ -44,9 +44,7 @@ Widget TrainCard(
                           ),
                           Text(
                             ' $from',
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ]),
                         const Text(
@@ -64,21 +62,18 @@ Widget TrainCard(
                           ),
                           Text(
                             ' $to',
-                            style: const TextStyle(
-                              fontSize: 20,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ]),
-                       const SizedBox(
+                        const SizedBox(
                           height: 25,
                         ),
                         Text(
                           ' Train Number : $trainNUM',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        )
+                          style:  Theme.of(context).textTheme.bodyMedium,
+                          overflow: TextOverflow.ellipsis,
+                         
+                        ),
                       ]),
                 )),
                 Container(
@@ -94,7 +89,7 @@ Widget TrainCard(
                     alignment: Alignment.center,
                     child: Text(
                       '$time',
-                      style: const TextStyle(fontSize: 15),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ))
               ])),
         ),

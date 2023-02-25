@@ -67,7 +67,7 @@ class _TicketState extends State<Ticket> {
                       text: "Navigate Route",
                       onpress: () {},
                       width: 60.w,
-                      height: 10.h)
+                      height: 10.h,context: context)
                 ],
               )));
     })

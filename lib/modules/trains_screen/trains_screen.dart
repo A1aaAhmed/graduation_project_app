@@ -43,27 +43,24 @@ class TrainsScreen extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        '$from to $to',
-                        style: const TextStyle(
-                          color: colortheme.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Text('$from to $to',
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    color: colortheme.white,
+                                    fontWeight: FontWeight.bold,
+                                  )),
                     ),
                     Container(
                       padding: const EdgeInsets.only(left: 25),
                       child: Text(
-                        DateFormat.yMMMEd()
-                            .format(DateTime.parse(depart))
-                            .toString(),
-                        style: const TextStyle(
-                          color: colortheme.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                          DateFormat.yMMMEd()
+                              .format(DateTime.parse(depart))
+                              .toString(),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: colortheme.white,
+                                    fontWeight: FontWeight.bold,
+                                  )),
                     ),
                     const SizedBox(
                       height: 20,
@@ -81,50 +78,69 @@ class TrainsScreen extends StatelessWidget {
                           horizontal: width * 0.08,
                         ),
                         child: ConditionalBuilder(
-                          condition: cubit.searchedTrains.isNotEmpty && state is GetTrainsLoadingState,
-                          builder: (context) => SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 35, left: 20, right: 20),
-                                  child: Text(
-                                    '${cubit.searchedTrains.length} Trains Found',
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                          condition: state is GetTrainsSuccessState,
+                          builder: (context) {
+                            if (cubit.searchedTrains.length > 0) {
+                              return SingleChildScrollView(
+                                physics: const BouncingScrollPhysics(),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 35, left: 20, right: 20),
+                                      child: Text(
+                                          '${cubit.searchedTrains.length} Trains Found',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                    ),
+                                    ListView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemBuilder: ((context, index) {
+                                        // print(",,,,,,,,,,,,,,,,,,,");
+                                        // print("cur index");
+                                        // print(index);
+                                        // print(cubit.searchedTrains.length);
+                                        // print(cubit.searchedTrains);
+                                        return TrainCard(
+                                          context: context,
+                                          time: cubit.searchedTrains[index]
+                                                  ['train']['Timetable'][
+                                              cubit.searchedTrains[index]
+                                                  ['fromindex']],
+                                          trainNUM: cubit.searchedTrains[index]
+                                              ['train']['trainNum'],
+                                          train: cubit.searchedTrains[index]
+                                              ['train'],
+                                        );
+                                      }),
+                                      itemCount: cubit.searchedTrains.length,
+                                    ),
+                                  ],
                                 ),
-                                ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemBuilder: ((context, index) {
-                                    // print(",,,,,,,,,,,,,,,,,,,");
-                                    // print("cur index");
-                                    // print(index);
-                                    // print(cubit.searchedTrains.length);
-                                    // print(cubit.searchedTrains);
-                                    return TrainCard(
-                                      context: context,
-                                      time: cubit.searchedTrains[index]['train']
-                                              ['Timetable'][
-                                          cubit.searchedTrains[index]
-                                              ['fromindex']],
-                                      trainNUM: cubit.searchedTrains[index]
-                                          ['train']['trainNum'],
-                                           train: cubit.searchedTrains[index]
-                                          ['train'],
-                                    );
-                                  }),
-                                  itemCount: cubit.searchedTrains.length,
-                                ),
-                              ],
-                            ),
-                          ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator(color: colortheme.lightPurple,)),
+                              );
+                            } else {
+                              return Center(
+                                child: Text('NO Trains Found',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color: colortheme.lightPurple)),
+                              );
+                            }
+                          },
+                          fallback: (context) => const Center(
+                              child: CircularProgressIndicator(
+                            color: colortheme.lightPurple,
+                          )),
                         ),
                       ),
                     ),
