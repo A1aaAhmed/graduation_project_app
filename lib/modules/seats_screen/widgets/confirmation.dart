@@ -57,8 +57,8 @@ Future confirmSeats(context) => showDialog(
                         context,
                         MaterialPageRoute(
                             builder: (context) => Ticket(ticket: ticket))
-                        ),
-                      );
+                        );
+
                     },
                     child: const Text(
                       'Confirm',
