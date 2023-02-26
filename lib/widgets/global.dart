@@ -56,5 +56,5 @@ List<dynamic> allSeats = [
   // true,
   // false
 ];
-String trainId = '2dRl1WJljsXJpNrn9KYB';
+//String trainId = '';
 String seatsId = '';

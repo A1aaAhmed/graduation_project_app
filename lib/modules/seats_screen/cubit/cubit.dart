@@ -12,9 +12,8 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   void initialFunction() {
     numberOfSeats = 0;
     amountToBePayed = 0;
-    seats;
     selectedSeats = [];
-
+    allSeats = [];
     emit(SeatsScreenInitialState());
   }
 
@@ -51,24 +50,26 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
 
   //2dRl1WJljsXJpNrn9KYB
   void getSeats(String trainId) {
-    print(DateFormat('EEEE').format(DateTime.parse(depart)));
-    print(trainId);
-    print(allSeats);
+    // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+    // print(trainId);
+    // print(allSeats);
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
         .get()
         .then((value) {
-      // print(value['Friday']);
-      // print(value['Friday'].runtimeType);
-      value.docs.forEach((element) {
-        allSeats = element[DateFormat('EEEE').format(DateTime.parse(depart))];
-        seatsId = element.reference.id;
-        print(element.reference.id);
+      // print(trainId);
+      // print(value.docs);
+      value.docs.forEach((e) {
+        allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
+        seatsId = e.reference.id;
+        // print(e.reference.id);
       });
-      print(allSeats);
-
+      // print(trainId);
+      // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+      // print(allSeats);
+      // print(seatsId);
       emit(GetSeatsSuccessState());
     }).catchError((error) {
       emit(GetSeatsErrorState(error.toString()));
@@ -76,8 +77,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   void updateSeats(String trainId) {
-    print(DateTime.parse(depart).day);
-
+    //print(DateTime.parse(depart).day);
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
