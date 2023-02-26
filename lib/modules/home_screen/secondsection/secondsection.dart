@@ -6,7 +6,7 @@ import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/dropdownform.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/text_form.dart';
-import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
+import 'package:graduation_project_app/modules/search_screen/search_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';

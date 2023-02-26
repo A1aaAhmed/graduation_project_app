@@ -13,10 +13,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     numberOfSeats = 0;
     amountToBePayed = 0;
     selectedSeats = [];
-<<<<<<< HEAD
-=======
     allSeats = [];
->>>>>>> 0068dfb4b149d30417871d54d2071537b9e5e3dc
     emit(SeatsScreenInitialState());
   }
 
