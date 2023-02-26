@@ -16,7 +16,7 @@ class MapsCubit extends Cubit<MapsStates>{
   final Completer<GoogleMapController> controller = Completer();
   void setCustomMarkerIcon() {
     BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), "images/train_icon.png")
+        const ImageConfiguration(), "assets/images/train_icon.png")
         .then(
           (icon) {
           train_icon = icon;
@@ -24,7 +24,7 @@ class MapsCubit extends Cubit<MapsStates>{
       },
     );
     BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), "images/user_icon.png")
+        const ImageConfiguration(), "assets/images/user_icon.png")
         .then(
             (icon) {
               user_icon = icon;
@@ -50,7 +50,7 @@ class MapsCubit extends Cubit<MapsStates>{
             googleMapController.animateCamera(
               CameraUpdate.newCameraPosition(
                 CameraPosition(
-                  zoom: 7,
+                  zoom: 8,
                   target: LatLng(
                     newLoc.latitude!,
                     newLoc.longitude!,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
-import 'package:graduation_project_app/modules/Ticket/toDateTimeFun.dart';
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/modules/live_location/nothingToShow.dart';
 import 'package:sizer/sizer.dart';
 import 'ticketComponent/ListTable.dart';
 
@@ -15,18 +16,21 @@ class AvailableScreen extends StatefulWidget {
 class _AvailableState extends State<AvailableScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Sizer(
-          builder: (context, orientation, deviceType) {
-            return Scaffold(
-                body:ListTable(
-                  db:widget.availableTickets ,
-                  h:40.h,
-                  w:100.w,
-                ),
-              );
-          }),
+      body: Scaffold(
+          body:widget.availableTickets.isNotEmpty?
+          ListTable(
+            db:widget.availableTickets ,
+            h:40.h,
+            w:100.w,
+          )
+        :NothingScreen(
+            station:"",
+            date:DateTime.now(),
+            isEmpty: true,
+            isFromHomeScreen: true,
+          ),
+        ),
     );
   }
 }

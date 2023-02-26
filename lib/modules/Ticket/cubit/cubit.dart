@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 class TicketCubit extends Cubit<TicketsStates>{
   TicketCubit():super (TicketsInitialState());
   static TicketCubit get(context)=>BlocProvider.of(context);
@@ -21,9 +23,10 @@ class TicketCubit extends Cubit<TicketsStates>{
               availableTickets.add(TicketModel.fromJason(element.data()));
             }
           });
-          previousTickets= List.of(previousTickets.reversed);
-          availableTickets= List.of(availableTickets.reversed);
-
+          previousTickets.sort((a, b) =>  b.date.compareTo(a.date));
+          availableTickets.sort((a, b) => a.date.compareTo(b.date));
+          availableTicket=availableTickets;
+        if (availableTickets.isNotEmpty)station=availableTickets[0].from;
         // print(previousTickets);
         // print(availableTickets);
         // print(availableTickets[0].date);
@@ -31,23 +34,7 @@ class TicketCubit extends Cubit<TicketsStates>{
     });
 
   }
- static bool expired (DateTime date){
-    DateTime now=DateTime.now();
-    return date.year < now.year ||
-        date.year == now.year && date.month < now.month ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day < now.day ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day == now.day &&
-            date.hour < now.hour ||
-        date.year == now.year &&
-            date.month == now.month &&
-            date.day == now.day &&
-            date.hour == now.hour &&
-            date.minute < now.minute;
-  }
+
 
 
 
