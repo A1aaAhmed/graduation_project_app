@@ -15,8 +15,8 @@ PreferredSizeWidget bar({
     AppBar(
         leading: IconButton(
           onPressed: () {
-            if (text == 'Previous Tickets' ||
-                text == 'Current Tickets' ||
+            if (text == 'My Tickets' ||
+                text == 'Current Ticket' ||
                 text == 'Live location' ||
                 text == 'Profile') {
               Navigator.push(

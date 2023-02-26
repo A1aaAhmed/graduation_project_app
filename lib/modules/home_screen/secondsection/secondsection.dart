@@ -198,9 +198,6 @@ const List<DropdownMenuItem<String>> countries = [
 ];
 List<DropdownMenuItem<String>> dates = [
   DropdownMenuItem(
-      value: DateTime.now().toString(),
-      child: Text(DateFormat.yMMMEd().format(DateTime.now()).toString())),
-  DropdownMenuItem(
       value: DateTime.now().add(Duration(days: 1)).toString(),
       child: Text(DateFormat.yMMMEd()
           .format(DateTime.now().add(Duration(days: 1)))
@@ -229,6 +226,11 @@ List<DropdownMenuItem<String>> dates = [
       value: DateTime.now().add(Duration(days: 6)).toString(),
       child: Text(DateFormat.yMMMEd()
           .format(DateTime.now().add(Duration(days: 6)))
+          .toString())),
+  DropdownMenuItem(
+      value: DateTime.now().add(Duration(days: 7)).toString(),
+      child: Text(DateFormat.yMMMEd()
+          .format(DateTime.now().add(Duration(days: 7)))
           .toString())),
 ];
 
