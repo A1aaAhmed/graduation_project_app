@@ -1,25 +1,15 @@
 // import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
+import 'package:graduation_project_app/modules/Ticket/toDateTimeFun.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import '../../../models/ticket.dart';
-
-TicketModel ticket = TicketModel(
-  date: DateTime.parse(depart),
-  from: from,
-  to: to,
-  seats: '',
-  train: '',
-  price: '200',
-  startTime: '',
-  trainNUM: '',
-);
-
 Future confirmSeats(BuildContext context, String time, String trainNUM,
         Map<String, dynamic> train) =>
     showDialog(
@@ -44,6 +34,15 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                     actions: [
                       TextButton(
                           onPressed: () {
+                            TicketModel ticket=TicketModel(
+                                date:toDateTime(depart,time),
+                                from: from,
+                                to: to,
+                                seats: selectedSeats.join(" ,"),
+                                train:trainNUM,
+                                price: amountToBePayed.toString());
+                            ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                            UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
                               if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
@@ -64,14 +63,6 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Ticket(
-                                        date: DateTime.parse(depart),
-                                        from: from,
-                                        to: to,
-                                        seat: selectedSeats.join(" ,"),
-                                        trin_number: gates.join(','),
-                                        trainNUM: trainNUM,
-                                        startTime: time,
-                                        price: amountToBePayed.toString(),
                                         ticket: ticket,
                                       )),
                             );

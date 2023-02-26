@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class TicketModel {
   String from = 'from';
@@ -7,8 +6,6 @@ class TicketModel {
   String train = 'train';
   String price = 'price';
   DateTime date = DateTime.now();
-  String startTime = 'startTime';
-  String trainNUM = 'trainNUM';
 
   TicketModel({
     required this.from,
@@ -17,8 +14,6 @@ class TicketModel {
     required this.price,
     required this.date,
     required this.seats,
-    required this.startTime,
-    required this.trainNUM,
   });
 
   TicketModel.fromJason(Map<String, dynamic> json) {
@@ -28,8 +23,7 @@ class TicketModel {
     price = json['price'];
     train = json['train'];
     date = DateTime.parse(json['date']);
-    startTime = json['startTime'];
-    trainNUM = json['trainNUM'];
+
   }
   Map<String, dynamic> toMap() {
     return {
@@ -39,8 +33,8 @@ class TicketModel {
       "price": price,
       "train": train,
       "date": date.toString(),
-      "startTime": startTime,
-      'trainNUM':trainNUM,
+
     };
   }
+
 }
