@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/TicketComp.dart';
 import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
-import 'package:graduation_project_app/shared/variables.dart';
 
 Widget ListTable({
   required double h,
@@ -18,13 +17,12 @@ Widget ListTable({
     scrollDirection: Axis.vertical,
     itemBuilder: (context, index) {
       TicketModel ticket = TicketModel(
-          date: db[index].date,
-          from: db[index].from,
-          to: db[index].to,
-          seats: db[index].seats,
-          train: db[index].train,
-          price: db[index].price, startTime: '', trainNUM: '',
-
+        date: db[index].date,
+        from: db[index].from,
+        to: db[index].to,
+        seats: db[index].seats,
+        train: db[index].train,
+        price: db[index].price,
       );
       return SizedBox(
         height: h,
@@ -37,7 +35,7 @@ Widget ListTable({
                 MaterialPageRoute(
                     builder: ((context) =>
                         Ticket(
-                         ticket :ticket, date: DateTime.parse(depart), from: '', price: '', seat: '', startTime: '', to: '', trainNUM: '', trin_number: '',))));
+                          ticket: ticket,))));
           },
           child: TicketComponent(
               view: false,
