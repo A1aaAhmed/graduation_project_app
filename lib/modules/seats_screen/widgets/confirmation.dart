@@ -45,18 +45,17 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                             UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
-                              if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
-                                gates.add('1A');
-                              } else if (int.parse(ele) >= 17 &&
-                                  int.parse(ele) <= 32) {
-                                gates.add('2A');
-                              } else {
-                                gates.add('3B');
-                              }
+                              // if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
+                              //   gates.add('1A');
+                              // } else if (int.parse(ele) >= 17 &&
+                              //     int.parse(ele) <= 32) {
+                              //   gates.add('2A');
+                              // } else {
+                              //   gates.add('3B');
+                              // }
                             }
                             SeatsScreenCubit.get(context)
                                 .updateSeats(train['trainID']);
-                            print(train['trainID']);
                             print(allSeats);
                             gates = gates.toSet().toList();
                             Navigator.push(
