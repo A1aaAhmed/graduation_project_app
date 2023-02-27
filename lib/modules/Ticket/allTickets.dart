@@ -21,8 +21,9 @@ class TicketsView extends StatelessWidget {
           appBar:  bar(
             context: context,
             text: 'My Tickets',
-            morelist: false,
+            morelist: true,
             bottom: true
+
           ),
           body: TabBarView(
             children: [

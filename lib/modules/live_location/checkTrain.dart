@@ -30,7 +30,7 @@ class CheckTrain extends StatelessWidget {
                condition:!isFromHome&&isToday(date)&&started(date)||
                    isFromHome&&availableTicket.isNotEmpty&&isToday(availableTicket[0].date)&&started(availableTicket[0].date),
                builder: (context) =>  LiveLocationScreen(trainLonLat:trainLonLat),
-               fallback: (context) => NothingScreen(station: station,isFromHomeScreen: isFromHome,date:isFromHome?availableTicket.isEmpty?DateTime.now():availableTicket[0].date:date,isEmpty:availableTicket.isEmpty),),
+               fallback: (context) => NothingScreen(nothing: false,station: station,isFromHomeScreen: isFromHome,date:isFromHome?availableTicket.isEmpty?DateTime.now():availableTicket[0].date:date,isEmpty:availableTicket.isEmpty),),
              fallback: (context) =>const LoadingScreen(),),
 
       )));}

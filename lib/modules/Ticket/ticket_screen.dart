@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/ticket.dart';
+import 'package:graduation_project_app/modules/Ticket/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/TicketComp.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/live_location/checkTrain.dart';
@@ -10,7 +13,7 @@ import 'package:sizer/sizer.dart';
 class Ticket extends StatefulWidget {
   final TicketModel ticket;
 
-  const Ticket({
+   const Ticket({
     Key? key,
     required this.ticket,
   }) : super(key: key);
@@ -21,7 +24,11 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State<Ticket> {
   @override
   Widget build(BuildContext context) {
-    return
+    return BlocProvider(
+        create: (context) => TicketCubit()..getAllTickets(),
+        child: BlocConsumer<TicketCubit,TicketsStates>(
+        listener:(context, state) => {},
+    builder:  (context, state) =>
       Scaffold(
       body: Sizer(
         builder: (context, orientation, deviceType)
@@ -31,7 +38,8 @@ class _TicketState extends State<Ticket> {
           appBar: bar(
             context: context,
             text: 'Current Ticket',
-            morelist: false,
+            morelist: true,
+            ticket: widget.ticket,
           ),
           body: SizedBox(
               width: 100.w,
@@ -65,5 +73,5 @@ class _TicketState extends State<Ticket> {
     })
 
 
-    );}
+    )));}
 }

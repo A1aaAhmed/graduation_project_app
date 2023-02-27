@@ -25,6 +25,7 @@ class _AvailableState extends State<AvailableScreen> {
             w:100.w,
           )
         :NothingScreen(
+            nothing: true,
             station:"",
             date:DateTime.now(),
             isEmpty: true,

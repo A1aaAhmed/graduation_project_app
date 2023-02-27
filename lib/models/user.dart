@@ -10,13 +10,13 @@ class UserModel{
   //String token;
   //TicketModel ?tickets;
   UserModel({
-   this.name,
-   this.email,
-   this.phone,
-   this.image,
-   //this.token,
-   this.id,
-   //this.tickets
+    this.name,
+    this.email,
+    this.phone,
+    this.image,
+    //this.token,
+    this.id,
+    //this.tickets
   });
 
   UserModel.fromJason(Map<String , dynamic>json){
@@ -26,17 +26,34 @@ class UserModel{
     image=json['image'];
     email=json['email'];
   }
- Map<String , dynamic>toMap(){
-return
+  Map<String , dynamic>toMap(){
+    return
+      {
+        "id":id,
+        "name":name,
+        "phone":phone,
+        "image":image,
+        "email":email,
+      };
+  }
+  static void createUser({
+    required String name,
+    required String email,
+    required String phone,
+    required String image,
+    required String uId,
+  })
   {
-  "id":id,
-  "name":name,
-  "phone":phone,
-  "image":image,
-  "email":email,
-  };
-}
-
+    UserModel user =UserModel(
+      email: email,
+      id: uId,
+      image: image,
+      name: name,
+      phone: phone,
+    );
+    CollectionReference usersCollection = FirebaseFirestore.instance.collection("users");
+    usersCollection.doc(uId).set(user.toMap());
+  }
   static void addTicket({
     required TicketModel ticket,
     required String uId,
