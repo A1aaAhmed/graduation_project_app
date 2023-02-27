@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -27,7 +26,7 @@ PreferredSizeWidget bar({
               Navigator.pop(context);
             }
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
         ), //replace with our own icon data. ) )

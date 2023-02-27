@@ -6,7 +6,7 @@ import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/dropdownform.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/text_form.dart';
-import 'package:graduation_project_app/modules/trains_screen/trains_screen.dart';
+import 'package:graduation_project_app/modules/search_screen/search_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
@@ -172,6 +172,7 @@ class _SecondSectionState extends State<SecondSection> {
                                       });
                                     }
                                     ;
+
                                   })
                             ]),
                       ))));
@@ -234,8 +235,6 @@ List<DropdownMenuItem<String>> dates = [
           .toString())),
 ];
 
-
-
 // Map<String, dynamic> train = {
 //   'stations': ['Cairo', 'Giza', 'Asyut', 'Al Balyana', 'Qena', 'Luxor'],
 //   'Timetable': [
@@ -252,13 +251,13 @@ List<DropdownMenuItem<String>> dates = [
 // List<bool> seatts = List.filled(48, false);
 
 // Map<String, dynamic> seats = {
-//   'Saturday': seatts,
-//   'Sunday': seatts,
-//   'Monday': seatts,
-//   'Tuesday': seatts,
-//   'Wednesday': seatts,
-//   'Thursday': seatts,
-//   'Friday': seatts,
+//   DateTime.now().add(Duration(days: 1)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 2)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 3)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 4)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 5)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 6)).toString(): seatts,
+//   DateTime.now().add(Duration(days: 7)).toString(): seatts,
 // };
 // void addtrains(Map<String, dynamic> train) {
 //   FirebaseFirestore.instance.collection("trains").add(train);
@@ -267,7 +266,7 @@ List<DropdownMenuItem<String>> dates = [
 // void addseats(seats) {
 //   FirebaseFirestore.instance
 //       .collection("trains")
-//       .doc('sGqWFjS3syqizW4EZlVY')
+//       .doc('2dRl1WJljsXJpNrn9KYB')
 //       .collection('seats')
 //       .add(seats);
 // }

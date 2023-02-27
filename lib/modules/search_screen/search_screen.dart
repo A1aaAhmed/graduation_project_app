@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
-import 'package:graduation_project_app/modules/trains_screen/traincard.dart';
+import 'package:graduation_project_app/modules/search_screen/searchcard.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import '../../shared/variables.dart';
 
 class TrainsScreen extends StatelessWidget {
-  TrainsScreen({
+ const TrainsScreen({
     super.key,
   });
 
@@ -88,7 +88,7 @@ class TrainsScreen extends StatelessWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 35, left: 20, right: 20),
+                                          top: 35, right: 20),
                                       child: Text(
                                           '${cubit.searchedTrains.length} Trains Found',
                                           style: Theme.of(context)
@@ -108,7 +108,7 @@ class TrainsScreen extends StatelessWidget {
                                         // print(index);
                                         // print(cubit.searchedTrains.length);
                                         // print(cubit.searchedTrains);
-                                        return TrainCard(
+                                        return SearchCard(
                                           context: context,
                                           time: cubit.searchedTrains[index]
                                                   ['train']['Timetable'][

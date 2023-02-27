@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                                backgroundColor: Colors.white,
                                child: CircleAvatar(
                                  radius: 70,
-                                 backgroundImage: profileCubit.get(context).profileImage == null ? NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU') as ImageProvider:FileImage((profileCubit.get(context).profileImage)!),
+                                 backgroundImage: profileCubit.get(context).profileImage == null ? const NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU') as ImageProvider:FileImage((profileCubit.get(context).profileImage)!),
                                ),
                              ),
                              CircleAvatar(child:
@@ -76,34 +76,34 @@ class ProfileScreen extends StatelessWidget {
                                  onPressed: (){
                                 profileCubit.get(context).getImage();
                                  },
-                                 icon:Icon(Icons.add_a_photo,size: 24,), ),
+                                 icon:const Icon(Icons.add_a_photo,size: 24,), ),
                              )),
                            ],
                          ),
                        ],
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 12,
                    ),
                    Padding(
                      padding: const EdgeInsets.only(right: 10,left: 10),
                      child: Row(
                        children: [
-                         Icon(Icons.person),
-                         SizedBox(width: 7,),
+                         const Icon(Icons.person),
+                         const SizedBox(width: 7,),
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text('name:',style: TextStyle(color:Colors.black),),
-                             Text(profileCubit.get(context).name==''?'xxxx xxxx':profileCubit.get(context).name,style: TextStyle(
+                             const Text('name:',style: TextStyle(color:Colors.black),),
+                             Text(profileCubit.get(context).name==''?'xxxx xxxx':profileCubit.get(context).name,style: const TextStyle(
                                color: Colors.black,
                                fontWeight: FontWeight.bold,
                                fontSize: 16,
                              )),
                            ],
                          ),
-                         Spacer(),
+                         const Spacer(),
                          IconButton(onPressed: ()async{
                            final nam = await profileCubit.get(context).submitName(context);
                           if(nam == null || nam.isEmpty){
@@ -114,31 +114,31 @@ class ProfileScreen extends StatelessWidget {
                             profileCubit.get(context).setName(name: nam);
                           }
                          },
-                         icon: Icon(Icons.edit))
+                         icon: const Icon(Icons.edit))
                        ],
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 21,
                    ),
                    Padding(
                      padding: const EdgeInsets.only(right: 10,left: 10),
                      child: Row(
                        children: [
-                         Icon(Icons.email),
-                         SizedBox(width: 7,),
+                         const Icon(Icons.email),
+                         const SizedBox(width: 7,),
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text('Email',style: TextStyle(color: Colors.black),),
-                             Text(profileCubit.get(context).email==''?'xxxx@gmail.com':profileCubit.get(context).email,style: TextStyle(
+                             const Text('Email',style: TextStyle(color: Colors.black),),
+                             Text(profileCubit.get(context).email==''?'xxxx@gmail.com':profileCubit.get(context).email,style: const TextStyle(
                                color: Colors.black,
                                fontWeight: FontWeight.bold,
                                fontSize: 16,
                              ), ),
                            ],
                          ),
-                         Spacer(),
+                         const Spacer(),
                          IconButton(onPressed: ()async{
                            final email =await profileCubit.get(context).submitEmail(context);
                            if(email == null || email.isEmpty){
@@ -149,31 +149,31 @@ class ProfileScreen extends StatelessWidget {
                                print('got email');
                                profileCubit.get(context).setEmail(email: email);
                              }
-                         }, icon: Icon(Icons.edit)),
+                         }, icon: const Icon(Icons.edit)),
                        ],
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 21,
                    ),
                    Padding(
                      padding: const EdgeInsets.only(right: 10,left: 10),
                      child: Row(
                        children: [
-                         Icon(Icons.phone_android),
-                         SizedBox(width: 7,),
+                         const Icon(Icons.phone_android),
+                         const SizedBox(width: 7,),
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                             Text('phone',style: TextStyle(color: Colors.black),),
-                             Text(profileCubit.get(context).phone == '' ?'01xxxxxxxx':profileCubit.get(context).phone,style: TextStyle(
+                             const Text('phone',style: TextStyle(color: Colors.black),),
+                             Text(profileCubit.get(context).phone == '' ?'01xxxxxxxx':profileCubit.get(context).phone,style: const TextStyle(
                                color: Colors.black,
                                fontWeight: FontWeight.bold,
                                fontSize: 16,
                              ), ),
                            ],
                          ),
-                         Spacer(),
+                         const Spacer(),
                          IconButton(onPressed: ()async{
                            final phone =await profileCubit.get(context).submitPhone(context);
                            if(phone == null || phone.isEmpty){
@@ -184,11 +184,11 @@ class ProfileScreen extends StatelessWidget {
                              print('got phone');
                              profileCubit.get(context).setPhone(phone: phone);
                            }
-                         }, icon: Icon(Icons.edit,)),
+                         }, icon: const Icon(Icons.edit,)),
                        ],
                      ),
                    ),
-                   SizedBox(
+                   const SizedBox(
                      height: 21,
                    ),
                    Padding(
@@ -196,28 +196,28 @@ class ProfileScreen extends StatelessWidget {
                      child: Row(
                        children: [
                          TextButton.icon(onPressed: (){},
-                             icon: Icon(Icons.archive_sharp,color: colortheme.lightPurple,),
-                             label: Text('Previous Tickets',style: TextStyle(
+                             icon: const Icon(Icons.archive_sharp,color: colortheme.lightPurple,),
+                             label: const Text('Previous Tickets',style: TextStyle(
                                color: Colors.black,
                                fontWeight: FontWeight.bold,
                                fontSize: 16,
                              ),)),
-                         Spacer(),
-                         IconButton(onPressed: (){}, icon: Icon(Icons.arrow_circle_right_outlined)),
+                         const Spacer(),
+                         IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_circle_right_outlined)),
                        ],
                      ),
                    ),
-                   SizedBox(height: 27,),
+                   const SizedBox(height: 27,),
                    TextButton.icon(
                      onPressed: ()async{
                        await GoogleSignIn().signOut();
                        FirebaseAuth.instance.signOut();
                        Navigator.push(
                          context,
-                         MaterialPageRoute(builder: (context) =>  welcomeScreen()),);
+                         MaterialPageRoute(builder: (context) =>  const welcomeScreen()),);
                      },
-                     icon: Icon(Icons.logout_outlined,color: Colors.red),
-                     label: Text(
+                     icon: const Icon(Icons.logout_outlined,color: Colors.red),
+                     label: const Text(
                        'SIGN OUT',
                        style: TextStyle(
                          color: Colors.red,

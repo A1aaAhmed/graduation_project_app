@@ -20,7 +20,7 @@ class _FirstSectionState extends State<FirstSection> {
           color: colortheme.lightPurple,
            image:const DecorationImage(
               repeat: ImageRepeat.noRepeat,
-              image: AssetImage('images/train.png'),
+              image: AssetImage('assets/images/train.png'),
              fit: BoxFit.cover,
              ),
           borderRadius: BorderRadius.only(

@@ -4,7 +4,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 
 import '../../shared/variables.dart';
 
-Widget TrainCard(
+Widget SearchCard(
         {required context,
         required time,
         required Map<String, dynamic> train,
@@ -47,12 +47,11 @@ Widget TrainCard(
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ]),
-                        const Text(
-                          '  |\n  |',
-                          style: TextStyle(
-                              color: colortheme.saimon,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold),
+                        Container(
+                          color: colortheme.saimon,
+                          width: 1.5,
+                          height:
+                              MediaQuery.of(context).size.height * 0.2 * 0.15,
                         ),
                         Row(children: [
                           const Icon(
@@ -70,9 +69,8 @@ Widget TrainCard(
                         ),
                         Text(
                           ' Train Number : $trainNUM',
-                          style:  Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium,
                           overflow: TextOverflow.ellipsis,
-                         
                         ),
                       ]),
                 )),
