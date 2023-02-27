@@ -1,9 +1,8 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:graduation_project_app/models/ticket.dart';
-import 'package:graduation_project_app/modules/Ticket/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeColum.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizeText.dart';
 import 'package:graduation_project_app/modules/Ticket/ticketComponent/autoSizedRow.dart';
@@ -27,14 +26,13 @@ class TicketComponent extends StatefulWidget {
 class _TicketComponentState extends State<TicketComponent> {
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
     DateTime date = widget.ticket.date;
     String from = widget.ticket.from;
     String to = widget.ticket.to;
     String seat = widget.ticket.seats;
     String train = widget.ticket.train;
     String price = widget.ticket.price;
-    bool late = TicketCubit.expired(date);
+    bool late = expired(date);
     return Scaffold(
           body: Container(
           padding: EdgeInsetsDirectional.only(end: 2.w, top: 5.h),
@@ -57,6 +55,7 @@ class _TicketComponentState extends State<TicketComponent> {
                 ),
                 padding: EdgeInsetsDirectional.only( end: 10.w) ,
                 child: Container(
+                  height: 100.h,
                   padding: EdgeInsetsDirectional.only(
                       top:  5.h,
                       bottom: 5.h
@@ -81,9 +80,7 @@ class _TicketComponentState extends State<TicketComponent> {
                             w: 20.w,
                             text: (late)
                                 ? 'Expired'
-                                : (date.day == now.day &&
-                                        date.year == now.year &&
-                                        date.month == now.month)
+                                :isToday(date)
                                     ? 'Today'
                                     : 'Future',
                             fontSize: 13.sp,

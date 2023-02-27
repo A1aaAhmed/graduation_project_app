@@ -1,6 +1,8 @@
 //TextEditingController from = TextEditingController();
 //TextEditingController to = TextEditingController();
 //TextEditingController depart = TextEditingController();
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 String from='';
 String to='';
 String depart='';
@@ -121,4 +123,11 @@ int travellers = 1;
 var trian_location_long = 31.233334;
 var trian_location_lat = 30.033333;
 String googleAPiKey = "AIzaSyBSob1uooRKAkU1SzUjXrxsAeVj-u_OcTc";
+/////////////////////////////////////////////////////////////
+///add uid of the current user here yaaaaaaaaaaaaaaaaaaa maaaaaaaaaaaaaaaahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 var uId="rH56bEn5CaTfTjLo3fOJ7emfyfw1";
+List availableTicket =[];
+DateTime dateTicket=DateTime.now();
+String station="";
+///changed later
+LatLng trainLonLat=LatLng(trian_location_lat, trian_location_long);

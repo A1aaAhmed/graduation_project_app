@@ -34,8 +34,6 @@ class TicketsView extends StatelessWidget {
                 condition:state is! LoadingState,
                 builder: (context) => ExpiredScreen(expiredTickets:TicketCubit.get(context).previousTickets),
                 fallback: (context) =>const LoadingScreen(),),
-
-
             ],
           ),
         ),
