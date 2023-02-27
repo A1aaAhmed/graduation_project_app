@@ -55,15 +55,12 @@ class _MyAppState extends State<MyApp> {
             BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
-            
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              iconTheme: const IconThemeData(
-                color: colortheme.lightPurple,
-                size: 30
-              ),
+              iconTheme:
+                  const IconThemeData(color: colortheme.lightPurple, size: 30),
               appBarTheme: const AppBarTheme(
                 color: colortheme.lightPurple,
                 elevation: 0,
@@ -88,7 +85,7 @@ class _MyAppState extends State<MyApp> {
                 selectedItemColor: colortheme.lightPurple,
                 unselectedItemColor: colortheme.lightPurple.withOpacity(0.35),
                 unselectedLabelStyle:
-                const TextStyle(overflow: TextOverflow.ellipsis),
+                    const TextStyle(overflow: TextOverflow.ellipsis),
               ),
               scaffoldBackgroundColor: colortheme.lightGray,
               fontFamily: 'kalam',
@@ -98,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home:  Trans(),
+            home: Trans(),
           ));
     });
   }
