@@ -49,12 +49,9 @@ Widget SearchCard(
                         ]),
                         Container(
                           color: colortheme.saimon,
-                          width: 1,
-                          // height:
-                          //     MediaQuery.of(context).size.height * 0.2 * 0.5,
-                          // padding: EdgeInsets.symmetric(
-                          //     horizontal:
-                          //         MediaQuery.of(context).size.width * 0.05),
+                          width: 1.5,
+                          height:
+                              MediaQuery.of(context).size.height * 0.2 * 0.15,
                         ),
                         Row(children: [
                           const Icon(
@@ -72,9 +69,8 @@ Widget SearchCard(
                         ),
                         Text(
                           ' Train Number : $trainNUM',
-                          style:  Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium,
                           overflow: TextOverflow.ellipsis,
-                         
                         ),
                       ]),
                 )),

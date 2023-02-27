@@ -50,30 +50,43 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
 
   //2dRl1WJljsXJpNrn9KYB
   void getSeats(String trainId) {
-    // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-    // print(trainId);
-    // print(allSeats);
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
-        .get()
-        .then((value) {
-      // print(trainId);
-      // print(value.docs);
-      value.docs.forEach((e) {
+        .snapshots()
+        .listen((event) {
+      event.docs.forEach((e) {
         allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
         seatsId = e.reference.id;
-        // print(e.reference.id);
       });
-      // print(trainId);
-      // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-      // print(allSeats);
-      // print(seatsId);
       emit(GetSeatsSuccessState());
-    }).catchError((error) {
-      emit(GetSeatsErrorState(error.toString()));
     });
+    // // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+    // // print(trainId);
+    // // print(allSeats);
+    // FirebaseFirestore.instance
+    //     .collection('trains')
+    //     .doc(trainId)
+    //     .collection('seats')
+    //     .get()
+    //     .then((value) {
+    //   // print(trainId);
+    //   // print(value.docs);
+    //   value.docs.forEach((e) {
+    //     allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
+    //     seatsId = e.reference.id;
+    //     // print(e.reference.id);
+    //   });
+
+    //   // print(trainId);
+    //   // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+    //   // print(allSeats);
+    //   // print(seatsId);
+    //   emit(GetSeatsSuccessState());
+    // }).catchError((error) {
+    //   emit(GetSeatsErrorState(error.toString()));
+    // });
   }
 
   void updateSeats(String trainId) {

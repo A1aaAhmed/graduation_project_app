@@ -61,12 +61,8 @@ class _SeatsState extends State<Seats> {
           return ConditionalBuilder(
             condition: allSeats.isNotEmpty,
             builder: (context) => Scaffold(
-              appBar: bar(
-                context: context,
-                text: '',
-                morelist: true,
-                backgroundcolor: colortheme.blueGray,
-                iconcolor: colortheme.black,
+              appBar: AppBar(
+                backgroundColor: colortheme.blueGray,
               ),
               body: Stack(
                 alignment: AlignmentDirectional.bottomCenter,

@@ -88,7 +88,7 @@ class TrainsScreen extends StatelessWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 35, left: 20, right: 20),
+                                          top: 35, right: 20),
                                       child: Text(
                                           '${cubit.searchedTrains.length} Trains Found',
                                           style: Theme.of(context)
