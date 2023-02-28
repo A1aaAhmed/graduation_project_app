@@ -229,11 +229,11 @@ List<DropdownMenuItem<String>> dates = [
       child: Text(DateFormat.yMMMEd()
           .format(DateTime.now().add(Duration(days: 6)))
           .toString())),
-  DropdownMenuItem(
-      value: DateTime.now().add(Duration(days: 7)).toString(),
-      child: Text(DateFormat.yMMMEd()
-          .format(DateTime.now().add(Duration(days: 7)))
-          .toString())),
+  // DropdownMenuItem(
+  //     value: DateTime.now().add(Duration(days: 7)).toString(),
+  //     child: Text(DateFormat.yMMMEd()
+  //         .format(DateTime.now().add(Duration(days: 7)))
+  //         .toString())),
 ];
 
 // Map<String, dynamic> train = {
