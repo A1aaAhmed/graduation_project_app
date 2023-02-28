@@ -153,27 +153,27 @@ class _SecondSectionState extends State<SecondSection> {
                                   height: 60,
                                   context: context,
                                   onpress: () {
-                                    if (formkey.currentState!.validate()) {
-                                      globals.seats = travellers;
-                                      cubit
-                                          .getTrainsAndSearch(from, to)
-                                          .then((value) {
-                                        print(';;;;;;;;;;;;;;;;;;;;;;');
-                                        print(cubit.searchedTrains);
-                                        print(cubit.searchedTrains.length);
+                                    // if (formkey.currentState!.validate()) {
+                                    //   globals.seats = travellers;
+                                    //   cubit
+                                    //       .getTrainsAndSearch(from, to)
+                                    //       .then((value) {
+                                    //     print(';;;;;;;;;;;;;;;;;;;;;;');
+                                    //     print(cubit.searchedTrains);
+                                    //     print(cubit.searchedTrains.length);
 
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  TrainsScreen()),
-                                            ));
-                                      }).catchError((onError) {
-                                        onError.toString();
-                                      });
-                                    }
-                                    ;
-                                  //  addseats(seats);
+                                    //     Navigator.push(
+                                    //         context,
+                                    //         MaterialPageRoute(
+                                    //           builder: ((context) =>
+                                    //               TrainsScreen()),
+                                    //         ));
+                                    //   }).catchError((onError) {
+                                    //     onError.toString();
+                                    //   });
+                                    // }
+                                    // ;
+                                    addseats(seats);
                                   })
                             ]),
                       ))));
@@ -253,6 +253,8 @@ List<bool> seatts = List.filled(48, false);
 
 Map<String, dynamic> seats = {
   newDateTime(DateTime.now().toString(), "06:59:59").toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 1)).toString(), "23:59:59")
+      .toString(): seatts,
   newDateTime(DateTime.now().add(Duration(days: 2)).toString(), "23:59:59")
       .toString(): seatts,
   newDateTime(DateTime.now().add(Duration(days: 3)).toString(), "23:59:59")
@@ -262,8 +264,6 @@ Map<String, dynamic> seats = {
   newDateTime(DateTime.now().add(Duration(days: 5)).toString(), "23:59:59")
       .toString(): seatts,
   newDateTime(DateTime.now().add(Duration(days: 6)).toString(), "23:59:59")
-      .toString(): seatts,
-  newDateTime(DateTime.now().add(Duration(days: 7)).toString(), "23:59:59")
       .toString(): seatts,
 };
 // void addtrains(Map<String, dynamic> train) {

@@ -91,7 +91,7 @@ class MainCubit extends Cubit<MainStates> {
         .collection("trains")
         .doc("2dRl1WJljsXJpNrn9KYB")
         .collection("seats")
-        .doc('RMQwuqHDrZ9PiY6mNy8O')
+        .doc('Lzmj2kh4n6gIQMQwu4sU')
         .get()
         .then((value) {
       isexist = value
