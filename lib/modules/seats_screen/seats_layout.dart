@@ -39,14 +39,6 @@ class _SeatsState extends State<Seats> {
     SelectModel(text: 'Selected', color: colortheme.lightPurple),
   ];
   List<String> gateType = ['1A', '2A', '3B'];
-  // @override
-  // void initState() {
-  //   globals.numberOfSeats.value = 0;
-  //   globals.amountToBePayed.value = 0;
-  //   globals.seats;
-  //   //print(globals.seats);
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,12 +70,13 @@ class _SeatsState extends State<Seats> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Choose Seats',
-                                  style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                                Text('Choose Seats',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        )),
                                 const SizedBox(
                                   height: 50,
                                 ),
@@ -99,13 +92,15 @@ class _SeatsState extends State<Seats> {
                                             padding:
                                                 const EdgeInsets.only(top: 30),
                                             child: ListView.separated(
-                                                itemBuilder: (context, index) =>
-                                                    Text(
-                                                      gateType[index],
-                                                      style: const TextStyle(
-                                                          fontSize: 20,
-                                                          color: Color.fromARGB(
-                                                              255, 95, 94, 94)),
+                                                itemBuilder: (context, index) => Text(
+                                                    gateType[index],
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyMedium
+                                                    // style: const TextStyle(
+                                                    //     fontSize: 20,
+                                                    //     color: Color.fromARGB(
+                                                    //         255, 95, 94, 94)),
                                                     ),
                                                 separatorBuilder:
                                                     (context, index) =>
@@ -125,49 +120,53 @@ class _SeatsState extends State<Seats> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Text(
-                                  'Seats',
-                                  style: TextStyle(fontSize: 15),
-                                ),
+                                Text('Seats',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
                                 Row(
                                   children: [
                                     Text(
-                                      numberOfSeats <= 9
-                                          ? ' 0$numberOfSeats'
-                                          : ' ',
-                                      style: const TextStyle(
-                                          fontSize: 40,
-                                          color: colortheme.lightPurple),
-                                    ),
-                                    Text(
-                                      numberOfSeats <= 9
-                                          ? '/0$seats'
-                                          : '/$seats',
-                                      style: const TextStyle(fontSize: 15),
-                                    ),
+                                        numberOfSeats <= 9
+                                            ? ' 0$numberOfSeats'
+                                            : ' $numberOfSeats',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                                fontSize: 40,
+                                                color: colortheme.lightPurple)
+                                        // style: const TextStyle(
+                                        //     fontSize: 40,
+                                        //     color: colortheme.lightPurple),
+                                        ),
+                                    Text(seats <= 9 ? '/0$seats' : '/$seats',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall),
                                   ],
                                 ),
                                 const SizedBox(
                                   height: 40,
                                 ),
-                                const Text(
-                                  'Amount',
-                                  style: TextStyle(fontSize: 15),
-                                ),
+                                Text('Amount',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
                                 Row(
                                   children: [
                                     Text(
-                                      amountToBePayed <= 9
-                                          ? '0$amountToBePayed'
-                                          : '$amountToBePayed ',
-                                      style: const TextStyle(
-                                          fontSize: 40,
-                                          color: colortheme.black),
-                                    ),
-                                    const Text(
-                                      'EG',
-                                      style: TextStyle(fontSize: 20),
-                                    )
+                                        amountToBePayed <= 9
+                                            ? '0$amountToBePayed'
+                                            : '$amountToBePayed ',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.copyWith(
+                                              fontSize: 40,
+                                            )),
+                                    Text('EG',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium)
                                   ],
                                 ),
                               ],
@@ -297,7 +296,6 @@ class _SeatsState extends State<Seats> {
                       height: 50,
                       onpress: () async {
                         if (selectedSeats.length == seats) {
-                          print(widget.train['trainID']);
                           confirmSeats(
                             context,
                             widget.time,
@@ -319,7 +317,10 @@ class _SeatsState extends State<Seats> {
                 ],
               ),
             ),
-            fallback: (context) => Center(child: CircularProgressIndicator()),
+            fallback: (context) => const Center(
+                child: CircularProgressIndicator(
+              color: colortheme.lightPurple,
+            )),
           );
         },
       ),

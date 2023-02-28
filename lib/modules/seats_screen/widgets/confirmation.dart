@@ -10,6 +10,7 @@ import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import '../../../models/ticket.dart';
+
 Future confirmSeats(BuildContext context, String time, String trainNUM,
         Map<String, dynamic> train) =>
     showDialog(
@@ -22,37 +23,31 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                 },
                 builder: (context, state) {
                   return AlertDialog(
-                    title: const Text(
+                    title: Text(
                       'Confirmation',
-                      style: TextStyle(fontSize: 23),
+                      style: Theme.of(context).textTheme.bodyMedium
                     ),
                     content: Text(
                       'You selected ${selectedSeats.join(',')}.\n Are you sure you want to confirm these seats?',
-                      style: const TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     actions: [
                       TextButton(
                           onPressed: () {
-                            TicketModel ticket=TicketModel(
-                                date:toDateTime(depart,time),
+                            TicketModel ticket = TicketModel(
+                                date: toDateTime(depart, time),
                                 from: from,
                                 to: to,
                                 seats: selectedSeats.join(" ,"),
-                                train:trainNUM,
+                                train: trainNUM,
                                 price: amountToBePayed.toString());
+
                             ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
-                              // if (int.parse(ele) >= 1 && int.parse(ele) <= 16) {
-                              //   gates.add('1A');
-                              // } else if (int.parse(ele) >= 17 &&
-                              //     int.parse(ele) <= 32) {
-                              //   gates.add('2A');
-                              // } else {
-                              //   gates.add('3B');
-                              // }
+                              
                             }
                             SeatsScreenCubit.get(context)
                                 .updateSeats(train['trainID']);

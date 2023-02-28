@@ -94,6 +94,7 @@ class _MyAppState extends State<MyApp> {
                 bodyLarge: TextStyle(fontSize: 30),
                 bodyMedium: TextStyle(fontSize: 20),
                 bodySmall: TextStyle(fontSize: 15),
+                
               ),
             ),
             home:  Trans(),
