@@ -43,3 +43,14 @@ bool isToday(date){
       date.year == now.year &&
       date.month == now.month;
 }
+String newDateTime(
+  String datewitholdtime,
+  String newtime,
+) {
+  String newdate = datewitholdtime.substring(0, 10);
+// print("date first ------------------------------------------------");
+// print(date);
+// print(time);
+  newdate = "$newdate $newtime";
+  return newdate;
+}

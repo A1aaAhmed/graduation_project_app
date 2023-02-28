@@ -10,3 +10,7 @@ class GetTrainsErrorState extends HomeScreenStates {
 }
 
 class GetTrainsLoadingState extends HomeScreenStates {}
+
+class SearchTrainsLoadingState extends HomeScreenStates {}
+
+class SearchTrainsSuccessState extends HomeScreenStates {}

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/searchedtrain_model.dart';
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/dropdownform.dart';
@@ -172,7 +173,7 @@ class _SecondSectionState extends State<SecondSection> {
                                       });
                                     }
                                     ;
-
+                                  //  addseats(seats);
                                   })
                             ]),
                       ))));
@@ -248,25 +249,31 @@ List<DropdownMenuItem<String>> dates = [
 //   'trainNum': '160',
 //   'trainID': '',
 // };
-// List<bool> seatts = List.filled(48, false);
+List<bool> seatts = List.filled(48, false);
 
-// Map<String, dynamic> seats = {
-//   DateTime.now().add(Duration(days: 1)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 2)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 3)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 4)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 5)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 6)).toString(): seatts,
-//   DateTime.now().add(Duration(days: 7)).toString(): seatts,
-// };
+Map<String, dynamic> seats = {
+  newDateTime(DateTime.now().toString(), "06:59:59").toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 2)).toString(), "23:59:59")
+      .toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 3)).toString(), "23:59:59")
+      .toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 4)).toString(), "23:59:59")
+      .toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 5)).toString(), "23:59:59")
+      .toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 6)).toString(), "23:59:59")
+      .toString(): seatts,
+  newDateTime(DateTime.now().add(Duration(days: 7)).toString(), "23:59:59")
+      .toString(): seatts,
+};
 // void addtrains(Map<String, dynamic> train) {
 //   FirebaseFirestore.instance.collection("trains").add(train);
 // }
 
-// void addseats(seats) {
-//   FirebaseFirestore.instance
-//       .collection("trains")
-//       .doc('2dRl1WJljsXJpNrn9KYB')
-//       .collection('seats')
-//       .add(seats);
-// }
+void addseats(seats) {
+  FirebaseFirestore.instance
+      .collection("trains")
+      .doc('2dRl1WJljsXJpNrn9KYB')
+      .collection('seats')
+      .add(seats);
+}

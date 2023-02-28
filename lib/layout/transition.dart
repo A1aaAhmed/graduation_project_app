@@ -8,7 +8,7 @@ class Trans extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainCubit(),
+      create: (context) => MainCubit()..resetSeats(),
       child: BlocConsumer<MainCubit, MainStates>(
         listener: (BuildContext context, MainStates MainStates) {},
         builder: (BuildContext context, MainStates MainStates) {
