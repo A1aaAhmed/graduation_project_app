@@ -12,11 +12,13 @@ class NothingScreen extends StatelessWidget {
   final bool isEmpty;
   final bool isFromHomeScreen;
   final String station;
+  final bool nothing;
   const NothingScreen({
     required this.date,
     required this.isEmpty,
     required this.isFromHomeScreen,
     required this.station,
+    required this.nothing,
     super.key
   });
   @override
@@ -27,7 +29,7 @@ class NothingScreen extends StatelessWidget {
     return Scaffold(
             body:  Center(
                     child:ConditionalBuilder(
-                      condition: !isFromHomeScreen||isFromHomeScreen&&availableTicket.isNotEmpty,
+                      condition: !nothing&&(!isFromHomeScreen||isFromHomeScreen&&availableTicket.isNotEmpty),
                       builder: (context) =>Column(
                         children: [
                           Container(

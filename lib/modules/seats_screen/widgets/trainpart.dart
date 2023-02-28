@@ -81,11 +81,16 @@ class _MyWidgetState extends State<MyWidget> {
         child: Center(
           child: Text(
             value <= 9 ? '0$value' : '$value',
-            style: TextStyle(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: boxColor == colortheme.saimon ||
                         boxColor == colortheme.lightPurple
                     ? Colors.white
                     : Colors.black),
+            // style: TextStyle(
+            //     color: boxColor == colortheme.saimon ||
+            //             boxColor == colortheme.lightPurple
+            //         ? Colors.white
+            //         : Colors.black),
           ),
         ),
       );

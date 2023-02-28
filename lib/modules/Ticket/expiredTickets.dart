@@ -24,6 +24,7 @@ class _ExpiredState extends State<ExpiredScreen> {
             w:100.w,
           )
         :NothingScreen(
+        nothing: true,
          station: "",
         date:DateTime.now(),
         isEmpty: true,
