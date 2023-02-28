@@ -85,13 +85,32 @@ class MainCubit extends Cubit<MainStates> {
 
   bool isexist = false;
   bool isexpired = false;
+   List trainsDocs = [
+    '2dRl1WJljsXJpNrn9KYB',
+    'Ch6XjXxzROUKj43a5514',
+    'GJKZ8iQI7y0gH5xygXHv',
+    'Hqxznuod9XaQenF75gRK',
+    'IPg76Z4TtDCiLVQHTtEq',
+    'JRFxN6jiIpQZ8QTcvCVt',
+    'OYWMTz9e7yENbM0LOyc2',
+    'QSyYEPvr85riNoFYBPZJ',
+    'XkhKKO2QTJ6XDNfpDXya',
+    'g5rWOLNbdr6NLEPJrpbQ',
+    'jIL4UEv90x7ESzT0ksXV',
+    'jevKCjY8iFVkwpxhjw0n',
+    'rA23Dfb4AeaZ1Ds2jvQQ',
+    'sBEBaFUWFaiSNcw1TJDu',
+    'sGqWFjS3syqizW4EZlVY',
+    'tn2ILzqjjm3GtYtPgrwj',
+    'wEdjQtfgZagcN02PRRfY'
+  ];
 
   Future<void> checkExpiredDate() async {
     await FirebaseFirestore.instance
         .collection("trains")
         .doc("2dRl1WJljsXJpNrn9KYB")
         .collection("seats")
-        .doc('Lzmj2kh4n6gIQMQwu4sU')
+        .doc('2I3TxQ3Hmrs4cpwfmQhH')
         .get()
         .then((value) {
       isexist = value

@@ -153,27 +153,27 @@ class _SecondSectionState extends State<SecondSection> {
                                   height: 60,
                                   context: context,
                                   onpress: () {
-                                    // if (formkey.currentState!.validate()) {
-                                    //   globals.seats = travellers;
-                                    //   cubit
-                                    //       .getTrainsAndSearch(from, to)
-                                    //       .then((value) {
-                                    //     print(';;;;;;;;;;;;;;;;;;;;;;');
-                                    //     print(cubit.searchedTrains);
-                                    //     print(cubit.searchedTrains.length);
+                                    if (formkey.currentState!.validate()) {
+                                      globals.seats = travellers;
+                                      cubit
+                                          .getTrainsAndSearch(from, to)
+                                          .then((value) {
+                                        print(';;;;;;;;;;;;;;;;;;;;;;');
+                                        print(cubit.searchedTrains);
+                                        print(cubit.searchedTrains.length);
 
-                                    //     Navigator.push(
-                                    //         context,
-                                    //         MaterialPageRoute(
-                                    //           builder: ((context) =>
-                                    //               TrainsScreen()),
-                                    //         ));
-                                    //   }).catchError((onError) {
-                                    //     onError.toString();
-                                    //   });
-                                    // }
-                                    // ;
-                                    addseats(seats);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  TrainsScreen()),
+                                            ));
+                                      }).catchError((onError) {
+                                        onError.toString();
+                                      });
+                                    }
+                                    ;
+                                   // addseats(seats);
                                   })
                             ]),
                       ))));
@@ -271,9 +271,28 @@ Map<String, dynamic> seats = {
 // }
 
 void addseats(seats) {
-  FirebaseFirestore.instance
-      .collection("trains")
-      .doc('2dRl1WJljsXJpNrn9KYB')
-      .collection('seats')
-      .add(seats);
+  List trainsDocs = [
+    'GJKZ8iQI7y0gH5xygXHv',
+    'Hqxznuod9XaQenF75gRK',
+    'IPg76Z4TtDCiLVQHTtEq',
+    'JRFxN6jiIpQZ8QTcvCVt',
+    'OYWMTz9e7yENbM0LOyc2',
+    'QSyYEPvr85riNoFYBPZJ',
+    'XkhKKO2QTJ6XDNfpDXya',
+    'g5rWOLNbdr6NLEPJrpbQ',
+    'jIL4UEv90x7ESzT0ksXV',
+    'jevKCjY8iFVkwpxhjw0n',
+    'rA23Dfb4AeaZ1Ds2jvQQ',
+    'sBEBaFUWFaiSNcw1TJDu',
+    'sGqWFjS3syqizW4EZlVY',
+    'tn2ILzqjjm3GtYtPgrwj',
+    'wEdjQtfgZagcN02PRRfY'
+  ];
+  for (int i = 0; i < trainsDocs.length; i++) {
+    FirebaseFirestore.instance
+        .collection("trains")
+        .doc(trainsDocs[i])
+        .collection('seats')
+        .add(seats);
+  }
 }
