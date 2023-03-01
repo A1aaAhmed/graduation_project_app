@@ -21,47 +21,44 @@ void main() async {
   );
   Bloc.observer = MyBlocObserver();
   await casheHelper.init();
-   Widget? widget;
+  Widget? widget;
   var uId= await casheHelper.getData(key: 'uId') ;
   if(uId == null){
     widget =welcomeScreen();
   }
-  else
-    {
-      widget=Trans();
-    }
 
   //Locking Device Orientation to Portrait
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp( MyApp(startScreen: widget,)));
+  ]).then((value) => runApp(MyApp(
+        startScreen: widget,
+      )));
 
-  runApp( MyApp(startScreen: widget,));
+  runApp(MyApp(
+    startScreen: widget,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-final Widget? startScreen;
- MyApp({
-  this.startScreen
-});
+  final Widget? startScreen;
+  MyApp({this.startScreen});
   @override
   Widget build(BuildContext context) {
-      return Sizer(builder: (context, orientation, deviceType) {
+    return Sizer(builder: (context, orientation, deviceType) {
       return MultiBlocProvider(
           providers: [
-          BlocProvider(
-          create: (context) => MainCubit()..userGetData()
-          ),
+            BlocProvider(
+                create: (context) => MainCubit()
+                  
+                  ..userGetData()),
             BlocProvider(
               create: (context) => HomeScreenCubit(),
-
             ),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-
               iconTheme:
                   const IconThemeData(color: colortheme.lightPurple, size: 30),
               appBarTheme: const AppBarTheme(
@@ -96,7 +93,6 @@ final Widget? startScreen;
                 bodyLarge: TextStyle(fontSize: 30),
                 bodyMedium: TextStyle(fontSize: 20),
                 bodySmall: TextStyle(fontSize: 15),
-
               ),
             ),
             home: startScreen,
