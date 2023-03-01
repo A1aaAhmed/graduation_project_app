@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project_app/layout/transition.dart';
-
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
-import 'package:graduation_project_app/network/local/shared_pref.dart';
-import 'package:graduation_project_app/shared/variables.dart';
 import '../../shared/components/components.dart';
 
 class welcomeScreen extends StatefulWidget {
@@ -43,7 +40,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height:MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/train.jpg'),
               fit: BoxFit.cover,
@@ -63,35 +60,35 @@ class _welcomeScreenState extends State<welcomeScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Find Your best',
+                        const Text('Find Your best',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 23,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 5,),
-                        Text('Timing and tickets',
+                        const SizedBox(height: 5,),
+                        const Text('Timing and tickets',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 23,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 15,),
-                        Text('Booking your tickets online with your',
+                        const SizedBox(height: 15,),
+                        const Text('Booking your tickets online with your',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 10,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 5,),
-                        Text('best searching preferences all over EGYPT',
+                        const SizedBox(height: 5,),
+                        const Text('best searching preferences all over EGYPT',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 10,
                             color: Colors.black,
                           ),),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         iconTextButton(
                             background: Colors.red,
                             iconp: Icons.g_mobiledata,
@@ -102,9 +99,9 @@ class _welcomeScreenState extends State<welcomeScreen> {
                             {
                                Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) =>  Trans()),);}
+                                MaterialPageRoute(builder: (context) =>  const Trans()),);}
                             }),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         iconTextButton(
                           background: Colors.indigo.shade400,
                           iconp: Icons.email,
@@ -114,7 +111,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                               context,
                               MaterialPageRoute(builder: (context) =>  loginSreen()),);
                           },),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         defultButton(
                             background: Colors.grey,
                             function: (){
@@ -123,17 +120,17 @@ class _welcomeScreenState extends State<welcomeScreen> {
                               );
                             },
                             text: "Sign up with Email"),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Container(
                           width: double.infinity,
                           height: 1,
                           color: Colors.grey,
                         ),
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Column(
 
                           children: [
-                            Text(  'By continuing you agree to our     ',textAlign: TextAlign.start,
+                            const Text(  'By continuing you agree to our     ',textAlign: TextAlign.start,
                             ),
                             textButon(text: 'T&Cs',
                                 function: (){}),
@@ -145,7 +142,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                         Column(
 
                           children: [
-                            Text('we use your data to offer you a personalized experience.',),
+                            const Text('we use your data to offer you a personalized experience.',),
                             textButon(text: 'Find out more', function: (){})
                           ],
                         ),

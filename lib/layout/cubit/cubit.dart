@@ -9,17 +9,16 @@ import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/allTickets.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/home_screen/secondsection/secondsection.dart';
-import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../modules/live_location/livelocation_screen.dart';
 import 'package:graduation_project_app/modules/live_location/checkTrain.dart';
 import '../../modules/home_screen/home_screen.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainIntialState());
-
+  static String ?uId ;
+  static UserModel? model;
   static MainCubit get(context) => BlocProvider.of(context);
   int currentindex = 0;
   final screens = [
@@ -34,11 +33,11 @@ class MainCubit extends Cubit<MainStates> {
     emit(ChangeNavBarState());
   }
 
-  String uId = casheHelper.getData(key: 'uId');
-  UserModel? model;
+
 
   Future<void> userGetData() async {
     emit(getUserLoadingState());
+    uId =await casheHelper.getData(key: 'uId');
     print(uId);
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());

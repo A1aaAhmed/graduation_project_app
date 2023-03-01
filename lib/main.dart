@@ -5,17 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
-import 'package:graduation_project_app/modules/Profile/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/Profile/editProfile_Screen.dart';
-import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
-import 'package:graduation_project_app/modules/login_screen/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/shared/variables.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
@@ -29,7 +22,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await casheHelper.init();
    Widget? widget;
-  var uId= casheHelper?.getData(key: 'uId') ;
+  var uId= await casheHelper.getData(key: 'uId') ;
   if(uId == null){
     widget =welcomeScreen();
   }
