@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:core';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -77,10 +79,7 @@ class MainCubit extends Cubit<MainStates> {
     emit(updateUserLoadingState());
     FirebaseStorage.instance
         .ref()
-        .child('users/${Uri
-        .file(profileImage!.path)
-        .pathSegments
-        .last}')
+        .child('users/${Uri.file(profileImage!.path).pathSegments.last}')
         .putFile(profileImage!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
@@ -106,7 +105,6 @@ class MainCubit extends Cubit<MainStates> {
     required String editedEmail,
     required String editedPhone,
     String? image,
-
   }) async {
     UserModel modeldata = UserModel(
       uId: model!.uId!,
@@ -114,7 +112,6 @@ class MainCubit extends Cubit<MainStates> {
       email: editedEmail,
       phone: editedPhone,
       image: image ?? model!.image!,
-
     );
     FirebaseFirestore.instance
         .collection('users')
@@ -122,13 +119,10 @@ class MainCubit extends Cubit<MainStates> {
         .update(modeldata.toMap())
         .then((value) {
       userGetData();
-    })
-        .catchError((error) {
+    }).catchError((error) {
       emit(updateUserErrorState(error));
     });
   }
-
-
 
 //   Future<void> update() async {
 //     String dateTobBeDeleted =
@@ -208,46 +202,47 @@ class MainCubit extends Cubit<MainStates> {
     'wEdjQtfgZagcN02PRRfY'
   ];
 
+  List seatsDocs = [
+    'Lzmj2kh4n6gIQMQwu4sU',
+    '2I3TxQ3Hmrs4cpwfmQhH',
+    'E4JoMZ6FG8TLm2X0c0P9',
+    '7IOuOuiw9T8CKJMp2dJs',
+    'fs079fI3PfQVS0t14Saa',
+    '5LVpUMFAX7J71K6dRGUk',
+    'xgEm60qwGjGDLsyUO1ys',
+    'faDKArN2aDCadrGkjdaM',
+    'jN6mjR4pYLFVcfcnKiD1',
+    'THjer230pI2XGH6RYM88',
+    'ddOsqyTkKaHcNBbWgr3c',
+    'oYbH8TEE6g2gS3LeRMDN',
+    'Gwfj4FfVbagjYOQwTMuj',
+    '5gyu1fqQDcI1vF3nMTBo',
+    'lQEdJABW6W3tuIG4YPcS',
+    'HOTPNqurtcnu0cDZR0Yg',
+    'rW4sjMbEc4Qxo6fJ6UpF'
+  ];
+
+  List seatsUpdate = List.filled(48, false);
+
   Future<void> checkExpiredDate() async {
     await FirebaseFirestore.instance
         .collection("trains")
-        .doc("2dRl1WJljsXJpNrn9KYB")
+        .doc(trainsDocs[0])
         .collection("seats")
-        .doc('2I3TxQ3Hmrs4cpwfmQhH')
+        .doc(seatsDocs[0])
         .get()
         .then((value) {
       isexist = value
           .data()!
-          .containsKey(newDateTime(DateTime.now().toString(), "06:59:59"));
+          .containsKey(newDateTime(DateTime.now().toString(), "23:59:59"));
       // print("isexist");
       // print(isexist);
       if (isexist) {
         isexpired = expired(
-            DateTime.parse(newDateTime(DateTime.now().toString(), "06:59:59")));
+            DateTime.parse(newDateTime(DateTime.now().toString(), "23:59:59")));
         // print("isexpired");
         // print(isexpired);
       }
-    });
-    await FirebaseFirestore.instance
-        .collection('trains')
-        .doc("2dRl1WJljsXJpNrn9KYB")
-        .collection("seats")
-        .doc('Lzmj2kh4n6gIQMQwu4sU')
-        .update({
-      '2023-03-06 23:59:59': FieldValue.delete(),
-    }).whenComplete(() async {
-      print('Field deleted');
-      await FirebaseFirestore.instance
-        .collection('trains')
-        .doc('2dRl1WJljsXJpNrn9KYB')
-        .collection("seats")
-        .doc('Lzmj2kh4n6gIQMQwu4sU')
-        .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
-            (value) async {
-      //Do your stuff.
-      print('the field added successfully');
-
-    });
     });
   }
 
@@ -255,41 +250,55 @@ class MainCubit extends Cubit<MainStates> {
     //اكتبي هنا يا ندود
     // ده كود الماب بتاعة التاريخ الللي هيتمسح واللي هيتحط اللي هتديها لفانكشن
     // update(deletes) / set(sets, SetOptions(merge: true))
-
     String dateTobBeDeleted =
-        newDateTime(DateTime.now().toString(), "06:59:59");
+        newDateTime(DateTime.now().toString(), "23:59:59");
     final Map<String, dynamic> deletes = {
       dateTobBeDeleted: FieldValue.delete(),
     };
-    List<bool> seats = List.filled(48, false);
-    String dateTobBeSet = newDateTime(
+    String dateToBeSet = newDateTime(
         DateTime.now().add(const Duration(days: 7)).toString(), "23:59:59");
     final Map<String, dynamic> sets = {
-      dateTobBeSet: seats,
+      dateToBeSet: seatsUpdate,
     };
-    // FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc("2dRl1WJljsXJpNrn9KYB")
-    //     .collection("seats")
-    //     .doc('Lzmj2kh4n6gIQMQwu4sU')
-    //     .update({
-    //   '2023-02-28 06:59:59': FieldValue.delete(),
-    // })
-    //     .whenComplete(() {
-    //   print('Field deleted');
-    // });
+    for (var i = 0; i < trainsDocs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection('trains')
+          .doc(trainsDocs[i])
+          .collection('seats')
+          .doc(seatsDocs[i])
+          .update(deletes)
+          .whenComplete(() {
+        print('Field deleted');
+      });
+    }
+    for (var i = 0; i < trainsDocs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection('trains')
+          .doc(trainsDocs[i])
+          .collection('seats')
+          .doc(seatsDocs[i])
+          .set(sets, SetOptions(merge: true))
+          .then((value) {
+        print('Field added');
+      }).catchError((error) {
+        print(error.toString());
+      });
+    }
   }
 
   Future<void> resetSeats() async {
     isexist = false;
     isexpired = false;
-    checkExpiredDate().then((value) {
+    checkExpiredDate().then((value) async {
       // print("isexist & isexpired");
-      // print(isexist & isexpired);
+      //print(isexist & isexpired);
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update
       // ويديها كل مرة الاندكس بتاع عنوان الترين والسيتس
+      if (isexist & isexpired) {
+        update();
+      }
       emit(CheckExpiredDateSuccesState());
     }).catchError((error) {
       emit(CheckExpiredDateErrorState(error.toString()));

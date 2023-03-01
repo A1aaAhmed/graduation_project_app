@@ -17,9 +17,3 @@ class UpdateSeatsErrorState extends SeatsScreenStates{
 }
 
 
-class DeleteFieldState extends SeatsScreenStates{}
-class AddFieldState extends SeatsScreenStates{}
-class DeleteFieldErrorState extends SeatsScreenStates{final error;
-
-  DeleteFieldErrorState(this.error);
-}

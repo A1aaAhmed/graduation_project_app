@@ -44,3 +44,9 @@ class CheckExpiredDateErrorState extends MainStates {
 }
 class CheckExpiredDateSuccesState extends MainStates {}
 
+class DeleteFieldState extends MainStates{}
+class AddFieldState extends MainStates{}
+class DeleteFieldErrorState extends MainStates{final error;
+
+  DeleteFieldErrorState(this.error);
+}
