@@ -85,7 +85,7 @@ class MainCubit extends Cubit<MainStates> {
 
   bool isexist = false;
   bool isexpired = false;
-   List trainsDocs = [
+  List trainsDocs = [
     '2dRl1WJljsXJpNrn9KYB',
     'Ch6XjXxzROUKj43a5514',
     'GJKZ8iQI7y0gH5xygXHv',
@@ -142,14 +142,41 @@ class MainCubit extends Cubit<MainStates> {
     final Map<String, dynamic> sets = {
       dateTobBeSet: seats,
     };
+    await FirebaseFirestore.instance
+        .collection('trains')
+        .doc("2dRl1WJljsXJpNrn9KYB")
+        .collection("seats")
+        .doc('Lzmj2kh4n6gIQMQwu4sU')
+        .update({
+      '2023-03-06 23:59:59': FieldValue.delete(),
+    }).whenComplete(() async {
+      print('Field deleted');
+      emit(DeleteFieldState());
+      await FirebaseFirestore.instance
+          .collection('trains')
+          .doc('2dRl1WJljsXJpNrn9KYB')
+          .collection("seats")
+          .doc('Lzmj2kh4n6gIQMQwu4sU')
+          .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
+              (value) async {
+        //Do your stuff.
+        print('the field added successfully');
+        emit(AddFieldState());
+}).catchError((error) {
+        print(error.toString());
+        emit(DeleteFieldErrorState(error));
+      });
+    });
   }
 
   Future<void> resetSeats() async {
     isexist = false;
     isexpired = false;
+    update();
     checkExpiredDate().then((value) {
       print("isexist & isexpired");
       print(isexist & isexpired);
+      
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update
