@@ -137,7 +137,7 @@ class TicketCubit extends Cubit<TicketsStates> {
                   .doc(seatsId)
                   .update({
                 //DateFormat('EEEE').format(DateTime.parse(depart))
-                DateFormat('EEEE').format(DateTime.parse(depart)): allSeats,
+                fieldName: allSeats,
               }).then((value) {
                 showToast(
                     status: toastStates.SUCESS,
