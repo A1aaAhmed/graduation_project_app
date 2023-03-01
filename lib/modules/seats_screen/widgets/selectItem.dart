@@ -9,18 +9,18 @@ class SelectModel {
   });
 }
 
-Widget selectItem(SelectModel selection) => Row(
+Widget selectItem(SelectModel selection, BuildContext context) => Row(
       children: [
         Container(
-          margin: const EdgeInsets.only(right: 5),
-          width: 10,
-          height: 10,
+          margin: const EdgeInsets.only(right: 3.2),
+          width: 7,
+          height: 7,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: selection.color),
         ),
-        Text(selection.text),
+        Text(selection.text, style: Theme.of(context).textTheme.bodySmall),
         const SizedBox(
-          width: 10,
+          width: 7,
         ),
       ],
     );

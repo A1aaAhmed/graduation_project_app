@@ -57,6 +57,14 @@ class _SeatsState extends State<Seats> {
                 iconTheme: const IconThemeData(
                   color: colortheme.lightPurple,
                 ),
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                  ),
+                ),
               ),
               body: Stack(
                 alignment: AlignmentDirectional.bottomCenter,
@@ -80,7 +88,7 @@ class _SeatsState extends State<Seats> {
                                           fontWeight: FontWeight.bold,
                                         )),
                                 const SizedBox(
-                                  height: 50,
+                                  height: 35,
                                 ),
                                 Row(
                                   children: [
@@ -90,9 +98,9 @@ class _SeatsState extends State<Seats> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            height: 300,
+                                            height: 250,
                                             padding:
-                                                const EdgeInsets.only(top: 30),
+                                                const EdgeInsets.only(top: 20),
                                             child: ListView.separated(
                                                 itemBuilder: (context, index) => Text(
                                                     gateType[index],
@@ -107,7 +115,7 @@ class _SeatsState extends State<Seats> {
                                                 separatorBuilder:
                                                     (context, index) =>
                                                         const SizedBox(
-                                                          height: 80,
+                                                          height: 50,
                                                         ),
                                                 itemCount: gateType.length),
                                           )
@@ -120,7 +128,7 @@ class _SeatsState extends State<Seats> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 20,
+                                  height: 10,
                                 ),
                                 Text('Seats',
                                     style:
@@ -148,7 +156,7 @@ class _SeatsState extends State<Seats> {
                                   ],
                                 ),
                                 const SizedBox(
-                                  height: 40,
+                                  height: 7,
                                 ),
                                 Text('Amount',
                                     style:
@@ -185,13 +193,13 @@ class _SeatsState extends State<Seats> {
                                 height: 120,
                                 child: ListView.separated(
                                   itemBuilder: (context, index) =>
-                                      selectItem(selection[index]),
+                                      selectItem(selection[index], context),
                                   itemCount: selection.length,
                                   scrollDirection: Axis.horizontal,
                                   separatorBuilder:
                                       (BuildContext context, int index) =>
                                           const SizedBox(
-                                    width: 10,
+                                    width: 3,
                                   ),
                                 ),
                               ),

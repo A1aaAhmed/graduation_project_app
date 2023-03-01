@@ -9,7 +9,7 @@ Widget smallTrain() => Column(
           children: [
             Container(
               width: 40,
-              height: 100,
+              height: 80,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -32,7 +32,7 @@ Widget smallTrain() => Column(
         ),
         Container(
           width: 40,
-          height: 80,
+          height: 60,
           margin: const EdgeInsets.only(top: 7),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(4.5)),
@@ -42,7 +42,7 @@ Widget smallTrain() => Column(
           children: [
             Container(
               width: 40,
-              height: 100,
+              height: 80,
               margin: const EdgeInsets.symmetric(vertical: 7),
               decoration: const BoxDecoration(
                   color: Colors.white,
