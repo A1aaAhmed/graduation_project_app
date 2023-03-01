@@ -46,7 +46,6 @@ class _SeatsState extends State<Seats> {
       create: (context) => SeatsScreenCubit()
         ..initialFunction()
         ..getSeats(widget.train['trainID']),
-      // ..getSeats(),
       child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -55,6 +54,9 @@ class _SeatsState extends State<Seats> {
             builder: (context) => Scaffold(
               appBar: AppBar(
                 backgroundColor: colortheme.blueGray,
+                iconTheme: const IconThemeData(
+                  color: colortheme.lightPurple,
+                ),
               ),
               body: Stack(
                 alignment: AlignmentDirectional.bottomCenter,
