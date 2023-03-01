@@ -266,7 +266,6 @@ class MainCubit extends Cubit<MainStates> {
     final Map<String, dynamic> sets = {
       dateTobBeSet: seats,
     };
-<<<<<<< HEAD
     await FirebaseFirestore.instance
         .collection('trains')
         .doc("2dRl1WJljsXJpNrn9KYB")
@@ -292,19 +291,6 @@ class MainCubit extends Cubit<MainStates> {
         emit(DeleteFieldErrorState(error));
       });
     });
-=======
-    // FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc("2dRl1WJljsXJpNrn9KYB")
-    //     .collection("seats")
-    //     .doc('Lzmj2kh4n6gIQMQwu4sU')
-    //     .update({
-    //   '2023-02-28 06:59:59': FieldValue.delete(),
-    // })
-    //     .whenComplete(() {
-    //   print('Field deleted');
-    // });
->>>>>>> 451be299066e4cf8c53f86021dd2fd9bcf53436b
   }
 
   Future<void> resetSeats() async {
@@ -312,14 +298,9 @@ class MainCubit extends Cubit<MainStates> {
     isexpired = false;
     update();
     checkExpiredDate().then((value) {
-<<<<<<< HEAD
       print("isexist & isexpired");
       print(isexist & isexpired);
       
-=======
-      // print("isexist & isexpired");
-      // print(isexist & isexpired);
->>>>>>> 451be299066e4cf8c53f86021dd2fd9bcf53436b
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update
