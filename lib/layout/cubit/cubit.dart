@@ -19,7 +19,7 @@ import '../../modules/home_screen/home_screen.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainIntialState());
-  static String ?uId ;
+  static String? uId;
   static UserModel? model;
   static MainCubit get(context) => BlocProvider.of(context);
   int currentindex = 0;
@@ -35,11 +35,9 @@ class MainCubit extends Cubit<MainStates> {
     emit(ChangeNavBarState());
   }
 
-
-
   Future<void> userGetData() async {
     emit(getUserLoadingState());
-    uId =await casheHelper.getData(key: 'uId');
+    uId = await casheHelper.getData(key: 'uId');
     print(uId);
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());
@@ -53,7 +51,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
 ////////////////////////////////////////////////
-
 //////////////////////////////////////
   File? profileImage;
 
@@ -69,7 +66,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
 ///////////////////////////////////////upload////////////////////
-
   Future<void> uploadImage({
     required String name,
     required String email,
@@ -259,33 +255,6 @@ class MainCubit extends Cubit<MainStates> {
     final Map<String, dynamic> sets = {
       dateToBeSet: seatsUpdate,
     };
-<<<<<<< HEAD
-    await FirebaseFirestore.instance
-        .collection('trains')
-        .doc("2dRl1WJljsXJpNrn9KYB")
-        .collection("seats")
-        .doc('Lzmj2kh4n6gIQMQwu4sU')
-        .update({
-      '2023-03-06 23:59:59': FieldValue.delete(),
-    }).whenComplete(() async {
-      print('Field deleted');
-      emit(DeleteFieldState());
-      await FirebaseFirestore.instance
-          .collection('trains')
-          .doc('2dRl1WJljsXJpNrn9KYB')
-          .collection("seats")
-          .doc('Lzmj2kh4n6gIQMQwu4sU')
-          .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
-              (value) async {
-        //Do your stuff.
-        print('the field added successfully');
-        emit(AddFieldState());
-}).catchError((error) {
-        print(error.toString());
-        emit(DeleteFieldErrorState(error));
-      });
-    });
-=======
     for (var i = 0; i < trainsDocs.length; i++) {
       await FirebaseFirestore.instance
           .collection('trains')
@@ -310,23 +279,14 @@ class MainCubit extends Cubit<MainStates> {
         print(error.toString());
       });
     }
->>>>>>> e03dab6a2c1a119565ddd489bc42cca038c5daa8
   }
 
   Future<void> resetSeats() async {
     isexist = false;
     isexpired = false;
-<<<<<<< HEAD
-    update();
-    checkExpiredDate().then((value) {
+    checkExpiredDate().then((value) async {
       print("isexist & isexpired");
       print(isexist & isexpired);
-      
-=======
-    checkExpiredDate().then((value) async {
-      // print("isexist & isexpired");
-      //print(isexist & isexpired);
->>>>>>> e03dab6a2c1a119565ddd489bc42cca038c5daa8
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update

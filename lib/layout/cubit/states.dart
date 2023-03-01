@@ -49,9 +49,3 @@ class DeleteFieldErrorState extends MainStates {
   final String error;
   DeleteFieldErrorState(this.error);}
 
-class DeleteFieldState extends MainStates{}
-class AddFieldState extends MainStates{}
-class DeleteFieldErrorState extends MainStates{final error;
-
-  DeleteFieldErrorState(this.error);
-}
