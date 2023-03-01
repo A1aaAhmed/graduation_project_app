@@ -1,18 +1,25 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/allTickets.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
-import 'package:graduation_project_app/modules/live_location/checkTrain.dart';
+import 'package:graduation_project_app/modules/home_screen/secondsection/secondsection.dart';
+import 'package:graduation_project_app/modules/social/welcome_screen.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
-
+import 'package:image_picker/image_picker.dart';
+import '../../modules/live_location/livelocation_screen.dart';
+import 'package:graduation_project_app/modules/live_location/checkTrain.dart';
 import '../../modules/home_screen/home_screen.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainIntialState());
+
   static MainCubit get(context) => BlocProvider.of(context);
   int currentindex = 0;
   final screens = [
@@ -26,6 +33,102 @@ class MainCubit extends Cubit<MainStates> {
     currentindex = index;
     emit(ChangeNavBarState());
   }
+
+  String uId = casheHelper.getData(key: 'uId');
+  UserModel? model;
+
+  Future<void> userGetData() async {
+    emit(getUserLoadingState());
+    print(uId);
+    FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+      print(value.data());
+      model = UserModel.fromJason(value.data()!);
+      emit(getUserSucessState());
+      print('name is ' + model!.name!);
+    }).catchError((error) {
+      print(error.toString());
+      emit(getUserErrorState(error));
+    });
+  }
+
+////////////////////////////////////////////////
+
+//////////////////////////////////////
+  File? profileImage;
+
+  Future<void> getImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      profileImage = File(image.path);
+      emit(profilePickedImageProfileSucessState());
+    } else {
+      print('no image selected');
+      emit(profilePickedImageProfileErrortate());
+    }
+  }
+
+///////////////////////////////////////upload////////////////////
+
+  Future<void> uploadImage({
+    required String name,
+    required String email,
+    required String phone,
+  }) async {
+    emit(updateUserLoadingState());
+    FirebaseStorage.instance
+        .ref()
+        .child('users/${Uri
+        .file(profileImage!.path)
+        .pathSegments
+        .last}')
+        .putFile(profileImage!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        // emit(uploadProfileSucessState());
+        print('photo is' + value);
+        updateUser(
+          editedName: name,
+          editedEmail: email,
+          editedPhone: phone,
+          image: value,
+        );
+      }).catchError((error) {
+        emit(uploadProfileErrorState(error));
+      });
+    }).catchError((error) {
+      emit(uploadProfileErrorState(error));
+    });
+  }
+
+  ////////////////////////////////////////////
+  Future<void> updateUser({
+    required String editedName,
+    required String editedEmail,
+    required String editedPhone,
+    String? image,
+
+  }) async {
+    UserModel modeldata = UserModel(
+      uId: model!.uId!,
+      name: editedName,
+      email: editedEmail,
+      phone: editedPhone,
+      image: image ?? model!.image!,
+
+    );
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(model?.uId)
+        .update(modeldata.toMap())
+        .then((value) {
+      userGetData();
+    })
+        .catchError((error) {
+      emit(updateUserErrorState(error));
+    });
+  }
+
+
 
 //   Future<void> update() async {
 //     String dateTobBeDeleted =
@@ -143,7 +246,7 @@ class MainCubit extends Cubit<MainStates> {
             (value) async {
       //Do your stuff.
       print('the field added successfully');
-      
+
     });
     });
   }

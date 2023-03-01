@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/searchedtrain_model.dart';
+
 import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
+
+
 import '../../../models/train_model.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenStates> {
@@ -150,4 +154,7 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   //   //     "/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
   //   emit(SearchTrainsSuccessState());
   // }
+/////////////////////////////////////////////////////
+
+
 }

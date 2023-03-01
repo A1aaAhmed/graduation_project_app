@@ -6,6 +6,8 @@ import 'package:graduation_project_app/layout/transition.dart';
 
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import '../../shared/components/components.dart';
 
 class welcomeScreen extends StatefulWidget {

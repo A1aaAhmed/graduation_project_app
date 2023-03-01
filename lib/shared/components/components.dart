@@ -45,8 +45,9 @@ Widget defultButton({
   child: MaterialButton(
     onPressed: function,
     child: Text('$text',style: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: colortheme.lightGray,
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
     ),),
   ),
 );

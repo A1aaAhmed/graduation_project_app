@@ -1,8 +1,9 @@
 //TextEditingController from = TextEditingController();
 //TextEditingController to = TextEditingController();
 //TextEditingController depart = TextEditingController();
+ import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+String uId= casheHelper?.getData(key: 'uId');
 String from='';
 String to='';
 String depart='';
@@ -125,7 +126,7 @@ var trian_location_lat = 30.033333;
 String googleAPiKey = "AIzaSyBSob1uooRKAkU1SzUjXrxsAeVj-u_OcTc";
 /////////////////////////////////////////////////////////////
 ///add uid of the current user here yaaaaaaaaaaaaaaaaaaa maaaaaaaaaaaaaaaahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-var uId="rH56bEn5CaTfTjLo3fOJ7emfyfw1";
+//var uId="rH56bEn5CaTfTjLo3fOJ7emfyfw1";
 List availableTicket =[];
 DateTime dateTicket=DateTime.now();
 String station="";
