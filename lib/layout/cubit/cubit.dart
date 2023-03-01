@@ -85,7 +85,7 @@ class MainCubit extends Cubit<MainStates> {
 
   bool isexist = false;
   bool isexpired = false;
-   List trainsDocs = [
+  List trainsDocs = [
     '2dRl1WJljsXJpNrn9KYB',
     'Ch6XjXxzROUKj43a5514',
     'GJKZ8iQI7y0gH5xygXHv',
@@ -116,14 +116,35 @@ class MainCubit extends Cubit<MainStates> {
       isexist = value
           .data()!
           .containsKey(newDateTime(DateTime.now().toString(), "06:59:59"));
-      print("isexist");
-      print(isexist);
+      // print("isexist");
+      // print(isexist);
       if (isexist) {
         isexpired = expired(
             DateTime.parse(newDateTime(DateTime.now().toString(), "06:59:59")));
-        print("isexpired");
-        print(isexpired);
+        // print("isexpired");
+        // print(isexpired);
       }
+    });
+    await FirebaseFirestore.instance
+        .collection('trains')
+        .doc("2dRl1WJljsXJpNrn9KYB")
+        .collection("seats")
+        .doc('Lzmj2kh4n6gIQMQwu4sU')
+        .update({
+      '2023-03-06 23:59:59': FieldValue.delete(),
+    }).whenComplete(() async {
+      print('Field deleted');
+      await FirebaseFirestore.instance
+        .collection('trains')
+        .doc('2dRl1WJljsXJpNrn9KYB')
+        .collection("seats")
+        .doc('Lzmj2kh4n6gIQMQwu4sU')
+        .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
+            (value) async {
+      //Do your stuff.
+      print('the field added successfully');
+      
+    });
     });
   }
 
@@ -131,6 +152,7 @@ class MainCubit extends Cubit<MainStates> {
     //اكتبي هنا يا ندود
     // ده كود الماب بتاعة التاريخ الللي هيتمسح واللي هيتحط اللي هتديها لفانكشن
     // update(deletes) / set(sets, SetOptions(merge: true))
+
     String dateTobBeDeleted =
         newDateTime(DateTime.now().toString(), "06:59:59");
     final Map<String, dynamic> deletes = {
@@ -142,14 +164,25 @@ class MainCubit extends Cubit<MainStates> {
     final Map<String, dynamic> sets = {
       dateTobBeSet: seats,
     };
+    // FirebaseFirestore.instance
+    //     .collection('trains')
+    //     .doc("2dRl1WJljsXJpNrn9KYB")
+    //     .collection("seats")
+    //     .doc('Lzmj2kh4n6gIQMQwu4sU')
+    //     .update({
+    //   '2023-02-28 06:59:59': FieldValue.delete(),
+    // })
+    //     .whenComplete(() {
+    //   print('Field deleted');
+    // });
   }
 
   Future<void> resetSeats() async {
     isexist = false;
     isexpired = false;
     checkExpiredDate().then((value) {
-      print("isexist & isexpired");
-      print(isexist & isexpired);
+      // print("isexist & isexpired");
+      // print(isexist & isexpired);
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update

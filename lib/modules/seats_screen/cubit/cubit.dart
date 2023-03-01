@@ -49,19 +49,96 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   //2dRl1WJljsXJpNrn9KYB
-  void getSeats(String trainId) {
-    FirebaseFirestore.instance
+  List seats = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  Future<void> getSeats(String trainId) async {
+    // await FirebaseFirestore.instance
+    //     .collection('trains')
+    //     .doc("2dRl1WJljsXJpNrn9KYB")
+    //     .collection("seats")
+    //     .doc('Lzmj2kh4n6gIQMQwu4sU')
+    //     .update({
+    //   '2023-03-06 23:59:59': FieldValue.delete(),
+    // }).whenComplete(() async {
+    //   print('Field deleted');
+    //   emit(DeleteFieldState());
+    //   await FirebaseFirestore.instance
+    //       .collection('trains')
+    //       .doc('2dRl1WJljsXJpNrn9KYB')
+    //       .collection("seats")
+    //       .doc('Lzmj2kh4n6gIQMQwu4sU')
+    //       .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
+    //           (value) async {
+    //     //Do your stuff.
+    //     print('the field added successfully');
+    //     emit(AddFieldState());
+    //   }).catchError((error) {
+    //     print(error.toString());
+    //     emit(DeleteFieldErrorState(error));
+    //   });
+    // });
+    await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
         .snapshots()
         .listen((event) {
       event.docs.forEach((e) {
-        allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
+        //allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
+        allSeats = e[fieldName];
         seatsId = e.reference.id;
       });
       emit(GetSeatsSuccessState());
     });
+
     // // print(DateFormat('EEEE').format(DateTime.parse(depart)));
     // // print(trainId);
     // // print(allSeats);
@@ -98,7 +175,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
         .doc(seatsId)
         .update({
       //DateFormat('EEEE').format(DateTime.parse(depart))
-      DateFormat('EEEE').format(DateTime.parse(depart)): allSeats,
+      fieldName: allSeats,
     }).then((value) {
       emit(UpdateSeatsSuccessState());
     }).catchError((error) {
