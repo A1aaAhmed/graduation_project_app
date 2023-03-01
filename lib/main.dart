@@ -3,12 +3,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/Profile/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/Profile/editProfile_Screen.dart';
+import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/login_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/social/welcome_screen.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
@@ -20,46 +27,48 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = MyBlocObserver();
-  // await casheHelper.init();
+  await casheHelper.init();
+   Widget? widget;
+  var uId= casheHelper?.getData(key: 'uId') ;
+  if(uId == null){
+    widget =welcomeScreen();
+  }
+  else
+    {
+      widget=Trans();
+    }
+
   //Locking Device Orientation to Portrait
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(const MyApp()));
+  ]).then((value) => runApp( MyApp(startScreen: widget,)));
 
-  runApp(const MyApp());
+  runApp( MyApp(startScreen: widget,));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
+final Widget? startScreen;
+ MyApp({
+  this.startScreen
+});
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
+      return Sizer(builder: (context, orientation, deviceType) {
       return MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (context) => loginCubit(),
-            ),
-            BlocProvider(
-              create: (context) => registerCubit(),
-            ),
-            BlocProvider(
-              create: (context) => profileCubit(),
-            ),
+          BlocProvider(
+          create: (context) => MainCubit()..userGetData()
+          ),
             BlocProvider(
               create: (context) => HomeScreenCubit(),
-            ),
 
+            ),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+
               iconTheme:
                   const IconThemeData(color: colortheme.lightPurple, size: 30),
               appBarTheme: const AppBarTheme(
@@ -94,10 +103,10 @@ class _MyAppState extends State<MyApp> {
                 bodyLarge: TextStyle(fontSize: 30),
                 bodyMedium: TextStyle(fontSize: 20),
                 bodySmall: TextStyle(fontSize: 15),
-                
+
               ),
             ),
-            home:  Trans(),
+            home: startScreen,
           ));
     });
   }

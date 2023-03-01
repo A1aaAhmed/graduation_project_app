@@ -32,17 +32,20 @@ class registerCubit extends Cubit<registerStates> {
   void createUser({
   required String name,
   required String email,
-  required String uId,  
+  required String uId,
+
 }){
     UserModel model =UserModel(
       name: name,
       email: email,
-      id: uId,
+      uId: uId,
+      phone: '01xxxxxxxxx',
+      image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',
     );
     FirebaseFirestore.instance.collection('users').doc(uId).set(model.toMap()).then(
         (value)
             {
-              emit(createUserSucessState());
+              emit(createUserSucessState(uId));
             }
     ).catchError((error){
       print(error.toString());
