@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
-import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
-import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 class editProfileScreen extends StatelessWidget {
@@ -21,7 +19,7 @@ class editProfileScreen extends StatelessWidget {
        // MainCubit.get(context).profileImage;
       },
       builder: (context,state){
-        var userModeldata = MainCubit.get(context).model;
+        var userModeldata = MainCubit.model;
         var editedProfileImage= MainCubit.get(context).profileImage;
         nameController.text= userModeldata!.name!;
         emailController.text= userModeldata!.email!;

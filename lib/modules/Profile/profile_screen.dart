@@ -9,16 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Profile/editProfile_Screen.dart';
-
-import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
-import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 
-
+import 'package:restart_app/restart_app.dart';
 class ProfileScreen extends StatelessWidget {
 
   const ProfileScreen({Key? key}) : super(key: key);
@@ -34,12 +32,12 @@ class ProfileScreen extends StatelessWidget {
                 MainCubit.get(context).profileImage;
               },
               builder: (context,state){
-               var userModeldata = MainCubit.get(context).model;
+               var userModeldata = MainCubit.model;
 
                 return Scaffold(
                     appBar: bar(context: context, text: 'Profile', morelist: false),
                     body: ConditionalBuilder(
-                      condition: MainCubit.get(context).model != null,
+                      condition: MainCubit.model != null,
                       builder: (context)=>SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -79,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 12,
                             ),
                             Padding(
@@ -90,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: colortheme.lightPurple,
                                     border: Border.all(width: 2,color: colortheme.lightPurple),
-                                    borderRadius: BorderRadius.all(Radius.elliptical(5, 10),)
+                                    borderRadius: const BorderRadius.all(Radius.elliptical(5, 10),)
                                     ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(5.0),
@@ -99,12 +97,12 @@ class ProfileScreen extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: ((context) =>  editProfileScreen())
+                                                builder: ((context) =>  const editProfileScreen())
                                             )
                                         );
                                       },
-                                      icon: Icon(Icons.edit,color: colortheme.lightGray,size: 17,),
-                                      label: Text('edit profile',style: TextStyle(color: colortheme.lightGray)),),
+                                      icon: const Icon(Icons.edit,color: colortheme.lightGray,size: 17,),
+                                      label: const Text('edit profile',style: TextStyle(color: colortheme.lightGray)),),
                                   ),
                                 ),
                               ),
@@ -113,13 +111,13 @@ class ProfileScreen extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 10,left: 10),
                               child: Row(
                                 children: [
-                                  Icon(Icons.person),
-                                  SizedBox(width: 7,),
+                                  const Icon(Icons.person),
+                                  const SizedBox(width: 7,),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('name:',style: TextStyle(color:Colors.black),),
-                                      Text('${userModeldata!.name!}',style: TextStyle(
+                                      const Text('name:',style: TextStyle(color:Colors.black),),
+                                      Text('${userModeldata!.name!}',style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -130,20 +128,20 @@ class ProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 21,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 10,left: 10),
                               child: Row(
                                 children: [
-                                  Icon(Icons.email),
-                                  SizedBox(width: 7,),
+                                  const Icon(Icons.email),
+                                  const SizedBox(width: 7,),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Email',style: TextStyle(color: Colors.black),),
-                                      Text('${userModeldata.email}',style: TextStyle(
+                                      const Text('Email',style: TextStyle(color: Colors.black),),
+                                      Text('${userModeldata.email}',style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -154,20 +152,20 @@ class ProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 21,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 10,left: 10),
                               child: Row(
                                 children: [
-                                  Icon(Icons.phone_android),
-                                  SizedBox(width: 7,),
+                                  const Icon(Icons.phone_android),
+                                  const SizedBox(width: 7,),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('phone',style: TextStyle(color: Colors.black),),
-                                      Text('${userModeldata!.phone!}',style: TextStyle(
+                                      const Text('phone',style: TextStyle(color: Colors.black),),
+                                      Text('${userModeldata!.phone!}',style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -178,23 +176,23 @@ class ProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 27,),
+                            const SizedBox(height: 27,),
 
                              TextButton.icon(
                                 onPressed: ()async{
                                   await FirebaseAuth.instance.signOut().then((value) {
                                     uId='';
-                                        print('${MainCubit.get(context).uId}');
-                                        Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(builder: (builder) => welcomeScreen()),
-                                                (route) => false);
+                                    MainCubit.uId='';
+                                    MainCubit.model=UserModel();
+                                        print('out  ${MainCubit.uId}');
+                                   casheHelper.removeData(key: 'uId');
+                                    Restart.restartApp();
 
 
                                   });
                                 },
-                                icon: Icon(Icons.logout_outlined,color: Colors.red),
-                                label: Text(
+                                icon: const Icon(Icons.logout_outlined,color: Colors.red),
+                                label: const Text(
                                   'SIGN OUT',
                                   style: TextStyle(
                                     color: Colors.red,
