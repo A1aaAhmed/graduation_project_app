@@ -32,6 +32,7 @@ class MainCubit extends Cubit<MainStates> {
 
   void changeNavbarIndex(index) {
     currentindex = index;
+    print(currentindex);
     emit(ChangeNavBarState());
   }
 
@@ -234,7 +235,7 @@ class MainCubit extends Cubit<MainStates> {
       // print(isexist);
       if (isexist) {
         isexpired = expired(
-            DateTime.parse(newDateTime(DateTime.now().toString(), "23:59:59")));
+            DateTime.parse(newDateTime(DateTime.now().toString(), "23:00:00")));
         // print("isexpired");
         // print(isexpired);
       }

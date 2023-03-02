@@ -6,6 +6,7 @@ import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/allTickets.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
+import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
 import 'package:graduation_project_app/shared/components/alertDialog.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -26,11 +27,25 @@ PreferredSizeWidget bar({
     leading: IconButton(
       onPressed: () {
         if (text == 'My Tickets' ||
-            text == 'Current Ticket' ||
+   
             text == 'Live location' ||
             text == 'Profile') {
           Cubit.changeNavbarIndex(0);
-        } else {
+                    Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const Trans()),
+              ));
+              }
+              else if(         text == 'Current Ticket' ){
+                Cubit.changeNavbarIndex(2);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const TicketsView()),
+              ));
+              }
+        else {
           Navigator.pop(context);
         }
       },

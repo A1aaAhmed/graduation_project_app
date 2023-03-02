@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
+import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 class editProfileScreen extends StatelessWidget {
@@ -36,7 +37,11 @@ class editProfileScreen extends StatelessWidget {
             actions: [
               TextButton(onPressed: ()async{
                 MainCubit.get(context).updateUser(editedName: nameController.text, editedEmail: emailController.text, editedPhone: phoneController.text);
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => ProfileScreen()),
+                        ));
 
               }, child: Text('Update',style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: colortheme.lightGray,
@@ -108,7 +113,11 @@ class editProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20,right: 20),
                   child: defultButton(background: colortheme.lightPurple, function: ()async{
                     MainCubit.get(context).uploadImage(name: nameController.text, email: emailController.text, phone: phoneController.text);
-
+Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => ProfileScreen()),
+                              ));
 
                   }, text: 'Update Profile'),
                 ),

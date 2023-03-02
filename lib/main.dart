@@ -12,6 +12,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
+import 'modules/Ticket/timeFuns.dart';
 
 void main() async {
   WidgetsFlutterBinding
@@ -22,9 +23,9 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await casheHelper.init();
   Widget? widget;
-  var uId= await casheHelper.getData(key: 'uId') ;
-  if(uId == null){
-    widget =welcomeScreen();
+  var uId = await casheHelper.getData(key: 'uId');
+  if (uId == null) {
+    widget = welcomeScreen();
   }
 
   //Locking Device Orientation to Portrait
@@ -48,10 +49,16 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return MultiBlocProvider(
           providers: [
-            BlocProvider(
-                create: (context) => MainCubit()
-                  
-                  ..userGetData()),
+            BlocProvider(create: (context) {
+              // if (expired(DateTime.parse(
+              //     newDateTime(DateTime.now().toString(), "23:59:00")))) {
+              //   return MainCubit()
+              //     ..userGetData()
+              //     ..resetSeats();
+              // } else {
+                return MainCubit()..userGetData()..resetSeats();
+              // }
+            }),
             BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
