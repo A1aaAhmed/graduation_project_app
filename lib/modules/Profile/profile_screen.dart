@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
@@ -198,6 +199,7 @@ class ProfileScreen extends StatelessWidget {
 
                              TextButton.icon(
                                 onPressed: ()async{
+                                  await GoogleSignIn().signOut();
                                   await FirebaseAuth.instance.signOut().then((value) {
                                     uId='';
                                     MainCubit.uId='';
