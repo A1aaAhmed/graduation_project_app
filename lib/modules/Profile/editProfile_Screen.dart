@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
@@ -36,12 +37,24 @@ class editProfileScreen extends StatelessWidget {
             ),
             actions: [
               TextButton(onPressed: ()async{
-                MainCubit.get(context).updateUser(editedName: nameController.text, editedEmail: emailController.text, editedPhone: phoneController.text);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => ProfileScreen()),
-                        ));
+                if(nameController.text == userModeldata.name && emailController.text == userModeldata.email && phoneController.text == userModeldata.phone)
+                  {
+                    Fluttertoast.showToast(
+                        msg: 'you did not updated any information',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 5,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0
+                    );
+                  }
+                else {
+                  MainCubit.get(context).updateUser(
+                      editedName: nameController.text,
+                      editedEmail: emailController.text,
+                      editedPhone: phoneController.text);
+                }
 
               }, child: Text('Update',style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: colortheme.lightGray,
@@ -111,13 +124,11 @@ class editProfileScreen extends StatelessWidget {
                 if(MainCubit.get(context).profileImage != null)
                 Padding(
                   padding: const EdgeInsets.only(left: 20,right: 20),
-                  child: defultButton(background: colortheme.lightPurple, function: ()async{
+                  child: defultButton(
+                    context:context ,
+                      background: colortheme.lightPurple, function: ()async{
                     MainCubit.get(context).uploadImage(name: nameController.text, email: emailController.text, phone: phoneController.text);
-Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: ((context) => ProfileScreen()),
-                              ));
+
 
                   }, text: 'Update Profile'),
                 ),
@@ -136,6 +147,10 @@ Navigator.push(
                     inputType: TextInputType.name,
                     validator: 'name must not be empty',
                     lable: 'enter your name',
+                    onsubmit: (s){
+                      nameController.text=s;
+                    }
+
                   ),
                 ),
                 SizedBox(
@@ -149,6 +164,9 @@ Navigator.push(
                     inputType: TextInputType.emailAddress,
                     validator: 'email must not be empty',
                     lable: 'enter your email',
+                      onsubmit: (s){
+                        emailController.text=s;
+                      }
 
                   ),
                 ),
@@ -163,7 +181,9 @@ Navigator.push(
                     inputType: TextInputType.phone,
                     validator: 'phone must not be empty',
                     lable: 'enter your phone',
-
+                      onsubmit: (s){
+                        phoneController.text=s;
+                      }
                   ),
                 ),
 

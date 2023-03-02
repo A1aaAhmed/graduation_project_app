@@ -3,7 +3,7 @@
 //TextEditingController depart = TextEditingController();
  import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-String uId= casheHelper?.getData(key: 'uId');
+var uId= casheHelper?.getData(key: 'uId') ;
 String from='';
 String to='';
 String depart='';

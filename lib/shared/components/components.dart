@@ -6,6 +6,7 @@ Widget iconTextButton(
     {required Color background,
       required IconData iconp,
       required String text,
+      required BuildContext context,
       required VoidCallback function}) =>
     Container(
       width: double.infinity,
@@ -19,12 +20,11 @@ Widget iconTextButton(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: TextButton.icon(
         onPressed: function,
-        icon: Icon(iconp,color: Colors.white,),
+        icon: Icon(iconp,color: Colors.white,size: 30,),
         label: Text(
           '$text',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w300,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: colortheme.white,
           ),
         ),
       ),
@@ -34,6 +34,7 @@ Widget defultButton({
   required Color background,
   required VoidCallback function,
   required String text,
+  required BuildContext context,
 }) => Container(
   decoration:BoxDecoration(
     borderRadius: BorderRadius.circular(5,),
@@ -44,24 +45,24 @@ Widget defultButton({
   height: 50,
   child: MaterialButton(
     onPressed: function,
-    child: Text('$text',style: TextStyle(
-      color: colortheme.lightGray,
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-    ),),
+    child: Text('$text',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+      color: colortheme.white,
+    ),
+    )
   ),
 );
 
 Widget textButon({
+  required BuildContext context,
   required String text,
   required VoidCallback function,
 }) =>TextButton(
     onPressed: function,
-    child: Text('$text',style: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 15,
-      color: Colors.purple.shade700,
-    ),));
+    child: Text('$text',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+      color: colortheme.lightPurple,
+      fontWeight: FontWeight.bold
+    ),
+    ));
 
 Widget defualtForm({
   required TextEditingController controller,
@@ -93,10 +94,18 @@ Widget defualtForm({
       //function that i can do work on it
 
 // ignore: prefer_const_constructors
+      cursorColor: colortheme.lightPurple,
       decoration: InputDecoration(
         //hintText: 'abc@examble.com',
         labelText: lable,
-        border: const OutlineInputBorder(),
+        //labelStyle: TextStyle(color: colortheme.lightPurple),
+        border:  OutlineInputBorder(),
+        focusColor: colortheme.lightPurple,
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: colortheme.lightPurple,
+          ),
+        ),
         prefixIcon: Icon(
           prefix,
           color: colortheme.lightPurple,

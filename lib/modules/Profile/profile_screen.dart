@@ -13,8 +13,10 @@ import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Profile/editProfile_Screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
+import 'package:graduation_project_app/shared/components/loading.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
+import 'package:graduation_project_app/widgets/global.dart';
 
 import 'package:restart_app/restart_app.dart';
 class ProfileScreen extends StatelessWidget {
@@ -82,31 +84,33 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 10),
-                              child: Align(
-                                alignment: AlignmentDirectional.topEnd,
+                              child: Center(
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: colortheme.lightPurple,
                                     border: Border.all(width: 2,color: colortheme.lightPurple),
-                                    borderRadius: const BorderRadius.all(Radius.elliptical(5, 10),)
+                                    borderRadius: BorderRadius.all(Radius.elliptical(25, 25),)
                                     ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.symmetric(vertical: 1,horizontal: 55),
                                     child: TextButton.icon(
                                       onPressed: (){
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: ((context) =>  const editProfileScreen())
+                                                builder: ((context) =>  editProfileScreen())
                                             )
                                         );
                                       },
-                                      icon: const Icon(Icons.edit,color: colortheme.lightGray,size: 17,),
-                                      label: const Text('edit profile',style: TextStyle(color: colortheme.lightGray)),),
+                                      icon: Icon(Icons.edit,color: colortheme.lightGray,size: 17,),
+                                      label: Text('edit profile',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: colortheme.white,
+                                      ),),),
                                   ),
                                 ),
                               ),
                             ),
+                            SizedBox(height: 20,),
                             Padding(
                               padding: const EdgeInsets.only(right: 10,left: 10),
                               child: Row(
@@ -116,12 +120,18 @@ class ProfileScreen extends StatelessWidget {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Text('name:',style: TextStyle(color:Colors.black),),
-                                      Text('${userModeldata!.name!}',style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      )),
+                                       Text('name:',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                          color: colortheme.black,
+
+                                      ),
+                                       ),
+                                      Text('${userModeldata!.name!}',
+                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                          color: colortheme.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17
+                                      ),
+                                      ),
                                     ],
                                   ),
 
@@ -140,12 +150,16 @@ class ProfileScreen extends StatelessWidget {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Text('Email',style: TextStyle(color: Colors.black),),
-                                      Text('${userModeldata.email}',style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ), ),
+                                       Text('Email',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: colortheme.black,
+
+                                      ),),
+                                      Text('${userModeldata.email}',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                          color: colortheme.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17
+                                      ),
+                                      ),
                                     ],
                                   ),
 
@@ -164,12 +178,16 @@ class ProfileScreen extends StatelessWidget {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Text('phone',style: TextStyle(color: Colors.black),),
-                                      Text('${userModeldata!.phone!}',style: const TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ), ),
+                                     Text('phone',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: colortheme.black,
+                                      ),),
+                                      Text('${userModeldata!.phone!}',
+                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: colortheme.black,
+                                          fontWeight: FontWeight.bold,
+                                            fontSize: 17
+                                      ),
+                                      ),
                                     ],
                                   ),
 
@@ -187,23 +205,21 @@ class ProfileScreen extends StatelessWidget {
                                         print('out  ${MainCubit.uId}');
                                    casheHelper.removeData(key: 'uId');
                                     Restart.restartApp();
-
-
                                   });
                                 },
                                 icon: const Icon(Icons.logout_outlined,color: Colors.red),
-                                label: const Text(
+                                label:  Text(
                                   'SIGN OUT',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold,
-
-                                  ),
+                                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                        fontSize: 17
+                                ),
                                 ),),
                           ],
                         ),
                       ),
-                      fallback: (context) => const CircularProgressIndicator(),
+                      fallback: (context) => const LoadingScreen(),
 
                     )
                 );

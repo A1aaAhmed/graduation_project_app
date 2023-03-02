@@ -247,7 +247,7 @@ class MainCubit extends Cubit<MainStates> {
     // ده كود الماب بتاعة التاريخ الللي هيتمسح واللي هيتحط اللي هتديها لفانكشن
     // update(deletes) / set(sets, SetOptions(merge: true))
     String dateTobBeDeleted =
-        newDateTime(DateTime.now().toString(), "23:59:59");
+    newDateTime(DateTime.now().toString(), "23:59:59");
     final Map<String, dynamic> deletes = {
       dateTobBeDeleted: FieldValue.delete(),
     };
