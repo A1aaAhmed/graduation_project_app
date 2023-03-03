@@ -32,6 +32,7 @@ class loginSreen extends StatelessWidget {
                 casheHelper.saveData(key:'uId', value: state.uId).then(
                         (value) {
                           print('new log in id is'+ state.uId);
+                        //  uId=casheHelper.getData(key: 'uId');
                           Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -39,7 +40,6 @@ class loginSreen extends StatelessWidget {
                           )
                       );
                     });
-
                         }
             },
             builder: (context, state) {
@@ -101,6 +101,7 @@ class loginSreen extends StatelessWidget {
                                   condition: state is! loginLoadinglState,
                                   builder: (context) =>
                                       defultButton(
+                                        context: context,
                                           background: colortheme.lightPurple,
                                           function: () {
                                             if (keyForm.currentState!.validate()) {
@@ -117,13 +118,15 @@ class loginSreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('Don\'t have an account?', style: TextStyle(
-                                    color: Colors.grey[800],
-                                  ),),
+                                  Text('Don\'t have an account?',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: colortheme.black,
+                              ),
+                                  ),
                                   const SizedBox(
                                     width: 0,
                                   ),
                                   textButon(
+                                    context: context,
                                     text: 'SIGNUP',
                                     function: () {
                                       Navigator.push(

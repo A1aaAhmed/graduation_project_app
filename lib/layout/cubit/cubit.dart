@@ -19,7 +19,7 @@ import '../../modules/home_screen/home_screen.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainIntialState());
-  static String ?uId ;
+  static String? uId;
   static UserModel? model;
   static MainCubit get(context) => BlocProvider.of(context);
   int currentindex = 0;
@@ -32,14 +32,13 @@ class MainCubit extends Cubit<MainStates> {
 
   void changeNavbarIndex(index) {
     currentindex = index;
+    print(currentindex);
     emit(ChangeNavBarState());
   }
 
-
-
   Future<void> userGetData() async {
     emit(getUserLoadingState());
-    uId =await casheHelper.getData(key: 'uId');
+    uId = await casheHelper.getData(key: 'uId');
     print(uId);
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());
@@ -53,7 +52,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
 ////////////////////////////////////////////////
-
 //////////////////////////////////////
   File? profileImage;
 
@@ -69,7 +67,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
 ///////////////////////////////////////upload////////////////////
-
   Future<void> uploadImage({
     required String name,
     required String email,
@@ -238,7 +235,7 @@ class MainCubit extends Cubit<MainStates> {
       // print(isexist);
       if (isexist) {
         isexpired = expired(
-            DateTime.parse(newDateTime(DateTime.now().toString(), "23:59:59")));
+            DateTime.parse(newDateTime(DateTime.now().toString(), "23:00:00")));
         // print("isexpired");
         // print(isexpired);
       }
@@ -250,7 +247,7 @@ class MainCubit extends Cubit<MainStates> {
     // ده كود الماب بتاعة التاريخ الللي هيتمسح واللي هيتحط اللي هتديها لفانكشن
     // update(deletes) / set(sets, SetOptions(merge: true))
     String dateTobBeDeleted =
-        newDateTime(DateTime.now().toString(), "23:59:59");
+    newDateTime(DateTime.now().toString(), "23:59:59");
     final Map<String, dynamic> deletes = {
       dateTobBeDeleted: FieldValue.delete(),
     };
@@ -289,8 +286,8 @@ class MainCubit extends Cubit<MainStates> {
     isexist = false;
     isexpired = false;
     checkExpiredDate().then((value) async {
-      // print("isexist & isexpired");
-      //print(isexist & isexpired);
+      print("isexist & isexpired");
+      print(isexist & isexpired);
       //كملي هنا بقا ياندود بعد ماتظبطي الفانكشن اللي فوق
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update

@@ -5,7 +5,8 @@ import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/widgets/global.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+import 'package:graduation_project_app/layout/transition.dart';
 
 import '../../../shared/components/components.dart';
 
@@ -42,7 +43,7 @@ class TicketCubit extends Cubit<TicketsStates> {
     });
   }
 
-  Future<void> deleteAllExpired() async {
+  Future<void> deleteAllExpired(context) async {
     if (previousTickets.isEmpty) {
       showToast(status: toastStates.ERROR, text: "Nothing to delete");
       emit(ClearExpiredTicketsState());
@@ -63,17 +64,22 @@ class TicketCubit extends Cubit<TicketsStates> {
               .delete()
               .then((value) {
             print("Success!");
+            showToast(
+                status: toastStates.SUCESS, text: "All expired tickets are deleted");
+            previousTickets = [];
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => const Trans())));
+
           });
         });
       });
-      showToast(
-          status: toastStates.SUCESS, text: "All expired tickets are deleted");
-      previousTickets = [];
-      emit(ClearExpiredTicketsState());
+
     }
   }
 
-  Future<void> deleteExpiredTicket(TicketModel ticket) async {
+  Future<void> deleteExpiredTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
         .collection("users")
         .doc(uId)
@@ -91,14 +97,21 @@ class TicketCubit extends Cubit<TicketsStates> {
             .doc(uId)
             .collection('tickets')
             .doc(element.id)
-            .delete();
+            .delete().then((value) {
+          showToast(status: toastStates.SUCESS, text: "Your ticket is deleted");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => const Trans())));
+
+        });
       });
     });
-    showToast(status: toastStates.SUCESS, text: "Your ticket is deleted");
-    emit(DeleteExpiredTicketsState());
+
+
   }
 
-  Future<void> deleteTicket(TicketModel ticket) async {
+  Future<void> deleteTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
         .collection("users")
         .doc(uId)
@@ -139,10 +152,8 @@ class TicketCubit extends Cubit<TicketsStates> {
                 //DateFormat('EEEE').format(DateTime.parse(depart))
                 newDateTime(ticket.date.toString(), "23:59:59"): allSeats,
               }).then((value) {
-                showToast(
-                    status: toastStates.SUCESS,
-                    text: "Your ticket is cancelled");
-                emit(CancelTicketsState());
+
+
               }).catchError((error) {
                 emit(CancelTicketErrorState(error));
               });
@@ -154,6 +165,14 @@ class TicketCubit extends Cubit<TicketsStates> {
           // updateSeats();
         });
       });
+    }).then((value) {
+      showToast(
+          status: toastStates.SUCESS,
+          text: "Your ticket is cancelled");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => const Trans())));
     });
   }
 }

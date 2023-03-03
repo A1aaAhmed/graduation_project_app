@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/live_location/livelocation_screen.dart';
@@ -33,10 +34,10 @@ class NothingScreen extends StatelessWidget {
                       builder: (context) =>Column(
                         children: [
                           Container(
-                            height:isToday(date)? 15.h:95.h,
+                            height:isToday(date)? 15.h:90.h,
                             padding: const EdgeInsets.all(5),
                             alignment: Alignment.center,
-                            child: Text( isToday(date)?"Wait for the train to reach your station\nThe train will arrive $station $dateToShow":"The train will arrive $station $dateToShow",
+                            child: Text( isToday(date)?"Wait for the train\nThe train will arrive $station $dateToShow":"The train will arrive $station $dateToShow",
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color:colortheme.lightPurple ,
@@ -60,6 +61,9 @@ class NothingScreen extends StatelessWidget {
                          ),
                           TextButton(
                             onPressed:(){
+                              MainCubit Cubit = MainCubit.get(context);
+                              Cubit.changeNavbarIndex(0);
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

@@ -119,11 +119,19 @@ class registerScreen extends StatelessWidget {
                               }
                               return null;
                             },
+                            cursorColor: colortheme.lightPurple,
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: registerCubit.get(context).conPass,
                             decoration: InputDecoration(
                               labelText: 'Confirm Password',
+                             // labelStyle: TextStyle(color: colortheme.lightPurple),
                               border: const OutlineInputBorder(),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: colortheme.lightPurple,
+                                ),
+                              ),
+                              focusColor: colortheme.lightPurple,
                               prefixIcon: const Icon(Icons.lock,color: colortheme.lightPurple,),
                               suffixIcon: IconButton(
                                 onPressed: (){
@@ -144,6 +152,7 @@ class registerScreen extends StatelessWidget {
                           ),
                           ConditionalBuilder(condition: state is! registerLoadinglState,
                               builder: (context)=>defultButton(
+                                context: context,
                                   background: colortheme.lightPurple,
                                   function: (){
                                     if(formKey.currentState!.validate()){
@@ -162,10 +171,12 @@ class registerScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Already have an account?',style: TextStyle(
-                                color: Colors.grey[800],
-                              ),),
+                              Text('Already have an account?',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: colortheme.black,
+                              ),
+                              ),
                               textButon(
+                                context:context,
                                   text: 'SIGNIN',
                                   function: (){
                                     Navigator.push(
