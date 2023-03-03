@@ -76,111 +76,121 @@ class _SeatsState extends State<Seats> {
                       children: [
                         Container(
                           width: 120,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Choose Seats',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                const SizedBox(
-                                  height: 35,
-                                ),
-                                Row(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Choose Seats',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                              const SizedBox(
+                                height: 35,
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                    child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 250,
-                                            padding:
-                                                const EdgeInsets.only(top: 20),
-                                            child: ListView.separated(
-                                                itemBuilder: (context, index) => Text(
-                                                    gateType[index],
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium
-                                                    // style: const TextStyle(
-                                                    //     fontSize: 20,
-                                                    //     color: Color.fromARGB(
-                                                    //         255, 95, 94, 94)),
-                                                    ),
-                                                separatorBuilder:
-                                                    (context, index) =>
-                                                        const SizedBox(
-                                                          height: 50,
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                height: 250,
+                                                padding: const EdgeInsets.only(
+                                                    top: 20),
+                                                child: ListView.separated(
+                                                    itemBuilder: (context, index) => Text(
+                                                        gateType[index],
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium
+                                                        // style: const TextStyle(
+                                                        //     fontSize: 20,
+                                                        //     color: Color.fromARGB(
+                                                        //         255, 95, 94, 94)),
                                                         ),
-                                                itemCount: gateType.length),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: smallTrain(),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text('Seats',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium),
-                                Row(
-                                  children: [
-                                    Text(
-                                        numberOfSeats <= 9
-                                            ? ' 0$numberOfSeats'
-                                            : ' $numberOfSeats',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                                fontSize: 40,
-                                                color: colortheme.lightPurple)
-                                        // style: const TextStyle(
-                                        //     fontSize: 40,
-                                        //     color: colortheme.lightPurple),
+                                                    separatorBuilder:
+                                                        (context, index) =>
+                                                            const SizedBox(
+                                                              height: 50,
+                                                            ),
+                                                    itemCount: gateType.length),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                    Text(seats <= 9 ? '/0$seats' : '/$seats',
+                                        Expanded(
+                                          child: smallTrain(),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text('Seats',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodySmall),
+                                            .bodyMedium),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            numberOfSeats <= 9
+                                                ? ' 0$numberOfSeats'
+                                                : ' $numberOfSeats',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge
+                                                ?.copyWith(
+                                                    fontSize: 40,
+                                                    color:
+                                                        colortheme.lightPurple)
+                                            // style: const TextStyle(
+                                            //     fontSize: 40,
+                                            //     color: colortheme.lightPurple),
+                                            ),
+                                        Text(
+                                            seats <= 9 ? '/0$seats' : '/$seats',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 7,
+                                    ),
+                                    Text('Amount',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            amountToBePayed <= 9
+                                                ? '0$amountToBePayed'
+                                                : '$amountToBePayed ',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge
+                                                ?.copyWith(
+                                                  fontSize: 40,
+                                                )),
+                                        Text('EG',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium)
+                                      ],
+                                    ),
                                   ],
-                                ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                Text('Amount',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium),
-                                Row(
-                                  children: [
-                                    Text(
-                                        amountToBePayed <= 9
-                                            ? '0$amountToBePayed'
-                                            : '$amountToBePayed ',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              fontSize: 40,
-                                            )),
-                                    Text('EG',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium)
-                                  ],
-                                ),
-                              ],
-                            ),
+                                )),
+                              )
+                            ],
                           ),
                         ),
                         Expanded(
