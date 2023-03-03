@@ -295,7 +295,7 @@ class MainCubit extends Cubit<MainStates> {
       // اعملي ليستيتين بقا فيهم عنوايين الدوكس بتاعة الترينز والسيتس وظبطي الدنيا يعني انه يعمل فور لوب
       // على فانكشن ال update
       // ويديها كل مرة الاندكس بتاع عنوان الترين والسيتس
-      if (isexist & isexpired) {
+      if (isexist && isexpired) {
         update();
       }
       emit(CheckExpiredDateSuccesState());
