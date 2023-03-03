@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,13 +8,9 @@ import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
-import 'modules/Ticket/timeFuns.dart';
-
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //to make sure that all this fun ocured first before runApp
@@ -25,9 +20,13 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await casheHelper.init();
   Widget? widget;
-  var uId = await casheHelper.getData(key: 'uId');
+  var uId =  casheHelper.getData(key: 'uId');
   if (uId == null) {
-    widget = welcomeScreen();
+    widget = const welcomeScreen();
+  }
+  else
+  {
+    widget=const Trans();
   }
 
   //Locking Device Orientation to Portrait
