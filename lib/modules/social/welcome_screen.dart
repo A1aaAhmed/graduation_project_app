@@ -89,8 +89,8 @@ class welcomeScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 15,),
-                             ConditionalBuilder(condition: state is! googleLoadingStates,
-                                 builder: (context)=>iconTextButton(
+                             
+                                 iconTextButton(
                                      context: context,
                                      background: Colors.red,
                                      iconp: Icons.g_mobiledata,
@@ -99,7 +99,7 @@ class welcomeScreen extends StatelessWidget {
                                         await googleCubit.get(context).signInWithGoogle();
 
                                      }),
-                                 fallback: (context)=>LinearProgressIndicator()),
+                               
                               const SizedBox(height: 15,),
                               iconTextButton(
                                 context: context,
