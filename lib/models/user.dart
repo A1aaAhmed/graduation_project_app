@@ -52,5 +52,28 @@ return
     }
 
   }
+  /////yaaaaaaaaaaaaa mahaaaaaaaaaaaaaaaaaaaa
+  //
+//instead of .doc()
+  // put
+  // .doc(uId.toString().substring(0,3))
+  //             .collection('numbers').doc(uId)
 
-}
+  static Future<bool> searchNumber({
+    required String number,
+  })
+  async{
+    try {
+      String start=number.substring(0,3);
+      var snapshot= await FirebaseFirestore.instance
+          .collection("users")
+          .doc(start)
+          .collection('numbers').doc(number).get();
+        return snapshot.exists;
+    } catch (e) {
+      // If any error
+      return false;
+    }
+    }
+  }
+
