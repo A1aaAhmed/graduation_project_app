@@ -8,10 +8,12 @@ import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
+import 'package:graduation_project_app/shared/components/phoneField.dart';
 import '../../shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 class registerScreen extends StatelessWidget {
   var firstName = TextEditingController();
+  var phoneControllor = TextEditingController();
   var lastName = TextEditingController();
   var emailSignUp = TextEditingController();
   var passSignUp = TextEditingController();
@@ -78,6 +80,10 @@ class registerScreen extends StatelessWidget {
                               inputType: TextInputType.text,
                               validator: 'required',
                               lable: 'Last Name'),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          phoneField(controller: phoneControllor),
                           const SizedBox(
                             height: 20,
                           ),

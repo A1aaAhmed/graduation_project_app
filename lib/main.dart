@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
+import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
+import 'package:graduation_project_app/modules/social/verifyPhone.dart';
 import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
@@ -28,6 +31,7 @@ void main() async {
   {
     widget=const Trans();
   }
+
 
   //Locking Device Orientation to Portrait
   SystemChrome.setPreferredOrientations([
@@ -103,7 +107,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: startScreen,
+            home: phoneScreen(),
           ));
     });
   }
