@@ -14,6 +14,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
+import 'package:mqtt_client/mqtt_client.dart';
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //to make sure that all this fun ocured first before runApp
