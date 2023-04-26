@@ -87,9 +87,7 @@ flutter:
   fonts:
     - family: kalam
       fonts:
-        - asset: assets/fonts/Kalam-Light.ttf
-        - asset: assets/fonts/Kalam-Bold.ttf
-        - asset: assets/fonts/Kalam-Regular.ttf
+        - asset: assets/fonts/
 
 
   #   - images/a_dot_ham.jpeg
