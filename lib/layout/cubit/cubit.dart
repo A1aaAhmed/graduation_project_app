@@ -22,6 +22,7 @@ class MainCubit extends Cubit<MainStates> {
   static String? uId;
   static UserModel? model;
   static MainCubit get(context) => BlocProvider.of(context);
+
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
@@ -29,10 +30,8 @@ class MainCubit extends Cubit<MainStates> {
     const TicketsView(),
     const ProfileScreen(),
   ];
-
   void changeNavbarIndex(index) {
     currentindex = index;
-    print(currentindex);
     emit(ChangeNavBarState());
   }
 

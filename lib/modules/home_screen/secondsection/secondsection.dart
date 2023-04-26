@@ -158,22 +158,18 @@ class _SecondSectionState extends State<SecondSection> {
                                       cubit
                                           .getTrainsAndSearch(from, to)
                                           .then((value) {
-                                        print(';;;;;;;;;;;;;;;;;;;;;;');
-                                        print(cubit.searchedTrains);
-                                        print(cubit.searchedTrains.length);
-
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: ((context) =>
-                                                  TrainsScreen()),
+                                                  const TrainsScreen()),
                                             ));
                                       }).catchError((onError) {
                                         onError.toString();
                                       });
                                     }
                                     ;
-                                   // addseats(seats);
+                                    // addseats(seats);
                                   })
                             ]),
                       ))));
@@ -272,6 +268,8 @@ Map<String, dynamic> seats = {
 
 void addseats(seats) {
   List trainsDocs = [
+    '2dRl1WJljsXJpNrn9KYB',
+    'Ch6XjXxzROUKj43a5514',
     'GJKZ8iQI7y0gH5xygXHv',
     'Hqxznuod9XaQenF75gRK',
     'IPg76Z4TtDCiLVQHTtEq',
@@ -288,11 +286,21 @@ void addseats(seats) {
     'tn2ILzqjjm3GtYtPgrwj',
     'wEdjQtfgZagcN02PRRfY'
   ];
+  Map<String, String> available = {
+    'Sat': '48',
+    'Sun': '48',
+    'Mon': '48',
+    'Tue': '48',
+    'Wed': '48',
+    'Thu': '48',
+    'Fri': '48',
+  };
   for (int i = 0; i < trainsDocs.length; i++) {
     FirebaseFirestore.instance
         .collection("trains")
         .doc(trainsDocs[i])
-        .collection('seats')
-        .add(seats);
-  }
+       // .set({'available':available}, SetOptions(merge: true));
+     .collection('seats')
+    .add(seats);
+ }
 }
