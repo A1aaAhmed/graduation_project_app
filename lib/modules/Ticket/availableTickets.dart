@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/live_location/nothingToShow.dart';
 import 'package:sizer/sizer.dart';
 import 'ticketComponent/ListTable.dart';
-import 'package:graduation_project_app/shared/components/appBar.dart';
 
 class AvailableScreen extends StatefulWidget {
   final List availableTickets;
@@ -26,6 +25,7 @@ class _AvailableState extends State<AvailableScreen> {
             w:100.w,
           )
         :NothingScreen(
+            trainNump: '',
             nothing: true,
             station:"",
             date:DateTime.now(),

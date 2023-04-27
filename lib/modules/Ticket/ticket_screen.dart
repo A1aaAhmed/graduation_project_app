@@ -8,6 +8,7 @@ import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/live_location/checkTrain.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:sizer/sizer.dart';
 
 class Ticket extends StatefulWidget {
@@ -58,10 +59,12 @@ class _TicketState extends State<Ticket> {
                   !expired(widget.ticket.date)?button(
                       text: "Navigate Route",
                       onpress: () {
+                        Train=widget.ticket.train;
+                        print("*****************************************************************${widget.ticket.train}");
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: ((context) =>CheckTrain(station: widget.ticket.from,date: widget.ticket.date,isFromHome: false,))));
+                                builder: ((context) =>CheckTrain(trainNump: widget.ticket.train,station: widget.ticket.from,date: widget.ticket.date,isFromHome: false,))));
                       },
                       width: 60.w,
                       height: 10.h,

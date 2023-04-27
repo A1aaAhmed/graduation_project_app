@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/live_location/nothingToShow.dart';
 import 'package:sizer/sizer.dart';
-import '../../shared/components/appBar.dart';
 import 'ticketComponent/ListTable.dart';
 
 class ExpiredScreen extends StatefulWidget {
@@ -26,6 +25,7 @@ class _ExpiredState extends State<ExpiredScreen> {
             w:100.w,
           )
         :NothingScreen(
+        trainNump: '',
         nothing: true,
          station: "",
         date:DateTime.now(),

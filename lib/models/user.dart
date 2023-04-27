@@ -52,13 +52,11 @@ return
     }
 
   }
-  /////yaaaaaaaaaaaaa mahaaaaaaaaaaaaaaaaaaaa
-  //
-//instead of .doc()
+  // yaaaaaaaaaaaaa mahaaaaaaaaaaaaaaaaaaaa
+  // instead of .doc()
   // put
   // .doc(uId.toString().substring(0,3))
-  //             .collection('numbers').doc(uId)
-
+  // .collection('numbers').doc(uId)
   static Future<bool> searchNumber({
     required String number,
   })

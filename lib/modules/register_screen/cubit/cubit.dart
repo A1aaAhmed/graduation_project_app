@@ -42,7 +42,8 @@ class registerCubit extends Cubit<registerStates> {
       phone: '01xxxxxxxxx',
       image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',
     );
-    FirebaseFirestore.instance.collection('users').doc(uId).set(model.toMap()).then(
+    FirebaseFirestore.instance.collection('users').doc(uId.toString().substring(0,3))
+        .collection('numbers').doc(uId).set(model.toMap()).then(
         (value)
             {
               emit(createUserSucessState(uId));

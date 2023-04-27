@@ -14,8 +14,10 @@ class NothingScreen extends StatelessWidget {
   final bool isFromHomeScreen;
   final String station;
   final bool nothing;
+  final String trainNump;
   const NothingScreen({
     required this.date,
+    required this.trainNump,
     required this.isEmpty,
     required this.isFromHomeScreen,
     required this.station,
@@ -34,20 +36,21 @@ class NothingScreen extends StatelessWidget {
                       builder: (context) =>Column(
                         children: [
                           Container(
-                            height:isToday(date)? 15.h:90.h,
+                            height:DateTime.now().isBefore(date)? 15.h:90.h,
                             padding: const EdgeInsets.all(5),
                             alignment: Alignment.center,
                             child: Text( isToday(date)?"Wait for the train\nThe train will arrive $station $dateToShow":"The train will arrive $station $dateToShow",
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color:colortheme.lightPurple ,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,fontSize: 18
+
                             )
                             ),
                           ),
-                          isToday(date)?SizedBox(
+                          DateTime.now().isBefore(date)?SizedBox(
                             height: 85.h,
-                              child: LiveLocationScreen(trainLonLat:trainLonLat)
+                              child: LiveLocationScreen(trainNump: trainNump,)
                           ):const Text(""),
                         ],
                       ),

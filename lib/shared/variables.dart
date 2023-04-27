@@ -3,7 +3,7 @@
 //TextEditingController depart = TextEditingController();
  import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-var uId= casheHelper?.getData(key: 'uId') ;
+var uId= casheHelper.getData(key: 'uId') ;
 String from='';
 String to='';
 String depart='';
@@ -130,5 +130,6 @@ String googleAPiKey = "AIzaSyBSob1uooRKAkU1SzUjXrxsAeVj-u_OcTc";
 List availableTicket =[];
 DateTime dateTicket=DateTime.now();
 String station="";
+String Train="";
 ///changed later
 LatLng trainLonLat=LatLng(trian_location_lat, trian_location_long);
