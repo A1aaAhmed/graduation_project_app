@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 
-Widget dropdownform(countries, String msg, String label, context) {
+Widget dropdownform(list, String msg, String label, context) {
   var selectedvalue;
   return SingleChildScrollView(
     scrollDirection: Axis.vertical,
     child: DropdownButtonFormField(
-        items: countries,
+        items: list,
         value: selectedvalue,
         validator: (value) => value == null ? msg : null,
         onChanged: (value) {
