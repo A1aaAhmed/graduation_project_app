@@ -171,7 +171,7 @@ class _SecondSectionState extends State<SecondSection> {
                                         onError.toString();
                                       });
                                     }
-                                    ;
+                                    
                                     // addseats(seats);
                                   })
                             ]),
