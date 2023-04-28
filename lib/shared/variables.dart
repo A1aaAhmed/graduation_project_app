@@ -1,8 +1,13 @@
 //TextEditingController from = TextEditingController();
 //TextEditingController to = TextEditingController();
 //TextEditingController depart = TextEditingController();
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
+import 'package:graduation_project_app/modules/live_location/Cubit/cubit.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
+
+import '../modules/seats_screen/widgets/classesmodel.dart';
 var uId= casheHelper?.getData(key: 'uId') ;
 String from='';
 String to='';
@@ -130,6 +135,7 @@ String googleAPiKey = "AIzaSyBSob1uooRKAkU1SzUjXrxsAeVj-u_OcTc";
 List availableTicket =[];
 DateTime dateTicket=DateTime.now();
 String station="";
+String Train="";
 ///changed later
 LatLng trainLonLat = LatLng(trian_location_lat, trian_location_long);
 
@@ -145,3 +151,4 @@ String seatsId = '';
 String fieldName = newDateTime(depart, "23:59:59").toString().split(" ").first;
 String day =
     DateFormat('EEEE').format(DateTime.parse(depart)).substring(0,3);
+MapsCubit? maps_cubic;

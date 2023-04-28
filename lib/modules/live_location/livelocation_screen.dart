@@ -5,7 +5,6 @@ import 'package:graduation_project_app/modules/live_location/Cubit/cubit.dart';
 import 'package:graduation_project_app/modules/live_location/Cubit/states.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:location/location.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 BitmapDescriptor user_icon = BitmapDescriptor.defaultMarker;
