@@ -4,7 +4,6 @@ import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 

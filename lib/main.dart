@@ -1,3 +1,4 @@
+//import 'package:background_fetch/background_fetch.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,10 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
+import 'package:background_fetch/background_fetch.dart';
+
+
+  
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //to make sure that all this fun ocured first before runApp
@@ -20,13 +25,11 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await casheHelper.init();
   Widget? widget;
-  var uId =  casheHelper.getData(key: 'uId');
+  var uId = casheHelper.getData(key: 'uId');
   if (uId == null) {
     widget = const welcomeScreen();
-  }
-  else
-  {
-    widget=const Trans();
+  } else {
+    widget = const Trans();
   }
 
   //Locking Device Orientation to Portrait
@@ -40,6 +43,7 @@ void main() async {
   runApp(MyApp(
     startScreen: widget,
   ));
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -57,7 +61,14 @@ class MyApp extends StatelessWidget {
               //     ..userGetData()
               //     ..resetSeats();
               // } else {
-                return MainCubit()..userGetData()..resetSeats();
+              return MainCubit()
+                ..userGetData()
+                ..resetSeats()
+                // ..deleteAllFields()
+                // ..addOnePreviousField()
+                
+                
+                ;
               // }
             }),
             BlocProvider(

@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.graduation_project_app">
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
+        tools:replace="android:label"
         android:label="graduation_project_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

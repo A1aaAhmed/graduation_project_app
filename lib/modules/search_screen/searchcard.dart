@@ -15,7 +15,8 @@ Widget SearchCard(
         clipper: CardClipper(),
         child: GestureDetector(
           onTap: () {
-            //print(train);
+            // print(train);
+            // print(train['trainClasses']['1st class']);
             Navigator.push(
                 context,
                 MaterialPageRoute(

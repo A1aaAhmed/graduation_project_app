@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   SeatsScreenCubit() : super(SeatsScreenInitialState());
@@ -17,11 +15,21 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     emit(SeatsScreenInitialState());
   }
 
+  num amountDependingOnClass(int seatNumber) {
+    if (seatNumber >= 1 && seatNumber <= 16) {
+      return classType[0].price;
+    } else if (seatNumber >= 17 && seatNumber <= 32) {
+      return classType[1].price;
+    } else {
+      return classType[2].price;
+    }
+  }
+
   void removeOddSeatFunction(int seatNumber, bool isOdd, List<bool> evenBoxes,
       List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
     oddBoxes[index] = false;
     numberOfSeats--;
-    amountToBePayed -= 50;
+    amountToBePayed -= amountDependingOnClass(seatNumber);
     selectedSeats.remove(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
     emit(RemoveSeatsState());
   }
@@ -30,7 +38,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
       List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
     evenBoxes[index] = false;
     numberOfSeats--;
-    amountToBePayed -= 50;
+    amountToBePayed -= amountDependingOnClass(seatNumber);
     selectedSeats.remove(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
     emit(RemoveSeatsState());
   }
@@ -38,7 +46,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   void changeSeatsFunction(int seatNumber, bool isOdd, List<bool> evenBoxes,
       List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
     numberOfSeats++;
-    amountToBePayed += 50;
+    amountToBePayed += amountDependingOnClass(seatNumber);
     selectedSeats.add(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
     if (isOdd) {
       oddBoxes[index] = true;
@@ -49,56 +57,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   //2dRl1WJljsXJpNrn9KYB
-  List seats = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  List seats = List.filled(48, false);
   Future<void> getSeats(String trainId) async {
     // await FirebaseFirestore.instance
     //     .collection('trains')
@@ -166,9 +125,9 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     // });
   }
 
-  void updateSeats(String trainId) {
+  void updateSeats(String trainId, String theDayValue) async {
     //print(DateTime.parse(depart).day);
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
@@ -176,7 +135,22 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
         .update({
       //DateFormat('EEEE').format(DateTime.parse(depart))
       fieldName: allSeats,
-    }).then((value) {
+    }).then((value) async {
+      String updatedValue =
+          (int.parse(theDayValue) - noOfChoosenSeats).toString();
+      print('the new value is $updatedValue');
+      await FirebaseFirestore.instance
+            .collection('trains')
+            .doc(trainId)
+            .update({'available.${day}': updatedValue})
+            .then((value) {
+          // print(daysOfExpiredDates);
+          // print('Field added');
+          // print(date);
+        }).catchError((error) {
+          print(error.toString());
+        });
+
       emit(UpdateSeatsSuccessState());
     }).catchError((error) {
       emit(UpdateSeatsErrorState(error));
