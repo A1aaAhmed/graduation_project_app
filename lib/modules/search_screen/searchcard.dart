@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/widgets/global.dart';
+import 'package:intl/intl.dart';
 
 import '../../shared/variables.dart';
 
@@ -8,8 +10,11 @@ Widget SearchCard(
         {required context,
         required time,
         required Map<String, dynamic> train,
-        required trainNUM}) =>
-    Padding(
+        required trainNUM}) {
+        String  available=train['available'][DateFormat.E()
+                          .format(DateTime.parse(depart))
+                          .toString()];
+   return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipPath(
         clipper: CardClipper(),
@@ -28,7 +33,10 @@ Widget SearchCard(
           },
           child: Container(
               height: MediaQuery.of(context).size.height * 0.27,
-              color: Colors.white70,
+              color: int.parse(available) >=
+                      seats
+                  ? Colors.white70
+                  : colortheme.saimon.withOpacity(0.5),
               child: Row(children: [
                 Expanded(
                     child: Padding(
@@ -66,10 +74,15 @@ Widget SearchCard(
                           ),
                         ]),
                         const SizedBox(
-                          height: 25,
+                          height: 10,
                         ),
                         Text(
                           ' Train Number : $trainNUM',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          ' available seats : $available',
                           style: Theme.of(context).textTheme.bodyMedium,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -93,7 +106,7 @@ Widget SearchCard(
               ])),
         ),
       ),
-    );
+    );}
 
 class CardClipper extends CustomClipper<Path> {
   @override

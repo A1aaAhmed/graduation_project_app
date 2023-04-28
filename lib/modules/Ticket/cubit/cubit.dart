@@ -16,12 +16,9 @@ class TicketCubit extends Cubit<TicketsStates> {
   List availableTickets = [];
   Future<void> getAllTickets() async {
     emit(LoadingState());
-    // print("innnnnnnnnnnnnnnnnnnnn");
-    ///need uid here
     FirebaseFirestore.instance
         .collection("users")
-        .doc(uId)
-        .collection('tickets')
+        .doc(uId).collection('tickets')
         .get()
         .then((value) {
       value.docs.forEach((element) {
@@ -34,10 +31,10 @@ class TicketCubit extends Cubit<TicketsStates> {
       previousTickets.sort((a, b) => b.date.compareTo(a.date));
       availableTickets.sort((a, b) => a.date.compareTo(b.date));
       availableTicket = availableTickets;
-      if (availableTickets.isNotEmpty) station = availableTickets[0].from;
-      // print(previousTickets);
-      // print(availableTickets);
-      // print(availableTickets[0].date);
+      if (availableTickets.isNotEmpty) {
+        station = availableTickets[0].from;
+        Train=availableTickets[0].train;
+      }
       emit(GetAllTicketsState());
     });
   }
@@ -70,14 +67,12 @@ class TicketCubit extends Cubit<TicketsStates> {
                 context,
                 MaterialPageRoute(
                     builder: ((context) => const Trans())));
-
           });
         });
       });
 
     }
   }
-
   Future<void> deleteExpiredTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
         .collection("users")
@@ -106,10 +101,7 @@ class TicketCubit extends Cubit<TicketsStates> {
         });
       });
     });
-
-
   }
-
   Future<void> deleteTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
         .collection("users")
@@ -141,7 +133,6 @@ class TicketCubit extends Cubit<TicketsStates> {
               .get()
               .then((value) {
             value.docs.forEach((element) {
-              
               FirebaseFirestore.instance
                   .collection('trains')
                   .doc(element.id)
@@ -151,8 +142,6 @@ class TicketCubit extends Cubit<TicketsStates> {
                 //DateFormat('EEEE').format(DateTime.parse(depart))
                 newDateTime(ticket.date.toString(), "23:59:59"): allSeats,
               }).then((value) {
-
-
               }).catchError((error) {
                 emit(CancelTicketErrorState(error));
               });

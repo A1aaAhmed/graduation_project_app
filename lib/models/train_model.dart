@@ -1,20 +1,15 @@
-import 'package:flutter/material.dart';
 
 class TrainModel {
-  List stations = [];
-  List Timetable = [];
-  String trainNum = '';
-  String trainID = '';
-  Map<String, dynamic> available = {};
-  Map<String, dynamic> trainClasses = {};
+   List stations=[];
+   List Timetable=[];
+   String trainNum='';
+   String trainID='';
 
   TrainModel(
     this.stations,
     this.Timetable,
     this.trainNum,
     this.trainID,
-    this.available,
-    this.trainClasses,
   );
 
   TrainModel.fromjson(Map<String, dynamic> json) {
@@ -22,8 +17,6 @@ class TrainModel {
     Timetable = json['Timetable'];
     trainNum = json['trainNum'];
     trainID = json['trainID'];
-    available = json['available'];
-    trainClasses = json['trainClasses'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -31,8 +24,6 @@ class TrainModel {
       'Timetable': Timetable,
       'trainNum': trainNum,
       'trainID': trainID,
-      'available' :available,
-      'trainClasses': trainClasses,
     };
   }
 }

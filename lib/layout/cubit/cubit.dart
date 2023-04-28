@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
-import 'package:background_fetch/background_fetch.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +10,6 @@ import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/allTickets.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
-import 'package:graduation_project_app/modules/home_screen/secondsection/secondsection.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,17 +22,16 @@ class MainCubit extends Cubit<MainStates> {
   static String? uId;
   static UserModel? model;
   static MainCubit get(context) => BlocProvider.of(context);
+
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
-    CheckTrain(date: dateTicket, isFromHome: true, station: station),
+    CheckTrain(date: dateTicket, isFromHome: true, station: station,trainNump:Train ),
     const TicketsView(),
     const ProfileScreen(),
   ];
-
   void changeNavbarIndex(index) {
     currentindex = index;
-    print(currentindex);
     emit(ChangeNavBarState());
   }
 

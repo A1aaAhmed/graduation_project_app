@@ -7,10 +7,12 @@ import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
 import 'package:graduation_project_app/modules/Ticket/expiredTickets.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/loading.dart';
+
 class TicketsView extends StatelessWidget {
   const TicketsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => TicketCubit()..getAllTickets(),
       child: BlocConsumer<TicketCubit,TicketsStates>(
@@ -23,7 +25,6 @@ class TicketsView extends StatelessWidget {
             text: 'My Tickets',
             morelist: true,
             bottom: true
-
           ),
           body: TabBarView(
             children: [

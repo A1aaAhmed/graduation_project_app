@@ -13,7 +13,8 @@ class CheckTrain extends StatelessWidget {
   final DateTime date;
   final bool isFromHome;
   final String station;
-  const CheckTrain({required this.date,required this.isFromHome ,required this.station,Key? key}) : super(key: key);
+  final String trainNump;
+  const CheckTrain({required this.date,required this.isFromHome ,required this.station, required this.trainNump ,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,8 +30,8 @@ class CheckTrain extends StatelessWidget {
              builder: (context) =>ConditionalBuilder(
                condition:!isFromHome&&isToday(date)&&started(date)||
                    isFromHome&&availableTicket.isNotEmpty&&isToday(availableTicket[0].date)&&started(availableTicket[0].date),
-               builder: (context) =>  LiveLocationScreen(trainLonLat:trainLonLat),
-               fallback: (context) => NothingScreen(nothing: false,station: station,isFromHomeScreen: isFromHome,date:isFromHome?availableTicket.isEmpty?DateTime.now():availableTicket[0].date:date,isEmpty:availableTicket.isEmpty),),
+               builder: (context) =>  LiveLocationScreen(trainNump:trainNump),
+               fallback: (context) => NothingScreen(trainNump: trainNump,nothing: false,station: station,isFromHomeScreen: isFromHome,date:isFromHome?availableTicket.isEmpty?DateTime.now():availableTicket[0].date:date,isEmpty:availableTicket.isEmpty),),
              fallback: (context) =>const LoadingScreen(),),
 
       )));}
