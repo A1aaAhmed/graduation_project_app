@@ -236,7 +236,7 @@ class _SeatsState extends State<Seats> {
                     child: button(
                       height: 50,
                       onpress: () async {
-                        if (selectedSeats.length == noOfChoosenSeats) {
+                        if (selectedSeats.isNotEmpty) {
                           confirmSeats(
                             context,
                             widget.time,
@@ -246,7 +246,7 @@ class _SeatsState extends State<Seats> {
                         } else {
                           showToast(
                             state: ToastStates.error,
-                            text: 'Select all seats!',
+                            text: 'You must select at least one seat!',
                           );
                         }
                       },

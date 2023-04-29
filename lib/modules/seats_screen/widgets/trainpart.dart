@@ -99,19 +99,15 @@ class _TrainPartState extends State<TrainPart> {
                   } else if (oddBoxes[index] && isOdd) {
                     SeatsScreenCubit.get(context).removeOddSeatFunction(
                         seatNumber,
-                        isOdd,
-                        evenBoxes,
                         oddBoxes,
                         index,
-                        allSeats);
+                        );
                   } else if (evenBoxes[index] && !isOdd) {
                     SeatsScreenCubit.get(context).removeEvenSeatFunction(
                         seatNumber,
-                        isOdd,
                         evenBoxes,
-                        oddBoxes,
                         index,
-                        allSeats);
+                        );
                   } else {
                     if (numberOfSeats == noOfChoosenSeats) {
                       showToast(
@@ -125,7 +121,7 @@ class _TrainPartState extends State<TrainPart> {
                           evenBoxes,
                           oddBoxes,
                           index,
-                          allSeats);
+                          );
                     }
                   }
                 },

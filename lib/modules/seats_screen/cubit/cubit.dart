@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
@@ -25,8 +27,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     }
   }
 
-  void removeOddSeatFunction(int seatNumber, bool isOdd, List<bool> evenBoxes,
-      List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
+  void removeOddSeatFunction(int seatNumber, List<bool> oddBoxes, int index) {
     oddBoxes[index] = false;
     numberOfSeats--;
     amountToBePayed -= amountDependingOnClass(seatNumber);
@@ -34,8 +35,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     emit(RemoveSeatsState());
   }
 
-  void removeEvenSeatFunction(int seatNumber, bool isOdd, List<bool> evenBoxes,
-      List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
+  void removeEvenSeatFunction(int seatNumber, List<bool> evenBoxes, int index) {
     evenBoxes[index] = false;
     numberOfSeats--;
     amountToBePayed -= amountDependingOnClass(seatNumber);
@@ -44,7 +44,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   void changeSeatsFunction(int seatNumber, bool isOdd, List<bool> evenBoxes,
-      List<bool> oddBoxes, int index, List<dynamic> bookedSeats) {
+      List<bool> oddBoxes, int index) {
     numberOfSeats++;
     amountToBePayed += amountDependingOnClass(seatNumber);
     selectedSeats.add(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
@@ -56,35 +56,35 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     emit(ChangeSeatsState());
   }
 
+  // await FirebaseFirestore.instance
+  //     .collection('trains')
+  //     .doc("2dRl1WJljsXJpNrn9KYB")
+  //     .collection("seats")
+  //     .doc('Lzmj2kh4n6gIQMQwu4sU')
+  //     .update({
+  //   '2023-03-06 23:59:59': FieldValue.delete(),
+  // }).whenComplete(() async {
+  //   print('Field deleted');
+  //   emit(DeleteFieldState());
+  //   await FirebaseFirestore.instance
+  //       .collection('trains')
+  //       .doc('2dRl1WJljsXJpNrn9KYB')
+  //       .collection("seats")
+  //       .doc('Lzmj2kh4n6gIQMQwu4sU')
+  //       .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
+  //           (value) async {
+  //     //Do your stuff.
+  //     print('the field added successfully');
+  //     emit(AddFieldState());
+  //   }).catchError((error) {
+  //     print(error.toString());
+  //     emit(DeleteFieldErrorState(error));
+  //   });
+  // });
   //2dRl1WJljsXJpNrn9KYB
   List seats = List.filled(48, false);
   Future<void> getSeats(String trainId) async {
-    // await FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc("2dRl1WJljsXJpNrn9KYB")
-    //     .collection("seats")
-    //     .doc('Lzmj2kh4n6gIQMQwu4sU')
-    //     .update({
-    //   '2023-03-06 23:59:59': FieldValue.delete(),
-    // }).whenComplete(() async {
-    //   print('Field deleted');
-    //   emit(DeleteFieldState());
-    //   await FirebaseFirestore.instance
-    //       .collection('trains')
-    //       .doc('2dRl1WJljsXJpNrn9KYB')
-    //       .collection("seats")
-    //       .doc('Lzmj2kh4n6gIQMQwu4sU')
-    //       .set({'2023-03-06 23:59:59': seats}, SetOptions(merge: true)).then(
-    //           (value) async {
-    //     //Do your stuff.
-    //     print('the field added successfully');
-    //     emit(AddFieldState());
-    //   }).catchError((error) {
-    //     print(error.toString());
-    //     emit(DeleteFieldErrorState(error));
-    //   });
-    // });
-    await FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
         .collection('seats')
@@ -97,33 +97,33 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
       });
       emit(GetSeatsSuccessState());
     });
-
-    // // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-    // // print(trainId);
-    // // print(allSeats);
-    // FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc(trainId)
-    //     .collection('seats')
-    //     .get()
-    //     .then((value) {
-    //   // print(trainId);
-    //   // print(value.docs);
-    //   value.docs.forEach((e) {
-    //     allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
-    //     seatsId = e.reference.id;
-    //     // print(e.reference.id);
-    //   });
-
-    //   // print(trainId);
-    //   // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-    //   // print(allSeats);
-    //   // print(seatsId);
-    //   emit(GetSeatsSuccessState());
-    // }).catchError((error) {
-    //   emit(GetSeatsErrorState(error.toString()));
-    // });
   }
+
+  // // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+  // // print(trainId);
+  // // print(allSeats);
+  // FirebaseFirestore.instance
+  //     .collection('trains')
+  //     .doc(trainId)
+  //     .collection('seats')
+  //     .get()
+  //     .then((value) {
+  //   // print(trainId);
+  //   // print(value.docs);
+  //   value.docs.forEach((e) {
+  //     allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
+  //     seatsId = e.reference.id;
+  //     // print(e.reference.id);
+  //   });
+
+  //   // print(trainId);
+  //   // print(DateFormat('EEEE').format(DateTime.parse(depart)));
+  //   // print(allSeats);
+  //   // print(seatsId);
+  //   emit(GetSeatsSuccessState());
+  // }).catchError((error) {
+  //   emit(GetSeatsErrorState(error.toString()));
+  // });
 
   void updateSeats(String trainId, String theDayValue) async {
     //print(DateTime.parse(depart).day);
@@ -140,16 +140,15 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
           (int.parse(theDayValue) - noOfChoosenSeats).toString();
       print('the new value is $updatedValue');
       await FirebaseFirestore.instance
-            .collection('trains')
-            .doc(trainId)
-            .update({'available.${day}': updatedValue})
-            .then((value) {
-          // print(daysOfExpiredDates);
-          // print('Field added');
-          // print(date);
-        }).catchError((error) {
-          print(error.toString());
-        });
+          .collection('trains')
+          .doc(trainId)
+          .update({'available.${day}': updatedValue}).then((value) {
+        // print(daysOfExpiredDates);
+        // print('Field added');
+        // print(date);
+      }).catchError((error) {
+        print(error.toString());
+      });
 
       emit(UpdateSeatsSuccessState());
     }).catchError((error) {
