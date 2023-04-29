@@ -70,17 +70,23 @@ class _phoneScreenState extends State<phoneScreen> {
                         defultButton(
                             background: colortheme.lightPurple,
                             function: () async {
+                              int resend=0;
+                              print ("innnnnnn");
                               print(cubit.phoneController.text);
                               await FirebaseAuth.instance.verifyPhoneNumber(
                                   phoneNumber:"+2"+cubit.phoneController.text ,
                                   verificationCompleted: (phoneAuthCredential) {
 
+
                                   },
                                   verificationFailed:(error) {
+
+
                                   },
                                   codeSent: (String verificationId, int ?forceResendingToken)async {
                                     print("                                    "+verificationId);
                                    realOpt=verificationId;
+                                    resend=forceResendingToken!;
                                     print ("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"+"       "+ realOpt);
                                     //01553070083
                                     Navigator.push(
@@ -90,8 +96,10 @@ class _phoneScreenState extends State<phoneScreen> {
                                         )
                                     );
                                   },
-                                  codeAutoRetrievalTimeout: (verificationId) {
-                                  },
+                                forceResendingToken: resend,
+                                codeAutoRetrievalTimeout: (String verificationId) {
+                                  verificationId = realOpt;
+                                },
                               );
                               // if (formKey.currentState!.validate()) {
                               //   print('enterrrr');
