@@ -123,7 +123,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: Trans(),
+            home: startScreen,
           ));
     });
   }
