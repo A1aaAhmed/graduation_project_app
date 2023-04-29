@@ -133,3 +133,5 @@ String station="";
 String Train="";
 ///changed later
 LatLng trainLonLat=LatLng(trian_location_lat, trian_location_long);
+String realOpt='';
+String userOpt='';

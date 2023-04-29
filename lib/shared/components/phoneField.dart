@@ -23,17 +23,17 @@ Widget phoneField({
   },
   cursorColor: colortheme.lightPurple,
   keyboardType: TextInputType.phone,
-  decoration: InputDecoration(
+  decoration: const InputDecoration(
     labelText: 'what\'s your phone number',
     // labelStyle: TextStyle(color: colortheme.lightPurple),
-    border: const OutlineInputBorder(),
-    focusedBorder: const OutlineInputBorder(
+    border: OutlineInputBorder(),
+    focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: colortheme.lightPurple,
       ),
     ),
     focusColor: colortheme.lightPurple,
-    prefixIcon: const Icon(Icons.phone_android,color: colortheme.lightPurple,),
+    prefixIcon: Icon(Icons.phone_android,color: colortheme.lightPurple,),
 
   ),
 );
