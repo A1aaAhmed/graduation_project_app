@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/social/verifyPhone.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/components/phoneField.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
@@ -26,7 +28,7 @@ class _phoneScreenState extends State<phoneScreen> {
             appBar: AppBar(
               backgroundColor: colortheme.lightGray,
               leading: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: colortheme.lightPurple,
                 ),
@@ -49,7 +51,7 @@ class _phoneScreenState extends State<phoneScreen> {
                               color: colortheme.black,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         Text(
@@ -58,50 +60,73 @@ class _phoneScreenState extends State<phoneScreen> {
                                 color: Colors.grey,
                               ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 34,
                         ),
                         phoneField(controller: cubit.phoneController),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         defultButton(
                             background: colortheme.lightPurple,
                             function: () async {
-                              if (formKey.currentState!.validate()) {
-                                print('enterrrr');
-                                cubit.submitPhoneNumber();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => verifyPhoneScreen(
-                                            ))));
-                                //   await FirebaseAuth.instance.verifyPhoneNumber(
-                                //     verificationCompleted:
-                                //         (PhoneAuthCredential credential) {
-                                //       setState(() {
-                                //         print('sucess');
-                                //         print(credential);
-                                //       });
-                                //     },
-                                //     verificationFailed: (error) {
-                                //       setState(() {
-                                //         print(error.toString());
-                                //       });
-                                //     },
-                                //     timeout: const Duration(seconds: 10),
-                                //     codeSent:
-                                //         (verificationId, forceResendingToken) async {
-                                //       await Navigator.push(
-                                //           context,
-                                //           MaterialPageRoute(
-                                //               builder: ((context) => verifyPhoneScreen(
-                                //                     verificationId: verificationId,
-                                //                   ))));
-                                //     },
-                                //     codeAutoRetrievalTimeout: (verificationId) {},
-                                //   );
-                              }
+                              print(cubit.phoneController.text);
+                              await FirebaseAuth.instance.verifyPhoneNumber(
+                                  phoneNumber:"+2"+cubit.phoneController.text ,
+                                  verificationCompleted: (phoneAuthCredential) {
+
+                                  },
+                                  verificationFailed:(error) {
+                                  },
+                                  codeSent: (String verificationId, int ?forceResendingToken)async {
+                                    print("                                    "+verificationId);
+                                   realOpt=verificationId;
+                                    print ("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"+"       "+ realOpt);
+                                    //01553070083
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: ((context) =>  verifyPhoneScreen()),
+                                        )
+                                    );
+                                  },
+                                  codeAutoRetrievalTimeout: (verificationId) {
+                                  },
+                              );
+                              // if (formKey.currentState!.validate()) {
+                              //   print('enterrrr');
+                              //   cubit.submitPhoneNumber();
+                              //   Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //           builder: ((context) => verifyPhoneScreen(
+                              //               ))));
+                              //   //   await FirebaseAuth.instance.verifyPhoneNumber(
+                              //   //     verificationCompleted:
+                              //   //         (PhoneAuthCredential credential) {
+                              //   //       setState(() {
+                              //   //         print('sucess');
+                              //   //         print(credential);
+                              //   //       });
+                              //   //     },
+                              //   //     verificationFailed: (error) {
+                              //   //       setState(() {
+                              //   //         print(error.toString());
+                              //   //       });
+                              //   //     },
+                              //   //     timeout: const Duration(seconds: 10),
+                              //   //     codeSent:
+                              //   //         (verificationId, forceResendingToken) async {
+                              //   //       await Navigator.push(
+                              //   //           context,
+                              //   //           MaterialPageRoute(
+                              //   //               builder: ((context) => verifyPhoneScreen(
+                              //   //                     verificationId: verificationId,
+                              //   //                   ))));
+                              //   //     },
+                              //   //     codeAutoRetrievalTimeout: (verificationId) {},
+                              //   //   );
+                              // }
                             },
                             text: 'verify your phone number',
                             context: context)

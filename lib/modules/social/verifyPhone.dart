@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -24,12 +25,12 @@ class _verifyPhoneScreenState extends State<verifyPhoneScreen> {
     return BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, AuthStates state) {},
         builder: (BuildContext context, AuthStates state) {
-          AuthCubit cubit = AuthCubit.get(context);
+          //AuthCubit cubit = AuthCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: colortheme.lightGray,
               leading: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: colortheme.lightPurple,
                 ),
@@ -56,7 +57,7 @@ class _verifyPhoneScreenState extends State<verifyPhoneScreen> {
                             color: Colors.grey,
                           ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     OTPTextField(
@@ -67,30 +68,52 @@ class _verifyPhoneScreenState extends State<verifyPhoneScreen> {
                         fieldWidth: 45,
                         fieldStyle: FieldStyle.box,
                         outlineBorderRadius: 15,
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                         onChanged: (pin) {
                           print("Changed: " + pin);
+                          userOpt=pin;
                         },
                         onCompleted: (pin) {
-                          print("Completed: " + pin);
-                        }),
-                    SizedBox(
+                          userOpt=pin;
+                          print("Completeddddddddddddddddddddddddddddddddddd: " + userOpt);
+                        },
+                        ),
+                    const SizedBox(
                       height: 20,
                     ),
                     defultButton(
                         background: colortheme.lightPurple,
                         function: () async {
-                          cubit.submitOTP();
-                          // PhoneAuthCredential credential= PhoneAuthProvider.credential(verificationId: widget.verificationId!, smsCode:otpController.toString() );
-                          // await FirebaseAuth.instance.signInWithCredential(credential);
-                          if(FirebaseAuth.instance.currentUser != null){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) =>  welcomeScreen()),
-                                )
-                            );
+                          print( userOpt);
+                          print("jjjjjjjjjjjjjjjjjjj"+ realOpt);
+
+                          try {
+                         PhoneAuthCredential credential= PhoneAuthProvider.credential(
+                             verificationId:realOpt,
+                             smsCode:userOpt
+                         );
+                         await FirebaseAuth.instance.signInWithCredential(credential);
+                         Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                       builder: ((context) =>  const welcomeScreen()),
+                                   )
+                               );}catch(e){
+                            print("wronnnnnnnnnnnnnnnnnnnnnng");
+                            print(e);
                           }
+
+                          // cubit.submitOTP();
+                          // // PhoneAuthCredential credential= PhoneAuthProvider.credential(verificationId: widget.verificationId!, smsCode:otpController.toString() );
+                          // // await FirebaseAuth.instance.signInWithCredential(credential);
+                          // if(FirebaseAuth.instance.currentUser != null){
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: ((context) =>  const welcomeScreen()),
+                          //       )
+                          //   );
+                          // }
                         },
                         text: 'verify and create account',
                         context: context),

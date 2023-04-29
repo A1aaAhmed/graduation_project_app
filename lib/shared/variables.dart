@@ -137,12 +137,11 @@ DateTime dateTicket=DateTime.now();
 String station="";
 String Train="";
 ///changed later
-LatLng trainLonLat = LatLng(trian_location_lat, trian_location_long);
 
 //seatsScreen constants
 int numberOfSeats = 0;//in seats screen
 num amountToBePayed = 0;
-int noOfChoosenSeats = 1; //in home screen 
+int noOfChoosenSeats = 1; //in home screen
 List<String> selectedSeats = [];
 List<String> gates = [];
 List<TrainClassesModel> classType = [];
@@ -152,3 +151,7 @@ String fieldName = newDateTime(depart, "23:59:59").toString().split(" ").first;
 String day =
     DateFormat('EEEE').format(DateTime.parse(depart)).substring(0,3);
 MapsCubit? maps_cubic;
+
+LatLng trainLonLat=LatLng(trian_location_lat, trian_location_long);
+String realOpt='';
+String userOpt='';

@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import '../../shared/variables.dart';
 
 class TrainsScreen extends StatelessWidget {
- const TrainsScreen({
+  const TrainsScreen({
     super.key,
   });
 

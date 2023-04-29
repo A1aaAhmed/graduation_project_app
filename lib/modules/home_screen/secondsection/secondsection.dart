@@ -158,8 +158,8 @@ class _SecondSectionState extends State<SecondSection> {
                                           .getTrainsAndSearch(from, to)
                                           .then((value) {
                                         print(';;;;;;;;;;;;;;;;;;;;;;');
-                                        print(cubit.searchedTrains);
-                                        print(cubit.searchedTrains.length);
+                                        // print(cubit.searchedTrains);
+                                        // print(cubit.searchedTrains.length);
 
                                         Navigator.push(
                                             context,
