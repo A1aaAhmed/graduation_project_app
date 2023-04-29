@@ -26,7 +26,7 @@ String Train="";
 ///changed later
 
 //seatsScreen constants
-var numberOfSeats = 0;//in seats screen
+int numberOfSeats = 0;//in seats screen
 num amountToBePayed = 0;
 int noOfChoosenSeats = 1; //in home screen
 List<String> selectedSeats = [];
