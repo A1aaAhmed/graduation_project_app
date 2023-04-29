@@ -7,7 +7,6 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 class MqttHandler with ChangeNotifier {
   final ValueNotifier<String> data = ValueNotifier<String>("");
   final client = MqttServerClient('test.mosquitto.org', '');
-  var pongCount = 0; // Pong counter
   Future<int> connect(trainNum) async {
     client.logging(on: true);
     client.setProtocolV311();
@@ -17,6 +16,7 @@ class MqttHandler with ChangeNotifier {
     client.onConnected = onConnected;
     client.onSubscribed = onSubscribed;
     client.pongCallback = pong;
+    client.port=8080;
     final connMess = MqttConnectMessage()
         .withClientIdentifier('Mqtt_MyClientUniqueId')
         .withWillTopic('willtopic') // If you set this you must set a will message
@@ -53,7 +53,10 @@ class MqttHandler with ChangeNotifier {
     String topic = 'Train $Train'; // Not a wildcard topic
     print("----------------------------------------------------------- $topic");
     client.subscribe(topic, MqttQos.atMostOnce);
+    print("----------------------------------------------------------- $topic");
+
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+      print("update doneeeeeeeeeeeeeeeeeee");
       final recMess = c![0].payload as MqttPublishMessage;
       final pt =
       MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
@@ -108,6 +111,5 @@ class MqttHandler with ChangeNotifier {
   /// Pong callback
   void pong() {
     print('EXAMPLE::Ping response client callback invoked');
-    pongCount++;
   }
 }

@@ -17,10 +17,7 @@ class TicketCubit extends Cubit<TicketsStates> {
   Future<void> getAllTickets() async {
     emit(LoadingState());
     FirebaseFirestore.instance
-        .collection("users")
-        .doc(uId).collection('tickets')
-        .get()
-        .then((value) {
+        .collection("users").doc(uId).collection('tickets').get().then((value) {
       value.docs.forEach((element) {
         if (expired(TicketModel.fromJason(element.data()).date)) {
           previousTickets.add(TicketModel.fromJason(element.data()));
