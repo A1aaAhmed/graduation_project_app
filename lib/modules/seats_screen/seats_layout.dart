@@ -2,18 +2,17 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
+import 'package:graduation_project_app/modules/seats_screen/widgets/classesmodel.dart';
 import 'package:graduation_project_app/modules/seats_screen/widgets/confirmation.dart';
-import 'package:graduation_project_app/modules/seats_screen/widgets/selectItem.dart';
+import 'package:graduation_project_app/modules/seats_screen/widgets/selectitem_model.dart';
 import 'package:graduation_project_app/modules/seats_screen/widgets/smalltrain.dart';
-import 'package:graduation_project_app/modules/seats_screen/widgets/trainpart.dart';
-import 'package:graduation_project_app/shared/components/appBar.dart';
+import 'package:graduation_project_app/modules/seats_screen/widgets/themaintrain.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/components/toast.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/widgets/global.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 
 //colortheme
 
@@ -38,10 +37,24 @@ class _SeatsState extends State<Seats> {
     SelectModel(text: 'Booked', color: colortheme.saimon),
     SelectModel(text: 'Selected', color: colortheme.lightPurple),
   ];
+
   List<String> gateType = ['1A', '2A', '3B'];
 
   @override
   Widget build(BuildContext context) {
+    classType = [
+      TrainClassesModel(
+          className: '1st class',
+          price: widget.train['trainClasses']['1st class']),
+      TrainClassesModel(
+          className: 'Business ',
+          price: widget.train['trainClasses']['Business class']),
+      TrainClassesModel(
+          className: 'Economy ',
+          price: widget.train['trainClasses']['Economy class']),
+    ];
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return BlocProvider(
       create: (context) => SeatsScreenCubit()
         ..initialFunction()
@@ -75,7 +88,7 @@ class _SeatsState extends State<Seats> {
                     child: Row(
                       children: [
                         Container(
-                          width: 120,
+                          width: width * 0.33,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -86,8 +99,8 @@ class _SeatsState extends State<Seats> {
                                       ?.copyWith(
                                         fontWeight: FontWeight.bold,
                                       )),
-                              const SizedBox(
-                                height: 35,
+                              SizedBox(
+                                height: height * 0.04,
                               ),
                               Expanded(
                                 child: SingleChildScrollView(
@@ -98,41 +111,40 @@ class _SeatsState extends State<Seats> {
                                       children: [
                                         Expanded(
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            // mainAxisAlignment:
+                                            //     MainAxisAlignment.center,
                                             children: [
                                               Container(
-                                                height: 250,
-                                                padding: const EdgeInsets.only(
-                                                    top: 20),
+                                                height: height * 0.3,
+                                                padding: EdgeInsets.only(
+                                                    top: height * 0.025),
                                                 child: ListView.separated(
-                                                    itemBuilder: (context, index) => Text(
-                                                        gateType[index],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium
-                                                        // style: const TextStyle(
-                                                        //     fontSize: 20,
-                                                        //     color: Color.fromARGB(
-                                                        //         255, 95, 94, 94)),
+                                                    itemBuilder: (context,
+                                                            index) =>
+                                                        Text(
+                                                            classType[index]
+                                                                .className,
+                                                            style: Theme
+                                                                    .of(context)
+                                                                .textTheme
+                                                                .bodySmall),
+                                                    separatorBuilder: (context,
+                                                            index) =>
+                                                        SizedBox(
+                                                          height:
+                                                              height * 0.062,
                                                         ),
-                                                    separatorBuilder:
-                                                        (context, index) =>
-                                                            const SizedBox(
-                                                              height: 50,
-                                                            ),
-                                                    itemCount: gateType.length),
+                                                    itemCount:
+                                                        classType.length),
                                               )
                                             ],
                                           ),
                                         ),
                                         Expanded(
-                                          child: smallTrain(),
+                                          child: smallTrain(
+                                              width: width, height: height),
                                         ),
                                       ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
                                     ),
                                     Text('Seats',
                                         style: Theme.of(context)
@@ -148,44 +160,45 @@ class _SeatsState extends State<Seats> {
                                                 .textTheme
                                                 .bodyLarge
                                                 ?.copyWith(
-                                                    fontSize: 40,
-                                                    color:
-                                                        colortheme.lightPurple)
-                                            // style: const TextStyle(
-                                            //     fontSize: 40,
-                                            //     color: colortheme.lightPurple),
-                                            ),
+                                                    fontSize: 34,
+                                                    color: colortheme
+                                                        .lightPurple)),
                                         Text(
-                                            seats <= 9 ? '/0$seats' : '/$seats',
+                                            noOfChoosenSeats <= 9
+                                                ? '/0$noOfChoosenSeats'
+                                                : '/$noOfChoosenSeats',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodySmall),
                                       ],
                                     ),
-                                    const SizedBox(
-                                      height: 7,
+                                    SizedBox(
+                                      height: height * 0.005,
                                     ),
                                     Text('Amount',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium),
-                                    Row(
-                                      children: [
-                                        Text(
-                                            amountToBePayed <= 9
-                                                ? '0$amountToBePayed'
-                                                : '$amountToBePayed ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge
-                                                ?.copyWith(
-                                                  fontSize: 40,
-                                                )),
-                                        Text('EG',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium)
-                                      ],
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                              amountToBePayed <= 9
+                                                  ? '0$amountToBePayed '
+                                                  : '$amountToBePayed ',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                    fontSize: 34,
+                                                  )),
+                                          Text('EG',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium)
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 )),
@@ -196,113 +209,21 @@ class _SeatsState extends State<Seats> {
                         Expanded(
                           child: Column(
                             children: [
-                              const SizedBox(
-                                width: 20,
+                              SizedBox(
+                                width: width * 0.089,
                               ),
                               Container(
-                                height: 120,
-                                child: ListView.separated(
+                                height: height * 0.18,
+                                child: ListView.builder(
                                   itemBuilder: (context, index) =>
                                       selectItem(selection[index], context),
                                   itemCount: selection.length,
                                   scrollDirection: Axis.horizontal,
-                                  separatorBuilder:
-                                      (BuildContext context, int index) =>
-                                          const SizedBox(
-                                    width: 3,
-                                  ),
                                 ),
                               ),
                               Expanded(
                                 child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      Stack(
-                                        alignment:
-                                            AlignmentDirectional.topCenter,
-                                        children: [
-                                          Container(
-                                            width: 170,
-                                            height: 450,
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(100),
-                                                    topRight:
-                                                        Radius.circular(100),
-                                                    bottomLeft:
-                                                        Radius.circular(20),
-                                                    bottomRight:
-                                                        Radius.circular(20))),
-                                            child: const MyWidget(start: 1),
-                                          ),
-                                          Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 20),
-                                            width: 140,
-                                            height: 70,
-                                            decoration: const BoxDecoration(
-                                                color: colortheme.blueGray,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(100),
-                                                    topRight:
-                                                        Radius.circular(100))),
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width: 170,
-                                        height: 360,
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 20),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        child: const MyWidget(start: 17),
-                                      ),
-                                      Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Container(
-                                            width: 170,
-                                            height: 450,
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 20),
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(20),
-                                                    topRight:
-                                                        Radius.circular(20),
-                                                    bottomLeft:
-                                                        Radius.circular(100),
-                                                    bottomRight:
-                                                        Radius.circular(100))),
-                                            child: const MyWidget(start: 33),
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                bottom: 35),
-                                            width: 140,
-                                            height: 70,
-                                            decoration: const BoxDecoration(
-                                                color: colortheme.blueGray,
-                                                borderRadius: BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(100),
-                                                    bottomRight:
-                                                        Radius.circular(100))),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                  child: TheMainTrain(height: height, width: width,)),
                               )
                             ],
                           ),
@@ -315,7 +236,7 @@ class _SeatsState extends State<Seats> {
                     child: button(
                       height: 50,
                       onpress: () async {
-                        if (selectedSeats.length == seats) {
+                        if (selectedSeats.length == noOfChoosenSeats) {
                           confirmSeats(
                             context,
                             widget.time,

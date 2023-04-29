@@ -12,8 +12,18 @@ class Trans extends StatelessWidget {
       listener: (BuildContext context, MainStates MainStates) {},
       builder: (BuildContext context, MainStates MainStates) {
         MainCubit cubit = MainCubit.get(context);
-        print(cubit.currentindex);
-        print("///////////////////");
+        // cubit.initPlatformState();
+        // cubit.checkExpiredDate();
+        // cubit.update();
+        // cubit.previousDates();
+        // cubit.addFutureFields();
+        // cubit.addOnePreviousField();
+        // cubit.deleteAllFields();
+        // cubit.test();
+        // cubit.getFields();
+        // cubit.resetSeats();
+        // print(cubit.currentindex);
+        // print("///////////////////");
         return Scaffold(
           body: cubit.screens[cubit.currentindex],
           bottomNavigationBar: BottomNavigationBar(

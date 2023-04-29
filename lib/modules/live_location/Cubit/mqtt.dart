@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_project_app/modules/live_location/livelocation_screen.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 class MqttHandler with ChangeNotifier {

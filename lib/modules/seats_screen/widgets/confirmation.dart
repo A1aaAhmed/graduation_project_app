@@ -7,7 +7,6 @@ import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import '../../../models/ticket.dart';
 
@@ -23,10 +22,8 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                 },
                 builder: (context, state) {
                   return AlertDialog(
-                    title: Text(
-                      'Confirmation',
-                      style: Theme.of(context).textTheme.bodyMedium
-                    ),
+                    title: Text('Confirmation',
+                        style: Theme.of(context).textTheme.bodyMedium),
                     content: Text(
                       'You selected ${selectedSeats.join(',')}.\n Are you sure you want to confirm these seats?',
                       style: Theme.of(context).textTheme.bodySmall,
@@ -47,10 +44,9 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                             UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
-                              
                             }
-                            SeatsScreenCubit.get(context)
-                                .updateSeats(train['trainID']);
+                            SeatsScreenCubit.get(context).updateSeats(
+                                train['trainID'], train['available']['${day}']);
                             print(allSeats);
                             gates = gates.toSet().toList();
                             Navigator.push(

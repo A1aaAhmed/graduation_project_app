@@ -1,18 +1,13 @@
-
 class TrainModel {
   List stations = [];
   List Timetable = [];
   String trainNum = '';
   String trainID = '';
-  Map<String, dynamic> available={};
+  Map<String, dynamic> available = {};
+  Map<String, dynamic> trainClasses = {};
 
-  TrainModel(
-    this.stations,
-    this.Timetable,
-    this.trainNum,
-    this.trainID,
-    this.available,
-  );
+  TrainModel(this.stations, this.Timetable, this.trainNum, this.trainID,
+      this.available, this.trainClasses);
 
   TrainModel.fromjson(Map<String, dynamic> json) {
     stations = json['stations'];
@@ -20,6 +15,7 @@ class TrainModel {
     trainNum = json['trainNum'];
     trainID = json['trainID'];
     available = json['available'];
+    trainClasses = json['trainClasses'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -28,6 +24,7 @@ class TrainModel {
       'trainNum': trainNum,
       'trainID': trainID,
       'available': available,
+      'trainClasses': trainClasses
     };
   }
 }

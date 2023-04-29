@@ -4,80 +4,63 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/components/toast.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/widgets/global.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 
-class MyWidget extends StatefulWidget {
+class TrainPart extends StatefulWidget {
   final int start;
-  const MyWidget({
+  const TrainPart({
     super.key,
     required this.start,
   });
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<TrainPart> createState() => _TrainPartState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
-  List<bool> oddBoxes = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ];
-  List<bool> evenBoxes = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ];
+class _TrainPartState extends State<TrainPart> {
+  List<bool> oddBoxes = List.filled(8, false);
+  List<bool> evenBoxes = List.filled(8, false);
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            columnComponent(
-              true,
-              widget.start,
-            ),
+            columnComponent(true, widget.start, width, height),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(width * 0.06),
               child: Container(
                 margin: widget.start == 1
-                    ? const EdgeInsets.only(top: 100)
+                    ? EdgeInsets.only(top: height * 0.13)
                     : widget.start == 33
-                        ? const EdgeInsets.only(bottom: 100)
+                        ? EdgeInsets.only(bottom: height * 0.13)
                         : const EdgeInsets.all(0),
-                width: 3,
+                width: width * 0.012,
                 height: double.infinity,
                 color: colortheme.blueGray,
               ),
             ),
-            columnComponent(false, widget.start + 1),
+            columnComponent(false, widget.start + 1, width, height),
           ],
         );
       },
     );
   }
 
-  Widget seatComponent(int value, Color boxColor) => Container(
-        margin: const EdgeInsets.all(5),
-        height: 30,
+  Widget seatComponent(
+          int value, Color boxColor, double width, double height) =>
+      Container(
+        margin: EdgeInsets.all(width * 0.018),
+        height: height * 0.041,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), color: boxColor),
+            borderRadius: BorderRadius.circular(width * 0.02), color: boxColor),
         child: Center(
           child: Text(
             value <= 9 ? '0$value' : '$value',
@@ -95,14 +78,15 @@ class _MyWidgetState extends State<MyWidget> {
         ),
       );
 
-  Widget columnComponent(bool isOdd, int start) => Column(
+  Widget columnComponent(bool isOdd, int start, double width, double height) =>
+      Column(
         children: [
           Container(
-            width: 40,
-            height: 340,
+            width: width * 0.13,
+            height: height * 0.5,
             margin: start == 1 || start == 2
-                ? const EdgeInsets.only(top: 100)
-                : const EdgeInsets.only(top: 12),
+                ? EdgeInsets.only(top: height * 0.15)
+                : EdgeInsets.only(top: height * 0.0156),
             child: ListView.separated(
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () async {
@@ -129,7 +113,7 @@ class _MyWidgetState extends State<MyWidget> {
                         index,
                         allSeats);
                   } else {
-                    if (numberOfSeats == seats) {
+                    if (numberOfSeats == noOfChoosenSeats) {
                       showToast(
                         state: ToastStates.error,
                         text: 'You Reach The Limit!',
@@ -153,7 +137,9 @@ class _MyWidgetState extends State<MyWidget> {
                             ? colortheme.lightPurple
                             : evenBoxes[index] && !isOdd
                                 ? colortheme.lightPurple
-                                : colortheme.lightGray),
+                                : colortheme.lightGray,
+                    width,
+                    height),
               ),
               itemCount: 8,
               separatorBuilder: (BuildContext context, int index) => SizedBox(

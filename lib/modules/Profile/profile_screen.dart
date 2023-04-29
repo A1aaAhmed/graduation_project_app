@@ -17,7 +17,6 @@ import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/loading.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 
 import 'package:restart_app/restart_app.dart';
 class ProfileScreen extends StatelessWidget {

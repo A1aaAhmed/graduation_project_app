@@ -1,66 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
-Widget smallTrain() => Column(
+Widget smallTrain({required double width, required double height}) => Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
-              width: 40,
-              height: 80,
-              decoration: const BoxDecoration(
+              width: width * 0.1,
+              height: height * 0.1,
+              decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(22),
-                      topRight: Radius.circular(22),
-                      bottomLeft: Radius.circular(4.5),
-                      bottomRight: Radius.circular(4.5))),
+                      topLeft: Radius.circular(width * 0.06),
+                      topRight: Radius.circular(width * 0.06),
+                      bottomLeft: Radius.circular(width * 0.012),
+                      bottomRight: Radius.circular(width * 0.012))),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 7),
-              width: 30,
-              height: 20,
-              decoration: const BoxDecoration(
+              margin: EdgeInsets.only(top: height * 0.007),
+              width: width * 0.082,
+              height: height * 0.026,
+              decoration: BoxDecoration(
                   color: colortheme.blueGray,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(22),
-                      topRight: Radius.circular(22))),
+                      topLeft: Radius.circular(width * 0.04),
+                      topRight: Radius.circular(width * 0.04))),
             ),
           ],
         ),
         Container(
-          width: 40,
-          height: 60,
-          margin: const EdgeInsets.only(top: 7),
+          width: width * 0.1,
+          height: height * 0.08,
+          margin: EdgeInsets.only(top: height * 0.009),
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(4.5)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(width * 0.012)),
         ),
         Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             Container(
-              width: 40,
-              height: 80,
-              margin: const EdgeInsets.symmetric(vertical: 7),
-              decoration: const BoxDecoration(
+              width: width * 0.1,
+              height: height * 0.1,
+              margin: EdgeInsets.symmetric(vertical: height * 0.009),
+              decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(4.5),
-                      topRight: Radius.circular(4.5),
-                      bottomLeft: Radius.circular(22),
-                      bottomRight: Radius.circular(22))),
+                      topLeft: Radius.circular(width * 0.012),
+                      topRight: Radius.circular(width * 0.012),
+                      bottomLeft: Radius.circular(width * 0.06),
+                      bottomRight: Radius.circular(width * 0.06))),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 12),
-              width: 30,
-              height: 20,
-              decoration: const BoxDecoration(
+              margin: EdgeInsets.only(bottom: height * 0.015),
+              width: width * 0.082,
+              height: height * 0.026,
+              decoration: BoxDecoration(
                   color: colortheme.blueGray,
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(22),
-                      bottomRight: Radius.circular(22))),
+                      bottomLeft: Radius.circular(width * 0.04),
+                      bottomRight: Radius.circular(width * 0.04))),
             ),
           ],
         ),

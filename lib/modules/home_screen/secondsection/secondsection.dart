@@ -12,7 +12,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'package:graduation_project_app/widgets/global.dart' as globals;
 import 'package:intl/intl.dart';
 
 import '../../../models/train_model.dart';
@@ -154,10 +153,14 @@ class _SecondSectionState extends State<SecondSection> {
                                   context: context,
                                   onpress: () {
                                     if (formkey.currentState!.validate()) {
-                                      globals.seats = travellers;
+                                      noOfChoosenSeats = travellers;
                                       cubit
                                           .getTrainsAndSearch(from, to)
                                           .then((value) {
+                                        print(';;;;;;;;;;;;;;;;;;;;;;');
+                                        print(cubit.searchedTrains);
+                                        print(cubit.searchedTrains.length);
+
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -168,7 +171,7 @@ class _SecondSectionState extends State<SecondSection> {
                                         onError.toString();
                                       });
                                     }
-                                    ;
+                                    
                                     // addseats(seats);
                                   })
                             ]),

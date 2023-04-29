@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/seats_screen/seats_layout.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:graduation_project_app/widgets/global.dart';
 import 'package:intl/intl.dart';
 
 import '../../shared/variables.dart';
@@ -20,7 +19,8 @@ Widget SearchCard(
         clipper: CardClipper(),
         child: GestureDetector(
           onTap: () {
-            //print(train);
+            // print(train);
+            // print(train['trainClasses']['1st class']);
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -33,7 +33,7 @@ Widget SearchCard(
           child: Container(
               height: MediaQuery.of(context).size.height * 0.27,
               color: int.parse(available) >=
-                      seats
+                      noOfChoosenSeats
                   ? Colors.white70
                   : colortheme.saimon.withOpacity(0.5),
               child: Row(children: [

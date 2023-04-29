@@ -7,6 +7,7 @@ import 'package:graduation_project_app/modules/home_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:intl/intl.dart';
 
+
 import '../../../models/train_model.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenStates> {
