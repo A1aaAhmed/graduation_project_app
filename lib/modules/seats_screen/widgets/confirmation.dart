@@ -18,14 +18,13 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
               create: (context) => SeatsScreenCubit(),
               child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
                 listener: (context, state) {
-                  // TODO: implement listener
                 },
                 builder: (context, state) {
                   return AlertDialog(
                     title: Text('Confirmation',
                         style: Theme.of(context).textTheme.bodyMedium),
                     content: Text(
-                      'You selected ${selectedSeats.join(',')}.\n Are you sure you want to confirm these seats?',
+                      'You selected ${selectedSeats.join(',')} and the amount is ${amountToBePayed}.\n Are you sure you want to confirm these seats?',
                       style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
@@ -39,7 +38,6 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                 seats: selectedSeats.join(" ,"),
                                 train: trainNUM,
                                 price: amountToBePayed.toString());
-
                             ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
