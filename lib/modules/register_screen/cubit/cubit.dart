@@ -13,16 +13,19 @@ class registerCubit extends Cubit<registerStates> {
   required String secondName,
   required String email,
   required String pass,
+    required String phone
 }){
     emit(registerLoadinglState());
     FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: pass).then
       ((value) {
+
+        value.user?.uid!=phone;
+        print('استغفر الله العظيم');
         print(value.user?.email);
         print(value.user?.uid);
-        ///need data here uid ,phone,image
-        createUser(name: '$firstName $secondName', email: email, uId: value.user!.uid);
+        createUser(name: '$firstName $secondName', email: email, uId: phone,phone: phone);
         }).catchError(
             (error){
               print(error);
@@ -33,17 +36,20 @@ class registerCubit extends Cubit<registerStates> {
   required String name,
   required String email,
   required String uId,
+    required String phone
 
 }){
     UserModel model =UserModel(
       name: name,
       email: email,
       uId: uId,
-      phone: '01xxxxxxxxx',
+      phone: phone,
+      bill: '0.0',
       image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',
     );
-    FirebaseFirestore.instance.collection('users').doc(uId.toString().substring(0,3))
-        .collection('numbers').doc(uId).set(model.toMap()).then(
+    String start=phone.substring(0,3);
+    FirebaseFirestore.instance.collection('users').doc(start)
+        .collection('numbers').doc(phone).set(model.toMap()).then(
         (value)
             {
               emit(createUserSucessState(uId));

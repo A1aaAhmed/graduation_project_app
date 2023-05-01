@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/social/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/social/cubit/states.dart';
+import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project_app/layout/transition.dart';
@@ -11,30 +12,21 @@ import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import '../../shared/components/components.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
-class welcomeScreen extends StatelessWidget {
+class welcomeScreen extends StatefulWidget {
   const welcomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<welcomeScreen> createState() => _welcomeScreenState();
+}
+
+class _welcomeScreenState extends State<welcomeScreen> {
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => googleCubit(),
+      create: (context) => googleCubit(),
       child: BlocConsumer<googleCubit,googleStates>(
         listener: (context,state){
-          if(state is createGoogleUserErrorState){
-            showToast(text:state.error.toString(),status:toastStates.ERROR);
-          }
-          if(state is createGoogleUserSucessState){
-            showToast(text:'you have sucessfully signed up',status:toastStates.SUCESS);
-            casheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const Trans())
-                  )
-              );
-            });
 
-          }
         },
         builder: (context,state){
           return  Scaffold(
@@ -89,17 +81,27 @@ class welcomeScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 15,),
-                             
-                                 iconTextButton(
-                                     context: context,
-                                     background: Colors.red,
-                                     iconp: Icons.g_mobiledata,
-                                     text: "Contine with Google",
-                                     function: ()async{
-                                        await googleCubit.get(context).signInWithGoogle();
 
-                                     }),
-                               
+                              iconTextButton(
+                                  context: context,
+                                  background: Colors.red,
+                                  iconp: Icons.g_mobiledata,
+                                  text: "Contine with Google",
+                                  function: ()async{
+                                    User?user;
+                                    user=await googleCubit.get(context).signInWithGoogle();
+                                    if(user != null){
+
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: ((context) =>  phoneScreen(user?.displayName,user?.email))
+                                          )
+                                      );
+                                    }
+
+                                  }),
+
                               const SizedBox(height: 15,),
                               iconTextButton(
                                 context: context,
@@ -141,7 +143,7 @@ class welcomeScreen extends StatelessWidget {
           );
         },
       ),
-    );
+    );;
   }
 }
 

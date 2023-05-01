@@ -6,55 +6,64 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/social/cubit/states.dart';
-
+import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
+import 'package:get/get.dart';
 class googleCubit extends Cubit<googleStates> {
   googleCubit() : super(googleInitialStates());
   static googleCubit get(context) => BlocProvider.of(context);
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+   Future<User?> signInWithGoogle() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    createGoogleUser(
-        name: googleUser!.displayName!,
-        email: googleUser!.email,
-        uId: googleUser!.id);
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final GoogleSignInAccount? googleSignInAccount =
+    await googleSignIn.signIn();
+
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      try {
+        final UserCredential userCredential =
+        await auth.signInWithCredential(credential);
+
+        user = userCredential.user;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
+          Get.showSnackbar(const GetSnackBar(
+            message: "You already have an account with this email. Use other login method.",
+            duration: Duration(seconds: 3),
+          ));
+        }
+        else if (e.code == 'invalid-credential') {
+          Get.showSnackbar(const GetSnackBar(
+            message: "Invalid Credential!",
+            duration: Duration(seconds: 3),
+          ));
+        } else if (e.code == 'wrong-password') {
+          Get.showSnackbar(const GetSnackBar(
+            message: "Wrong password!",
+            duration: Duration(seconds: 3),
+          ));
+        }
+      } catch (e) {
+        Get.showSnackbar(const GetSnackBar(
+          message: "Unknown Error. Try again later",
+          duration: Duration(seconds: 3),
+        ));
+      }
+    }
+
+    return user;
   }
 
-  void createGoogleUser({
-    required String name,
-    required String email,
-    required String uId,
-  }) {
-    UserModel model = UserModel(
-      name: name,
-      email: email,
-      uId: uId,
-      phone: '01xxxxxxxxx',
-      image:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',
-    );
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(uId)
-        .set(model.toMap())
-        .then((value) {
-      emit(createGoogleUserSucessState(uId));
-    }).catchError((error) {
-      print(error.toString());
-      emit(createGoogleUserErrorState(error.toString()));
-    });
-  }
+
 }
 
 class AuthCubit extends Cubit<AuthStates> {
@@ -142,6 +151,32 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(LoginErrorState(e));
     });
   }
-
+  void createGoogleUser({
+    required String name,
+    required String email,
+    required String phone,
+    required String uId,
+  }) {
+    UserModel model = UserModel(
+      name: name,
+      email: email,
+      uId: uId,
+      phone: phone,
+      bill:'0.0',
+      image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',
+    );
+    String start=phone.substring(0,3);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(start).collection('numbers').doc(phone)
+        .set(model.toMap())
+        .then((value) {
+      emit(createGoogleUserSucessState(uId));
+    }).catchError((error) {
+      print(error.toString());
+      emit(createGoogleUserErrorState(error.toString()));
+    });
+  }
  
 }

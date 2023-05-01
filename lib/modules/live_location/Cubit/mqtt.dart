@@ -16,9 +16,14 @@ class MqttHandler with ChangeNotifier {
     client.onConnected = onConnected;
     client.onSubscribed = onSubscribed;
     client.pongCallback = pong;
+<<<<<<< HEAD
     //client.port=8080;
     final connMess = MqttConnectMessage()
         ..withClientIdentifier(uId)
+=======
+    final connMess = MqttConnectMessage()
+        .withClientIdentifier(uId)
+>>>>>>> 75d9ba864dacdbfbe60a85e02952fd9ca9e08b5a
         .withWillTopic('willtopic') // If you set this you must set a will message
         .withWillMessage('My Will message')
         .startClean() // Non persistent session for testing
@@ -53,10 +58,7 @@ class MqttHandler with ChangeNotifier {
     String topic = 'Train $Train'; // Not a wildcard topic
     print("----------------------------------------------------------- $topic");
     client.subscribe(topic, MqttQos.atMostOnce);
-    print("----------------------------------------------------------- $topic");
-
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
-      print("update doneeeeeeeeeeeeeeeeeee");
       final recMess = c![0].payload as MqttPublishMessage;
       final pt =
       MqttPublishPayload.bytesToStringAsString(recMess.payload.message);

@@ -10,7 +10,9 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class phoneScreen extends StatefulWidget {
-  const phoneScreen({Key? key}) : super(key: key);
+  final String?name;
+  final String?email;
+  phoneScreen(this.name,this.email);
 
   @override
   State<phoneScreen> createState() => _phoneScreenState();
@@ -70,28 +72,36 @@ class _phoneScreenState extends State<phoneScreen> {
                         defultButton(
                             background: colortheme.lightPurple,
                             function: () async {
+                              int resend=0;
+                              print ("innnnnnn");
                               print(cubit.phoneController.text);
                               await FirebaseAuth.instance.verifyPhoneNumber(
                                   phoneNumber:"+2"+cubit.phoneController.text ,
                                   verificationCompleted: (phoneAuthCredential) {
 
+
                                   },
                                   verificationFailed:(error) {
+
+
                                   },
                                   codeSent: (String verificationId, int ?forceResendingToken)async {
                                     print("                                    "+verificationId);
                                    realOpt=verificationId;
+                                    resend=forceResendingToken!;
                                     print ("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"+"       "+ realOpt);
                                     //01553070083
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: ((context) =>  verifyPhoneScreen()),
+                                          builder: ((context) =>  verifyPhoneScreen(cubit.phoneController.text,widget.name,widget.email)),
                                         )
                                     );
                                   },
-                                  codeAutoRetrievalTimeout: (verificationId) {
-                                  },
+                                forceResendingToken: resend,
+                                codeAutoRetrievalTimeout: (String verificationId) {
+                                  verificationId = realOpt;
+                                },
                               );
                               // if (formKey.currentState!.validate()) {
                               //   print('enterrrr');

@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/transition.dart';
@@ -7,8 +8,12 @@ import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
+import 'package:graduation_project_app/modules/register_screen/otpRegister.dart';
+import 'package:graduation_project_app/modules/register_screen/verificationRegisterScreen.dart';
+import 'package:graduation_project_app/modules/social/verifyPhone.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/components/phoneField.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import '../../shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 class registerScreen extends StatelessWidget {
@@ -29,12 +34,12 @@ class registerScreen extends StatelessWidget {
               showToast(text:state.error.toString(),status:toastStates.ERROR);
             }
             if(state is createUserSucessState){
-              showToast(text:'you have sucessfully signed up',status:toastStates.SUCESS);
-              casheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-                Navigator.push(
+              showToast(text:'an code will sent to your phone',status:toastStates.SUCESS);
+             casheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+               Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const Trans())
+                        builder: ((context) =>  verificationRegisterScreen(phoneControllor.text))
                     )
                 );
               });
@@ -160,16 +165,18 @@ class registerScreen extends StatelessWidget {
                               builder: (context)=>defultButton(
                                 context: context,
                                   background: colortheme.lightPurple,
-                                  function: (){
+                                  function: ()async{
                                     if(formKey.currentState!.validate()){
                                       registerCubit.get(context).userRegister(
                                           firstName: firstName.text,
                                           secondName: lastName.text,
+                                          phone: phoneControllor.text,
                                           email: emailSignUp.text,
                                           pass: passSignUp.text);
+
                                     }
                                   },
-                                  text: "SUMBIT",),
+                                  text: "Next",),
                               fallback: (context)=>const CircularProgressIndicator()),
                           const SizedBox(
                             height: 15,

@@ -39,8 +39,10 @@ class MainCubit extends Cubit<MainStates> {
   Future<void> userGetData() async {
     emit(getUserLoadingState());
     uId = await casheHelper.getData(key: 'uId');
+    print('mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     print(uId);
-    FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+    String ?start=uId?.substring(0,3);
+    FirebaseFirestore.instance.collection('users').doc(start).collection('numbers').doc(uId).get().then((value) {
       print(value.data());
       model = UserModel.fromJason(value.data()!);
       emit(getUserSucessState());

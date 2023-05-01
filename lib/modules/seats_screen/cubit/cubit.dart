@@ -1,19 +1,25 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   SeatsScreenCubit() : super(SeatsScreenInitialState());
   static SeatsScreenCubit get(context) => BlocProvider.of(context);
+
 
   void initialFunction() {
     numberOfSeats = 0;
     amountToBePayed = 0;
     selectedSeats = [];
     allSeats = [];
+    fieldName = newDateTime(depart, "23:59:59").toString().split(" ").first;
+    day =
+    DateFormat('EEEE').format(DateTime.parse(depart)).substring(0,3);
     emit(SeatsScreenInitialState());
   }
 
@@ -84,6 +90,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   //2dRl1WJljsXJpNrn9KYB
   List seats = List.filled(48, false);
   Future<void> getSeats(String trainId) async {
+    allSeats = [];
     FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
@@ -156,3 +163,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     });
   }
 }
+
+
+
+

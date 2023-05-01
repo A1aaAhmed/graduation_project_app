@@ -194,6 +194,34 @@ class ProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            const SizedBox(
+                              height: 21,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10,left: 10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.bookmark_add),
+                                  const SizedBox(width: 7,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('bill',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        color: colortheme.black,
+                                      ),),
+                                      Text('${userModeldata!.bill!}',
+                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                            color: colortheme.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
                             const SizedBox(height: 27,),
 
                              TextButton.icon(

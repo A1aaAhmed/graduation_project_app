@@ -17,21 +17,22 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
         builder: (context) => BlocProvider(
               create: (context) => SeatsScreenCubit(),
               child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                },
+                listener: (context, state) {},
                 builder: (context, state) {
                   return AlertDialog(
                     title: Text('Confirmation',
                         style: Theme.of(context).textTheme.bodyMedium),
                     content: Text(
-                      'You selected ${selectedSeats.join(',')}.\n Are you sure you want to confirm these seats?',
+                      'You selected ${selectedSeats.join(',')} and the amount is ${amountToBePayed}.\n Are you sure you want to confirm these seats?',
                       style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
                     actions: [
                       TextButton(
                           onPressed: () {
+                            SeatsScreenCubit.get(context).updateSeats(
+                                train['trainID'], train['available']['${day}']);
+                            print(allSeats);
                             TicketModel ticket = TicketModel(
                                 date: toDateTime(depart, time),
                                 from: from,
@@ -45,9 +46,7 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
                             }
-                            SeatsScreenCubit.get(context).updateSeats(
-                                train['trainID'], train['available']['${day}']);
-                            print(allSeats);
+
                             gates = gates.toSet().toList();
                             Navigator.push(
                               context,

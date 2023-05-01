@@ -15,10 +15,12 @@ class loginCubit extends Cubit<loginStates> {
 }){
 
     emit(loginLoadinglState());
+
     FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: pass).then(
             (value) {
+              print('بيطبع ايه رقم التليفون');
               print(value.user?.email);
               print(value.user?.uid);
               emit(loginSucessState(value.user!.uid));}).catchError(
@@ -33,4 +35,5 @@ class loginCubit extends Cubit<loginStates> {
     isPass=!isPass;
     emit(passIsVisibleState());
   }
+
 }
