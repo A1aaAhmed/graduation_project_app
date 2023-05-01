@@ -11,6 +11,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   SeatsScreenCubit() : super(SeatsScreenInitialState());
   static SeatsScreenCubit get(context) => BlocProvider.of(context);
 
+
   void initialFunction() {
     numberOfSeats = 0;
     amountToBePayed = 0;
@@ -99,9 +100,6 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
       event.docs.forEach((e) {
         //allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
         allSeats = e[fieldName];
-        print(fieldName);
-        print(e);
-        print(allSeats);
         seatsId = e.reference.id;
       });
       emit(GetSeatsSuccessState());
@@ -165,3 +163,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     });
   }
 }
+
+
+
+

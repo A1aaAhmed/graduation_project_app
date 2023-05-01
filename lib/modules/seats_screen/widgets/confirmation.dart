@@ -17,8 +17,7 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
         builder: (context) => BlocProvider(
               create: (context) => SeatsScreenCubit(),
               child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
-                listener: (context, state) {
-                },
+                listener: (context, state) {},
                 builder: (context, state) {
                   return AlertDialog(
                     title: Text('Confirmation',
@@ -31,6 +30,9 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                     actions: [
                       TextButton(
                           onPressed: () {
+                            SeatsScreenCubit.get(context).updateSeats(
+                                train['trainID'], train['available']['${day}']);
+                            print(allSeats);
                             TicketModel ticket = TicketModel(
                                 date: toDateTime(depart, time),
                                 from: from,
@@ -38,14 +40,13 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                 seats: selectedSeats.join(" ,"),
                                 train: trainNUM,
                                 price: amountToBePayed.toString());
+
                             ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             UserModel.addTicket(ticket: ticket, uId: uId);
                             for (var ele in selectedSeats) {
                               allSeats[int.parse(ele) - 1] = true;
                             }
-                            SeatsScreenCubit.get(context).updateSeats(
-                                train['trainID'], train['available']['${day}']);
-                            print(allSeats);
+
                             gates = gates.toSet().toList();
                             Navigator.push(
                               context,

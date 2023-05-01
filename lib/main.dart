@@ -82,7 +82,8 @@ class MyApp extends StatelessWidget {
             ),
                         BlocProvider(
               create: (context) => AuthCubit(),
-            )
+            ),
+            
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -123,7 +124,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: phoneScreen(),
+            home: startScreen,
           ));
     });
   }
