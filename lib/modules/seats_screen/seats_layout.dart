@@ -55,6 +55,7 @@ class _SeatsState extends State<Seats> {
     ];
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return BlocProvider(
       create: (context) => SeatsScreenCubit()
         ..initialFunction()
@@ -62,6 +63,7 @@ class _SeatsState extends State<Seats> {
       child: BlocConsumer<SeatsScreenCubit, SeatsScreenStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          SeatsScreenCubit seatsScreenCubit = SeatsScreenCubit.get(context);
           return ConditionalBuilder(
             condition: allSeats.isNotEmpty,
             builder: (context) => Scaffold(
@@ -72,6 +74,7 @@ class _SeatsState extends State<Seats> {
                 ),
                 leading: IconButton(
                   onPressed: () {
+                    // SeatsScreenCubit.get(context).close();
                     Navigator.pop(context);
                   },
                   icon: const Icon(
@@ -223,7 +226,10 @@ class _SeatsState extends State<Seats> {
                               ),
                               Expanded(
                                 child: SingleChildScrollView(
-                                  child: TheMainTrain(height: height, width: width,)),
+                                    child: TheMainTrain(
+                                  height: height,
+                                  width: width,
+                                )),
                               )
                             ],
                           ),
@@ -237,12 +243,19 @@ class _SeatsState extends State<Seats> {
                       height: 50,
                       onpress: () async {
                         if (selectedSeats.isNotEmpty) {
-                          confirmSeats(
-                            context,
-                            widget.time,
-                            widget.trainNUM,
-                            widget.train,
-                          );
+                          confirmSeats(context, widget.time, widget.trainNUM,
+                              widget.train);
+                          // showDialog(
+                          //   context: context,
+                          //   builder: (cont) =>
+                            //  AlertWidget(
+                            //     train: widget.train,
+                            //     time: widget.time,
+                            //     trainNUM: widget.trainNUM),
+                          // );
+                          // BlocProvider.value(value: BlocProvider.of<SeatsScreenCubit>(context),child: AlertWidget(train:widget.train,time:widget.time,trainNUM:widget.trainNUM)));
+                          // confirmSeats(context, widget.time, widget.trainNUM,
+                          //     widget.train, seatsScreenCubit);
                         } else {
                           showToast(
                             state: ToastStates.error,
