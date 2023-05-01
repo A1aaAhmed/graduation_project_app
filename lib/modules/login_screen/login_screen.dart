@@ -31,6 +31,7 @@ class loginSreen extends StatelessWidget {
                 showToast(text:'you have sucessfuly loged in',status:toastStates.SUCESS);
                 casheHelper.saveData(key:'uId', value: state.uId).then(
                         (value) {
+                          print("ادممممممممموووممممممممههههههههههه");
                           print('new log in id is'+ state.uId);
                         //  uId=casheHelper.getData(key: 'uId');
                           Navigator.push(

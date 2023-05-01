@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 
 class UserModel{
@@ -8,12 +9,14 @@ class UserModel{
   String ?phone;
    String ?image;
    String? uId;
+   String?bill;
   //TicketModel ?tickets;
   UserModel({
    this.name,
    this.email,
   this.phone,
    this.image,
+    this.bill,
    //this.token,
    this.uId,
    //this.tickets
@@ -25,6 +28,7 @@ class UserModel{
     phone=json['phone'];
     image=json['image'];
     email=json['email'];
+    bill=json['bill'];
   }
  Map<String , dynamic>toMap(){
 return
@@ -34,6 +38,7 @@ return
   "phone":phone,
   "image":image,
   "email":email,
+    "bill":bill
   };
 }
 

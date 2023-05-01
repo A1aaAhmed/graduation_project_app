@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
+import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/register_screen/verificationRegisterScreen.dart';
 import 'package:graduation_project_app/modules/social/cubit/cubit.dart';
 
 import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
@@ -56,6 +58,7 @@ class MyApp extends StatelessWidget {
   MyApp({this.startScreen});
   @override
   Widget build(BuildContext context) {
+
     return Sizer(builder: (context, orientation, deviceType) {
 
       return MultiBlocProvider(
@@ -123,7 +126,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: phoneScreen(),
+            home: ProfileScreen(),
           ));
     });
   }

@@ -10,7 +10,9 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class phoneScreen extends StatefulWidget {
-  const phoneScreen({Key? key}) : super(key: key);
+  final String?name;
+  final String?email;
+  phoneScreen(this.name,this.email);
 
   @override
   State<phoneScreen> createState() => _phoneScreenState();
@@ -92,7 +94,7 @@ class _phoneScreenState extends State<phoneScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: ((context) =>  verifyPhoneScreen()),
+                                          builder: ((context) =>  verifyPhoneScreen(cubit.phoneController.text,widget.name,widget.email)),
                                         )
                                     );
                                   },

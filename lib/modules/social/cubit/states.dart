@@ -3,18 +3,19 @@ abstract class googleStates {}
 class googleInitialStates extends googleStates {}
 
 class googleLoadingStates extends googleStates {}
+class googleSucessStates extends googleStates {}
 
-class createGoogleUserSucessState extends googleStates {
+
+abstract class AuthStates {}
+class createGoogleUserSucessState extends AuthStates{
   final String uId;
   createGoogleUserSucessState(this.uId);
 }
 
-class createGoogleUserErrorState extends googleStates {
+class createGoogleUserErrorState extends AuthStates {
   final String error;
   createGoogleUserErrorState(this.error);
 }
-
-abstract class AuthStates {}
 
 class AuthInitialStates extends AuthStates {}
 
