@@ -74,7 +74,7 @@ class _SeatsState extends State<Seats> {
                 ),
                 leading: IconButton(
                   onPressed: () {
-                    SeatsScreenCubit.get(context).close();
+                    // SeatsScreenCubit.get(context).close();
                     Navigator.pop(context);
                   },
                   icon: const Icon(
