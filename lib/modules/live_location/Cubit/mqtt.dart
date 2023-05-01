@@ -16,9 +16,9 @@ class MqttHandler with ChangeNotifier {
     client.onConnected = onConnected;
     client.onSubscribed = onSubscribed;
     client.pongCallback = pong;
-    client.port=8080;
+    //client.port=8080;
     final connMess = MqttConnectMessage()
-        .withClientIdentifier('Mqtt_MyClientUniqueId')
+        ..withClientIdentifier(uId)
         .withWillTopic('willtopic') // If you set this you must set a will message
         .withWillMessage('My Will message')
         .startClean() // Non persistent session for testing

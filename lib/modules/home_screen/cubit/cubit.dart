@@ -31,12 +31,9 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         .get()
         .then((value) {
       value.docs.forEach((train) {
-        print(train.data());
         trains.add(TrainModel.fromjson(train.data()).toMap());
-        // print(trains);
       });
       trains.forEach((train) {
-        // print(train);
         fromIndex = 0;
         toIndex = 0;
         frstStation = false;
