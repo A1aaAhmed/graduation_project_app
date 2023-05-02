@@ -172,7 +172,7 @@ class registerScreen extends StatelessWidget {
                                   background: colortheme.lightPurple,
                                   function: () async {
                                     if (formKey.currentState!.validate()) {
-                                      if (await registerCubit.searchNumber(
+                                      if (!await registerCubit.searchNumber(
                                           number: phoneControllor.text)) {
                                         // registerCubit.get(context).userRegister(
                                         //   firstName: firstName.text,
