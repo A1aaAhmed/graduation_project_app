@@ -129,9 +129,14 @@ class MainCubit extends Cubit<MainStates> {
       name: editedName,
       email: editedEmail,
       image: image ?? model!.image!,
+      bill: model!.bill!,
     );
+    String? start = model!.uId!.substring(0, 3);
+
     FirebaseFirestore.instance
         .collection('users')
+        .doc(start)
+        .collection('numbers')
         .doc(model?.uId)
         .update(modeldata.toMap())
         .then((value) {

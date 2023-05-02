@@ -51,7 +51,8 @@ class _SecondSectionState extends State<SecondSection> {
                         Radius.circular(width * .05),
                       )),
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 30),
                       child: Form(
                         key: formkey,
                         child: SingleChildScrollView(
@@ -73,8 +74,12 @@ class _SecondSectionState extends State<SecondSection> {
                                 ),
                                 dropdownform(dates, "Enter the Date, Please",
                                     'Departure date', context),
+                                const SizedBox(
+                                  height: 15,
+                                ),
                                 Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Travellers',
@@ -148,6 +153,7 @@ class _SecondSectionState extends State<SecondSection> {
                                         ],
                                       ),
                                     ]),
+                                    SizedBox(height: 30,),
                                 button(
                                     text: 'Search Trains',
                                     width: width * 0.5,
@@ -162,7 +168,7 @@ class _SecondSectionState extends State<SecondSection> {
                                           print(';;;;;;;;;;;;;;;;;;;;;;');
                                           // print(cubit.searchedTrains);
                                           // print(cubit.searchedTrains.length);
-                        
+
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -173,7 +179,7 @@ class _SecondSectionState extends State<SecondSection> {
                                           onError.toString();
                                         });
                                       }
-                                      
+
                                       // addseats(seats);
                                     })
                               ]),
@@ -305,8 +311,8 @@ void addseats(seats) {
     FirebaseFirestore.instance
         .collection("trains")
         .doc(trainsDocs[i])
-       // .set({'available':available}, SetOptions(merge: true));
-     .collection('seats')
-    .add(seats);
- }
+        // .set({'available':available}, SetOptions(merge: true));
+        .collection('seats')
+        .add(seats);
+  }
 }

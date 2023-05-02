@@ -130,7 +130,7 @@ class editProfileScreen extends StatelessWidget {
                     MainCubit.get(context).uploadImage(name: nameController.text, email: emailController.text, phone: phoneController.text);
 
 
-                  }, text: 'Update Profile'),
+                  }, text: 'Upload photo'),
                 ),
                 if(state is updateUserLoadingState)
                   SizedBox(height: 5,),

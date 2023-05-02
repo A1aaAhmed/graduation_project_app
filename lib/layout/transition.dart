@@ -28,29 +28,32 @@ class Trans extends StatelessWidget {
         // print("///////////////////");
         return Scaffold(
           body: cubit.screens[cubit.currentindex],
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: cubit.currentindex,
-            onTap: (index) {
-              cubit.changeNavbarIndex(index);
-            },
-            items: const [
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                label: 'Live Location',
-                icon: Icon(Icons.gps_fixed),
-              ),
-              BottomNavigationBarItem(
-                label: 'My Tickets',
-                icon: Icon(Icons.history),
-              ),
-              BottomNavigationBarItem(
-                label: 'Profile',
-                icon: Icon(Icons.person),
-              ),
-            ],
+          bottomNavigationBar: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: BottomNavigationBar(
+              currentIndex: cubit.currentindex,
+              onTap: (index) {
+                cubit.changeNavbarIndex(index);
+              },
+              items: const [
+                BottomNavigationBarItem(
+                  label: 'Home',
+                  icon: Icon(Icons.home),
+                ),
+                BottomNavigationBarItem(
+                  label: 'Live Location',
+                  icon: Icon(Icons.gps_fixed),
+                ),
+                BottomNavigationBarItem(
+                  label: 'My Tickets',
+                  icon: Icon(Icons.history),
+                ),
+                BottomNavigationBarItem(
+                  label: 'Profile',
+                  icon: Icon(Icons.person),
+                ),
+              ],
+            ),
           ),
         );
       },
