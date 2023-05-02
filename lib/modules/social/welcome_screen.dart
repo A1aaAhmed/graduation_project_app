@@ -9,6 +9,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 
 import '../../shared/components/components.dart';
 class welcomeScreen extends StatefulWidget {
@@ -93,7 +94,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                       String phoneSnapshot=await checkNumberExist(user.email!);
                                       if (phoneSnapshot!=""){
                                         casheHelper.saveData(key: 'uId', value: phoneSnapshot).then((value) {
-                                          // uId=casheHelper.getData(key: 'uId');
+                                           uId=casheHelper.getData(key: 'uId');
                                            Navigator.push(
                                           context, MaterialPageRoute(builder: ((context) => Trans())));            });
                                       }
@@ -112,7 +113,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                 context: context,
                                 background: Colors.indigo.shade400,
                                 iconp: Icons.email,
-                                text: "Log in with Email",
+                                text: "Log in with Phone",
                                 function: (){
                                   Navigator.push(
                                     context,
