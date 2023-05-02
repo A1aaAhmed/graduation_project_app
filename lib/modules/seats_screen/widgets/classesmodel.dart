@@ -1,7 +1,7 @@
 
 class TrainClassesModel {
   final String className;
-  final num price;
+  final double price;
   TrainClassesModel({
     required this.className,
     required this.price,

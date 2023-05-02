@@ -45,13 +45,13 @@ class _SeatsState extends State<Seats> {
     classType = [
       TrainClassesModel(
           className: '1st class',
-          price: widget.train['trainClasses']['1st class']),
+          price: double.parse(widget.train['trainClasses']['1st class'].toString())),
       TrainClassesModel(
           className: 'Business ',
-          price: widget.train['trainClasses']['Business class']),
+          price: double.parse(widget.train['trainClasses']['Business class'].toString())),
       TrainClassesModel(
           className: 'Economy ',
-          price: widget.train['trainClasses']['Economy class']),
+          price: double.parse(widget.train['trainClasses']['Economy class'].toString())),
     ];
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;

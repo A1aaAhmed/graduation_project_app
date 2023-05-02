@@ -14,6 +14,7 @@ class registerCubit extends Cubit<registerStates> {
       required String? pass,
       required String? phone}) async {
     emit(registerLoadinglState());
+<<<<<<< HEAD
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: "$phone@gmail.com",
@@ -24,6 +25,24 @@ class registerCubit extends Cubit<registerStates> {
       print(error.toString());
       emit(registerErrorState(error.toString()));
     }
+=======
+    FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: pass).then
+      ((value) {
+
+        value.user?.uid!=phone;
+        print('استغفر الله العظيم');
+        print(value.user?.email);
+        print(value.user?.uid);
+        
+        createUser(name: '$firstName $secondName', email: email, uId: phone,phone: phone);
+        }).catchError(
+            (error){
+              print(error);
+          emit(registerErrorState(error.toString()));
+    });
+>>>>>>> 20a318e6e4ddb7fd476c46dfde942f603242f14c
   }
 
   void createUser({

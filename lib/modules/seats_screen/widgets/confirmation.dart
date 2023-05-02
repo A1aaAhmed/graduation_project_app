@@ -30,9 +30,9 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                     actions: [
                       TextButton(
                           onPressed: () {
-                            SeatsScreenCubit.get(context).updateSeats(
-                                train['trainID'], train['available']['${day}']);
-                            print(allSeats);
+                            for (var ele in selectedSeats) {
+                              allSeats[int.parse(ele) - 1] = true;
+                            }
                             TicketModel ticket = TicketModel(
                                 date: toDateTime(depart, time),
                                 from: from,
@@ -40,21 +40,22 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                 seats: selectedSeats.join(" ,"),
                                 train: trainNUM,
                                 price: amountToBePayed.toString());
-
+                            SeatsScreenCubit.get(context)
+                                .updateData(train['trainID'],
+                                    train['available']['${day}'])
+                                .then((value) {
+                              UserModel.addTicket(ticket: ticket, uId: uId);
+                              gates = gates.toSet().toList();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Ticket(
+                                          ticket: ticket,
+                                        )),
+                              );
+                            });
+                            // print(allSeats);
                             ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            UserModel.addTicket(ticket: ticket, uId: uId);
-                            for (var ele in selectedSeats) {
-                              allSeats[int.parse(ele) - 1] = true;
-                            }
-
-                            gates = gates.toSet().toList();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Ticket(
-                                        ticket: ticket,
-                                      )),
-                            );
                           },
                           child: const Text(
                             'Confirm',

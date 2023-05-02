@@ -41,6 +41,7 @@ class MainCubit extends Cubit<MainStates> {
     emit(getUserLoadingState());
         print('=======================');
     uId = await casheHelper.getData(key: 'uId');
+<<<<<<< HEAD
     print('=======================');
     print('uid $uId');
     print(uId);
@@ -54,12 +55,35 @@ class MainCubit extends Cubit<MainStates> {
         .then((value) {
       print(value.data());
       model = UserModel.fromJason(value.data()!);
+=======
+    String? start = uId?.substring(0, 3);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .snapshots()
+        .listen((event) {
+      // event.data();
+      model = UserModel.fromJason(event.data()!);
+      print(model);
+>>>>>>> 20a318e6e4ddb7fd476c46dfde942f603242f14c
       emit(getUserSucessState());
-      print('name is ' + model!.name!);
-    }).catchError((error) {
-      print(error.toString());
-      emit(getUserErrorState(error));
     });
+
+//     emit(getUserLoadingState());
+//     uId = await casheHelper.getData(key: 'uId');
+//     print('mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+//     print(uId);
+//     String ?start=uId?.substring(0,3);
+//     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+// //doc(start).collection('numbers').
+//       print(value.data());
+//       model = UserModel.fromJason(value.data()!);
+//       emit(getUserSucessState());
+//       print('name is ' + model!.name!);
+//     }).catchError((error) {
+//       print(error.toString());
+//       emit(getUserErrorState(error));
+//     });
   }
 
 ////////////////////////////////////////////////
