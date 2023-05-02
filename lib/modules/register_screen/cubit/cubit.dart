@@ -67,10 +67,10 @@ class registerCubit extends Cubit<registerStates> {
   }
 
   Future<bool> searchNumber({
-    required String number,
+    required String? number,
   }) async {
     try {
-      String start = number.substring(0, 3);
+      String start = number!.substring(0, 3);
       var snapshot = await FirebaseFirestore.instance
           .collection("users")
           .doc(start)

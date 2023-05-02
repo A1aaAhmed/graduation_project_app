@@ -111,8 +111,11 @@ class verifyPhoneScreen extends StatelessWidget {
                         await FirebaseAuth.instance
                             .signInWithCredential(credential);
                         if (pass == '0') {
+                          if(!await cubit.searchNumber(
+                                  number: phone)){
                           cubit.createUser(
-                              name: name, email: email, phone: phone);
+                              name: name, email: email, phone: phone);}
+                              
                         } else {
                           registerCubit.get(context).userRegister(
                               name: name,
