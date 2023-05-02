@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/social/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/social/cubit/states.dart';
 import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
+
 import '../../shared/components/components.dart';
 class welcomeScreen extends StatefulWidget {
   const welcomeScreen({Key? key}) : super(key: key);
@@ -89,10 +92,12 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                     if(user != null){
                                       String phoneSnapshot=await checkNumberExist(user.email!);
                                       if (phoneSnapshot!=""){
-                                        print("                                                    exisssssstttttt                  $phoneSnapshot           ");
+                                        casheHelper.saveData(key: 'uId', value: phoneSnapshot).then((value) {
+                                          // uId=casheHelper.getData(key: 'uId');
+                                           Navigator.push(
+                                          context, MaterialPageRoute(builder: ((context) => Trans())));            });
                                       }
                                       else{
-                                        print("notttttttttttttttttttttt exist");
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
