@@ -9,6 +9,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 
 import '../../shared/components/components.dart';
 class welcomeScreen extends StatefulWidget {
@@ -58,6 +59,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                   fontWeight: FontWeight.bold
                               ),
                               ),
+
                               const SizedBox(height: 5,),
                               Text('Timing and tickets',
                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -93,7 +95,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                       String phoneSnapshot=await checkNumberExist(user.email!);
                                       if (phoneSnapshot!=""){
                                         casheHelper.saveData(key: 'uId', value: phoneSnapshot).then((value) {
-                                          // uId=casheHelper.getData(key: 'uId');
+                                           uId=casheHelper.getData(key: 'uId');
                                            Navigator.push(
                                           context, MaterialPageRoute(builder: ((context) => Trans())));            });
                                       }

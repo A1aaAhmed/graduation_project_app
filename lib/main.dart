@@ -13,7 +13,6 @@ import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
 
-
   
 void main() async {
   WidgetsFlutterBinding

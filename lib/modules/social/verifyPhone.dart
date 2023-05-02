@@ -4,15 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
-import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
-import 'cubit/cubit.dart';
-import 'cubit/states.dart';
 
 class verifyPhoneScreen extends StatelessWidget {
   final String? phone;
@@ -108,6 +105,7 @@ class verifyPhoneScreen extends StatelessWidget {
                         PhoneAuthCredential credential =
                             PhoneAuthProvider.credential(
                                 verificationId: realOpt, smsCode: userOpt);
+
                         await FirebaseAuth.instance
                             .signInWithCredential(credential);
                         if (pass == '0') {
