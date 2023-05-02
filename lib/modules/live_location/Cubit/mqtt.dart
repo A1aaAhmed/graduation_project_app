@@ -11,7 +11,7 @@ class MqttHandler with ChangeNotifier {
     client.logging(on: true);
     client.setProtocolV311();
     client.keepAlivePeriod = 60;
-    client.connectTimeoutPeriod = 2000; // milliseconds
+    client.connectTimeoutPeriod = 3000; // milliseconds
     client.onDisconnected = onDisconnected;
     client.onConnected = onConnected;
     client.onSubscribed = onSubscribed;
@@ -48,14 +48,12 @@ class MqttHandler with ChangeNotifier {
     }
 
     /// Ok, lets try a subscription
-    print('EXAMPLE::Subscribing to the test/lol topic');
+    print('EXAMPLE::Subscribing to the train topic');
     String topic = 'Train $Train'; // Not a wildcard topic
-    print("----------------------------------------------------------- $topic");
     client.subscribe(topic, MqttQos.atMostOnce);
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       final recMess = c![0].payload as MqttPublishMessage;
-      final pt =
-      MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      final pt = MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       List l =(pt.split(','));
       if (l[0]=='5'){
       trian_location_lat=double.parse(l[1]);
@@ -63,13 +61,10 @@ class MqttHandler with ChangeNotifier {
       maps_cubic!.addMarker(LatLng(trian_location_lat,trian_location_long), "train",train_icon);
       maps_cubic!.markersLocations[0]=LatLng(trian_location_lat, trian_location_long,);
       if (maps_cubic!.markersLocations[1]!=const LatLng( 0.0, 0.0)){
-        print("INNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
         maps_cubic!.mapController?.animateCamera(CameraUpdate.newLatLngBounds(maps_cubic!.getLatLngBounds(maps_cubic!.markersLocations),40));
       }
       else {
-        print("offffffffffffffffffffffffffffffffff");
         maps_cubic!.mapController?.animateCamera(CameraUpdate.newLatLngZoom(LatLng(trian_location_lat,trian_location_long),5));
-
       }
 
       print("$trian_location_lat                        $trian_location_long");}
@@ -95,7 +90,8 @@ class MqttHandler with ChangeNotifier {
   /// The unsolicited disconnect callback
   void onDisconnected() {
     print('EXAMPLE::OnDisconnected client callback - Client disconnection');
-   connect(Train);
+    if (appNow=="Live location"){
+   connect(Train);}
   }
 
   /// The successful connect callback

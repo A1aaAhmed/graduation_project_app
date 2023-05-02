@@ -19,7 +19,6 @@ class phoneScreen extends StatefulWidget {
   @override
   State<phoneScreen> createState() => _phoneScreenState();
 }
-
 class _phoneScreenState extends State<phoneScreen> {
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,9 @@ class _phoneScreenState extends State<phoneScreen> {
                         const SizedBox(
                           height: 34,
                         ),
-                        phoneField(controller: phoneController),
+                        phoneField(
+                            controller: phoneController
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -101,6 +102,28 @@ class _phoneScreenState extends State<phoneScreen> {
                                         "       " +
                                         realOpt);
                                     //01553070083
+                              if (formKey.currentState!.validate()) {
+                                if (!await registerCubit.searchNumber(number: phoneController.text)) {
+                                // registerCubit.get(context).userRegister(
+                                //   firstName: firstName.text,
+                                //   secondName: lastName.text,
+                                //   phone: phoneControllor.text,
+                                //   email: emailSignUp.text,
+                                //   pass: passSignUp.text);
+
+                                int resend = 0;
+                                await FirebaseAuth.instance
+                                    .verifyPhoneNumber(
+                                  phoneNumber:
+                                  "+2${phoneController.text}",
+                                  verificationCompleted:
+                                      (phoneAuthCredential) {},
+                                  verificationFailed: (error) {
+                                  },
+                                  codeSent: (String verificationId,
+                                      int? forceResendingToken) async {
+                                    realOpt = verificationId;
+                                    resend = forceResendingToken!;
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -155,6 +178,7 @@ class _phoneScreenState extends State<phoneScreen> {
                               }
                               ;
                             },
+
                             text: 'verify your phone number',
                             context: context)
                       ],

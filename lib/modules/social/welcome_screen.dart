@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,12 +5,9 @@ import 'package:graduation_project_app/modules/social/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/social/cubit/states.dart';
 import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/register_screen.dart';
 import '../../shared/components/components.dart';
-import 'package:graduation_project_app/network/local/shared_pref.dart';
 class welcomeScreen extends StatefulWidget {
   const welcomeScreen({Key? key}) : super(key: key);
 
@@ -91,15 +87,19 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                     User?user;
                                     user=await googleCubit.get(context).signInWithGoogle();
                                     if(user != null){
-
+                                      String phoneSnapshot=await checkNumberExist(user.email!);
+                                      if (phoneSnapshot!=""){
+                                        print("                                                    exisssssstttttt                  $phoneSnapshot           ");
+                                      }
+                                      else{
+                                        print("notttttttttttttttttttttt exist");
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: ((context) =>  phoneScreen(user?.displayName,user?.email))
                                           )
                                       );
-                                    }
-
+                                    }}
                                   }),
 
                               const SizedBox(height: 15,),
@@ -143,7 +143,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
           );
         },
       ),
-    );;
+    );
   }
 }
 

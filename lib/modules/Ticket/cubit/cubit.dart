@@ -17,7 +17,10 @@ class TicketCubit extends Cubit<TicketsStates> {
   Future<void> getAllTickets() async {
     emit(LoadingState());
     FirebaseFirestore.instance
-        .collection("users").doc(uId).collection('tickets').get().then((value) {
+        .collection('users')
+        .doc(uId.substring(0, 3))
+        .collection('numbers')
+        .doc(uId).collection('tickets').get().then((value) {
       value.docs.forEach((element) {
         if (expired(TicketModel.fromJason(element.data()).date)) {
           previousTickets.add(TicketModel.fromJason(element.data()));
@@ -42,7 +45,9 @@ class TicketCubit extends Cubit<TicketsStates> {
       emit(ClearExpiredTicketsState());
     } else {
       FirebaseFirestore.instance
-          .collection("users")
+          .collection('users')
+          .doc(uId.substring(0, 3))
+          .collection('numbers')
           .doc(uId)
           .collection('tickets')
           .where("date", isLessThanOrEqualTo: DateTime.now().toString())
@@ -50,7 +55,9 @@ class TicketCubit extends Cubit<TicketsStates> {
           .then((value) {
         value.docs.forEach((element) {
           FirebaseFirestore.instance
-              .collection("users")
+              .collection('users')
+              .doc(uId.substring(0, 3))
+              .collection('numbers')
               .doc(uId)
               .collection('tickets')
               .doc(element.id)
@@ -72,7 +79,9 @@ class TicketCubit extends Cubit<TicketsStates> {
   }
   Future<void> deleteExpiredTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
-        .collection("users")
+        .collection('users')
+        .doc(uId.substring(0, 3))
+        .collection('numbers')
         .doc(uId)
         .collection('tickets')
         .where("date", isEqualTo: ticket.date.toString())
@@ -84,7 +93,9 @@ class TicketCubit extends Cubit<TicketsStates> {
         .then((value) {
       value.docs.forEach((element) {
         FirebaseFirestore.instance
-            .collection("users")
+            .collection('users')
+            .doc(uId.substring(0, 3))
+            .collection('numbers')
             .doc(uId)
             .collection('tickets')
             .doc(element.id)
@@ -101,7 +112,9 @@ class TicketCubit extends Cubit<TicketsStates> {
   }
   Future<void> deleteTicket(TicketModel ticket,context) async {
     FirebaseFirestore.instance
-        .collection("users")
+        .collection('users')
+        .doc(uId.substring(0, 3))
+        .collection('numbers')
         .doc(uId)
         .collection('tickets')
         .where("date", isEqualTo: ticket.date.toString())
@@ -113,7 +126,9 @@ class TicketCubit extends Cubit<TicketsStates> {
         .then((value) {
       value.docs.forEach((element) {
         FirebaseFirestore.instance
-            .collection("users")
+            .collection('users')
+            .doc(uId.substring(0, 3))
+            .collection('numbers')
             .doc(uId)
             .collection('tickets')
             .doc(element.id)

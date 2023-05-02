@@ -1,23 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_app/layout/transition.dart';
-import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
-import 'package:graduation_project_app/modules/home_screen/home_screen.dart';
 import 'package:graduation_project_app/modules/login_screen/login_screen.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
-import 'package:graduation_project_app/modules/register_screen/otpRegister.dart';
-import 'package:graduation_project_app/modules/register_screen/verificationRegisterScreen.dart';
 import 'package:graduation_project_app/modules/social/verifyPhone.dart';
-import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/components/phoneField.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import '../../shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
-
 class registerScreen extends StatelessWidget {
   var firstName = TextEditingController();
   var phoneControllor = TextEditingController();
@@ -49,7 +41,6 @@ class registerScreen extends StatelessWidget {
           // }
         },
         builder: (context, state) {
-          registerCubit cubit = registerCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -180,9 +171,7 @@ class registerScreen extends StatelessWidget {
                                   background: colortheme.lightPurple,
                                   function: () async {
                                     if (formKey.currentState!.validate()) {
-                                      if (!await cubit.searchNumber(
-                                          number: phoneControllor.text)) {
-                                        print('wpowwwwwwwwwwwwwwwwww');
+                                      if (!await registerCubit.searchNumber(number: phoneControllor.text)) {
                                         // registerCubit.get(context).userRegister(
                                         //   firstName: firstName.text,
                                         //   secondName: lastName.text,
@@ -190,29 +179,18 @@ class registerScreen extends StatelessWidget {
                                         //   email: emailSignUp.text,
                                         //   pass: passSignUp.text);
                                         int resend = 0;
-                                        print("innnnnnn");
-                                        print(phoneControllor.text);
                                         await FirebaseAuth.instance
                                             .verifyPhoneNumber(
                                           phoneNumber:
-                                              "+2" + phoneControllor.text,
+                                              "+2${phoneControllor.text}",
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
                                           verificationFailed: (error) {
-                                            print(error.toString());
                                           },
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
-                                            print(
-                                                "                                    " +
-                                                    verificationId);
                                             realOpt = verificationId;
                                             resend = forceResendingToken!;
-                                            print(
-                                                "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy" +
-                                                    "       " +
-                                                    realOpt);
-                                            //01553070083
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
