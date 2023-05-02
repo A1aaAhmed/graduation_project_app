@@ -66,7 +66,7 @@ class registerCubit extends Cubit<registerStates> {
     emit(passIsVisibleState());
   }
 
-  static Future<bool> searchNumber({
+   Future<bool> searchNumber({
     required String number,
   }) async {
     try {
