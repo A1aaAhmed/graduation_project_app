@@ -25,6 +25,7 @@ class registerCubit extends Cubit<registerStates> {
         print('استغفر الله العظيم');
         print(value.user?.email);
         print(value.user?.uid);
+        
         createUser(name: '$firstName $secondName', email: email, uId: phone,phone: phone);
         }).catchError(
             (error){

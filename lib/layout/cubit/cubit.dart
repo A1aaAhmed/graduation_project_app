@@ -27,7 +27,8 @@ class MainCubit extends Cubit<MainStates> {
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
-    CheckTrain(date: dateTicket, isFromHome: true, station: station,trainNump:Train ),
+    CheckTrain(
+        date: dateTicket, isFromHome: true, station: station, trainNump: Train),
     const TicketsView(),
     const ProfileScreen(),
   ];
@@ -39,18 +40,33 @@ class MainCubit extends Cubit<MainStates> {
   Future<void> userGetData() async {
     emit(getUserLoadingState());
     uId = await casheHelper.getData(key: 'uId');
-    print('mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    print(uId);
-    String ?start=uId?.substring(0,3);
-    FirebaseFirestore.instance.collection('users').doc(start).collection('numbers').doc(uId).get().then((value) {
-      print(value.data());
-      model = UserModel.fromJason(value.data()!);
+    String? start = uId?.substring(0, 3);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .snapshots()
+        .listen((event) {
+      // event.data();
+      model = UserModel.fromJason(event.data()!);
+      print(model);
       emit(getUserSucessState());
-      print('name is ' + model!.name!);
-    }).catchError((error) {
-      print(error.toString());
-      emit(getUserErrorState(error));
     });
+
+//     emit(getUserLoadingState());
+//     uId = await casheHelper.getData(key: 'uId');
+//     print('mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+//     print(uId);
+//     String ?start=uId?.substring(0,3);
+//     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+// //doc(start).collection('numbers').
+//       print(value.data());
+//       model = UserModel.fromJason(value.data()!);
+//       emit(getUserSucessState());
+//       print('name is ' + model!.name!);
+//     }).catchError((error) {
+//       print(error.toString());
+//       emit(getUserErrorState(error));
+//     });
   }
 
 ////////////////////////////////////////////////
@@ -576,4 +592,3 @@ class MainCubit extends Cubit<MainStates> {
     }
   }
 }
-  

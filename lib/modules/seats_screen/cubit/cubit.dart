@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
 import 'package:graduation_project_app/shared/variables.dart';
@@ -11,19 +12,17 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   SeatsScreenCubit() : super(SeatsScreenInitialState());
   static SeatsScreenCubit get(context) => BlocProvider.of(context);
 
-
   void initialFunction() {
     numberOfSeats = 0;
     amountToBePayed = 0;
     selectedSeats = [];
     allSeats = [];
     fieldName = newDateTime(depart, "23:59:59").toString().split(" ").first;
-    day =
-    DateFormat('EEEE').format(DateTime.parse(depart)).substring(0,3);
+    day = DateFormat('EEEE').format(DateTime.parse(depart)).substring(0, 3);
     emit(SeatsScreenInitialState());
   }
 
-  num amountDependingOnClass(int seatNumber) {
+  double amountDependingOnClass(int seatNumber) {
     if (seatNumber >= 1 && seatNumber <= 16) {
       return classType[0].price;
     } else if (seatNumber >= 17 && seatNumber <= 32) {
@@ -38,6 +37,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     numberOfSeats--;
     amountToBePayed -= amountDependingOnClass(seatNumber);
     selectedSeats.remove(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+    // allSeats[seatNumber - 1] = false;
     emit(RemoveSeatsState());
   }
 
@@ -46,6 +46,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     numberOfSeats--;
     amountToBePayed -= amountDependingOnClass(seatNumber);
     selectedSeats.remove(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+    // allSeats[seatNumber - 1] = false;
     emit(RemoveSeatsState());
   }
 
@@ -54,6 +55,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     numberOfSeats++;
     amountToBePayed += amountDependingOnClass(seatNumber);
     selectedSeats.add(seatNumber <= 9 ? '0$seatNumber' : '$seatNumber');
+    // allSeats[seatNumber - 1] = true;
     if (isOdd) {
       oddBoxes[index] = true;
     } else {
@@ -88,7 +90,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   //   });
   // });
   //2dRl1WJljsXJpNrn9KYB
-  List seats = List.filled(48, false);
+  // List seats = List.filled(48, false);
   Future<void> getSeats(String trainId) async {
     allSeats = [];
     FirebaseFirestore.instance
@@ -106,33 +108,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     });
   }
 
-  // // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-  // // print(trainId);
-  // // print(allSeats);
-  // FirebaseFirestore.instance
-  //     .collection('trains')
-  //     .doc(trainId)
-  //     .collection('seats')
-  //     .get()
-  //     .then((value) {
-  //   // print(trainId);
-  //   // print(value.docs);
-  //   value.docs.forEach((e) {
-  //     allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
-  //     seatsId = e.reference.id;
-  //     // print(e.reference.id);
-  //   });
-
-  //   // print(trainId);
-  //   // print(DateFormat('EEEE').format(DateTime.parse(depart)));
-  //   // print(allSeats);
-  //   // print(seatsId);
-  //   emit(GetSeatsSuccessState());
-  // }).catchError((error) {
-  //   emit(GetSeatsErrorState(error.toString()));
-  // });
-
-  void updateSeats(String trainId, String theDayValue) async {
+  Future<void> updateSeats(String trainId, String theDayValue) async {
     //print(DateTime.parse(depart).day);
     await FirebaseFirestore.instance
         .collection('trains')
@@ -142,28 +118,33 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
         .update({
       //DateFormat('EEEE').format(DateTime.parse(depart))
       fieldName: allSeats,
-    }).then((value) async {
-      String updatedValue =
-          (int.parse(theDayValue) - noOfChoosenSeats).toString();
-      print('the new value is $updatedValue');
-      await FirebaseFirestore.instance
-          .collection('trains')
-          .doc(trainId)
-          .update({'available.${day}': updatedValue}).then((value) {
-        // print(daysOfExpiredDates);
-        // print('Field added');
-        // print(date);
-      }).catchError((error) {
-        print(error.toString());
-      });
-
-      emit(UpdateSeatsSuccessState());
-    }).catchError((error) {
-      emit(UpdateSeatsErrorState(error));
     });
   }
+
+  Future<void> updateAvailable(String trainId, String theDayValue) async {
+    String updatedValue =
+        (int.parse(theDayValue) - noOfChoosenSeats).toString();
+    print('the new value is $updatedValue');
+    await FirebaseFirestore.instance
+        .collection('trains')
+        .doc(trainId)
+        .update({'available.${day}': updatedValue});
+  }
+
+  Future<void> updateBill() async {
+    await FirebaseFirestore.instance.collection("users").doc(uId).update({
+      'bill':
+          '${double.parse(MainCubit.model!.bill.toString()) + amountToBePayed}'
+    });
+  }
+
+  Future<void> updateData(String trainId, String theDayValue) async {
+    updateSeats(trainId, theDayValue).then((value) =>
+        updateAvailable(trainId, theDayValue)
+            .then((value) => updateBill().then((value) {
+                  emit(UpdateSeatsSuccessState());
+                }).catchError((error) {
+                  emit(UpdateSeatsErrorState(error));
+                })));
+  }
 }
-
-
-
-
