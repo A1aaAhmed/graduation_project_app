@@ -27,7 +27,8 @@ class MainCubit extends Cubit<MainStates> {
   int currentindex = 0;
   final screens = [
     const HomeScreen(),
-    CheckTrain(date: dateTicket, isFromHome: true, station: station,trainNump:Train ),
+    CheckTrain(
+        date: dateTicket, isFromHome: true, station: station, trainNump: Train),
     const TicketsView(),
     const ProfileScreen(),
   ];
@@ -38,11 +39,19 @@ class MainCubit extends Cubit<MainStates> {
 
   Future<void> userGetData() async {
     emit(getUserLoadingState());
+        print('=======================');
     uId = await casheHelper.getData(key: 'uId');
-    print('mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    print('=======================');
+    print('uid $uId');
     print(uId);
-    String ?start=uId?.substring(0,3);
-    FirebaseFirestore.instance.collection('users').doc(start).collection('numbers').doc(uId).get().then((value) {
+    String? start = uId?.substring(0, 3);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(start)
+        .collection('numbers')
+        .doc(uId)
+        .get()
+        .then((value) {
       print(value.data());
       model = UserModel.fromJason(value.data()!);
       emit(getUserSucessState());
@@ -108,7 +117,6 @@ class MainCubit extends Cubit<MainStates> {
       uId: model!.uId!,
       name: editedName,
       email: editedEmail,
-      phone: editedPhone,
       image: image ?? model!.image!,
     );
     FirebaseFirestore.instance
@@ -576,4 +584,3 @@ class MainCubit extends Cubit<MainStates> {
     }
   }
 }
-  

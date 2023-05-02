@@ -161,7 +161,6 @@ class AuthCubit extends Cubit<AuthStates> {
       name: name,
       email: email,
       uId: uId,
-      phone: phone,
       bill:'0.0',
       image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU',

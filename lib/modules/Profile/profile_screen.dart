@@ -181,7 +181,7 @@ class ProfileScreen extends StatelessWidget {
                                      Text('phone',style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                         color: colortheme.black,
                                       ),),
-                                      Text('${userModeldata!.phone!}',
+                                      Text('${userModeldata!.uId!}',
                                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                         color: colortheme.black,
                                           fontWeight: FontWeight.bold,

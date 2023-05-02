@@ -25,7 +25,7 @@ class editProfileScreen extends StatelessWidget {
         var editedProfileImage= MainCubit.get(context).profileImage;
         nameController.text= userModeldata!.name!;
         emailController.text= userModeldata!.email!;
-        phoneController.text= userModeldata!.phone!;
+        phoneController.text= userModeldata!.uId!;
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios)),
@@ -37,7 +37,7 @@ class editProfileScreen extends StatelessWidget {
             ),
             actions: [
               TextButton(onPressed: ()async{
-                if(nameController.text == userModeldata.name && emailController.text == userModeldata.email && phoneController.text == userModeldata.phone)
+                if(nameController.text == userModeldata.name && emailController.text == userModeldata.email && phoneController.text == userModeldata.uId)
                   {
                     Fluttertoast.showToast(
                         msg: 'you did not updated any information',

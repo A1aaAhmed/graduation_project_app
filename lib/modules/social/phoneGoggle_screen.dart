@@ -10,8 +10,8 @@ import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class phoneScreen extends StatefulWidget {
-  final String?name;
-  final String?email;
+  final String? name;
+  final String? email;
   phoneScreen(this.name,this.email);
 
   @override
@@ -22,6 +22,7 @@ class _phoneScreenState extends State<phoneScreen> {
   @override
   Widget build(BuildContext context) {
     late var formKey = GlobalKey<FormState>();
+      TextEditingController phoneController = TextEditingController();
     return BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, AuthStates state) {},
         builder: (BuildContext context, AuthStates state) {
@@ -65,7 +66,7 @@ class _phoneScreenState extends State<phoneScreen> {
                         const SizedBox(
                           height: 34,
                         ),
-                        phoneField(controller: cubit.phoneController),
+                        phoneField(controller: phoneController),
                         const SizedBox(
                           height: 20,
                         ),
@@ -74,9 +75,9 @@ class _phoneScreenState extends State<phoneScreen> {
                             function: () async {
                               int resend=0;
                               print ("innnnnnn");
-                              print(cubit.phoneController.text);
+                              print(phoneController.text);
                               await FirebaseAuth.instance.verifyPhoneNumber(
-                                  phoneNumber:"+2"+cubit.phoneController.text ,
+                                  phoneNumber:"+2"+phoneController.text ,
                                   verificationCompleted: (phoneAuthCredential) {
 
 
@@ -94,7 +95,7 @@ class _phoneScreenState extends State<phoneScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: ((context) =>  verifyPhoneScreen(cubit.phoneController.text,widget.name,widget.email)),
+                                          builder: ((context) =>  verifyPhoneScreen(phoneController.text,widget.name,widget.email,'0')),
                                         )
                                     );
                                   },

@@ -15,15 +15,11 @@ Widget phoneField({
 
       return 'number must be 11 digits';
     }
-    if(value.startsWith('011' as Pattern)||value.startsWith('010' as Pattern)||value.startsWith('012' as Pattern)||value.startsWith('015' as Pattern))
+    if(!(value.startsWith('011')||value.startsWith('010' )||value.startsWith('012' )||value.startsWith('015' )))
     {
-
-    }
-    else
-
-    {
-      return 'number must start with 010 or 011 or 012 or 015';
-    }
+        return 'number must start with 010 or 011 or 012 or 015';
+}
+    
 
 
   },
