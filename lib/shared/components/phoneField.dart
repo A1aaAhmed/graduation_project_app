@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 Widget phoneField({
   required TextEditingController controller
 })=>TextFormField(
   controller:controller ,
-  validator: (String ?value)   {
+  validator: (String ?value)  {
     if(value == null || value.trim().isEmpty){
       return 'required';
     }
@@ -19,8 +17,6 @@ Widget phoneField({
     {
         return 'number must start with 010 or 011 or 012 or 015';
 }
-    
-
 
   },
   cursorColor: colortheme.lightPurple,

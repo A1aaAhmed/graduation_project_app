@@ -30,55 +30,72 @@ class NothingScreen extends StatelessWidget {
         ?isToday(date)?"Today at ${DateFormat('hh:mm a', 'en_US').format(date)}"
         :"at ${DateFormat().format(date)}":"";
     return Scaffold(
-            body:  Center(
-                    child:ConditionalBuilder(
+            body:  SizedBox(
+              height: 100.h,
+              width: 100.w,
+              child:ConditionalBuilder(
                       condition: !nothing&&(!isFromHomeScreen||isFromHomeScreen&&availableTicket.isNotEmpty),
-                      builder: (context) =>Column(
+                      builder: (context) =>isToday(date)?Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            height:DateTime.now().isBefore(date)? 15.h:90.h,
+                            height:15.h,
                             padding: const EdgeInsets.all(5),
                             alignment: Alignment.center,
-                            child: Text( isToday(date)?"Wait for the train\nThe train will arrive $station $dateToShow":"The train will arrive $station $dateToShow",
+                            child: Text( "Wait for the train\nThe train will arrive $station $dateToShow",
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color:colortheme.lightPurple ,
                                 fontWeight: FontWeight.bold,fontSize: 18
-
                             )
                             ),
                           ),
-                          DateTime.now().isBefore(date)?SizedBox(
+                         SizedBox(
                             height: 85.h,
                               child: LiveLocationScreen(trainNump: trainNump,)
-                          ):const Text(""),
+                          )
                         ],
-                      ),
-                      fallback: (context) => Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                         Text("Nothing to Show",
-                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                 color:Colors.grey,
-                             )
-                         ),
-                          TextButton(
-                            onPressed:(){
-                              MainCubit Cubit = MainCubit.get(context);
-                              Cubit.changeNavbarIndex(0);
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>const Trans())));
-                          }, child: Text("Book your trip",
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color:colortheme.lightPurple ,
-                                  fontWeight: FontWeight.bold
-                              )
-                          ),
+                      ):Center(
+                        child: Text(
+                            "The train will arrive $station $dateToShow",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color:colortheme.lightPurple ,
+                                fontWeight: FontWeight.bold,fontSize: 18
                             )
-                        ],
+                        ),
+                      ),
+                      fallback: (context) => SizedBox(
+                        width: 100.w,
+                        height: 100.h,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                           Text("Nothing to Show",
+                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                   color:Colors.grey,
+                               )
+                           ),
+                            TextButton(
+                              onPressed:(){
+                                MainCubit Cubit = MainCubit.get(context);
+                                Cubit.changeNavbarIndex(0);
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>const Trans())));
+                            }, child: Text("Book your trip",
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color:colortheme.lightPurple ,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                              )
+                          ],
+                        ),
                       ),
                     ),
                 ));

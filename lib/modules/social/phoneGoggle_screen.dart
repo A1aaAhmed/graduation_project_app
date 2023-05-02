@@ -1,23 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/social/verifyPhone.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/components/phoneField.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
-import 'cubit/cubit.dart';
-import 'cubit/states.dart';
+import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
+
 
 class phoneScreen extends StatefulWidget {
   final String? name;
   final String? email;
   phoneScreen(this.name,this.email);
-
   @override
   State<phoneScreen> createState() => _phoneScreenState();
 }
-
 class _phoneScreenState extends State<phoneScreen> {
   @override
   Widget build(BuildContext context) {
@@ -62,79 +59,57 @@ class _phoneScreenState extends State<phoneScreen> {
                         const SizedBox(
                           height: 34,
                         ),
-                        phoneField(controller: phoneController),
+                        phoneField(
+                            controller: phoneController
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
                         defultButton(
                             background: colortheme.lightPurple,
                             function: () async {
-                              int resend=0;
-                              print ("innnnnnn");
-                              print(phoneController.text);
-                              await FirebaseAuth.instance.verifyPhoneNumber(
-                                  phoneNumber:"+2"+phoneController.text ,
-                                  verificationCompleted: (phoneAuthCredential) {
+                              if (formKey.currentState!.validate()) {
+                                if (!await registerCubit.searchNumber(number: phoneController.text)) {
+                                // registerCubit.get(context).userRegister(
+                                //   firstName: firstName.text,
+                                //   secondName: lastName.text,
+                                //   phone: phoneControllor.text,
+                                //   email: emailSignUp.text,
+                                //   pass: passSignUp.text);
 
-
+                                int resend = 0;
+                                await FirebaseAuth.instance
+                                    .verifyPhoneNumber(
+                                  phoneNumber:
+                                  "+2${phoneController.text}",
+                                  verificationCompleted:
+                                      (phoneAuthCredential) {},
+                                  verificationFailed: (error) {
                                   },
-                                  verificationFailed:(error) {
-
-
-                                  },
-                                  codeSent: (String verificationId, int ?forceResendingToken)async {
-                                    print("                                    "+verificationId);
-                                   realOpt=verificationId;
-                                    resend=forceResendingToken!;
-                                    print ("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"+"       "+ realOpt);
-                                    //01553070083
+                                  codeSent: (String verificationId,
+                                      int? forceResendingToken) async {
+                                    realOpt = verificationId;
+                                    resend = forceResendingToken!;
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: ((context) =>  verifyPhoneScreen(phoneController.text,widget.name,widget.email,'0')),
-                                        )
-                                    );
+                                          builder: ((context) => verifyPhoneScreen(phoneController.text,widget.name,widget.email,'0'))));
                                   },
-                                forceResendingToken: resend,
-                                codeAutoRetrievalTimeout: (String verificationId) {
-                                  verificationId = realOpt;
-                                },
-                              );
-                              // if (formKey.currentState!.validate()) {
-                              //   print('enterrrr');
-                              //   cubit.submitPhoneNumber();
-                              //   Navigator.push(
-                              //       context,
-                              //       MaterialPageRoute(
-                              //           builder: ((context) => verifyPhoneScreen(
-                              //               ))));
-                              //   //   await FirebaseAuth.instance.verifyPhoneNumber(
-                              //   //     verificationCompleted:
-                              //   //         (PhoneAuthCredential credential) {
-                              //   //       setState(() {
-                              //   //         print('sucess');
-                              //   //         print(credential);
-                              //   //       });
-                              //   //     },
-                              //   //     verificationFailed: (error) {
-                              //   //       setState(() {
-                              //   //         print(error.toString());
-                              //   //       });
-                              //   //     },
-                              //   //     timeout: const Duration(seconds: 10),
-                              //   //     codeSent:
-                              //   //         (verificationId, forceResendingToken) async {
-                              //   //       await Navigator.push(
-                              //   //           context,
-                              //   //           MaterialPageRoute(
-                              //   //               builder: ((context) => verifyPhoneScreen(
-                              //   //                     verificationId: verificationId,
-                              //   //                   ))));
-                              //   //     },
-                              //   //     codeAutoRetrievalTimeout: (verificationId) {},
-                              //   //   );
-                              // }
+                                  forceResendingToken: resend,
+                                  codeAutoRetrievalTimeout:
+                                      (String verificationId) {
+                                    verificationId = realOpt;
+                                  },
+                                );
+                              }else {
+                                showToast(
+                                  text:
+                                  'This phone Number Is Already Exist',
+                                  status: toastStates.WARNING,
+                                );
+                              }}
                             },
+
                             text: 'verify your phone number',
                             context: context)
                       ],

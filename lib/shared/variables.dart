@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../modules/seats_screen/widgets/classesmodel.dart';
-var uId= casheHelper?.getData(key: 'uId') ;
+var uId= casheHelper.getData(key: 'uId') ;
 String from='';
 String to='';
 String depart='';
@@ -42,3 +42,4 @@ MapsCubit? maps_cubic;
 LatLng trainLonLat=LatLng(trian_location_lat, trian_location_long);
 String realOpt='';
 String userOpt='';
+String appNow='';

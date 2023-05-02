@@ -6,17 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/modules/home_screen/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/social/cubit/cubit.dart';
-
-import 'package:graduation_project_app/modules/social/phoneGoggle_screen.dart';
-
 import 'package:graduation_project_app/modules/social/welcome_screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
-import 'package:background_fetch/background_fetch.dart';
 
 
   
@@ -122,7 +117,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: welcomeScreen(),
+            home: startScreen,
           ));
     });
   }

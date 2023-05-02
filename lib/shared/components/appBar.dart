@@ -8,6 +8,7 @@ import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/shared/components/alertDialog.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+import 'package:graduation_project_app/shared/variables.dart';
 import 'package:sizer/sizer.dart';
 
 PreferredSizeWidget bar({
@@ -24,6 +25,7 @@ PreferredSizeWidget bar({
   return AppBar(
     leading: IconButton(
       onPressed: () {
+        appNow=text;
         if (text == 'My Tickets' ||
 
             text == 'Live location' ||

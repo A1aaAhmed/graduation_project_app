@@ -11,7 +11,6 @@ BitmapDescriptor user_icon = BitmapDescriptor.defaultMarker;
 BitmapDescriptor train_icon= BitmapDescriptor.defaultMarker;
 class LiveLocationScreen extends StatelessWidget {
   final String trainNump;
-
   const LiveLocationScreen({
     required this. trainNump,
     super.key,

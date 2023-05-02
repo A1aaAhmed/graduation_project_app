@@ -66,7 +66,7 @@ class registerCubit extends Cubit<registerStates> {
     emit(passIsVisibleState());
   }
 
-  Future<bool> searchNumber({
+  static Future<bool> searchNumber({
     required String number,
   }) async {
     try {
@@ -77,8 +77,7 @@ class registerCubit extends Cubit<registerStates> {
           .collection('numbers')
           .doc(number)
           .get();
-      print('==============');
-      print(snapshot.data());
+
       return snapshot.exists;
     } catch (e) {
       // If any error

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 
 class UserModel{
@@ -45,21 +44,25 @@ return
     required String uId,
   })
   async{
-    final snapshot = await FirebaseFirestore.instance.collection('tickets').get();
+    final snapshot = await FirebaseFirestore.instance.collection('users')
+        .doc(uId.substring(0, 3))
+        .collection('numbers')
+        .doc(uId).collection('tickets').get();
     if ( snapshot.size == 0 ) {
-      FirebaseFirestore.instance.collection("users").doc(uId).collection('tickets').add(ticket.toMap());
+      FirebaseFirestore.instance.collection("users")
+        .doc(uId.substring(0, 3))
+        .collection('numbers')
+        .doc(uId).collection('tickets').add(ticket.toMap());
     }
     else {
       CollectionReference usersCollection = FirebaseFirestore.instance.collection("users");
-      usersCollection.doc(uId).collection('tickets').add(ticket.toMap());
+      usersCollection.doc(uId.substring(0, 3))
+        .collection('numbers')
+        .doc(uId).collection('tickets').add(ticket.toMap());
     }
 
   }
-  // yaaaaaaaaaaaaa mahaaaaaaaaaaaaaaaaaaaa
-  // instead of .doc()
-  // put
-  // .doc(uId.toString().substring(0,3))
-  // .collection('numbers').doc(uId)
+
   static Future<bool> searchNumber({
     required String number,
   })
