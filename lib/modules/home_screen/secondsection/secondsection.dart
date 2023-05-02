@@ -54,127 +54,130 @@ class _SecondSectionState extends State<SecondSection> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Form(
                         key: formkey,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              dropdownform(
-                                countries,
-                                "Enter your location, Please",
-                                'From where?',
-                                context,
-                              ),
-                              dropdownform(
-                                countries,
-                                "Enter your destination, Please",
-                                'Where to?',
-                                context,
-                              ),
-                              dropdownform(dates, "Enter the Date, Please",
-                                  'Departure date', context),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Travellers',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color: colortheme.lightPurple,
-                                          ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: const BoxDecoration(
-                                              color: colortheme.lightGray,
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(20),
-                                              )),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                if (travellers == 1) {
-                                                  travellers = 1;
-                                                } else {
-                                                  travellers--;
-                                                }
-                                              });
-                                            },
-                                            icon: const Icon(
-                                              Icons.remove,
-                                              size: 20,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                dropdownform(
+                                  countries,
+                                  "Enter your location, Please",
+                                  'From where?',
+                                  context,
+                                ),
+                                dropdownform(
+                                  countries,
+                                  "Enter your destination, Please",
+                                  'Where to?',
+                                  context,
+                                ),
+                                dropdownform(dates, "Enter the Date, Please",
+                                    'Departure date', context),
+                                Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Travellers',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              color: colortheme.lightPurple,
                                             ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.02,
-                                        ),
-                                        Text(
-                                            // '$travellers',
-                                            '${travellers}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium),
-                                        SizedBox(
-                                          width: width * 0.02,
-                                        ),
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: const BoxDecoration(
-                                              color: colortheme.lightGray,
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(20),
-                                              )),
-                                          child: IconButton(
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 50,
+                                            height: 50,
+                                            decoration: const BoxDecoration(
+                                                color: colortheme.lightGray,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(20),
+                                                )),
+                                            child: IconButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  travellers++;
+                                                  if (travellers == 1) {
+                                                    travellers = 1;
+                                                  } else {
+                                                    travellers--;
+                                                  }
                                                 });
                                               },
                                               icon: const Icon(
-                                                Icons.add,
+                                                Icons.remove,
                                                 size: 20,
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                  ]),
-                              button(
-                                  text: 'Search Trains',
-                                  width: width * 0.5,
-                                  height: 60,
-                                  context: context,
-                                  onpress: () {
-                                    if (formkey.currentState!.validate()) {
-                                      noOfChoosenSeats = travellers;
-                                      cubit
-                                          .getTrainsAndSearch(from, to)
-                                          .then((value) {
-                                        print(';;;;;;;;;;;;;;;;;;;;;;');
-                                        // print(cubit.searchedTrains);
-                                        // print(cubit.searchedTrains.length);
-
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  const TrainsScreen()),
-                                            ));
-                                      }).catchError((onError) {
-                                        onError.toString();
-                                      });
-                                    }
-                                    
-                                    // addseats(seats);
-                                  })
-                            ]),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.02,
+                                          ),
+                                          Text(
+                                              // '$travellers',
+                                              '${travellers}',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
+                                          SizedBox(
+                                            width: width * 0.02,
+                                          ),
+                                          Container(
+                                            width: 50,
+                                            height: 50,
+                                            decoration: const BoxDecoration(
+                                                color: colortheme.lightGray,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(20),
+                                                )),
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    travellers++;
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.add,
+                                                  size: 20,
+                                                )),
+                                          ),
+                                        ],
+                                      ),
+                                    ]),
+                                button(
+                                    text: 'Search Trains',
+                                    width: width * 0.5,
+                                    height: 60,
+                                    context: context,
+                                    onpress: () {
+                                      if (formkey.currentState!.validate()) {
+                                        noOfChoosenSeats = travellers;
+                                        cubit
+                                            .getTrainsAndSearch(from, to)
+                                            .then((value) {
+                                          print(';;;;;;;;;;;;;;;;;;;;;;');
+                                          // print(cubit.searchedTrains);
+                                          // print(cubit.searchedTrains.length);
+                        
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    const TrainsScreen()),
+                                              ));
+                                        }).catchError((onError) {
+                                          onError.toString();
+                                        });
+                                      }
+                                      
+                                      // addseats(seats);
+                                    })
+                              ]),
+                        ),
                       ))));
         });
   }

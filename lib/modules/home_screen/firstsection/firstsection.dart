@@ -29,20 +29,23 @@ class _FirstSectionState extends State<FirstSection> {
           )),
       child: Padding(
         padding: const EdgeInsets.all(25),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [
-              Text('Let\'s',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: colortheme.white,
-                        fontWeight: FontWeight.bold,
-                      )),
-              Text('Book Your\nNext Trip ',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: colortheme.white,
-                    fontWeight: FontWeight.bold,
-                  )),
-            ]),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:  [
+                Text('Let\'s',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: colortheme.white,
+                          fontWeight: FontWeight.bold,
+                        )),
+                Text('Book Your\nNext Trip ',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: colortheme.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ]),
+        ),
       ),
     );
   }
