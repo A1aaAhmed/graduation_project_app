@@ -59,7 +59,6 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                   fontWeight: FontWeight.bold
                               ),
                               ),
-
                               const SizedBox(height: 5,),
                               Text('Timing and tickets',
                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(

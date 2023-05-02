@@ -42,7 +42,6 @@ class registerScreen extends StatelessWidget {
           // }
         },
         builder: (context, state) {
-          registerCubit cubit = registerCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -173,7 +172,7 @@ class registerScreen extends StatelessWidget {
                                   background: colortheme.lightPurple,
                                   function: () async {
                                     if (formKey.currentState!.validate()) {
-                                      if (!await cubit.searchNumber(
+                                      if (await registerCubit.searchNumber(
                                           number: phoneControllor.text)) {
                                         // registerCubit.get(context).userRegister(
                                         //   firstName: firstName.text,
@@ -188,7 +187,8 @@ class registerScreen extends StatelessWidget {
                                               "+2${phoneControllor.text}",
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
-                                          verificationFailed: (error) {},
+                                          verificationFailed: (error) {
+                                          },
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
                                             realOpt = verificationId;

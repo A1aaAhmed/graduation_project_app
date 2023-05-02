@@ -13,7 +13,6 @@ class registerCubit extends Cubit<registerStates> {
       required String? email,
       required String? pass,
       required String? phone}) async {
-
     emit(registerLoadinglState());
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -67,11 +66,11 @@ class registerCubit extends Cubit<registerStates> {
     emit(passIsVisibleState());
   }
 
-   Future<bool> searchNumber({
+  static Future<bool> searchNumber({
     required String number,
   }) async {
     try {
-      String start = number!.substring(0, 3);
+      String start = number.substring(0, 3);
       var snapshot = await FirebaseFirestore.instance
           .collection("users")
           .doc(start)
