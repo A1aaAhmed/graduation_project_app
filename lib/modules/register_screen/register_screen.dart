@@ -189,17 +189,6 @@ class registerScreen extends StatelessWidget {
                                         //   phone: phoneControllor.text,
                                         //   email: emailSignUp.text,
                                         //   pass: passSignUp.text);
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  verifyPhoneScreen(
-                                                    phoneControllor.text,
-                                                    '${firstName.text} ${lastName.text}',
-                                                    emailSignUp.text,
-                                                    passSignUp.text,
-                                                  )),
-                                            ));
                                         int resend = 0;
                                         print("innnnnnn");
                                         print(phoneControllor.text);
@@ -224,6 +213,17 @@ class registerScreen extends StatelessWidget {
                                                     "       " +
                                                     realOpt);
                                             //01553070083
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      verifyPhoneScreen(
+                                                        phoneControllor.text,
+                                                        '${firstName.text} ${lastName.text}',
+                                                        emailSignUp.text,
+                                                        passSignUp.text,
+                                                      )),
+                                                ));
                                           },
                                           forceResendingToken: resend,
                                           codeAutoRetrievalTimeout:

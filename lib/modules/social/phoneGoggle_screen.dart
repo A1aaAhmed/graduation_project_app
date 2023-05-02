@@ -23,11 +23,7 @@ class _phoneScreenState extends State<phoneScreen> {
   Widget build(BuildContext context) {
     late var formKey = GlobalKey<FormState>();
       TextEditingController phoneController = TextEditingController();
-    return BlocConsumer<AuthCubit, AuthStates>(
-        listener: (BuildContext context, AuthStates state) {},
-        builder: (BuildContext context, AuthStates state) {
-          AuthCubit cubit = AuthCubit.get(context);
-          return Scaffold(
+    return  Scaffold(
             appBar: AppBar(
               backgroundColor: colortheme.lightGray,
               leading: IconButton(
@@ -148,6 +144,6 @@ class _phoneScreenState extends State<phoneScreen> {
               ),
             ),
           );
-        });
+        }
   }
-}
+

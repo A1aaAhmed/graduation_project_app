@@ -118,7 +118,7 @@ class verifyPhoneScreen extends StatelessWidget {
                               name: name,
                               phone: phone,
                               email: email,
-                              pass: pass);
+                              pass: pass);}
                           casheHelper
                               .saveData(key: 'uId', value: phone)
                               .then((value) {
@@ -127,7 +127,7 @@ class verifyPhoneScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: ((context) => const Trans())));
                           });
-                        }
+                        
                       } catch (e) {
                         print("wronnnnnnnnnnnnnnnnnnnnnng");
                         print(e);

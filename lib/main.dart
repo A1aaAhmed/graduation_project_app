@@ -80,9 +80,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => HomeScreenCubit(),
             ),
-                        BlocProvider(
-              create: (context) => AuthCubit(),
-            ),
+                        
             
           ],
           child: MaterialApp(
