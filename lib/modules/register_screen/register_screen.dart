@@ -10,6 +10,7 @@ import 'package:graduation_project_app/shared/components/phoneField.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import '../../shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
+
 class registerScreen extends StatelessWidget {
   var firstName = TextEditingController();
   var phoneControllor = TextEditingController();
@@ -41,6 +42,7 @@ class registerScreen extends StatelessWidget {
           // }
         },
         builder: (context, state) {
+          registerCubit cubit = registerCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -171,7 +173,8 @@ class registerScreen extends StatelessWidget {
                                   background: colortheme.lightPurple,
                                   function: () async {
                                     if (formKey.currentState!.validate()) {
-                                      if (!await registerCubit.searchNumber(number: phoneControllor.text)) {
+                                      if (!await cubit.searchNumber(
+                                          number: phoneControllor.text)) {
                                         // registerCubit.get(context).userRegister(
                                         //   firstName: firstName.text,
                                         //   secondName: lastName.text,
@@ -185,8 +188,7 @@ class registerScreen extends StatelessWidget {
                                               "+2${phoneControllor.text}",
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
-                                          verificationFailed: (error) {
-                                          },
+                                          verificationFailed: (error) {},
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
                                             realOpt = verificationId;

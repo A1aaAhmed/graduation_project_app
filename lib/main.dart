@@ -12,6 +12,7 @@ import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:graduation_project_app/shared/bloc_observer.dart';
 import 'firebase_options.dart';
+import 'modules/home_screen/home_screen.dart';
 
   
 void main() async {
@@ -116,7 +117,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(fontSize: 15),
               ),
             ),
-            home: startScreen,
+            home: const HomeScreen(),
           ));
     });
   }
