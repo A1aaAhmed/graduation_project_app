@@ -113,7 +113,7 @@ class _welcomeScreenState extends State<welcomeScreen> {
                                 context: context,
                                 background: Colors.indigo.shade400,
                                 iconp: Icons.email,
-                                text: "Log in with Email",
+                                text: "Log in with Phone",
                                 function: (){
                                   Navigator.push(
                                     context,
