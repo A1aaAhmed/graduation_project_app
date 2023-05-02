@@ -41,21 +41,6 @@ class MainCubit extends Cubit<MainStates> {
     emit(getUserLoadingState());
         print('=======================');
     uId = await casheHelper.getData(key: 'uId');
-<<<<<<< HEAD
-    print('=======================');
-    print('uid $uId');
-    print(uId);
-    String? start = uId?.substring(0, 3);
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(start)
-        .collection('numbers')
-        .doc(uId)
-        .get()
-        .then((value) {
-      print(value.data());
-      model = UserModel.fromJason(value.data()!);
-=======
     String? start = uId?.substring(0, 3);
     FirebaseFirestore.instance
         .collection('users')
@@ -65,7 +50,6 @@ class MainCubit extends Cubit<MainStates> {
       // event.data();
       model = UserModel.fromJason(event.data()!);
       print(model);
->>>>>>> 20a318e6e4ddb7fd476c46dfde942f603242f14c
       emit(getUserSucessState());
     });
 
