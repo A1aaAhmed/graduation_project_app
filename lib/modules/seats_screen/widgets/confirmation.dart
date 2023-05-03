@@ -6,6 +6,7 @@ import 'package:graduation_project_app/modules/Ticket/ticket_screen.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/seats_screen/cubit/states.dart';
+import 'package:graduation_project_app/shared/components/toast.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import '../../../models/ticket.dart';
@@ -29,8 +30,9 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                     ),
                     actions: [
                       TextButton(
-                          onPressed: () {
+                          onPressed: () async {
                             for (var ele in selectedSeats) {
+                              // print(!allSeats[int.parse(ele) - 1]);
                               allSeats[int.parse(ele) - 1] = true;
                             }
                             TicketModel ticket = TicketModel(
@@ -54,6 +56,7 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                         )),
                               );
                             });
+
                             // print(allSeats);
                             ///need uid here yaaaa mahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                           },
@@ -63,7 +66,9 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                 color: colortheme.lightPurple, fontSize: 17),
                           )),
                       TextButton(
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () async {
+                            Navigator.of(context).pop();
+                          },
                           child: const Text(
                             'Cancel',
                             style: TextStyle(

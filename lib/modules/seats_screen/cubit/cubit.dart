@@ -13,6 +13,7 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   static SeatsScreenCubit get(context) => BlocProvider.of(context);
 
   void initialFunction() {
+    // check = false;
     numberOfSeats = 0;
     amountToBePayed = 0;
     selectedSeats = [];
@@ -40,6 +41,18 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
     // allSeats[seatNumber - 1] = false;
     emit(RemoveSeatsState());
   }
+
+  Future<void> checkBeforeConfirm() async {
+    
+
+  }
+
+  // Future<void> reset() async {
+  //   numberOfSeats = 0;
+  //   amountToBePayed = 0;
+  //   selectedSeats = [];
+  //   emit(CheckState());
+  // }
 
   void removeEvenSeatFunction(int seatNumber, List<bool> evenBoxes, int index) {
     evenBoxes[index] = false;
@@ -133,7 +146,12 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
 
   Future<void> updateBill() async {
     String? start = uId?.substring(0, 3);
-    await FirebaseFirestore.instance.collection("users").doc(start).collection('numbers').doc(uId).update({
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(start)
+        .collection('numbers')
+        .doc(uId)
+        .update({
       'bill':
           '${double.parse(MainCubit.model!.bill.toString()) + amountToBePayed}'
     });
