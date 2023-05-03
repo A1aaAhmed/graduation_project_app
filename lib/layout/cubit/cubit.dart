@@ -97,7 +97,7 @@ class MainCubit extends Cubit<MainStates> {
     required BuildContext context,
   }) async {
     emit(updateUserLoadingState());
-    String? start = model!.uId!.substring(0, 3);
+     String? start = model!.uId!.substring(0, 3);
     FirebaseStorage.instance
         .ref()
         .child('users/${Uri.file(profileImage!.path).pathSegments.last}')
@@ -105,19 +105,34 @@ class MainCubit extends Cubit<MainStates> {
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         // emit(uploadProfileSucessState());
-        print('00000000000000000000000000000000000000');
         print('photo is' + value);
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(start)
-            .collection('numbers')
-            .doc(model?.uId)
-            .set({'image': value}, SetOptions(merge: true)).then((value) {
-          userGetData().then((value) => Navigator.pop(context));
-        }).catchError((error) {
-          emit(uploadProfileErrorState(error));
-        });
+
+        // مهااا لما تشغليها ابقي جربي تعملي اللي معموله كومنت 
+        //ده بدل ابديت يوزر 
+        //ده بيعمل ابديت للصورة بس بدل مايعمل لكل الفيلدز
+
+        // FirebaseFirestore.instance
+        //     .collection('users')
+        //     .doc(start)
+        //     .collection('numbers')
+        //     .doc(model?.uId)
+        //     .set({'image': value}, SetOptions(merge: true)).then((value) {
+        //   userGetData().then((value) => Navigator.pop(context));
+        // }).catchError((error) {
+        //   emit(uploadProfileErrorState(error));
+        // });
+        updateUser(
+          editedName: name,
+          editedEmail: email,
+          editedPhone: phone,
+          image: value,
+          context: context
+        );
+      }).catchError((error) {
+        emit(uploadProfileErrorState(error));
       });
+    }).catchError((error) {
+      emit(uploadProfileErrorState(error));
     });
   }
 
@@ -146,6 +161,7 @@ class MainCubit extends Cubit<MainStates> {
         .update(modeldata.toMap())
         .then((value) {
       userGetData().then((value) => Navigator.pop(context));
+      
     }).catchError((error) {
       emit(updateUserErrorState(error));
     });
