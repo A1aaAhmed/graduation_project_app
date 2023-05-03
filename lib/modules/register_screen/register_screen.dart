@@ -68,6 +68,7 @@ class registerScreen extends StatelessWidget {
                           height: 20,
                         ),
                         defualtForm(
+                          read: false,
                           controller: firstName,
                           inputType: TextInputType.text,
                           validator: 'required',
@@ -77,6 +78,7 @@ class registerScreen extends StatelessWidget {
                           height: 20,
                         ),
                         defualtForm(
+                            read: false,
                             controller: lastName,
                             inputType: TextInputType.text,
                             validator: 'required',
@@ -89,6 +91,7 @@ class registerScreen extends StatelessWidget {
                           height: 20,
                         ),
                         defualtForm(
+                          read: false,
                           controller: emailSignUp,
                           inputType: TextInputType.emailAddress,
                           validator: 'required',
@@ -99,6 +102,7 @@ class registerScreen extends StatelessWidget {
                           height: 20,
                         ),
                         defualtForm(
+                          read: false,
                           controller: passSignUp,
                           inputType: TextInputType.visiblePassword,
                           validator: 'required',
@@ -187,8 +191,7 @@ class registerScreen extends StatelessWidget {
                                               "+2${phoneControllor.text}",
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
-                                          verificationFailed: (error) {
-                                          },
+                                          verificationFailed: (error) {},
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
                                             realOpt = verificationId;

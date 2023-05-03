@@ -71,6 +71,7 @@ class loginSreen extends StatelessWidget {
                             height: 30,
                           ),
                           defualtForm(
+                              read: false,
                               controller: phoneController,
                               inputType: TextInputType.emailAddress,
                               validator: 'Phone Number is requird',
@@ -80,6 +81,7 @@ class loginSreen extends StatelessWidget {
                             height: 20,
                           ),
                           defualtForm(
+                            read: false,
                             controller: passController,
                             inputType: TextInputType.visiblePassword,
                             validator: 'Password is required',

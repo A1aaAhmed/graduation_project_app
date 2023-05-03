@@ -132,7 +132,8 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
   }
 
   Future<void> updateBill() async {
-    await FirebaseFirestore.instance.collection("users").doc(uId).update({
+    String? start = uId?.substring(0, 3);
+    await FirebaseFirestore.instance.collection("users").doc(start).collection('numbers').doc(uId).update({
       'bill':
           '${double.parse(MainCubit.model!.bill.toString()) + amountToBePayed}'
     });

@@ -30,7 +30,7 @@ Widget SearchCard(
                       ))));
         },
         child: Container(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: 230,
             color: int.parse(available) >= noOfChoosenSeats
                 ? Colors.white70
                 : colortheme.saimon.withOpacity(0.5),

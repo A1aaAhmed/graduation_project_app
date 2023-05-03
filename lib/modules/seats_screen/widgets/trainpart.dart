@@ -88,6 +88,7 @@ class _TrainPartState extends State<TrainPart> {
                 ? EdgeInsets.only(top: height * 0.15)
                 : EdgeInsets.only(top: height * 0.0156),
             child: ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () async {
                   int seatNumber = 2 * index + start;
