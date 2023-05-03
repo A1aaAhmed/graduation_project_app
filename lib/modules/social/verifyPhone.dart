@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,24 +86,22 @@ class verifyPhoneScreen extends StatelessWidget {
                     outlineBorderRadius: 15,
                     style: const TextStyle(fontSize: 17),
                     onChanged: (pin) {
-                      print("Changed: " + pin);
                       userOpt = pin;
                     },
                     onCompleted: (pin) {
                       userOpt = pin;
-                      print("Completeddddddddddddddddddddddddddddddddddd: " +
-                          userOpt);
                     },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  defultButton(
+            ConditionalBuilder(
+                condition: state is! registerLoadinglState,
+                builder: (context) => defultButton(
                       background: colortheme.lightPurple,
                       function: () async {
-                        print(userOpt);
-                        print("jjjjjjjjjjjjjjjjjjj" + realOpt);
-          
+                        registerCubit.get(context).emit(
+                            registerLoadinglState());
                         try {
                           PhoneAuthCredential credential =
                               PhoneAuthProvider.credential(
@@ -128,8 +127,12 @@ class verifyPhoneScreen extends StatelessWidget {
                             });
                           
                         } catch (e) {
-                          print("wronnnnnnnnnnnnnnnnnnnnnng");
-                          print(e);
+                          showToast(
+                            text:
+                            e.toString(),
+                            status: toastStates.ERROR,
+                          );
+
                         }
           
                         // cubit.submitOTP();
@@ -146,6 +149,9 @@ class verifyPhoneScreen extends StatelessWidget {
                       },
                       text: 'verify and create account',
                       context: context),
+                fallback: (
+                    context) => const Center(child: CircularProgressIndicator())
+            ),
                 ]),
           ),
         ),

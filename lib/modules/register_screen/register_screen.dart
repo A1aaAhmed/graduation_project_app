@@ -184,6 +184,7 @@ class registerScreen extends StatelessWidget {
                                         //   phone: phoneControllor.text,
                                         //   email: emailSignUp.text,
                                         //   pass: passSignUp.text);
+                                        registerCubit.get(context).emit(registerLoadinglState());
                                         int resend = 0;
                                         await FirebaseAuth.instance
                                             .verifyPhoneNumber(
@@ -191,7 +192,15 @@ class registerScreen extends StatelessWidget {
                                               "+2${phoneControllor.text}",
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
-                                          verificationFailed: (error) {},
+                                          verificationFailed: (error) {
+                                            registerCubit.get(context).emit(registerErrorState(error.toString()));
+                                            showToast(
+                                              text:
+                                              'we run into a problem check your connection and try again later ',
+                                              status: toastStates.WARNING,
+                                            );
+
+                                          },
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
                                             realOpt = verificationId;
