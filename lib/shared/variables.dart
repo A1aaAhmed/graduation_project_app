@@ -1,6 +1,7 @@
 //TextEditingController from = TextEditingController();
 //TextEditingController to = TextEditingController();
 //TextEditingController depart = TextEditingController();
+import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
 import 'package:graduation_project_app/modules/live_location/Cubit/cubit.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
@@ -9,6 +10,9 @@ import 'package:intl/intl.dart';
 
 import '../modules/seats_screen/widgets/classesmodel.dart';
 var uId= casheHelper.getData(key: 'uId') ;
+var nameController = TextEditingController();
+var emailController = TextEditingController();
+var phoneController = TextEditingController();
 String from='';
 String to='';
 String depart='';

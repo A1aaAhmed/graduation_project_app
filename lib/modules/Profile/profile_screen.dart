@@ -13,6 +13,7 @@ import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Profile/editProfile_Screen.dart';
 import 'package:graduation_project_app/network/local/shared_pref.dart';
 import 'package:graduation_project_app/shared/components/appBar.dart';
+import 'package:graduation_project_app/shared/components/button.dart';
 import 'package:graduation_project_app/shared/components/loading.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
@@ -29,11 +30,9 @@ class ProfileScreen extends StatelessWidget {
 
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {
-        
         MainCubit.get(context).profileImage;
       },
       builder: (context, state) {
-        
         var userModeldata = MainCubit.model;
 
         return Scaffold(
@@ -45,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: (height * 0.24) + 60,
                       child: Stack(
                         alignment: AlignmentDirectional.bottomCenter,
@@ -84,48 +83,26 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: colortheme.lightPurple,
-                              border: Border.all(
-                                  width: 2, color: colortheme.lightPurple),
-                              borderRadius: BorderRadius.all(
-                                Radius.elliptical(25, 25),
-                              )),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 1, horizontal: 55),
-                            child: TextButton.icon(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            editProfileScreen())));
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: colortheme.lightGray,
-                                size: 17,
-                              ),
-                              label: Text(
-                                'edit profile',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      color: colortheme.white,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
+                    Center(
+                      child: button(
+                        context: context,
+                        onpress: () {
+                          MainCubit.get(context).profileImage = null;
+                          nameController.text = '';
+                          emailController.text = '';
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const editProfileScreen())));
+                        },
+                        icon: Icons.edit,
+                        text: 'edit profile',
+                        width: width * 0.4,
+                        height: 60,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(

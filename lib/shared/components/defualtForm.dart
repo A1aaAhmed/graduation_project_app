@@ -11,8 +11,10 @@ Widget defualtForm({
   IconData? postfix,
   bool hidden = false,
   Function? sufffun,
+ required bool read ,
 }) =>
     TextFormField(
+      readOnly: read,
       validator: (String? value) {
         if (value == null || value.trim().isEmpty) {
           return validator;

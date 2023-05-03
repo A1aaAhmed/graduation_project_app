@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 import 'package:graduation_project_app/models/user.dart';
@@ -93,8 +94,10 @@ class MainCubit extends Cubit<MainStates> {
     required String name,
     required String email,
     required String phone,
+    required BuildContext context,
   }) async {
     emit(updateUserLoadingState());
+    String? start = model!.uId!.substring(0, 3);
     FirebaseStorage.instance
         .ref()
         .child('users/${Uri.file(profileImage!.path).pathSegments.last}')
@@ -102,18 +105,19 @@ class MainCubit extends Cubit<MainStates> {
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         // emit(uploadProfileSucessState());
+        print('00000000000000000000000000000000000000');
         print('photo is' + value);
-        updateUser(
-          editedName: name,
-          editedEmail: email,
-          editedPhone: phone,
-          image: value,
-        );
-      }).catchError((error) {
-        emit(uploadProfileErrorState(error));
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(start)
+            .collection('numbers')
+            .doc(model?.uId)
+            .set({'image': value}, SetOptions(merge: true)).then((value) {
+          userGetData().then((value) => Navigator.pop(context));
+        }).catchError((error) {
+          emit(uploadProfileErrorState(error));
+        });
       });
-    }).catchError((error) {
-      emit(uploadProfileErrorState(error));
     });
   }
 
@@ -122,6 +126,7 @@ class MainCubit extends Cubit<MainStates> {
     required String editedName,
     required String editedEmail,
     required String editedPhone,
+    required BuildContext context,
     String? image,
   }) async {
     UserModel modeldata = UserModel(
@@ -140,7 +145,7 @@ class MainCubit extends Cubit<MainStates> {
         .doc(model?.uId)
         .update(modeldata.toMap())
         .then((value) {
-      userGetData();
+      userGetData().then((value) => Navigator.pop(context));
     }).catchError((error) {
       emit(updateUserErrorState(error));
     });

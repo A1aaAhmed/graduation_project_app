@@ -153,7 +153,7 @@ class _SecondSectionState extends State<SecondSection> {
                                         ],
                                       ),
                                     ]),
-                                    SizedBox(height: 30,),
+                                const    SizedBox(height: 30,),
                                 button(
                                     text: 'Search Trains',
                                     width: width * 0.5,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
@@ -8,6 +7,7 @@ Widget button({
   required double width,
   required double height,
   required BuildContext context,
+  IconData? icon,
 }) =>
     Container(
       width: width,
@@ -35,10 +35,29 @@ Widget button({
         // ignore: curly_braces_in_flow_control_structures
         onPressed: onpress,
         // ignore: curly_braces_in_flow_control_structures
-        child: Text(text,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colortheme.white,
-                  fontWeight: FontWeight.bold,
-                )),
+        child: icon != null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    icon,
+                    color: Colors.white,
+                    size: 17,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(text,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: colortheme.white,
+                            fontWeight: FontWeight.bold,
+                          )),
+                ],
+              )
+            : Text(text,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: colortheme.white,
+                      fontWeight: FontWeight.bold,
+                    )),
       ),
     );
