@@ -48,147 +48,210 @@ class _TicketComponentState extends State<TicketComponent> {
                        94.5.h), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
                     painter: RPSCustomPainter(),
                   ),
-                      Wrap(
-                          children: [
-                            Container(
-                              padding: EdgeInsetsDirectional.only(start: 25.w,),
-                              child: AutoSizedColumn(
-                                alignCenterMain:true,
-                                h:0,
-                                item1: AutoSizedColumn(
-                                    alignCenterMain: true,
-                                    h: 0,
-                                    h2: 0,
-                                    item1: AutoSizedRow(
-                                      centerAlign: true,
-                                      h: 3.w,
-                                      item1: AutoSizedWidget(
-                                        item: Icon(
-                                          Icons.circle_outlined,
-                                          size: 3.w,
-                                          color: Colors.green,
-                                        ),
-                                      ),
-                                      item2:Container(
-                                        height: 10.h,
-                                        alignment: Alignment.centerLeft,
-                                        padding: EdgeInsetsDirectional.only(end:5.w ),
-                                        child: Text(
-                                          from,
-                                          maxLines: widget.view ?2:1,
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.white,
-                                            fontSize: widget.view ?25:30 ,
-                                          ),
-                                        ),
-                                      ) ,
-                                    ),
-                                    item2: AutoSizedRow(
-                                      centerAlign: true,
-                                      h: 2.w,
-                                      item1: Padding(
-                                        padding: EdgeInsetsDirectional.only(start: 1.2.w),
-                                        child: Dash(
-                                          direction: Axis.vertical,
-                                          length:widget.view ? 6.h:6.h ,
-                                          dashLength: 1.5.h,
-                                          dashColor: Colors.grey,
-                                          dashThickness: .5.w,
-                                        ),
-                                      ),
-                                      item2: Padding(
-                                        padding: EdgeInsetsDirectional.only(start: 2.w),
-                                        child: Text(
-                                          DateFormat.jm().format(date),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: widget.view ?16:18 ,
-                                          ),
-                                        ),
-                                      ) ,
-                                    ),
-                                    item3: AutoSizedRow(
-                                      centerAlign: true,
-                                      h: 3.w,
-                                      item1: AutoSizedWidget(
-                                        item: Icon(
-                                          Icons.circle_outlined,
-                                          size:3.w,
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                      item2:Container(
-                                        height: 10.h,
-                                        alignment: Alignment.centerLeft,
-                                        padding: EdgeInsetsDirectional.only(end:5.w ),
-                                        child: Text(
-                                            to,
-                                            maxLines: widget.view ?2:1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: widget.view ?25:30 ,
-                                            )),
-                                      ),
-                                    )
-                                ),
-                                item2: (widget.view)
-                                    ? AutoSizedColumn(
-                                  hInti: 5.h,
-                                  h: 5.h,
-                                  item1: AutoSizedRow(
-                                    centerAlign: true,
-                                    h:3.w,
-                                    item1: AutoSizedColumn(
-                                      alignCenterMain: true,
-                                      h: 2.h,
-                                      item1:const Text(
-                                          "Price",
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.grey,
-                                            fontSize:20 ,
-                                          )),
-                                      item2:Text(
-                                          price,
-                                          maxLines: 1,
-                                          style: const TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.white,
-                                            fontSize:18 ,
-                                          )),
-                                    ),
-
-                                    item2: AutoSizedColumn(
-                                      alignCenter: true,
-                                      alignCenterMain: true,
-                                      h: 2.h,
-                                      item1: const Text(
-                                          "Train",
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.grey,
-                                            fontSize:20 ,
-                                          )),
-                                      item2: Text(
-                                          train,
-                                          maxLines: 1,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize:18 ,
-                                            overflow: TextOverflow.ellipsis,
-                                          )),
+                      Container(
+                        width:100.w,
+                        height: 100.h,
+                        padding: EdgeInsetsDirectional.only(start: 25.w,),
+                        child: AutoSizedColumn(
+                          h:0,
+                          alignCenterMain: !widget.view,
+                          item1: AutoSizedColumn(
+                              h: 0,
+                              h2: 0,
+                              item1: Container(
+                                width: 80.w,
+                                height: 10.h,
+                                child: AutoSizedRow(
+                                  centerAlignMain: false,
+                                  h: 3.w,
+                                  item1: AutoSizedWidget(
+                                    item: Icon(
+                                      Icons.circle_outlined,
+                                      size: 3.w,
+                                      color: Colors.green,
                                     ),
                                   ),
-                                  item2: AutoSizedRow(
+                                  item2:Container(
+                                    width: 40.w,
+                                    height: 10.h,
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      from,
+                                      maxLines: widget.view ?2:1,
+                                      style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        color: Colors.white,
+                                        fontSize: widget.view ?25:30 ,
+                                      ),
+                                    ),
+                                  ) ,
+                                ),
+                              ),
+                              item2: Container(
+                                width: 80.w,
+                                height: 8.h,
+                                alignment: Alignment.topCenter,
+                                child: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: 2.w,
+                                  item1: Padding(
+                                    padding: EdgeInsetsDirectional.only(start: 1.2.w),
+                                    child: Dash(
+                                      direction: Axis.vertical,
+                                      length:widget.view ? 6.h:6.h ,
+                                      dashLength: 1.5.h,
+                                      dashColor: Colors.grey,
+                                      dashThickness: .5.w,
+                                    ),
+                                  ),
+                                  item2: Container(
+                                    alignment: Alignment.centerLeft,
+                                    width: 40.w,
+                                    height: 5.h,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 2.w),
+                                      child: Text(
+                                        DateFormat.jm().format(date),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: widget.view ?16:18 ,
+                                        ),
+                                      ),
+                                    ),
+                                  ) ,
+                                ),
+                              ),
+                              item3: Container(
+                                height: 10.h,
+                                width: 80.w,
+                                alignment: Alignment.topCenter,
+                                child: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: 3.w,
+                                  item1: Container(
+                                    margin: EdgeInsetsDirectional.only(bottom: widget.view?4.h:0) ,
+                                    height: 10.h,
+                                    alignment: Alignment.topCenter,
+                                    child: AutoSizedWidget(
+                                      item: Icon(
+                                        Icons.circle_outlined,
+                                        size:3.w,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  item2:Container(
+                                    width: 40.w,
+                                    height: 10.h,
+                                    alignment: Alignment.topLeft,
+                                    padding: EdgeInsetsDirectional.only(end:5.w ),
+                                    child: Text(
+                                        to,
+                                        maxLines: widget.view ?2:1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: widget.view ?25:30 ,
+                                        )),
+                                  ),
+                                ),
+                              )
+                          ),
+                          item2: (widget.view)
+                              ? Container(
+                                width: 80.w,
+                                height: 20.h,
+                                child: AutoSizedColumn(
+                                  hInti: 0,
+                                   h: 0,
+                                  item1: Container(
+                                   width: 80.w,
+                                   height: 10.h,
+                                   child: AutoSizedRow(
                                     centerAlign: true,
-                                    h: 3.w,
-                                    item1: const Text(
+                                     h:3.w,
+                                  item1: Container(
+                                    height: 20.h,
+                                    width: 20.w,
+                                    child: AutoSizedColumn(
+                                      alignCenterMain: true,
+                                      h:0,
+                                      item1:Container(
+                                        width: 20.w,
+                                        height: 5.h,
+                                        child: const Text(
+                                            "Price",
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              color: Colors.grey,
+                                              fontSize:20 ,
+                                            )),
+                                      ),
+                                      item2:Container(
+                                        width: 20.w,
+                                        height: 5.h,
+                                        child: Text(
+                                            price,
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              color: Colors.white,
+                                              fontSize:18 ,
+                                            )),
+                                      ),
+                                    ),
+                                  ),
+
+                                  item2: Container(
+                                    height: 20.h,
+                                    width: 20.w,
+                                    child: AutoSizedColumn(
+                                      alignCenter: true,
+                                      alignCenterMain: true,
+                                      h: 0,
+                                      item1: Container(
+                                        width: 20.w,
+                                        height: 5.h,
+                                        child: const Text(
+                                            "Train",
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              overflow: TextOverflow.ellipsis,
+                                              color: Colors.grey,
+                                              fontSize:20 ,
+                                            )),
+                                      ),
+                                      item2: Container(
+                                        width: 20.w,
+                                        height: 5.h,
+                                        child: Text(
+                                            train,
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize:18 ,
+                                              overflow: TextOverflow.ellipsis,
+                                            )),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ),
+                                  item2: Container(
+                                    alignment: Alignment.centerLeft,
+                                width: 80.w,
+                                height: 10.h,
+                                child: AutoSizedRow(
+                                  centerAlign: true,
+                                  h: 3.w,
+                                  item1: Container(
+                                    width: 10.w,
+                                    height: 10.h,
+                                    alignment: Alignment.centerLeft,
+                                    child: const Text(
                                         "Seats",
                                         maxLines: 1,
                                         style: TextStyle(
@@ -196,26 +259,31 @@ class _TicketComponentState extends State<TicketComponent> {
                                           color: Colors.grey,
                                           fontSize:20 ,
                                         )),
-                                    item2: Container(
-                                      padding: EdgeInsetsDirectional.only(end:5.w ),
-                                      child: Text(
-                                          seat,
-                                          maxLines: 2,
-                                          style: const TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            color: Colors.white,
-                                            fontSize:18 ,
-                                          )),
-                                    ),
                                   ),
-
-                                )
-                                    : const SizedBox(
-                                  height: 0,
+                                  item2: Container(
+                                    alignment: Alignment.centerLeft,
+                                    width: 30.w,
+                                    height: 10.h,
+                                    padding: EdgeInsetsDirectional.only(end:5.w ),
+                                    child: Text(
+                                        seat,
+                                        maxLines: 2,
+                                        style: const TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                          color: Colors.white,
+                                          fontSize:18 ,
+                                        )),
+                                  ),
                                 ),
-                              ),
                             ),
-                          ]),
+
+                          ),
+                              )
+                              : const SizedBox(
+                            height: 0,
+                          ),
+                        ),
+                      ),
                 ],
               ),
               Container(

@@ -150,7 +150,9 @@ class verifyPhoneScreen extends StatelessWidget {
                       text: 'verify and create account',
                       context: context),
                 fallback: (
-                    context) => const Center(child: CircularProgressIndicator())
+                    context) => const Center(child: CircularProgressIndicator(
+                  color:colortheme.lightPurple,
+                ))
             ),
                 ]),
           ),

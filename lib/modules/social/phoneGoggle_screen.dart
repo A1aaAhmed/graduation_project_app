@@ -150,7 +150,9 @@ class _phoneScreenState extends State<phoneScreen> {
                                         text: 'verify your phone number',
                                         context: context),
                                 fallback: (
-                                    context) => Center(child: const CircularProgressIndicator())),
+                                    context) => const Center(child: CircularProgressIndicator(
+                                  color:colortheme.lightPurple,
+                                ))),
                           ],
                         ),
                       ),

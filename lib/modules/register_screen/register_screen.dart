@@ -235,7 +235,9 @@ class registerScreen extends StatelessWidget {
                                   text: "Next",
                                 ),
                             fallback: (context) =>
-                                const CircularProgressIndicator()),
+                                const CircularProgressIndicator(
+                                  color:colortheme.lightPurple,
+                                )),
                         const SizedBox(
                           height: 15,
                         ),
