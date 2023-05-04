@@ -605,6 +605,7 @@ class MainCubit extends Cubit<MainStates> {
     'Wed': '48',
     'Thu': '48',
   };
+
   void available() async {
     for (var j = 0; j < trainsDocs.length; j++) {
       await FirebaseFirestore.instance
@@ -620,4 +621,8 @@ class MainCubit extends Cubit<MainStates> {
       });
     }
   }
+
+
 }
+
+

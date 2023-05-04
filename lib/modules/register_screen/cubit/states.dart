@@ -1,6 +1,7 @@
 
 abstract class registerStates {}
 class passIsVisibleState extends registerStates{}
+class isPassIsVisibleState extends registerStates{}
 class registerInitialState extends registerStates {}
 class registerLoadinglState extends registerStates {}
 class registerSucessState extends registerStates {
@@ -18,3 +19,4 @@ class createUserErrorState extends registerStates {
   final String error;
   createUserErrorState(this.error);
 }
+
