@@ -28,63 +28,6 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State<Ticket> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return BlocProvider(
-        create: (context) => TicketCubit()..getAllTickets(),
-        child: BlocConsumer<TicketCubit,TicketsStates>(
-        listener:(context, state) => {},
-    builder:  (context, state) =>
-      Scaffold(
-      body: Sizer(
-        builder: (context, orientation, deviceType)
-    {
-
-      return Scaffold(
-          appBar: bar(
-            context: context,
-            text: 'Current Ticket',
-            morelist: true,
-            ticket: widget.ticket,
-          ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: SizedBox(
-                width: 100.w,
-                height: 100.h,
-                child: Column(
-                  mainAxisAlignment: !expired(widget.ticket.date)?MainAxisAlignment.start:MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width:100.w,
-                      height: 60.h,
-                      child:TicketComponent(
-                        view: true,
-                        ticket:widget.ticket,
-                    )),
-                    SizedBox(height: 10.h),
-                    !expired(widget.ticket.date)?button(
-                        text: "Navigate Route",
-                        onpress: () {
-                          Train=widget.ticket.train;
-                          print("*****************************************************************${widget.ticket.train}");
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>CheckTrain(trainNump: widget.ticket.train,station: widget.ticket.from,date: widget.ticket.date,isFromHome: false,))));
-                        },
-                        width: 60.w,
-                        height: 10.h,
-                        context: context,
-          
-                    ):const Text(""),
-                  ],
-                )),
-          ));
-    })
-
-
-    )));}
-=======
     return WillPopScope(
       onWillPop: () async {
         print("After clicking the Android Back Button");
@@ -155,5 +98,4 @@ class _TicketState extends State<Ticket> {
                   })))),
     );
   }
->>>>>>> 3defad2060ed330969dba5b18021caeed7063d54
 }
