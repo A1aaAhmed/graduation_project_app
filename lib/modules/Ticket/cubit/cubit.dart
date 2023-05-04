@@ -4,6 +4,7 @@ import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/models/ticket.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/states.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
+import 'package:graduation_project_app/modules/seats_screen/cubit/cubit.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/layout/transition.dart';
@@ -148,8 +149,12 @@ class TicketCubit extends Cubit<TicketsStates> {
               .then((value) {
             value.docs.forEach((element) {
               //print(element);
-              print(element['available'][
-                  '${DateFormat('EEEE').format(DateTime.parse(ticket.date.toString())).substring(0, 3)}']);
+              // print(element['available'][
+              //     '${DateFormat('EEEE').format(DateTime.parse(ticket.date.toString())).substring(0, 3)}']);
+              // print(newDateTime(ticket.date.toString(), "23:59:59")
+              //         .toString()
+              //         .split(" ")
+              //         .first);
               updateData(
                   element.id,
                   element['available'][
@@ -158,7 +163,11 @@ class TicketCubit extends Cubit<TicketsStates> {
                   newDateTime(ticket.date.toString(), "23:59:59")
                       .toString()
                       .split(" ")
-                      .first);
+                      .first,
+                  DateFormat('EEEE')
+                      .format(DateTime.parse(ticket.date.toString()))
+                      .substring(0, 3),
+                  double.parse(ticket.price));
             });
           }).catchError((error) {
             emit(CancelTicketErrorState(error));
@@ -175,22 +184,6 @@ class TicketCubit extends Cubit<TicketsStates> {
 
   Future<void> updateSeats(
       String trainId, String theDayValue, List seats, String field) async {
-    //print(DateTime.parse(depart).day);
-    //     FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc(element.id)
-    //     .collection('seats')
-    //     .doc(seatsId)
-    //     .update({
-    //   //DateFormat('EEEE').format(DateTime.parse(depart))
-    //   newDateTime(ticket.date.toString(), "23:59:59").split(" ").first: allSeats,
-    // }).then((value) {
-    // }).catchError((error) {
-    //   emit(CancelTicketErrorState(error));
-    // });
-    for (var ele in seats) {
-      allSeats[int.parse(ele) - 1] = false;
-    }
     await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
@@ -198,45 +191,63 @@ class TicketCubit extends Cubit<TicketsStates> {
         .snapshots()
         .first
         .then((value) async {
+      // print('reached to the seat doocc=======');
       await FirebaseFirestore.instance
           .collection('trains')
           .doc(trainId)
           .collection('seats')
           .doc(value.docs.first.id)
-          .update({field: allSeats});
-      // print(value.docs.first.id);
+          .get()
+          .then((value) async {
+        seatsId = value.id;
+        allSeats = value[field];
+        for (var ele in seats) {
+          allSeats[int.parse(ele) - 1] = false;
+        }
+        // print(allSeats);
+        await FirebaseFirestore.instance
+            .collection('trains')
+            .doc(trainId)
+            .collection('seats')
+            .doc(seatsId)
+            .update({field: allSeats});
+      }).catchError((error) {
+        print(error.toString());
+      });
     });
   }
 
-  Future<void> updateAvailable(
-      String trainId, String theDayValue, int noOfCanceldSeats) async {
+  Future<void> updateAvailable(String trainId, String theDayValue,
+      int noOfCanceldSeats, String dayCanceld) async {
     String updatedValue =
         (int.parse(theDayValue) + noOfCanceldSeats).toString();
-    print('available========= $updatedValue');
+    // print('available========= $updatedValue');
     await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
-        .update({'available.${day}': updatedValue});
+        .update({'available.${dayCanceld}': updatedValue});
   }
 
-  Future<void> updateBill() async {
+  Future<void> updateBill(double price) async {
     String? start = uId?.substring(0, 3);
+    // print(
+    //     'bill======${double.parse(MainCubit.model!.bill.toString()) - price}');
     await FirebaseFirestore.instance
         .collection("users")
         .doc(start)
         .collection('numbers')
         .doc(uId)
         .update({
-      'bill':
-          '${double.parse(MainCubit.model!.bill.toString()) - amountToBePayed}'
+      'bill': '${double.parse(MainCubit.model!.bill.toString()) - price}'
     });
-    print('bill======${double.parse(MainCubit.model!.bill.toString()) - amountToBePayed}');
+    
   }
 
-  Future<void> updateData(
-      String trainId, String theDayValue, List seats, String field) async {
+  Future<void> updateData(String trainId, String theDayValue, List seats,
+      String field, String dayCanceld, double price) async {
     updateSeats(trainId, theDayValue, seats, field).then((value) =>
-        updateAvailable(trainId, theDayValue, seats.length).then(
-            (value) => updateBill().then((value) {}).catchError((error) {})));
+        updateAvailable(trainId, theDayValue, seats.length, dayCanceld).then(
+            (value) =>
+                updateBill(price).then((value) {}).catchError((error) {})));
   }
 }
