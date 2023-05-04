@@ -149,7 +149,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                 style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   color: Colors.white,
-                                  fontSize: widget.view ?25:30 ,
+                                  fontSize: widget.view ?25:27 ,
                                 ),
                               ),
                             ),
@@ -202,7 +202,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: widget.view ?25:30 ,
+                                  fontSize: widget.view ?25:27 ,
                                 )),
                             ),
                           ),
@@ -235,7 +235,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                       fontSize:18 ,
                                     )),
                               ),
-
+                
                               item2: AutoSizedColumn(
                                 alignCenter: true,
                                 alignCenterMain: true,
@@ -283,7 +283,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                 ),
                               ),
                             ),
-
+                
                           )
                         : const Text(''),
                   ),

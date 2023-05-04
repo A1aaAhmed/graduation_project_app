@@ -42,37 +42,40 @@ class _TicketState extends State<Ticket> {
             morelist: true,
             ticket: widget.ticket,
           ),
-          body: SizedBox(
-              width: 100.w,
-              height: 100.h,
-              child: Column(
-                mainAxisAlignment: !expired(widget.ticket.date)?MainAxisAlignment.start:MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width:100.w,
-                    height: 60.h,
-                    child:TicketComponent(
-                      view: true,
-                      ticket:widget.ticket,
-                  )),
-                  SizedBox(height: 10.h),
-                  !expired(widget.ticket.date)?button(
-                      text: "Navigate Route",
-                      onpress: () {
-                        Train=widget.ticket.train;
-                        print("*****************************************************************${widget.ticket.train}");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) =>CheckTrain(trainNump: widget.ticket.train,station: widget.ticket.from,date: widget.ticket.date,isFromHome: false,))));
-                      },
-                      width: 60.w,
-                      height: 10.h,
-                      context: context,
-
-                  ):const Text(""),
-                ],
-              )));
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: SizedBox(
+                width: 100.w,
+                height: 100.h,
+                child: Column(
+                  mainAxisAlignment: !expired(widget.ticket.date)?MainAxisAlignment.start:MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width:100.w,
+                      height: 60.h,
+                      child:TicketComponent(
+                        view: true,
+                        ticket:widget.ticket,
+                    )),
+                    SizedBox(height: 10.h),
+                    !expired(widget.ticket.date)?button(
+                        text: "Navigate Route",
+                        onpress: () {
+                          Train=widget.ticket.train;
+                          print("*****************************************************************${widget.ticket.train}");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>CheckTrain(trainNump: widget.ticket.train,station: widget.ticket.from,date: widget.ticket.date,isFromHome: false,))));
+                        },
+                        width: 60.w,
+                        height: 10.h,
+                        context: context,
+          
+                    ):const Text(""),
+                  ],
+                )),
+          ));
     })
 
 
