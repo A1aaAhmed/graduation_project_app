@@ -54,8 +54,9 @@ class _TicketComponentState extends State<TicketComponent> {
                         padding: EdgeInsetsDirectional.only(start: 25.w,),
                         child: AutoSizedColumn(
                           h:0,
-                          alignCenterMain: !widget.view,
+                          alignCenterMain: true,
                           item1: AutoSizedColumn(
+                            alignCenterMain: true,
                               h: 0,
                               h2: 0,
                               item1: Container(
@@ -64,24 +65,27 @@ class _TicketComponentState extends State<TicketComponent> {
                                 child: AutoSizedRow(
                                   centerAlignMain: false,
                                   h: 3.w,
-                                  item1: AutoSizedWidget(
-                                    item: Icon(
-                                      Icons.circle_outlined,
-                                      size: 3.w,
-                                      color: Colors.green,
+                                  item1: Container(
+                                    child: AutoSizedWidget(
+                                      item: Icon(
+                                        Icons.circle_outlined,
+                                        size: 3.w,
+                                        color: Colors.green,
+                                      ),
                                     ),
                                   ),
                                   item2:Container(
+                                    alignment: Alignment.centerLeft,
                                     width: 40.w,
                                     height: 10.h,
-                                    alignment: Alignment.bottomLeft,
                                     child: Text(
                                       from,
                                       maxLines: widget.view ?2:1,
                                       style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
                                         color: Colors.white,
-                                        fontSize: widget.view ?25:30 ,
+                                        fontSize: widget.view ?25:30
+                                        ,
                                       ),
                                     ),
                                   ) ,
@@ -90,15 +94,16 @@ class _TicketComponentState extends State<TicketComponent> {
                               item2: Container(
                                 width: 80.w,
                                 height: 8.h,
-                                alignment: Alignment.topCenter,
                                 child: AutoSizedRow(
                                   centerAlign: true,
                                   h: 2.w,
-                                  item1: Padding(
+                                  item1: Container(
+                                    height: 5.h,
+
                                     padding: EdgeInsetsDirectional.only(start: 1.2.w),
                                     child: Dash(
                                       direction: Axis.vertical,
-                                      length:widget.view ? 6.h:6.h ,
+                                      length:5.h ,
                                       dashLength: 1.5.h,
                                       dashColor: Colors.grey,
                                       dashThickness: .5.w,
@@ -131,7 +136,6 @@ class _TicketComponentState extends State<TicketComponent> {
                                   centerAlign: true,
                                   h: 3.w,
                                   item1: Container(
-                                    margin: EdgeInsetsDirectional.only(bottom: widget.view?4.h:0) ,
                                     height: 10.h,
                                     alignment: Alignment.topCenter,
                                     child: AutoSizedWidget(
@@ -143,10 +147,9 @@ class _TicketComponentState extends State<TicketComponent> {
                                     ),
                                   ),
                                   item2:Container(
+                                    alignment: Alignment.centerLeft,
                                     width: 40.w,
                                     height: 10.h,
-                                    alignment: Alignment.topLeft,
-                                    padding: EdgeInsetsDirectional.only(end:5.w ),
                                     child: Text(
                                         to,
                                         maxLines: widget.view ?2:1,
@@ -181,13 +184,13 @@ class _TicketComponentState extends State<TicketComponent> {
                                       item1:Container(
                                         width: 20.w,
                                         height: 5.h,
-                                        child: const Text(
+                                        child:  Text(
                                             "Price",
                                             maxLines: 1,
                                             style: TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               color: Colors.grey,
-                                              fontSize:20 ,
+                                              fontSize:20,
                                             )),
                                       ),
                                       item2:Container(
@@ -196,10 +199,10 @@ class _TicketComponentState extends State<TicketComponent> {
                                         child: Text(
                                             price,
                                             maxLines: 1,
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               color: Colors.white,
-                                              fontSize:18 ,
+                                              fontSize:18,
                                             )),
                                       ),
                                     ),
@@ -215,7 +218,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                       item1: Container(
                                         width: 20.w,
                                         height: 5.h,
-                                        child: const Text(
+                                        child:  Text(
                                             "Train",
                                             maxLines: 1,
                                             style: TextStyle(
@@ -230,7 +233,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                         child: Text(
                                             train,
                                             maxLines: 1,
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                               color: Colors.white,
                                               fontSize:18 ,
                                               overflow: TextOverflow.ellipsis,
@@ -257,7 +260,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                         style: TextStyle(
                                           overflow: TextOverflow.ellipsis,
                                           color: Colors.grey,
-                                          fontSize:20 ,
+                                          fontSize:20,
                                         )),
                                   ),
                                   item2: Container(
