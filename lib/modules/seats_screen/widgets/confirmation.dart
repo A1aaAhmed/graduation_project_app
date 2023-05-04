@@ -42,7 +42,7 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                                 seats: selectedSeats.join(" ,"),
                                 train: trainNUM,
                                 price: amountToBePayed.toString());
-                            SeatsScreenCubit.get(context)
+                            await SeatsScreenCubit.get(context)
                                 .updateData(train['trainID'],
                                     train['available']['${day}'])
                                 .then((value) {

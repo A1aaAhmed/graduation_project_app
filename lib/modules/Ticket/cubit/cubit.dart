@@ -184,20 +184,6 @@ class TicketCubit extends Cubit<TicketsStates> {
 
   Future<void> updateSeats(
       String trainId, String theDayValue, List seats, String field) async {
-    // allSeats = [];
-    // await FirebaseFirestore.instance
-    //     .collection('trains')
-    //     .doc(trainId)
-    //     .collection('seats')
-    //     .snapshots()
-    //     .listen((event) {
-    //   event.docs.forEach((e) {
-    //     //allSeats = e[DateFormat('EEEE').format(DateTime.parse(depart))];
-    //     allSeats = e[field];
-    //     seatsId = e.reference.id;
-    //     print(seatsId);
-    //   });
-    // });
     await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
@@ -205,7 +191,7 @@ class TicketCubit extends Cubit<TicketsStates> {
         .snapshots()
         .first
         .then((value) async {
-      print('reached to the seat doocc=======');
+      // print('reached to the seat doocc=======');
       await FirebaseFirestore.instance
           .collection('trains')
           .doc(trainId)
@@ -218,7 +204,7 @@ class TicketCubit extends Cubit<TicketsStates> {
         for (var ele in seats) {
           allSeats[int.parse(ele) - 1] = false;
         }
-        print(allSeats);
+        // print(allSeats);
         await FirebaseFirestore.instance
             .collection('trains')
             .doc(trainId)
@@ -235,7 +221,7 @@ class TicketCubit extends Cubit<TicketsStates> {
       int noOfCanceldSeats, String dayCanceld) async {
     String updatedValue =
         (int.parse(theDayValue) + noOfCanceldSeats).toString();
-    print('available========= $updatedValue');
+    // print('available========= $updatedValue');
     await FirebaseFirestore.instance
         .collection('trains')
         .doc(trainId)
@@ -244,6 +230,8 @@ class TicketCubit extends Cubit<TicketsStates> {
 
   Future<void> updateBill(double price) async {
     String? start = uId?.substring(0, 3);
+    // print(
+    //     'bill======${double.parse(MainCubit.model!.bill.toString()) - price}');
     await FirebaseFirestore.instance
         .collection("users")
         .doc(start)
@@ -252,8 +240,7 @@ class TicketCubit extends Cubit<TicketsStates> {
         .update({
       'bill': '${double.parse(MainCubit.model!.bill.toString()) - price}'
     });
-    print(
-        'bill======${double.parse(MainCubit.model!.bill.toString()) - price}');
+    
   }
 
   Future<void> updateData(String trainId, String theDayValue, List seats,
