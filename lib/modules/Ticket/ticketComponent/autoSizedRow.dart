@@ -24,7 +24,7 @@ Widget AutoSizedRow({
           : MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: hInit,
+          width: 10.w,
         ),
         item1,
         SizedBox(

@@ -27,7 +27,6 @@ PreferredSizeWidget bar({
       onPressed: () {
         appNow=text;
         if (text == 'My Tickets' ||
-
             text == 'Live location' ||
             text == 'Profile') {
           Cubit.changeNavbarIndex(0);
@@ -37,7 +36,7 @@ PreferredSizeWidget bar({
                 builder: ((context) => const Trans()),
               ));
               }
-              else if(         text == 'Current Ticket' ){
+              else if(text == 'Current Ticket' ){
                 Cubit.changeNavbarIndex(2);
           Navigator.push(
               context,

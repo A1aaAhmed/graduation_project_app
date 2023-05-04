@@ -8,9 +8,10 @@ Widget AutoSizedWidget({
   double paddingSymHoriz = 0,
   double paddingSymVert = 0,
   double borderRad = 0,
+  bool top=false
 }) =>
     Container(
-      alignment: align,
+      alignment: top?Alignment.topCenter:align,
       padding: EdgeInsets.symmetric(
           horizontal: paddingSymHoriz, vertical: paddingSymVert),
       decoration: const BoxDecoration(

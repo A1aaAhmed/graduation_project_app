@@ -66,6 +66,8 @@ class MyApp extends StatelessWidget {
               return MainCubit()
                 ..userGetData()
                 ..resetSeats()
+                // ..available()
+                // ..addFutureFields()
                 // ..deleteAllFields()
                 // ..addOnePreviousField()
                 

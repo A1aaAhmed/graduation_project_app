@@ -35,20 +35,23 @@ class NothingScreen extends StatelessWidget {
               width: 100.w,
               child:ConditionalBuilder(
                       condition: !nothing&&(!isFromHomeScreen||isFromHomeScreen&&availableTicket.isNotEmpty),
-                      builder: (context) =>isToday(date)?Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      builder: (context) =>isToday(date)?Wrap(
+                       alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Container(
                             height:15.h,
                             padding: const EdgeInsets.all(5),
                             alignment: Alignment.center,
-                            child: Text( "Wait for the train\nThe train will arrive $station $dateToShow",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color:colortheme.lightPurple ,
-                                fontWeight: FontWeight.bold,fontSize: 18
-                            )
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text( "Wait for the train\nThe train will arrive $station $dateToShow",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color:colortheme.lightPurple ,
+                                  fontWeight: FontWeight.bold,fontSize: 18
+                              )
+                              ),
                             ),
                           ),
                          SizedBox(

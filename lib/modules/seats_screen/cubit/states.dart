@@ -16,4 +16,5 @@ class UpdateSeatsErrorState extends SeatsScreenStates{
   
 }
 
+class CheckState extends SeatsScreenStates{}
 
