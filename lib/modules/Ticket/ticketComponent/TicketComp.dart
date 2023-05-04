@@ -59,7 +59,7 @@ class _TicketComponentState extends State<TicketComponent> {
                             alignCenterMain: true,
                               h: 0,
                               h2: 0,
-                              item1: Container(
+                              item1: SizedBox(
                                 width: 80.w,
                                 height: 10.h,
                                 child: AutoSizedRow(
@@ -91,7 +91,7 @@ class _TicketComponentState extends State<TicketComponent> {
                                   ) ,
                                 ),
                               ),
-                              item2: Container(
+                              item2: SizedBox(
                                 width: 80.w,
                                 height: 8.h,
                                 child: AutoSizedRow(
@@ -163,28 +163,28 @@ class _TicketComponentState extends State<TicketComponent> {
                               )
                           ),
                           item2: (widget.view)
-                              ? Container(
+                              ? SizedBox(
                                 width: 80.w,
                                 height: 20.h,
                                 child: AutoSizedColumn(
                                   hInti: 0,
                                    h: 0,
-                                  item1: Container(
+                                  item1: SizedBox(
                                    width: 80.w,
                                    height: 10.h,
                                    child: AutoSizedRow(
                                     centerAlign: true,
                                      h:3.w,
-                                  item1: Container(
+                                  item1: SizedBox(
                                     height: 20.h,
                                     width: 20.w,
                                     child: AutoSizedColumn(
                                       alignCenterMain: true,
                                       h:0,
-                                      item1:Container(
+                                      item1:SizedBox(
                                         width: 20.w,
                                         height: 5.h,
-                                        child:  Text(
+                                        child:  const Text(
                                             "Price",
                                             maxLines: 1,
                                             style: TextStyle(
@@ -193,13 +193,13 @@ class _TicketComponentState extends State<TicketComponent> {
                                               fontSize:20,
                                             )),
                                       ),
-                                      item2:Container(
+                                      item2:SizedBox(
                                         width: 20.w,
                                         height: 5.h,
                                         child: Text(
                                             price,
                                             maxLines: 1,
-                                            style:  TextStyle(
+                                            style:  const TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               color: Colors.white,
                                               fontSize:18,
@@ -208,17 +208,17 @@ class _TicketComponentState extends State<TicketComponent> {
                                     ),
                                   ),
 
-                                  item2: Container(
+                                  item2: SizedBox(
                                     height: 20.h,
                                     width: 20.w,
                                     child: AutoSizedColumn(
                                       alignCenter: true,
                                       alignCenterMain: true,
                                       h: 0,
-                                      item1: Container(
+                                      item1: SizedBox(
                                         width: 20.w,
                                         height: 5.h,
-                                        child:  Text(
+                                        child:  const Text(
                                             "Train",
                                             maxLines: 1,
                                             style: TextStyle(
@@ -227,13 +227,13 @@ class _TicketComponentState extends State<TicketComponent> {
                                               fontSize:20 ,
                                             )),
                                       ),
-                                      item2: Container(
+                                      item2: SizedBox(
                                         width: 20.w,
                                         height: 5.h,
                                         child: Text(
                                             train,
                                             maxLines: 1,
-                                            style:  TextStyle(
+                                            style:  const TextStyle(
                                               color: Colors.white,
                                               fontSize:18 ,
                                               overflow: TextOverflow.ellipsis,
