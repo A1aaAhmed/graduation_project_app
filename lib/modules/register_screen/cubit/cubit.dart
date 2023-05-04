@@ -56,9 +56,14 @@ class registerCubit extends Cubit<registerStates> {
 
   bool isPass = true;
   bool conPass = true;
+
   void passtrue() {
     isPass = !isPass;
-    emit(passIsVisibleState());
+    emit(isPassIsVisibleState());
+            print('===========');
+
+        print(isPass);
+
   }
 
   void passContrue() {

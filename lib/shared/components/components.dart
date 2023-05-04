@@ -84,7 +84,7 @@ Widget defualtForm({
   IconData? prefix,
   IconData? postfix,
   bool hidden = false,
-  Function? sufffun,
+  Function()? sufffun,
   bool read = false,
 }) =>
     TextFormField(
@@ -108,7 +108,6 @@ Widget defualtForm({
           nameController.text = s;
         } else if (lable == 'enter your email') {
           emailController.text = s;
-          
         }
 
         print('=========');
@@ -136,11 +135,7 @@ Widget defualtForm({
           color: colortheme.lightPurple,
         ),
         suffixIcon: IconButton(
-          onPressed: () {
-            if (postfix == null) {
-              sufffun;
-            }
-          },
+          onPressed: postfix != null ? sufffun : () {},
           icon: Icon(
             postfix,
             color: colortheme.lightPurple,

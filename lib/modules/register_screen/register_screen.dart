@@ -113,6 +113,7 @@ class registerScreen extends StatelessWidget {
                               ? Icons.visibility_off
                               : Icons.visibility,
                           sufffun: () {
+                            
                             registerCubit.get(context).passtrue();
                           },
                         ),

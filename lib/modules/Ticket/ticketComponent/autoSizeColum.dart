@@ -16,28 +16,31 @@ Widget AutoSizedColumn({
   bool alignCenter = false,
   bool alignCenterMain = false,
 }) =>
-    Column(
-      mainAxisAlignment: alignCenterMain
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.start,
-      crossAxisAlignment:
-          alignCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: hInti,
-        ),
-        item1,
-        SizedBox(
-          height: h,
-        ),
-        item2,
-        SizedBox(
-          height: h2,
-        ),
-        item3,
-        SizedBox(
-          height: h3,
-        ),
-        item4,
-      ],
+    SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        mainAxisAlignment: alignCenterMain
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        crossAxisAlignment:
+            alignCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: hInti,
+          ),
+          item1,
+          SizedBox(
+            height: h,
+          ),
+          item2,
+          SizedBox(
+            height: h2,
+          ),
+          item3,
+          SizedBox(
+            height: h3,
+          ),
+          item4,
+        ],
+      ),
     );
