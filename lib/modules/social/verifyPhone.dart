@@ -129,7 +129,7 @@ class verifyPhoneScreen extends StatelessWidget {
                         } catch (e) {
                           showToast(
                             text:
-                            e.toString(),
+                            "Wrong OPT code",
                             status: toastStates.ERROR,
                           );
 
