@@ -21,7 +21,7 @@ class _AvailableState extends State<AvailableScreen> {
           body:widget.availableTickets.isNotEmpty?
           ListTable(
             db:widget.availableTickets ,
-            h:40.h,
+            h:50.h,
             w:100.w,
           )
         :NothingScreen(
