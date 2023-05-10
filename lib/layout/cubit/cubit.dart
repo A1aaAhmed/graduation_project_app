@@ -107,20 +107,7 @@ class MainCubit extends Cubit<MainStates> {
         // emit(uploadProfileSucessState());
         print('photo is' + value);
 
-        // مهااا لما تشغليها ابقي جربي تعملي اللي معموله كومنت 
-        //ده بدل ابديت يوزر 
-        //ده بيعمل ابديت للصورة بس بدل مايعمل لكل الفيلدز
-
-        // FirebaseFirestore.instance
-        //     .collection('users')
-        //     .doc(start)
-        //     .collection('numbers')
-        //     .doc(model?.uId)
-        //     .set({'image': value}, SetOptions(merge: true)).then((value) {
-        //   userGetData().then((value) => Navigator.pop(context));
-        // }).catchError((error) {
-        //   emit(uploadProfileErrorState(error));
-        // });
+   
         updateUser(
           editedName: name,
           editedEmail: email,
