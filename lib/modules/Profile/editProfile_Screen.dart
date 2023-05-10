@@ -52,11 +52,6 @@ class editProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (state is updateUserLoadingState) LinearProgressIndicator(),
-                 if (state is updateUserLoadingState)
-                   SizedBox(
-                    height: 5,
-                   ),
                 Container(
                   height: (height * 0.24) + 60,
                   child: Stack(
@@ -138,7 +133,7 @@ class editProfileScreen extends StatelessWidget {
                 // SizedBox(
                 //   height: 20,
                 // ),
-                
+                 if (MainCubit.get(context).profileImage == null) 
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Column(

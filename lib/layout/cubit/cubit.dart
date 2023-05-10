@@ -96,7 +96,6 @@ class MainCubit extends Cubit<MainStates> {
     required String phone,
     required BuildContext context,
   }) async {
-    emit(updateUserLoadingState());
      String? start = model!.uId!.substring(0, 3);
     FirebaseStorage.instance
         .ref()
@@ -108,13 +107,13 @@ class MainCubit extends Cubit<MainStates> {
         print('photo is' + value);
 
    
-        updateUser(
-          editedName: name,
-          editedEmail: email,
-          editedPhone: phone,
-          image: value,
-          context: context
-        );
+          FirebaseFirestore.instance
+            .collection('users')
+            .doc(start)
+            .collection('numbers')
+            .doc(model?.uId)
+            .set({'image': value}, SetOptions(merge: true)).then((value) {
+          userGetData().then((value) => Navigator.pop(context));});
       }).catchError((error) {
         emit(uploadProfileErrorState(error));
       });
