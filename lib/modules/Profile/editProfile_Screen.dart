@@ -120,7 +120,7 @@ class editProfileScreen extends StatelessWidget {
                     child: defultButton(
                         context: context,
                         background: colortheme.lightPurple,
-                        function: () async {
+                        function: ()  {
                           nameController.text = userModeldata!.name!;
                           emailController.text = userModeldata!.email!;
                           MainCubit.get(context).uploadImage(
@@ -138,7 +138,7 @@ class editProfileScreen extends StatelessWidget {
                 // SizedBox(
                 //   height: 20,
                 // ),
-                if (MainCubit.get(context).profileImage == null) 
+                
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Column(
