@@ -52,11 +52,11 @@ class editProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // if (state is updateUserLoadingState) LinearProgressIndicator(),
-                // if (state is updateUserLoadingState)
-                //   SizedBox(
-                //     height: 5,
-                //   ),
+                if (state is updateUserLoadingState) LinearProgressIndicator(),
+                 if (state is updateUserLoadingState)
+                   SizedBox(
+                    height: 5,
+                   ),
                 Container(
                   height: (height * 0.24) + 60,
                   child: Stack(
