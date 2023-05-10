@@ -16,6 +16,7 @@ class DeleteExpiredTicketsState extends TicketsStates {}
 
 class AddTicketsState extends TicketsStates {}
 
+
 class CancelTicketErrorState extends TicketsStates {
   final error;
 

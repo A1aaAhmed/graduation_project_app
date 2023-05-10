@@ -95,8 +95,21 @@ class MainCubit extends Cubit<MainStates> {
     required String email,
     required String phone,
     required BuildContext context,
+    required String imgurl,
   }) async {
-     String? start = model!.uId!.substring(0, 3);
+    String? start = model!.uId!.substring(0, 3);
+    // delete previous image
+    if (imgurl !=
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU') {
+      print('=====================');
+      print(
+          imgurl.substring(imgurl.indexOf('%') + 3, imgurl.indexOf('?')));
+      FirebaseStorage.instance
+          .ref()
+          .child(
+              'users/${imgurl.substring(imgurl.indexOf('%') + 3, imgurl.indexOf('?'))}')
+          .delete();
+    }
     FirebaseStorage.instance
         .ref()
         .child('users/${Uri.file(profileImage!.path).pathSegments.last}')
@@ -106,14 +119,14 @@ class MainCubit extends Cubit<MainStates> {
         // emit(uploadProfileSucessState());
         print('photo is' + value);
 
-   
-          FirebaseFirestore.instance
+        FirebaseFirestore.instance
             .collection('users')
             .doc(start)
             .collection('numbers')
             .doc(model?.uId)
             .set({'image': value}, SetOptions(merge: true)).then((value) {
-          userGetData().then((value) => Navigator.pop(context));});
+          userGetData().then((value) => Navigator.pop(context));
+        });
       }).catchError((error) {
         emit(uploadProfileErrorState(error));
       });
@@ -147,7 +160,6 @@ class MainCubit extends Cubit<MainStates> {
         .update(modeldata.toMap())
         .then((value) {
       userGetData().then((value) => Navigator.pop(context));
-      
     }).catchError((error) {
       emit(updateUserErrorState(error));
     });
@@ -607,8 +619,4 @@ class MainCubit extends Cubit<MainStates> {
       });
     }
   }
-
-
 }
-
-

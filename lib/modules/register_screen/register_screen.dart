@@ -113,7 +113,6 @@ class registerScreen extends StatelessWidget {
                               ? Icons.visibility_off
                               : Icons.visibility,
                           sufffun: () {
-                            
                             registerCubit.get(context).passtrue();
                           },
                         ),
@@ -139,14 +138,17 @@ class registerScreen extends StatelessWidget {
                           obscureText: registerCubit.get(context).conPass,
                           decoration: InputDecoration(
                             labelText: 'Confirm Password',
-                            // labelStyle: TextStyle(color: colortheme.lightPurple),
+                            labelStyle:
+                                const TextStyle(color: colortheme.lightPurple),
+                            //labelStyle: TextStyle(color: colortheme.lightPurple),
                             border: const OutlineInputBorder(),
+                            focusColor: colortheme.lightPurple,
                             focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: colortheme.lightPurple,
                               ),
                             ),
-                            focusColor: colortheme.lightPurple,
+
                             prefixIcon: const Icon(
                               Icons.lock,
                               color: colortheme.lightPurple,
@@ -185,7 +187,9 @@ class registerScreen extends StatelessWidget {
                                         //   phone: phoneControllor.text,
                                         //   email: emailSignUp.text,
                                         //   pass: passSignUp.text);
-                                        registerCubit.get(context).emit(registerLoadinglState());
+                                        registerCubit
+                                            .get(context)
+                                            .emit(registerLoadinglState());
                                         int resend = 0;
                                         await FirebaseAuth.instance
                                             .verifyPhoneNumber(
@@ -194,13 +198,14 @@ class registerScreen extends StatelessWidget {
                                           verificationCompleted:
                                               (phoneAuthCredential) {},
                                           verificationFailed: (error) {
-                                            registerCubit.get(context).emit(registerErrorState(error.toString()));
+                                            registerCubit.get(context).emit(
+                                                registerErrorState(
+                                                    error.toString()));
                                             showToast(
                                               text:
-                                              'we run into a problem check your connection and try again later ',
+                                                  'we run into a problem check your connection and try again later ',
                                               status: toastStates.WARNING,
                                             );
-
                                           },
                                           codeSent: (String verificationId,
                                               int? forceResendingToken) async {
@@ -237,7 +242,7 @@ class registerScreen extends StatelessWidget {
                                 ),
                             fallback: (context) =>
                                 const CircularProgressIndicator(
-                                  color:colortheme.lightPurple,
+                                  color: colortheme.lightPurple,
                                 )),
                         const SizedBox(
                           height: 15,

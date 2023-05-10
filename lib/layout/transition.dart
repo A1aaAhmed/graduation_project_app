@@ -8,7 +8,18 @@ class Trans extends StatelessWidget {
   const Trans({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit, MainStates>(
+    return WillPopScope(
+        onWillPop: () async {
+          MainCubit.get(context).changeNavbarIndex(0);
+          print("After clicking the Android Back Button");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const Trans()),
+              ));
+          return false;
+        },
+        child:BlocConsumer<MainCubit, MainStates>(
       listener: (BuildContext context, MainStates MainStates) {},
       builder: (BuildContext context, MainStates MainStates) {
         MainCubit cubit = MainCubit.get(context);
@@ -57,6 +68,6 @@ class Trans extends StatelessWidget {
           ),
         );
       },
-    );
+    ));
   }
 }

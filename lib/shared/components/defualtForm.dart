@@ -31,10 +31,18 @@ Widget defualtForm({
       //function that i can do work on it
 
 // ignore: prefer_const_constructors
+cursorColor: colortheme.lightPurple,
       decoration: InputDecoration(
-        //hintText: 'abc@examble.com',
         labelText: lable,
+        labelStyle: const TextStyle(color: colortheme.lightPurple),
+        //labelStyle: TextStyle(color: colortheme.lightPurple),
         border: const OutlineInputBorder(),
+        focusColor: colortheme.lightPurple,
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: colortheme.lightPurple,
+          ),
+        ),
         prefixIcon: Icon(
           prefix,
         ),

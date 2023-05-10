@@ -250,4 +250,5 @@ class TicketCubit extends Cubit<TicketsStates> {
             (value) =>
                 updateBill(price).then((value) {}).catchError((error) {})));
   }
+  
 }

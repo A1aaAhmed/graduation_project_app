@@ -19,18 +19,18 @@ Widget phoneField({
 }
 
   },
-  cursorColor: colortheme.lightPurple,
-  keyboardType: TextInputType.phone,
-  decoration: const InputDecoration(
-    labelText: 'what\'s your phone number',
-    // labelStyle: TextStyle(color: colortheme.lightPurple),
-    border: OutlineInputBorder(),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: colortheme.lightPurple,
-      ),
-    ),
-    focusColor: colortheme.lightPurple,
+        cursorColor: colortheme.lightPurple,
+      decoration: const InputDecoration(
+        labelText: 'Phone Number',
+        labelStyle:  TextStyle(color: colortheme.lightPurple),
+        //labelStyle: TextStyle(color: colortheme.lightPurple),
+        border:  OutlineInputBorder(),
+        focusColor: colortheme.lightPurple,
+        focusedBorder:  OutlineInputBorder(
+          borderSide: BorderSide(
+            color: colortheme.lightPurple,
+          ),
+        ),
     prefixIcon: Icon(Icons.phone_android,color: colortheme.lightPurple,),
 
   ),

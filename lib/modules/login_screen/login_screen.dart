@@ -112,7 +112,9 @@ class loginSreen extends StatelessWidget {
                                   },
                                   text: "SIGNIN"),
                               fallback: (context) =>
-                                  const CircularProgressIndicator()),
+                                  const CircularProgressIndicator(
+                                    color: colortheme.lightPurple,
+                                  )),
                           const SizedBox(
                             height: 20,
                           ),
