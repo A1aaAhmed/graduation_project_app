@@ -49,11 +49,8 @@ class MapsCubit extends Cubit<MapsStates>{
     location.getLocation().then(
           (locationn)async {
         currentLocation = locationn;
-        //GoogleMapController googleMapController = await controller.future;
         location.onLocationChanged.listen(
               (newLoc) {
-                print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-
                 markersLocations[1]=LatLng( newLoc.latitude!, newLoc.longitude!,);
                 addMarker(LatLng( newLoc.latitude!, newLoc.longitude!,), "user",user_icon);
                 mapController?.animateCamera(CameraUpdate.newLatLngBounds(getLatLngBounds(markersLocations),20));
