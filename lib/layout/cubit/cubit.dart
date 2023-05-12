@@ -619,4 +619,42 @@ class MainCubit extends Cubit<MainStates> {
       });
     }
   }
+
+
+  void delete() async{
+        for (var i = 0; i < trainsDocs.length; i++) {
+      var collection = await FirebaseFirestore.instance
+          .collection('trains')
+          .doc(trainsDocs[i])
+          .collection('seats');
+      var docSnapshot = await collection.doc(seatsDocs[i]).get();
+      if (docSnapshot.exists) {
+        Map<String, dynamic> data = docSnapshot.data()!;
+          await FirebaseFirestore.instance
+              .collection('trains')
+              .doc(trainsDocs[i])
+              .collection('seats')
+              .doc(seatsDocs[i])
+              .update({'2023-05-07': FieldValue.delete()}).whenComplete(() {
+            // print('Field deleted');
+          });
+        
+      }
+    }
+  }
+  void add() async{
+          for (var i = 0; i < trainsDocs.length; i++) {
+        await FirebaseFirestore.instance
+            .collection('trains')
+            .doc(trainsDocs[i])
+            .collection('seats')
+            .doc(seatsDocs[i])
+            .set({'2023-05-15': seatsUpdate}, SetOptions(merge: true)).then((value) {
+          // print('Field added');
+          // print(date);
+        }).catchError((error) {
+          print(error.toString());
+        });
+      }
+  }
 }

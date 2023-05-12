@@ -16,29 +16,29 @@ class Trans extends StatefulWidget {
 
 class _TransState extends State<Trans> {
   DateTime currentBackPressTime = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          MainCubit.get(context).changeNavbarIndex(0);
-          print("After clicking the Android Back Button");
-          DateTime now = DateTime.now();
-          if (currentBackPressTime == null ||
-              now.difference(currentBackPressTime) > Duration(seconds: 2)) {
-            currentBackPressTime = now;
-            Fluttertoast.showToast(msg: 'Press back again to exit');
-            return Future.value(false);
+          if (MainCubit.get(context).currentindex == 0) {
+            print("After clicking the Android Back Button");
+            DateTime now = DateTime.now();
+            if (currentBackPressTime == null ||
+                now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+              currentBackPressTime = now;
+              Fluttertoast.showToast(msg: 'Press back again to exit');
+              return Future.value(false);
+            }
+            exit(0);
+          } else {
+            MainCubit.get(context).changeNavbarIndex(0);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: ((context) => const Trans()),
+                ));
+            return false;
           }
-          exit(0);
-          // exit(0);
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: ((context) => const Trans()
-          //       ),
-          //     ));
-          // return false;
         },
         child: BlocConsumer<MainCubit, MainStates>(
           listener: (BuildContext context, MainStates MainStates) {},
