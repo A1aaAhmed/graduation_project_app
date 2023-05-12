@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  DateTime currentBackPressTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
