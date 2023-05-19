@@ -2,13 +2,19 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/states.dart';
 import 'package:graduation_project_app/modules/social/verifyPhone.dart';
+import 'package:graduation_project_app/shared/components/appBar.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/components/phoneField.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
 import 'package:graduation_project_app/modules/register_screen/cubit/cubit.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
 
 class phoneScreen extends StatefulWidget {
   final String? name;
@@ -18,25 +24,40 @@ class phoneScreen extends StatefulWidget {
   State<phoneScreen> createState() => _phoneScreenState();
 }
 class _phoneScreenState extends State<phoneScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     late var formKey = GlobalKey<FormState>();
     TextEditingController phoneController = TextEditingController();
-    return BlocProvider(
+    return WillPopScope(
+        onWillPop: () async {
+      await GoogleSignIn().signOut();
+      await FirebaseAuth.instance.signOut().then((value) {
+        uId = '';
+       MainCubit.uId = '';
+       MainCubit.model = UserModel();
+        casheHelper.removeData(key: 'uId');
+       Restart.restartApp();
+       //  Navigator.push(
+       //      context,
+       //      MaterialPageRoute(
+       //        builder: ((context) => const welcomeScreen()),
+       //      ));
+      });
+      return false;
+
+    },
+      child :BlocProvider(
         create: (context) => registerCubit(),
         child: BlocConsumer<registerCubit, registerStates>(
             listener: (context, state) {},
             builder: (context, state) {
               return Scaffold(
-                appBar: AppBar(
-                  backgroundColor: colortheme.lightGray,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: colortheme.lightPurple,
-                    ),
-                    onPressed: () {},
-                  ),
+                appBar:bar(
+                  morelist: false,
+                  context: context,
+                  text: 'Verify phone number',
                 ),
                 body: SafeArea(
                   child: Padding(
@@ -160,6 +181,6 @@ class _phoneScreenState extends State<phoneScreen> {
                   ),
                 ),
               );
-            }));
+            })));
   }
 }

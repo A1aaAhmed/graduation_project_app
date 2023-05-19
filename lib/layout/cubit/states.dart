@@ -50,5 +50,8 @@ class UpdateErrorState extends MainStates {
   UpdateErrorState(this.error);}
 
 class GetFieldsState extends MainStates{}
+class uploadingChanges extends MainStates{}
 
+class uploadProfile extends MainStates{}
 
+class uploadProfile extends MainStates{}

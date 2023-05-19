@@ -1,9 +1,9 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
-import 'package:graduation_project_app/modules/Profile/profile_screen.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 
@@ -20,7 +20,7 @@ class editProfileScreen extends StatelessWidget {
     // var nameController = TextEditingController();
     // var emailController = TextEditingController();
     // var phoneController = TextEditingController();
-    var formkey = GlobalKey<FormState>();
+    //var formkey = GlobalKey<FormState>();
     return BlocConsumer<MainCubit, MainStates>(
       listener: (context, state) {
         // MainCubit.get(context).profileImage;
@@ -38,7 +38,7 @@ class editProfileScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back_ios)),
+                icon: const Icon(Icons.arrow_back_ios)),
             title: Text(
               'edit your profile',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -84,7 +84,7 @@ class editProfileScreen extends StatelessWidget {
                             child: CircleAvatar(
                               radius: 70,
                               backgroundImage: editedProfileImage == null
-                                  ? NetworkImage('${userModeldata!.image!}')
+                                  ? NetworkImage('${userModeldata.image!}')
                                       as ImageProvider
                                   : FileImage(editedProfileImage),
                             ),
@@ -95,7 +95,7 @@ class editProfileScreen extends StatelessWidget {
                               onPressed: () {
                                 MainCubit.get(context).getImage();
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.add_a_photo,
                                 size: 24,
                               ),
@@ -106,24 +106,31 @@ class editProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 if (MainCubit.get(context).profileImage != null)
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: defultButton(
+                    child:  ConditionalBuilder(
+                   condition: state is! uploadingChanges,
+                  builder: (context) =>
+                    defultButton(
                         context: context,
                         background: colortheme.lightPurple,
                         function: ()  {
-                          nameController.text = userModeldata!.name!;
-                          emailController.text = userModeldata!.email!;
+                          nameController.text = userModeldata.name!;
+                          emailController.text = userModeldata.email!;
                           MainCubit.get(context).uploadImage(
                               name: nameController.text,
                               email: emailController.text,
                               phone: phoneController.text, context: context,imgurl: userModeldata.image! );
                         },
                         text: 'Upload profile photo'),
+                    fallback: (
+                    context) => const Center(child: CircularProgressIndicator(
+                    color:colortheme.lightPurple,
+                    ))),
                   ),
                 // if (state is updateUserLoadingState)
                 //   SizedBox(
@@ -149,7 +156,7 @@ class editProfileScreen extends StatelessWidget {
                         //   nameController.text = s;
                         // }
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       defualtForm(
@@ -163,7 +170,7 @@ class editProfileScreen extends StatelessWidget {
                         //   emailController.text = s;
                         // }
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       defualtForm(
@@ -180,7 +187,9 @@ class editProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      button(
+                  ConditionalBuilder(
+                    condition: state is! uploadingChanges,
+                    builder: (context) => button(
                           text: 'Update',
                           width: width * 0.5,
                           height: 60,
@@ -211,7 +220,13 @@ class editProfileScreen extends StatelessWidget {
                                   editedPhone: phoneController.text, context: context,);
                               
                             }
-                          })
+                          }),
+                      fallback: (
+                          context) => const Center(child: CircularProgressIndicator(
+                        color:colortheme.lightPurple,
+                      ))
+                  ),
+
                     ],
                   ),
                 ),
