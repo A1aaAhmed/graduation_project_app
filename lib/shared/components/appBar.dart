@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/transition.dart';
 import 'package:graduation_project_app/models/ticket.dart';
+import 'package:graduation_project_app/models/user.dart';
 import 'package:graduation_project_app/modules/Ticket/allTickets.dart';
 import 'package:graduation_project_app/modules/Ticket/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/Ticket/timeFuns.dart';
@@ -9,7 +12,9 @@ import 'package:graduation_project_app/shared/components/alertDialog.dart';
 import 'package:graduation_project_app/shared/components/components.dart';
 import 'package:graduation_project_app/shared/style/colors.dart';
 import 'package:graduation_project_app/shared/variables.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:sizer/sizer.dart';
+import 'package:graduation_project_app/network/local/shared_pref.dart';
 
 PreferredSizeWidget bar({
   required BuildContext context,
@@ -24,7 +29,8 @@ PreferredSizeWidget bar({
 
   return AppBar(
     leading: IconButton(
-      onPressed: () {
+      onPressed: ()async {
+        print(text);
         appNow=text;
         if (text == 'My Tickets' ||
             text == 'Live location' ||
@@ -44,6 +50,21 @@ PreferredSizeWidget bar({
                 builder: ((context) => const TicketsView()),
               ));
               }
+              else if (text=='Verify phone number'){
+          await GoogleSignIn().signOut();
+          await FirebaseAuth.instance.signOut().then((value) {
+           uId = '';
+            MainCubit.uId = '';
+            MainCubit.model = UserModel();
+            casheHelper.removeData(key: 'uId');
+            Restart.restartApp();
+          });
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: ((context) => const welcomeScreen()),
+          //     ));
+        }
         else {
           Navigator.pop(context);
         }

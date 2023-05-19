@@ -97,6 +97,7 @@ class MainCubit extends Cubit<MainStates> {
     required BuildContext context,
     required String imgurl,
   }) async {
+    emit( uploadingChanges());
     String? start = model!.uId!.substring(0, 3);
     // delete previous image
     if (imgurl !=
@@ -126,6 +127,8 @@ class MainCubit extends Cubit<MainStates> {
             .doc(model?.uId)
             .set({'image': value}, SetOptions(merge: true)).then((value) {
           userGetData().then((value) => Navigator.pop(context));
+          emit(uploadProfile());
+
         });
       }).catchError((error) {
         emit(uploadProfileErrorState(error));
@@ -143,6 +146,7 @@ class MainCubit extends Cubit<MainStates> {
     required BuildContext context,
     String? image,
   }) async {
+    emit( uploadingChanges());
     UserModel modeldata = UserModel(
       uId: model!.uId!,
       name: editedName,
@@ -159,6 +163,7 @@ class MainCubit extends Cubit<MainStates> {
         .doc(model?.uId)
         .update(modeldata.toMap())
         .then((value) {
+      emit(uploadProfile());
       userGetData().then((value) => Navigator.pop(context));
     }).catchError((error) {
       emit(updateUserErrorState(error));
@@ -629,7 +634,7 @@ class MainCubit extends Cubit<MainStates> {
           .collection('seats');
       var docSnapshot = await collection.doc(seatsDocs[i]).get();
       if (docSnapshot.exists) {
-        Map<String, dynamic> data = docSnapshot.data()!;
+       // Map<String, dynamic> data = docSnapshot.data()!;
           await FirebaseFirestore.instance
               .collection('trains')
               .doc(trainsDocs[i])

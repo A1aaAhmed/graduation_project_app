@@ -50,3 +50,6 @@ class DeleteFieldErrorState extends MainStates {
   DeleteFieldErrorState(this.error);}
 
 class GetFieldsState extends MainStates{}
+class uploadingChanges extends MainStates{}
+
+class uploadProfile extends MainStates{}
