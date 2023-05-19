@@ -102,8 +102,7 @@ class MainCubit extends Cubit<MainStates> {
     if (imgurl !=
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCx4ccalfApSkEYuRVPPOaHuBArgEUczsJKLsoofXozOerx-A-0rtEalHhLqfHuW3mi1A&usqp=CAU') {
       print('=====================');
-      print(
-          imgurl.substring(imgurl.indexOf('%') + 3, imgurl.indexOf('?')));
+      print(imgurl.substring(imgurl.indexOf('%') + 3, imgurl.indexOf('?')));
       FirebaseStorage.instance
           .ref()
           .child(
@@ -295,9 +294,9 @@ class MainCubit extends Cubit<MainStates> {
     daysOfExpiredDates = [];
     await FirebaseFirestore.instance
         .collection("trains")
-        .doc(trainsDocs[0])
+        .doc(trainsDocs.last)
         .collection("seats")
-        .doc(seatsDocs[0])
+        .doc(seatsDocs.last)
         .get()
         .then((value) async {
       if (value.exists) {
@@ -359,7 +358,7 @@ class MainCubit extends Cubit<MainStates> {
           // print('Field added');
           // print(date);
         }).catchError((error) {
-          print(error.toString());
+          emit(UpdateErrorState(error.toString()));
         });
       }
     }
@@ -372,15 +371,14 @@ class MainCubit extends Cubit<MainStates> {
             .doc(trainsDocs[j])
             .update({'available.${daysOfExpiredDates[i]}': '48'}).then((value) {
           // print(daysOfExpiredDates);
-
           // print('Field added');
           // print(date);
         }).catchError((error) {
-          print(error.toString());
+          emit(UpdateErrorState(error.toString()));
         });
       }
     }
-
+  }
     // String dateTobBeDeleted =
     //     newDateTime(DateTime.now().toString(), "23:59:59");
     // final Map<String, dynamic> deletes = {
@@ -429,8 +427,6 @@ class MainCubit extends Cubit<MainStates> {
     //     print(error.toString());
     //   });
     // }
-  }
-
   Future<void> resetSeats() async {
     checkExpiredDate().then((value) async {
       // print("isexist & isexpired");
@@ -620,9 +616,8 @@ class MainCubit extends Cubit<MainStates> {
     }
   }
 
-
-  void delete() async{
-        for (var i = 0; i < trainsDocs.length; i++) {
+  void delete() async {
+    for (var i = 0; i < trainsDocs.length; i++) {
       var collection = await FirebaseFirestore.instance
           .collection('trains')
           .doc(trainsDocs[i])
@@ -630,31 +625,32 @@ class MainCubit extends Cubit<MainStates> {
       var docSnapshot = await collection.doc(seatsDocs[i]).get();
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
-          await FirebaseFirestore.instance
-              .collection('trains')
-              .doc(trainsDocs[i])
-              .collection('seats')
-              .doc(seatsDocs[i])
-              .update({'2023-05-07': FieldValue.delete()}).whenComplete(() {
-            // print('Field deleted');
-          });
-        
-      }
-    }
-  }
-  void add() async{
-          for (var i = 0; i < trainsDocs.length; i++) {
         await FirebaseFirestore.instance
             .collection('trains')
             .doc(trainsDocs[i])
             .collection('seats')
             .doc(seatsDocs[i])
-            .set({'2023-05-15': seatsUpdate}, SetOptions(merge: true)).then((value) {
-          // print('Field added');
-          // print(date);
-        }).catchError((error) {
-          print(error.toString());
+            .update({'2023-05-07': FieldValue.delete()}).whenComplete(() {
+          // print('Field deleted');
         });
       }
+    }
+  }
+
+  void add() async {
+    for (var i = 0; i < trainsDocs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection('trains')
+          .doc(trainsDocs[i])
+          .collection('seats')
+          .doc(seatsDocs[i])
+          .set({'2023-05-22': seatsUpdate}, SetOptions(merge: true)).then(
+              (value) {
+        // print('Field added');
+        // print(date);
+      }).catchError((error) {
+        print(error.toString());
+      });
+    }
   }
 }

@@ -129,14 +129,13 @@ class SeatsScreenCubit extends Cubit<SeatsScreenStates> {
         .collection('seats')
         .doc(seatsId)
         .update({
-      //DateFormat('EEEE').format(DateTime.parse(depart))
       fieldName: allSeats,
     });
   }
 
   Future<void> updateAvailable(String trainId, String theDayValue) async {
     String updatedValue =
-        (int.parse(theDayValue) - noOfChoosenSeats).toString();
+        (int.parse(theDayValue) - numberOfSeats).toString();
     // print('the new value is $updatedValue');
     await FirebaseFirestore.instance
         .collection('trains')

@@ -32,7 +32,6 @@ Future confirmSeats(BuildContext context, String time, String trainNUM,
                       TextButton(
                           onPressed: () async {
                             for (var ele in selectedSeats) {
-                              // print(!allSeats[int.parse(ele) - 1]);
                               allSeats[int.parse(ele) - 1] = true;
                             }
                             TicketModel ticket = TicketModel(
