@@ -1,1 +1,1 @@
-This application is a new version of Notepad that allows you to organize your notes into books based on how you're feeling at the time.
+This project is an app that was created as a graduation project utilising the flutter platform. With the use of this software, customers may book tickets, create accounts, and follow trains. 
